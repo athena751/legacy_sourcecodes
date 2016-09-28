@@ -1,0 +1,34 @@
+<!--
+        Copyright (c) 2004-2006 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-base.xml,v 1.3 2006/10/09 02:40:47 qim Exp $" -->
+<ExceptionConf>
+
+    <ProcessRule errorCode = "0x10000006">
+        <ErrorMessage key = "errorMsg.cluster.maintenance" bundle = "errorDisplay" type="detailInfo"/>
+        <Dispatcher forward = "errorPage"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10000007">
+        <ErrorMessage key = "errorMsg.cluster.maintenance" bundle = "errorDisplay" type="detailInfo"/>
+        <Dispatcher forward = "errorPage"/>
+    </ProcessRule>
+    <ProcessRule errorCode = "0x10000008">
+        <ErrorMessage key = "errorMsg.cluster.maintenance" bundle = "errorDisplay" type="detailInfo"/>
+        <Dispatcher forward = "communicateError"/>
+    </ProcessRule>
+    <ProcessRule errorCode = "0x10000009">
+        <ErrorMessage key = "errorMsg.cluster.maintenance" bundle = "errorDisplay" type="detailInfo"/>
+        <Dispatcher forward = "communicateError"/>
+    </ProcessRule>
+    <ProcessRule errorCode = "0x1000000A">
+        <ErrorMessage key = "errorMsg.cluster.maintenance" bundle = "errorDisplay" type="detailInfo"/>
+        <Dispatcher forward = "errorPage"/>
+    </ProcessRule>
+</ExceptionConf>

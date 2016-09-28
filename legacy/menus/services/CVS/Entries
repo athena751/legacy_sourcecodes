@@ -1,0 +1,23 @@
+/deploy-ethguard.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-exportroot.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-mapd.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-mapdcommon.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-nic.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-quota.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/deploy-snapshot.sh/1.2300/Mon Nov 24 00:55:15 2003//
+/urn_APIConf.xml/1.7/Mon May 21 07:16:40 2007//
+/urn_ClusterConf.xml/1.2300/Mon Nov 24 00:55:15 2003//
+/urn_DirQuotaConf.xml/1.2300/Thu Mar  4 07:07:06 2004//
+/urn_EthguardConf.xml/1.2303/Wed Apr 25 02:29:43 2007//
+/urn_ExportRootConf.xml/1.2302/Thu May 10 03:28:20 2007//
+/urn_FTPConf.xml/1.2301/Tue Dec 23 05:20:21 2008//
+/urn_HTTPConf.xml/1.2300/Mon Nov 24 00:55:15 2003//
+/urn_MAPDConf.xml/1.2302/Fri Feb 20 07:47:55 2004//
+/urn_MapdCommonConf.xml/1.2304/Thu Apr 26 07:52:06 2007//
+/urn_NICConf.xml/1.2302/Tue Sep  6 06:32:14 2005//
+/urn_NasHeadConf.xml/1.3/Mon Oct 24 06:29:01 2005//
+/urn_QuotaConf.xml/1.2302/Tue Jan  3 02:56:53 2006//
+/urn_Sirius.xml/1.2300/Mon Nov 24 00:55:16 2003//
+/urn_SnapshotConf.xml/1.2300/Mon Nov 24 00:55:16 2003//
+/urn_Soap4Cluster.xml/1.2300/Mon Nov 24 00:55:16 2003//
+D

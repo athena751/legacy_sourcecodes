@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2006 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: nas_http.xml,v 1.2306 2005/07/12 01:02:17 wangzf Exp" -->
+
+<messages>
+<msg key="common" value="">
+    <msg key="h1" value="HTTP" />
+</msg>
+<msg key="button" value="">
+	<msg key="browse" value="Browse..." ja="参照..."/>
+	<msg key="modify" value="Modify" ja="設定変更"/>
+	<msg key="add" value="Add" ja="追加"/>
+	<msg key="edit" value="Edit" ja="編集"/>
+	<msg key="delete" value="Delete" ja="削除"/>
+	<msg key="submit" value="Submit" ja="実行"/>
+	<msg key="set" value="Submit/Restart" ja="設定反映・再起動"/>
+
+</msg>
+<msg key="basic" value="">
+	<msg key="h2" value="Basic Settings" ja="基本設定" />
+	<msg key="th_port" value="Port Number" ja="使用するポート番号" />
+	<msg key="th_service" value="HTTP Service" ja="HTTPサービス" />
+	<msg key="th_use" value="Use" ja="使用する" />
+	<msg key="th_unuse" value="Unused" ja="使用しない" />
+	<msg key="th_start" value="(Start)" ja="（起動中）" />
+	<msg key="th_stop" value="(Stop)" ja="（停止中）" />
+</msg>
+
+<msg key="server" value="">
+	<msg key="h2_main" value="Main Server Settings" ja="メインサーバ設定" />
+	<msg key="h2_virtual" value="Virtual Host Settings" ja="仮想ホスト設定" />
+	<msg key="th_document_root" value="DocumentRoot"/>
+	<msg key="th_server_admin" value="ServerAdmin"/>
+	<msg key="th_sever_name" value="Server Name" ja="サーバ名"/>
+	<msg key="th_user_group" value="HTTP user/group" ja="HTTPが使用するuser/group"/>
+	<msg key="th_unix_user" value="UNIX user name/ID:" ja="UNIX用ユーザ名/ID："/>
+	<msg key="th_unix_user_name" value="UNIX user name:" ja="UNIX用ユーザ名："/>
+	<msg key="th_unix_user_id" value="UNIX user ID:" ja="UNIX用ユーザID："/>
+	<msg key="th_unix_group" value="UNIX group name/ID:" ja="UNIX用グループ名/ID："/>
+	<msg key="th_unix_group_name" value="UNIX group name:" ja="UNIX用グループ名："/>
+	<msg key="th_unix_group_id" value="UNIX group ID:" ja="UNIX用グループID："/>
+	<msg key="th_windows_user_name" value="Windows user name:" ja="Windows用ユーザ名："/>
+	<msg key="th_windows_group_name" value="Windows group name:" ja="Windows用グループ名："/>
+	<msg key="th_transferlog" value="TransferLog Settings" ja="転送ログの設定"/>
+	<msg key="th_transferlog_location" value="TransferLog Location" ja="転送ログの位置"/>
+	<msg key="th_standard" value="Standard" ja="標準"/>
+	<msg key="th_custom" value="Custom:" ja="ユーザ指定："/>
+	<msg key="th_syslog" value="syslog" />
+	<msg key="th_customlog" value="CustomLog" ja="転送ログのカスタマイズ"/>
+	<msg key="th_use_customlog" value="Use CustomLog" ja="カスタムログを使用する"/>
+	<msg key="th_log_file_name" value="Log File Name:" ja="ログファイル名："/>
+	<msg key="th_log_file_format" value="Format:" ja="出力形式:"/>
+	<msg key="th_errorlog_location" value="ErrorLog Location" ja="エラーログの位置"/>
+	<msg key="th_errorlog_level" value="ErrorLog Level" ja="エラーログの取得レベル"/>
+	<msg key="th_access_file_name" value="Access File Name" ja="アクセス制御ファイル名"/>
+	<msg key="th_userdir_directory" value="UserDir Directory" ja="ユーザディレクトリの展開 "/>
+	<msg key="th_tranlate_uer_directory" value="Translate User Directory" ja="ユーザディレクトリの展開を行う"/>
+	<msg key="th_pattern" value="Pattern:" ja="展開パターン："/>
+	<msg key="th_no_limit" value="No Limit" ja="制限しない"/>
+	<msg key="th_user_list_translate" value="Translate only for users in the list" ja="リストのユーザのみ展開する"/>
+	<msg key="th_user_list_deny" value="Deny only for users in the list" ja="リストのユーザのみ展開しない"/>
+	<msg key="th_user_lit" value="User List:" ja="ユーザリスト：" />
+	<msg key="th_directrory_setting" value="Directory Settings" ja="ディレクトリ設定"/>
+	<msg key="th_edit" value="Edit" ja="編集"/>
+	<!--virtual server -->
+	<msg key="th_virtual_host_name" value="Virtual Host Name" ja="仮想ホスト名"/>
+	<msg key="th_nick_name" value="Nick Name" ja="識別名"/>
+	<msg key="th_ip_address" value="IP Address" ja="使用するIPアドレス"/>
+	<msg key="th_ip_base" value="IP base" ja="IPベース"/>
+	<msg key="th_name_base" value="Name base" ja="名前ベース"/>
+	<msg key="th_all" value="All" ja="すべて"/>
+	<msg key="th_custom_multiple" value="Custom (Multiple allowed)" ja="指定する（複数可）"/>
+	<msg key="th_classfication" value="Classification" ja="仮想ホスト種別"/>
+	<msg key="th_errorlog" value="ErrorLog" ja="エラーログ"/>
+	<msg key="th_user_directory_settings" value="UserDir Directory Settings" ja="ユーザディレクトリの展開設定"/>
+	<msg key="th_location" value="Location:" ja="ファイル位置："/>
+	<msg key="th_format" value="Format:" ja="形式："/>
+	<msg key="th_level" value="Level:" ja="レベル："/>
+	<msg key="th_translate" value="[Translate]" ja="[展開を行う]"/>
+	<msg key="th_not_translate" value="[Not Translate]" ja="[展開を行わない]"/>
+	<msg key="th_enable_all" value="[Allow All]" ja="[全部許可]"/>
+	<msg key="th_enable_only" value="[Allow]" ja="[許可]"/>
+	<msg key="th_disable_only" value="[Deny]" ja="[拒否]"/>
+	<msg key="th_transferlog_location_format" value="Transfer Log&lt;br&gt;(Location/Format)" ja="転送ログ&lt;br&gt;(位置/形式）"/>
+	<msg key="th_errorlog_location_level" value="Error Log&lt;br&gt;(Location/Level)" ja="エラーログ&lt;br&gt;(位置/レベル)"/>
+	<msg key="th_user" value="Custom" ja="ユーザ"/>
+	<msg key="th_custom_host" value="Custom" ja="カスタム"/>
+	
+</msg>
+
+<msg key="directory" value="">
+    <msg key="title" value="HTTP Directory Settings" ja="HTTPディレクトリ設定"/>
+	<msg key="h2" value="Directory Settings" ja="ディレクトリ設定"/>
+	<msg key="th_directory" value="Directory" ja="ディレクトリ"/>
+	<msg key="th_main_access" value="Access:" ja="アクセス権："/>
+	<msg key="th_access" value="Access" ja="アクセス権"/>
+	<msg key="th_allow_from_all" value="Allow from all" ja="全ホストを許可"/>
+	<msg key="th_order_allow_deny" value="Order allow, deny" ja="許可リストに該当し、かつ拒否リストに無いものについて許可"/>
+	<msg key="th_order_deny_allow" value="Order deny, allow" ja="拒否リストに無いか、または許可リストにあるものについて許可"/>
+	<msg key="th_allow_list" value="Allow List:" ja="許可リスト："/>
+	<msg key="th_deny_list" value="Deny List:" ja="拒否リスト："/>
+	<msg key="th_main_option" value="Option:" ja="オプション："/>
+	<msg key="th_option" value="Option" ja="オプション"/>
+	<msg key="th_main_htaccess_definiation" value=".htaccess Definition:" ja=".htaccess定義："/>
+	<msg key="th_htaccess_definiation" value=".htaccess Definition" ja=".htaccess定義"/>
+	<msg key="th_nothing" value="nothing" ja="なし"/>
+</msg>
+
+<msg key="alert" value="">
+<!-- -->
+    <msg key="invalid_port_1" value="This port number is using by NV, \r\nplease use another port number." ja="NVが使用中のポートのため、使用できません。\r\n他のポート番号を指定してください。"/>
+	<msg key="invalid_port_2" value="This port number is using by NV, \r\nplease use another port number." ja="NVが使用中のポートのため、使用できません。\r\n他のポート番号を指定してください。"/>
+
+
+ 
+	<msg key="no_virtual_host" value="No Virtual Hosts are found." ja="仮想ホストが存在しません。"/>
+	<msg key="get_http_info_error" value="Cannot get the HTTP Information." ja="HTTP設定情報が取得できません。"/>
+	<msg key="get_http_state_error" value="Cannot get the HTTP’s status." ja="HTTPサービスの状態が取得できません。"/>
+	<msg key="msg_error_file" value="Please select the file in the volume." ja="ボリューム内のファイルを選択してください。"/>
+	<msg key="msg_error_directory" value="Please select the directory in the volume." ja="ボリューム内のディレクトリを選択してください。"/>
+	<msg key="get_http_baseinfo_error" value="Cannot get HTTP basic information." ja="HTTP基本設定情報を取得できません。"/>
+	<msg key="set_virtualhost_exist" value="The virtual host has already existed." ja="仮想ホストが既に存在します。"/>
+	<msg key="opener_changed" value="The operation has failed because the information in the parent window has changed." ja="親画面が変更されたため、設定に失敗しました。"/>
+	<msg key="not_found_old_directory" value="The operation has failed because the directory information in the parent window has changed." ja="親画面のディレクトリリストの内容が変更されたため、設定に失敗しました。"/>
+	<msg key="get_directory_exist" value="The Directory has already existed." ja="ディレクトリが既に存在します。"/>
+	<msg key="restart_failed" value="Cannot restart HTTP service." ja="HTTPサービスを再起動できません。"/>
+	<msg key="start_failed" value="Cannot start HTTP service." ja="HTTPサービスを起動できません。"/>
+	<msg key="stop_failed" value="Cannot stop HTTP service." ja="HTTPサービスを停止できません。"/>
+	<msg key="input_directory" value="Please input the directory." ja="ディレクトリを入力してください。"/>
+	<msg key="input_other_directory" value="Please input the other directory." ja="他のディレクトリを入力してください。"/>
+	<msg key="input_port" value="Please input port number." ja="ポート番号を入力してください。"/>
+	<msg key="port_exist" value="The port number has already existed." ja="ポート番号が既に存在します。"/>
+	<msg key="input_other_port" value="Please input the other port number." ja="他のポート番号を入力してください。"/>
+	<msg key="select_port" value="Please select the port number." ja="ポート番号を選択してください。"/>
+	<msg key="select_directory" value="Please select a directory." ja="一つディレクトリを選択してください。"/>
+	<msg key="invalid_port" value="The port number is invalid. \r\nPlease input &apos;port number&apos; or &apos;IP address:port number&apos;. Only alphanumeric number, &apos;.&apos; , &apos;:&apos; are allowed. Maximum port number is 65535." ja="不正なポート番号が入力されました。\r\n&apos;ポート番号&apos;又は&apos;IPアドレス：ポート番号&apos;を入力してください。入力可能な文字は半角数字と&apos;.&apos;と&apos;：&apos;です。ポート番号最大値は65535です。"/>
+	<msg key="duplicated_ipaddr" value="The IP address has already existed." ja="IPアドレスが既に存在します。"/>
+	<msg key="invalid_ipaddr" value="The IP address is invalid. \r\nPlease input &apos;IP address&apos; or &apos;IP address:port number&apos;. Only alphanumeric number, &apos;.&apos; , &apos;:&apos; are allowed. Maximum port number is 65535." ja="不正なIPアドレスが入力されました。\r\n&apos;IPアドレス&apos;又は&apos;IPアドレス：ポート番号&apos;を入力してください。入力可能な文字は半角数字と&apos;.&apos;と&apos;：&apos;です。ポート番号最大値は65535です。"/>
+	<msg key="invalid_virtualhost_name" value="The Virtual Host Name is invalid. \r\nOnly alphanumeric characters, &apos;.&apos; and &apos;-&apos; are allowed. Maximum length is 200. The first character cannot be &apos;-&apos; and &apos;.&apos;." ja="不正な仮想ホスト名が入力されました。\r\n入力可能な文字は半角英数字と&apos;.&apos;と&apos;-&apos;です。最大文字数は、200文字です。最初の&apos;-&apos;と&apos;.&apos;は不可です。"/>
+	<msg key="get_main_server_error" value="Cannot get the main server information." ja="メインサーバの設定情報を取得できません。"/>
+	<msg key="none_documentroot" value="Please select the DocumentRoot." ja="DocumentRootを選択してください。"/>
+	<msg key="none_documentip" value="Please input IP address." ja="IPアドレスを入力してください。"/>
+	<msg key="invalid_allow_list" value="The Allow List is invalid.\r\nYou can specify two or more hosts by delimiting with blank character.\r\nThe specification format is as follows:   \r\n1. IP address \r\n2. Network number (such as xx.xx., xx.xx.xxx.) \r\n3. CIDR format (such as xxx.xxx.xxx.xxx/xx) \r\n4. FQDN host name \r\n5. Domain name\r\nAccepted characters : 1-byte alphanumeric characters, &apos;.&apos;, &apos;-&apos; and &apos;/&apos; \r\nFirst character restriction : &apos;.&apos; and &apos;-&apos; cannot be used at the head of each host name. " ja="不正な許可リストが入力されました。\r\n複数指定する場合は空白で区切って指定します。\r\n指定形式は以下の通りです。 \r\n1. IPアドレス\r\n2. ネットワーク番号(xx.xx. 、xx.xx.xxx. 等)\r\n3. CIDR形式(xxx.xxx.xxx.xxx/xx 等)\r\n4. FQDNホスト名\r\n5. ドメイン名\r\n使用可能文字:半角英数字、&apos;.&apos;、&apos;-&apos;、&apos;/&apos;\r\n先頭文字制限:各ホストの先頭に&apos;.&apos;、&apos;-&apos;は使用できません"/>
+	<msg key="invalid_deny_list" value="The Deny List is invalid.\r\nYou can specify two or more hosts by delimiting with blank character.\r\nThe specification format is as follows:   \r\n1. IP address \r\n2. Network number (such as xx.xx., xx.xx.xxx.) \r\n3. CIDR format (such as xxx.xxx.xxx.xxx/xx) \r\n4. FQDN host name \r\n5. Domain name \r\nAccepted characters : 1-byte alphanumeric characters, &apos;.&apos;, &apos;-&apos; and &apos;/&apos; \r\nFirst character restriction : &apos;.&apos; and &apos;-&apos; cannot be used at the head of each host name. " ja="不正な拒否リストが入力されました。\r\n複数指定する場合は空白で区切って指定します。\r\n指定形式は以下の通りです。 \r\n1. IPアドレス\r\n2. ネットワーク番号(xx.xx. 、xx.xx.xxx. 等)\r\n3. CIDR形式(xxx.xxx.xxx.xxx/xx 等)\r\n4. FQDNホスト名\r\n5. ドメイン名\r\n使用可能文字:半角英数字、&apos;.&apos;、&apos;-&apos;、&apos;/&apos;\r\n先頭文字制限:各ホストの先頭に&apos;.&apos;、&apos;-&apos;は使用できません"/>
+	<msg key="invalid_server_name" value="The Server Name is invalid. \r\nOnly alphanumeric characters, &apos;.&apos; and &apos;-&apos; are allowed. Maximum length is 200. The first character cannot be &apos;-&apos; and &apos;.&apos;." ja="不正なサーバ名が入力されました。\r\n入力可能な文字は半角英数字と&apos;.&apos;と&apos;-&apos;です。最大文字数は、200文字です。最初の&apos;-&apos;と&apos;.&apos;は不可です。"/>
+	<msg key="invalid_nick_name" value="The Nick Name is invalid. \r\nOnly alphanumeric characters, &apos;.&apos; and &apos;-&apos; are allowed. Maximum length is 255 characters. The first character cannot be &apos;-&apos; and &apos;.&apos;" ja="不正な識別名が入力されました。\r\n入力可能な文字は半角英数字と&apos;.&apos;と&apos;-&apos;です。最大文字数は、255文字です。最初の&apos;-&apos;と&apos;.&apos;は不可です。"/>
+	<msg key="invalid_email" value="The ServerAdmin is invalid.\r\n Please input an e-mail address. Only alphanumeric characters, &apos;.&apos;, &apos;_&apos;, &apos;-&apos;, &apos;@&apos;, &apos;%&apos; are allowed. Maximum length is 255 characters." ja="不正なServer Adminが入力されました。\r\n E-mailアドレスを入力してください。入力可能な文字は半角英数字と&apos;.&apos;と&apos;-&apos;と&apos;_&apos;と&apos;@&apos;と&apos;%&apos;です。最大文字数は、255文字です。"/>
+	<msg key="invalid_pattern" value="The pattern is invalid. \r\nOnly alphanumeric characters, &apos;.&apos;, &apos;~&apos;, &apos;-&apos;, &apos;_&apos;, &apos;*&apos; and &apos;/&apos; and blank are allowed. The first character cannot be &apos;-&apos;, &apos;.&apos; and &apos;~&apos;. Maximum length is 2047." ja="不正なパターンが入力されました。\r\n入力可能な文字は半角英数字と&apos;.&apos;と&apos;~&apos;と&apos;-&apos;と&apos;_&apos;と&apos;*&apos;と&apos;/&apos;と空白です。最大文字数は、2047文字です。最初の&apos;-&apos;と&apos;.&apos;と&apos;~&apos;は不可です。"/>
+	<msg key="invalid_user" value="The user name is invalid. \r\nOnly alphanumeric characters and blank and &apos;_&apos;, &apos;-&apos; are allowed. The first character cannot be &apos;-&apos; and blank. Maximum length is 32." ja="不正なユーザ名が入力されました。\r\n入力可能な文字は、半角英数字と空白と&apos;_&apos;と&apos;-&apos;です。最初に&apos;-&apos;と空白を指定することはできません。最大文字数は32文字です。"/>
+	<msg key="invalid_group" value="The group name is invalid. \r\nOnly alphanumeric characters and blank and &apos;_&apos;, &apos;-&apos; are allowed. The first character cannot be &apos;-&apos; and blank. Maximum length is 32." ja="不正なグループ名が入力されました。\r\n入力可能な文字は、半角英数字と空白と&apos;_&apos;と&apos;-&apos;です。最初に&apos;-&apos;と空白を指定することはできません。最大文字数は32文字です。"/>
+	<msg key="invalid_group_id" value="The group ID is invalid. \r\nOnly 1 byte numbers are allowed. Maximum length is 5." ja="不正なグループIDが入力されました。\r\n入力可能な文字は、半角数字です。最大文字数は、５文字です。"/>
+	<msg key="invalid_user_id" value="The user ID is invalid. \r\nOnly 1 byte numbers are allowed. Maximum length is 5." ja="不正なユーザIDが入力されました。\r\n入力可能な文字は、半角数字です。最大文字数は、５文字です。"/>
+	<msg key="invalid_transferlog_location" value="Please input transferLog location." ja="転送ログの位置を入力してください。"/>
+	<msg key="invalid_logfile_name" value="Please input log file name." ja="ログファイルの位置を入力してください。"/>
+	<msg key="invalid_format" value="The Format is invalid. \r\nOnly 1 byte characters are allowed. Maximum length is 2047." ja="不正な出力形式が入力されました。\r\n入力可能な文字は半角文字です。最大文字数は、2047文字です。"/>
+	<msg key="invalid_errorlog_location" value="Please input log file location." ja="エラーログの位置を入力してください。"/>
+	<msg key="get_virtual_host_error" value="Cannot get the virtual host information." ja="仮想ホストの設定情報を取得できません。"/>
+	<msg key="get_directory_error" value="Cannot get the directory information." ja="ディレクトリ設定情報を取得できません。"/>
+	<msg key="invalid_access_file_name" value="The access file name is invalid. \r\nOnly alphanumeric characters and &apos;_&apos;, &apos;-&apos;, &apos;.&apos; are allowed. \r\nMaximum length is 255 characters." ja="不正なアクセス制御ファイル名が入力されました。\r\n入力可能な文字は、半角英数字、&apos;_&apos;、&apos;-&apos;、&apos;.&apos;です。\r\n最大文字数は、255文字です。"/>
+	<msg key="invalid_user_list" value="The user list is invalid. \r\nMultiple users can be specified by delimiting with blank character. Each user can be enclosed by quotation marks.Only alphanumeric characters and &apos;_&apos;, &apos;-&apos;, &apos; &apos; are allowed. The first character cannot be &apos;-&apos;. The uer list's Maximum length is 65535." ja="不正なユーザリストが入力されました。\r\nスペースで区切ることで複数ユーザ名の指定が可能です。二重引用符で囲まれたユーザ名の指定も可能です。ユーザ名の有効文字は、半角文字や&apos;_&apos;や&apos;-&apos;や&apos; &apos;です、最初の&apos;-&apos;は不可です。ユーザリストの最大文字数は、65535文字です。"/>
+	<msg key="port_been_used" value="The specified ports have been used by other service." ja="指定されたポートは他のサービスに使用されています。"/>
+	<msg key="none_servername" value="Please input Server Name." ja="サーバ名を入力してください。"/>
+	<msg key="none_virtualhostname" value="Please input Virtual Host Name." ja="仮想ホスト名を入力してください。"/>
+
+<msg key="none_allow_or_deny_list" value="Please input Allow List or Deny List." ja="許可リスト、又は拒否リストを入力してください。"/>
+
+<msg key="invalid_name" value="Invalid directory[%1]. \r\nOnly alphanumeric characters and \&quot;/_-.~\&quot; and blank are allowed.\r\nThe first character can not be \&quot;.-~\&quot;." 
+        ja="不正なディレクトリ[%1]です。半角英数字と\&quot;/_-.~\&quot;と空白が指定できます。最初の文字は\&quot;.-~\&quot;であってはいけません。"/>
+</msg>
+</messages>

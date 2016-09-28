@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) nsgui.tld,v 1.1 2002/03/18 07:11:51 matsuoka Exp" -->
+
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN" "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+<taglib>
+    <tlibversion>1.0</tlibversion>
+    <jspversion>1.1</jspversion>
+    <shortname>taglib-nsgui</shortname>
+    <info>This is a tag library for NS GUI</info>
+    <tag>
+        <name>message</name>
+        <tagclass>com.nec.sydney.framework.taglib.MessageTagLib</tagclass>
+        <info>This is a message driver</info>
+        <attribute>
+            <name>key</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>alt</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>sess</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>firstReplace</name>
+            <required>false</required>
+        </attribute>
+        <attribute>
+            <name>separate</name>
+            <required>false</required>
+        </attribute>    
+    </tag>
+    <tag>
+        <name>replacement</name>
+        <tagclass>com.nec.sydney.framework.taglib.ReplacementTag</tagclass>
+        <info>Replacement Info Tag</info>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+        </attribute>     
+    </tag>
+    <tag>
+        <name>sort</name>
+        <tagclass>com.nec.sydney.beans.taglib.SortTag</tagclass>
+        <bodycontent>empty</bodycontent>
+        <attribute>
+          <name>list</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>name</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>value</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>keyword</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>reverse</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>sortTarget</name>
+          <required>true</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>taglibID</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>wrap</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+          <name>taglibComparator</name>
+          <required>false</required>
+          <rtexprvalue>true</rtexprvalue>
+        </attribute>
+  </tag>
+</taglib>

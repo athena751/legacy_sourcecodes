@@ -1,0 +1,418 @@
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: menu-config-status.xml,v 1.20 2007/03/07 05:23:26 zhangjun Exp $" -->
+<NSMenus>
+	<Category msgKey="status" detailMsgKey="status.detailMsg">
+		<SubCategory msgKey="status.performance" detailMsgKey="status.performance.detailMsg">
+		<Item msgKey="status.performance.cpu"
+                detailMsgKey="status.performance.cpu.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_system"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="CPU_States"/>
+        </Item>
+        
+        <Item msgKey="status.performance.diskio"
+                detailMsgKey="status.performance.diskio.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_diskio"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="NAS_LV_IO"/>
+        </Item>
+        
+        <Item msgKey="status.performance.networkTraffic"
+                detailMsgKey="status.performance.networkTraffic.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_network"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="Network_Traffic"/>
+        </Item>
+        
+        <Item msgKey="status.performance.networkPacket"
+                detailMsgKey="status.performance.networkPacket.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_network_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="Network_Packets"/>
+        </Item>
+        
+        <Item msgKey="status.performance.networkErrorPacket"
+                detailMsgKey="status.performance.networkErrorPacket.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_network_2"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="Network_Error_Packets"/>
+        </Item>
+        
+        <Item msgKey="status.performance.data"
+                detailMsgKey="status.performance.data.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_volume"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="Disk_Used_Rate"/>
+        </Item>
+        
+        <Item msgKey="status.performance.inode"
+                detailMsgKey="status.performance.inode.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_volume_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init">
+                <Hidden name="watchItem" value="Inode_Used_Rate"/>
+        </Item>
+        
+        <Item msgKey="status.performance.data_quantity"
+                detailMsgKey="status.performance.data_quantity.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_volume"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init"
+                rpqKey="0002">
+                <Hidden name="watchItem" value="Disk_Used_Quantity"/>
+        </Item>
+        
+        <Item msgKey="status.performance.inode_quantity"
+                detailMsgKey="status.performance.inode_quantity.detailMsg"
+                href="statis/rrdgraph.do?operation=init"
+                helpAnchor="/help.html#performance_volume_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=init"
+                rpqKey="0002">
+                <Hidden name="watchItem" value="Inode_Used_Quantity"/>
+        </Item>
+	</SubCategory>
+	
+
+    <SubCategory msgKey="status.nvavs" detailMsgKey="status.nvavs.detailMsg">
+		<Item msgKey="status.nvavs.requestnum"
+                detailMsgKey="status.nvavs.requestnum.detailMsg"
+                href="statis/rrdgraph.do?operation=spinit"
+                helpAnchor="/help.html#nvavs_request"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="nvavs"
+                targetType="adminTarget"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=spinit">
+                <Hidden name="watchItem" value="Nvavs_Request"/>
+        </Item>
+        
+        <Item msgKey="status.nvavs.avgresptime"
+                detailMsgKey="status.nvavs.avgresptime.detailMsg"
+                href="statis/rrdgraph.do?operation=spinit"
+                helpAnchor="/help.html#nvavs_tat"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="nvavs"
+                targetType="adminTarget"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=spinit">
+                <Hidden name="watchItem" value="Nvavs_TAT"/>
+        </Item>
+        <!--	
+        <Item msgKey="status.nvavs.cachehit"
+                detailMsgKey="status.nvavs.cachehit.detailMsg"
+                href="statis/rrdgraph.do?operation=spinit"
+                helpAnchor="/help.html#+++++++++"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                licenseKey="nvavs"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/rrdgraph.do?operation=spinit">
+                <Hidden name="watchItem" value="Nvavs_Cache_Hit"/>
+        </Item>
+        -->
+    </SubCategory>
+<!--	
+	<SubCategory msgKey="status.performance.nswnfs" detailMsgKey="status.performance.nswnfs.detailMsg">
+		<Item msgKey="status.performance.nswnfs.export"
+                detailMsgKey="status.performance.nswnfs.export.detailMsg"
+                href="statis/nasswitchList.do?operation=init"
+                helpAnchor="/help.html#performance_virtual_nfs_vpath"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                licenseKey="swnfs"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/nasswitchList.do?operation=init">
+                <Hidden name="collectionItem" value="NSW_NFS_Virtual_Export"/>
+        </Item>
+        
+        <Item msgKey="status.performance.nswnfs.server"
+                detailMsgKey="status.performance.nswnfs.server.detailMsg"
+                href="statis/nasswitchList.do?operation=init"
+                helpAnchor="/help.html#performance_virtual_nfs_serverhost"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                licenseKey="swnfs"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/nasswitchList.do?operation=init">
+                <Hidden name="collectionItem" value="NSW_NFS_Server"/>
+        </Item>
+        
+        <Item msgKey="status.performance.nswnfs.node"
+                detailMsgKey="status.performance.nswnfs.node.detailMsg"
+                href="statis/nasswitchList.do?operation=init"
+                helpAnchor="/help.html#performance_virtual_nfs_node"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+				licenseKey="swnfs"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/nasswitchList.do?operation=init">
+                <Hidden name="collectionItem" value="NSW_NFS_Node"/>
+        </Item>
+	</SubCategory>
+-->	
+	<SubCategory msgKey="status.volumn" detailMsgKey="status.volumn.detailMsg">
+		<Item msgKey="status.volumn.data"
+                detailMsgKey="status.volumn.data.detailMsg"
+                href="statis/snapshot.do?operation=init"
+                helpAnchor="/help.html#performance_capacity"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/snapshot.do?operation=init">
+                <Hidden name="watchItem" value="Disk_Used_Rate"/>
+        </Item>
+		<Item msgKey="status.volumn.inode"
+                detailMsgKey="status.volumn.inode.detailMsg"
+                href="statis/snapshot.do?operation=init"
+                helpAnchor="/help.html#performance_capacity_inode"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/snapshot.do?operation=init">
+                <Hidden name="watchItem" value="Inode_Used_Rate"/>
+        </Item>
+	</SubCategory>
+	
+	<SubCategory msgKey="status.storage" detailMsgKey="status.storage.detailMsg">
+		<Item msgKey="status.storage.disk"
+                detailMsgKey="status.storage.disk.detailMsg"
+                href="menu/fcsan/componentdisp/diskarraylist.jsp"
+                helpAnchor="/help.html#storage_disk"
+                machineType="Single:OneNodeSirius:NasCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/fcsan/componentdisp/diskarraylist.jsp">
+                <Hidden name="target" value="localhost"/>
+        </Item>
+        
+        <Item msgKey="status.storage.nasGateway"
+                detailMsgKey="status.storage.nasGateway.detailMsg"
+                href="volume/nasheadHbaInfoShow.do"
+                helpAnchor="/help.html#system_hba"
+                machineType="NasheadCluster:NasheadSingle"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="volume/nasheadHbaInfoShow.do"> 
+        </Item>
+
+		<Item msgKey="status.storage.hba"
+                detailMsgKey="status.storage.hba.detailMsg"
+                href="volume/nasheadHbaInfoShow.do"
+                helpAnchor="/help.html#system_hba"
+                machineType="Single:OneNodeSirius:NasCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="volume/nasheadHbaInfoShow.do"> 
+        </Item>
+	</SubCategory>
+	
+	<SubCategory msgKey="status.system" detailMsgKey="status.system.detailMsg">
+		<Item msgKey="status.system.status"
+                detailMsgKey="status.system.status.detailMsg"
+                href="nodestatus/status.do"
+                helpAnchor="/help.html#system_status"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nodestatus/status.do">
+        </Item>
+        <Item msgKey="status.system.battery"
+                detailMsgKey="status.system.battery.detailMsg"
+                href="battery/status.do"
+                helpAnchor="/help.html#system_battery"
+                machineType="OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="battery/status.do">
+        </Item>
+	</SubCategory>
+	
+	<SubCategory msgKey="status.systemLog" detailMsgKey="status.systemLog.detailMsg">
+		<Item msgKey="status.systemLog.systemLog"
+                detailMsgKey="status.systemLog.systemLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=systemLog"
+                helpAnchor="/help.html#system_logview"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=systemLog">
+        </Item>
+		<Item msgKey="status.systemLog.nfsLog"
+                detailMsgKey="status.systemLog.nfsLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=nfsLog"
+                helpAnchor="/help.html#nfs_logview"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                licenseKey="nfs"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=nfsLog">
+        </Item>
+		<Item msgKey="status.systemLog.nfsLog"
+                detailMsgKey="status.systemLog.nfsLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=nfsLog"
+                helpAnchor="/help.html#nfs_logview"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                licenseKey="nfs"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=nfsLog">
+        </Item>
+        
+		<Item msgKey="status.systemLog.cifsLog"
+                detailMsgKey="status.systemLog.cifsLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=cifsLog"
+                helpAnchor="/help.html#cifs_logview"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                licenseKey="cifs"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=cifsLog">
+        </Item>
+		<Item msgKey="status.systemLog.cifsLog"
+                detailMsgKey="status.systemLog.cifsLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=cifsLog"
+                helpAnchor="/help.html#cifs_logview"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                licenseKey="cifs"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=cifsLog">
+        </Item>
+        
+		<Item msgKey="status.systemLog.httpLog"
+                detailMsgKey="status.systemLog.httpLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=httpLog"
+                helpAnchor="/help.html#http_logview"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                licenseKey="http"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=httpLog">
+        </Item>
+		<Item msgKey="status.systemLog.httpLog"
+                detailMsgKey="status.systemLog.httpLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=httpLog"
+                helpAnchor="/help.html#http_logview"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                licenseKey="http"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=httpLog">
+        </Item>
+
+		<Item msgKey="status.systemLog.ftpLog"
+                detailMsgKey="status.systemLog.ftpLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=ftpLog"
+                helpAnchor="/help.html#ftp_logview"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                licenseKey="ftp"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=ftpLog">
+        </Item>
+        
+		<Item msgKey="status.systemLog.ftpLog"
+                detailMsgKey="status.systemLog.ftpLog.detailMsg"
+                href="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=ftpLog"
+                helpAnchor="/help.html#ftp_logview"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                licenseKey="ftp"
+                userType="nsadmin:nsview"
+                refHref="syslog/enterSyslog.do?operation=enterSyslog&amp;logType=ftpLog">
+        </Item>
+        
+	</SubCategory>
+	</Category>
+</NSMenus>

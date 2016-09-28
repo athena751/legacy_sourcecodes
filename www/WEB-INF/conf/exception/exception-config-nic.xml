@@ -1,0 +1,107 @@
+<!--
+        Copyright (c) 2005-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-nic.xml,v 1.11 2007/08/24 09:41:47 wanghui Exp $" -->
+
+<ExceptionConf>
+    <ProcessRule errorCode="0x18A00001">
+        <ErrorMessage key="error.nicrouteset.failed.generalInfo" type="generalInfo"/>		    		
+	    <ErrorMessage key="error.nicrouteset.failed.generalDeal" type="generalDeal">
+		    <arg property ="routeNotSetList"/>
+	    </ErrorMessage> 
+        <ErrorMessage key="error.nicrouteset.failed.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="error.nicrouteset.failed.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/dispRouteChange" forward="changeMain"/>        
+    </ProcessRule>  
+   
+	<ProcessRule errorCode="0x18A00017"><!--ERROR IN DELETEINTERFACE WHEN INTERFACE NOTEXIST-->
+        <ErrorMessage key="error.niclist.delete.notexist.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.niclist.delete.notexist.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="error.niclist.delete.notexist.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="error.niclist.delete.notexist.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/dispNicList" forward="list"/>
+    </ProcessRule>   
+
+	<ProcessRule errorCode="0x18A00018"><!--ERROR IN DELETEINTERFACE WHEN INTERFACE'S IP IS NOT SET-->
+        <ErrorMessage key="error.niclist.delete.ipnull.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.niclist.delete.ipnull.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="error.niclist.delete.ipnull.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="error.niclist.delete.ipnull.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/dispNicList" forward="list"/>
+    </ProcessRule> 
+       
+    <ProcessRule errorCode="0x18A000FF">
+        <ErrorMessage key="exception.th.error.unknown" type="generalInfo"/> 
+        <ErrorMessage key="exception.th.error.unknown" type="generalDeal"/>        
+        <Dispatcher srcAction="/dispNicList" forward="list"/>
+        <Dispatcher srcAction="/dispNicRedundantList" forward="redundantList"/>
+        <Dispatcher srcAction="/dispVlanTop" forward="vlanFrame"/>
+        <Dispatcher srcAction="/interfaceSet" forward="failed"/>        
+        <Dispatcher srcAction = "/linkStatusSet" forward="success"/> 
+        <Dispatcher srcAction="/bondSet" forward="failed"/> 
+        <Dispatcher srcAction="/nicIPAliasTop" forward="display"/>            
+    </ProcessRule>
+    <ProcessRule errorCode="0x18A00019" displayDetail="false">
+        <ErrorMessage key="error.cluster.failed.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.cluster.failed.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/bondSet" forward="failed"/>
+        <Dispatcher srcAction="/dispVlanTop" forward="vlanFrame"/>
+    </ProcessRule> 
+	<ProcessRule errorCode="0x18A00030"><!--ERROR IN ADMINISTRATIVE NETWORK'S MEDIAMODE CHANGING-->
+        <ErrorMessage key="nic.admin.mediamode.error.generalinfo" type="generalInfo"/> 
+	    <ErrorMessage key="nic.admin.mediamode.error.generaldeal" type="generalDeal"/>
+        <ErrorMessage key="nic.admin.mediamode.error.detailinfo" type="detailInfo"/>
+        <ErrorMessage key="nic.admin.mediamode.error.detaildeal" type="detailDeal"/>
+        <Dispatcher srcAction="/linkStatusSet" forward="failure"/>
+        <Dispatcher srcAction="/linkStatusTop" forward="failure"/>
+    </ProcessRule> 
+    <ProcessRule errorCode="0x18A00033" displayDetail="false">
+        <ErrorMessage key="error.create.failed.self.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.create.failed.self.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/bondSet" forward="failed"/>
+    </ProcessRule> 
+    <ProcessRule errorCode="0x18A00034" displayDetail="false">
+        <ErrorMessage key="error.create.failed.friend.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.create.failed.friend.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/bondSet" forward="failed"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x18A00035" displayDetail="false">
+        <ErrorMessage key="error.create.failed.self.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.create.failed.self.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/dispVlanTop" forward="vlanFrame"/>
+    </ProcessRule> 
+    <ProcessRule errorCode="0x18A00036" displayDetail="false">
+        <ErrorMessage key="error.create.failed.friend.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.create.failed.friend.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/dispVlanTop" forward="vlanFrame"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x18A00037" displayDetail="false"><!--ERROR IN SET IP ALIAS WHEN ALIAS ID HAS BEEN USED.-->
+        <ErrorMessage key="error.niclist.alias.set.generalInfo" type="generalInfo"/>
+	    <ErrorMessage key="error.niclist.alias.set.generalDeal" type="generalDeal"/>
+        <Dispatcher srcAction="/nicIPAliasTop" forward="display"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13800001"><!--ERROR IN LINKDOWN'S SLAVE INTERFACE-->
+        <ErrorMessage key="nic.linkdown.error.slaveInterface.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="nic.linkdown.error.slaveInterface.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="nic.linkdown.error.slaveInterface.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="nic.linkdown.error.slaveInterface.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/linkdownConfig" forward="linkdownConfig"/>
+    </ProcessRule> 
+    <ProcessRule errorCode="0x13800002"><!--ERROR IN LINKDOWN'S INTERFACE NOT EXIST-->
+        <ErrorMessage key="nic.linkdown.error.notExistInterface.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="nic.linkdown.error.notExistInterface.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="nic.linkdown.error.notExistInterface.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="nic.linkdown.error.notExistInterface.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/linkdownConfig" forward="linkdownConfig"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13800003" displayDetail="false"><!--ERROR IN LINKDOWN'S PARTNER NODE SET-->
+        <ErrorMessage key="nic.linkdown.error.setPartnernode.generalInfo" type="generalInfo"/> 
+        <Dispatcher srcAction="/linkdownConfig" forward="linkdownConfig"/>
+    </ProcessRule>
+</ExceptionConf>

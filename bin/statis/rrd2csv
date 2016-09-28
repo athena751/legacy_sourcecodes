@@ -1,0 +1,909 @@
+#!/usr/bin/perl 
+#
+#       Copyright (c) 2001-2007 NEC Corporation
+#
+#       NEC SOURCE CODE PROPRIETARY
+#
+#       Use, duplication and disclosure subject to a source code
+#       license agreement with NEC Corporation.
+#
+
+# "@(#) $Id: rrd2csv,v 1.5 2007/03/07 06:14:39 yangxj Exp $"
+
+use strict;
+use Math::RPN;
+use Getopt::Long;
+use NS::RRDConstInfo;
+use NS::RRDCommandCommon;
+use NS::MonitorConfig;
+use NS::MonitorConfig3;
+use Time::localtime;
+use RRDs;
+
+my $rrdCmdCom = new NS::RRDCommandCommon;
+my $const = new NS::RRDConstInfo;
+$rrdCmdCom->invalidUserHandle();
+my $f_debug;# 1 --need to display debug info; otherwise 0.
+
+my @outPutData;
+#contain the out put data
+# keys: the resoures
+# value: Ref(Ref("data","data",...),Ref("data","data",...),...)
+
+my ($displayMP,$dataFormat,$startTime,$endTime,@resource,@item);
+    #$displayMP,    # 1 -- display mountPoint instead of device name; otherwise 0.
+    #$dataFormat,   #the format for print the data to the STDOUT
+    #$startTime,    #the start time when fetch data from RRD
+    #$endTime,      #the end time when fetch data from RRD 
+    #@resource,     #the resource list to be output, the element of this Array is a hash 
+                    #which like as {id=>resourceName, rrd=>rrdFile, mp=>mountpoint}
+    #@item.         #the item list to be output, the element of this Array is a ref of 
+                    #Array which like as (id,description,expression)
+my $host;
+my $infoType;
+my $usrStartTime;
+my $usrEndTime;
+my $usrResource;
+my $usrItem;
+my $limit;
+my $targetFile;
+my $version = $rrdCmdCom->VERSION1;
+my $usrCpName = "";
+    
+&getValidPara();
+my $dataStartTime;
+my $samplingStep;
+my $dataLines;
+# set values for  $dataStartTime,$samplingStep and $dataLines.
+&setOutputInfo();
+
+#print the every two weeks' data
+my $begin=$dataStartTime;
+
+for(my $leftLines = $dataLines; $leftLines>0; $leftLines = $leftLines - 2160){
+    
+    &setData($begin, $leftLines);
+    &changeLimitLine($leftLines);
+    
+    if(defined($targetFile)){
+        if($leftLines == $dataLines){
+            system("rm -f $targetFile");
+        }
+        if(!open(FILE, ">>$targetFile")){
+            system("rm -f $targetFile");
+            print STDERR $const->ERROR_MSG_FAILED_WRITE_FILE;
+            exit 1;
+        }
+        #output the data in the file
+        my $dataRef = &CSV_Output($leftLines);
+        if(print FILE @$dataRef ){
+            #add the data into the file successfully.
+            close(FILE);
+        }else{
+            #failed to add the data.
+            system("rm -f $targetFile");
+            print STDERR $const->ERROR_MSG_FAILED_WRITE_FILE;
+            exit 1;
+        }
+    }else{
+        #output the data in STDOUT
+        &CSV_Output($leftLines);
+    }
+    $begin = $begin + 2160*$samplingStep + $samplingStep;
+    if($leftLines < 4320){
+        last;
+    }
+    if($f_debug){
+        &outputDebug($leftLines);
+    }
+}
+
+exit 0;
+
+sub outputDebug(){
+    my $leftLines = shift;
+    my $debugInfo;
+    $debugInfo = int(($dataLines - $leftLines)*100/$dataLines)."%\n";
+    
+    $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_OUTPUT_DATA.$debugInfo);
+}
+
+sub setOutputInfo(){
+    
+    my ($refDS,$refRRDDate);
+    ($dataStartTime,$samplingStep,$refDS,$refRRDDate) = 
+        RRDs::fetch(${$resource[0]}{"fname"},"AVERAGE","-s","$startTime","-e","$endTime");
+    $dataLines = scalar(@$refRRDDate);
+}
+
+sub getValidPara(){
+    $f_debug = 0;
+    $displayMP = 0;
+
+    &processCSVArgv();
+    #$rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_GET_OPTION_SUCCESS);
+    #get the host name and the infoType
+    &processArgument(@ARGV);
+    $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_GET_ARGV_SUCCESS);
+    if(!defined($dataFormat)){
+        #user does not specify the format
+        $dataFormat = getDefaultFormat($infoType);
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_DEFAULT_FORMAT);
+    }
+    
+    #if user specify the -m , check the infoType
+    if($displayMP){
+        if((lc($infoType) ne lc($const->INFOTYPE_VOLUME))
+            && (lc($infoType) ne lc($const->INFOTYPE_INODE))
+            && (lc($infoType) ne lc($const->INFOTYPE_VOLUME_QUANTITY))
+            && (lc($infoType) ne lc($const->INFOTYPE_INODE_QUANTITY))){
+            # no need to specify the option: -m
+            print STDERR $const->ERROR_MSG_NEED_NO_MOUNTPOINT;
+            exit $const->EXIT_CODE_NEED_NO_MOUNTPOINT;
+        }
+    }
+    
+    #set resource info
+    setResourceInfo($host,$infoType,$usrResource);
+
+    #set item info
+    &setItemInfo($infoType,$usrItem,$version);
+    my ($earlistLastUdate, $latestLastUdate) = getLastDates();
+    my $defaultEndTime = $latestLastUdate;
+    my $defaultStartTime;
+    my $tmpInfoType = lc($infoType);
+    if($version ne $rrdCmdCom->VERSION3){
+		$defaultStartTime = getDefaultStartTime($earlistLastUdate);
+	}else{
+		$defaultStartTime = $earlistLastUdate - 366*24*60*60;
+	}
+	if($defaultStartTime < 1){
+        #can not get the default start time
+        print STDERR $const->ERROR_MSG_FAILED_GET_DEFAULT_START;
+        exit 1;
+	}
+	#set the start time to fetch data from the RRD
+	&setStartTime($defaultStartTime);
+    
+    #set the end time to fetch data from the RRD
+    &setEndTime($defaultEndTime);
+    
+    #check the time span
+    if(defined($usrStartTime) || defined($usrEndTime)){
+        #need to check the time span
+        &checkSpecifiedTime();
+    }
+    if(defined($limit)){
+        &checkLimit();
+    }
+}
+
+sub setStartTime(){
+    my $defaultStartTime = shift;
+    if(defined($usrStartTime)){
+        $startTime = $usrStartTime;
+    }else{
+        $startTime = $defaultStartTime;
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_DEFAULT_START);
+    }
+}
+
+sub setEndTime(){
+    my $defaultEndTime = shift;
+    if(defined($usrEndTime)){
+        $endTime = $usrEndTime;
+    }else{
+        $endTime = $defaultEndTime;
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_DEFAULT_END);
+    }
+}
+
+sub checkSpecifiedTime(){
+    my $rrdFile = ${$resource[0]}{"fname"};
+    if(!(-e $rrdFile)){
+        print STDERR $const->ERROR_MSG_RRD_NOT_EXIST;
+        exit $const->EXIT_CODE_RRD_NOT_EXIST;
+    }
+    RRDs::fetch("$rrdFile","AVERAGE","-s","$startTime","-e","$endTime");
+    my $rrdErr = RRDs::error();
+    if($rrdErr){
+        if($rrdErr =~ / should be less than end/){
+            if(defined($usrStartTime) && defined($usrEndTime)){
+                print STDERR $const->ERROR_MSG_INVALID_TIME_SPAN,"$startTime ~ $endTime\n";
+            }elsif(defined($usrStartTime)){
+                print STDERR $const->ERROR_MSG_INVALID_TIME_SPAN_START;
+            }else{
+                print STDERR $const->ERROR_MSG_INVALID_TIME_SPAN_END;
+            }
+            exit $const->EXIT_CODE_INVALID_TIME_SPAN;
+        }else{
+            if($rrdErr =~ /start time:/){
+                print STDERR $const->ERROR_MSG_INVALID_START_TIME,$startTime,"\n";
+                exit $const->EXIT_CODE_INVALID_START_TIME;
+            }elsif($rrdErr =~ /end time:/){
+                print STDERR $const->ERROR_MSG_INVALID_END_TIME,$endTime,"\n";
+                exit $const->EXIT_CODE_INVALID_END_TIME;
+            }else{
+                print STDERR $rrdErr;
+                exit 1;
+            }
+        }
+    }
+    
+}
+
+sub getDefaultStartTime(){
+    my $earlistLastUdate = shift;
+    my $mc = new NS::MonitorConfig();
+    $mc->loadDefs();
+    my $collectionItems = $rrdCmdCom->infotype2collectionItem();
+    my $stockPeriod = $mc->getStockPeriod($host, $$collectionItems{lc($infoType)});
+    if(!defined($stockPeriod)){
+        #failed to get the stockPeriod
+        print STDERR $const->ERROR_MSG_FAILD_GET_STOCK_PERIOD;
+        exit $const->EXIT_CODE_FAILD_GET_STOCK_PERIOD;
+    }
+    return $earlistLastUdate - $stockPeriod*86400;# 86400 = 24*60*60
+}
+
+sub checkLimit(){
+    #specified the option: -l 
+    if($limit =~ /^\d+$/){
+        $limit = int($limit);
+        if($limit<=1000 && $limit>=1){
+            my $rrdFile = ${$resource[0]}{"fname"};
+            if(!(-e $rrdFile)){
+                print STDERR $const->ERROR_MSG_RRD_NOT_EXIST;
+                exit $const->EXIT_CODE_RRD_NOT_EXIST;
+            }
+            my($start,$step,$ds,$data) = 
+                RRDs::fetch("$rrdFile","AVERAGE","-s",$startTime,"-e",$endTime);
+            my $rrdErr = RRDs::error();
+            if($rrdErr){
+                #print the error message and exit the program
+                print STDERR "$rrdErr\n";
+                exit $const->EXIT_CODE_RRD_ERROR;
+            }
+            if(scalar(@$data)*$step > $limit*86400){# 86400 = 24*60*60
+                #
+                $startTime = "end-${limit}d";# such as "end-3d"
+                $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_LIMIT);
+            }
+            return;
+        }
+    }
+    # the specified limit is invalid
+    print STDERR $const->ERROR_MSG_INVALID_LIMIT;
+    exit $const->EXIT_CODE_INVALID_LIMIT;
+}
+
+sub getLastDates(){
+    my $earlistLastUdate;
+    my $latestLastUdate;
+    $earlistLastUdate = $latestLastUdate = getOneLastUpdate(${$resource[0]}{"fname"});
+    my $resourcelength = scalar(@resource);
+    for(my $i = 1; $i < $resourcelength; $i++){
+        my $lastUpdate = getOneLastUpdate(${$resource[$i]}{"fname"});
+        if($lastUpdate < $earlistLastUdate){
+            $earlistLastUdate = $lastUpdate;
+        }
+        if($lastUpdate > $latestLastUdate){
+            $latestLastUdate = $lastUpdate;
+        }
+    }
+    
+    return ($earlistLastUdate,$latestLastUdate);
+}
+
+sub getOneLastUpdate(){
+    my $rrdFile = shift;
+    if(!(-e $rrdFile)){
+        print STDERR $const->ERROR_MSG_RRD_NOT_EXIST;
+        exit $const->EXIT_CODE_RRD_NOT_EXIST;
+    }
+    my $lastUpdate = RRDs::last($rrdFile);
+    my $rrdErr = RRDs::error();
+    if($rrdErr){
+        #print the error message and exit the program
+        print STDERR $const->ERROR_MSG_RRD_ERROR;
+        print STDERR $rrdErr;
+        exit $const->EXIT_CODE_RRD_ERROR;
+    }
+    if(defined($lastUpdate)){
+        return $lastUpdate;
+    }else{
+        #failed to get the last update time
+        #print the error message and exit the program
+        print STDERR $const->ERROR_MSG_RRD_ERROR;
+        exit $const->EXIT_CODE_RRD_ERROR;
+    }
+}
+
+sub setItemInfo(){
+    my ($infoType,$usrItem,$version) = @_;
+    my $refArray = $rrdCmdCom->getItems($infoType,$version);
+    if(!defined($refArray)){
+        print STDERR $rrdCmdCom->error();
+        exit 1;
+    }
+    if(defined($usrItem)){
+        #user specify some items
+        my @itemList = getNetList($usrItem,",");
+        if(scalar(@itemList)>0){
+            foreach my $itemName(@itemList){
+                my $itemInList = 0;
+                foreach(@$refArray){
+                    if($itemName eq $$_[0]){
+                        push(@item,$_);
+                        $itemInList = 1;
+                        last;
+                    }
+                }
+                if($itemInList == 0){
+                    #the item specified does not in the item list
+                    print STDERR $const->ERROR_MSG_INVALID_ITEM,$itemName,"\n";
+                    exit $const->EXIT_CODE_INVALID_ITEM;
+                }
+            }
+        }else{
+            #no useful item. maybe the user specified as , or ,,
+            print STDERR $const->ERROR_MSG_INVALID_ITEM,$usrItem,"\n";
+            exit $const->EXIT_CODE_INVALID_ITEM;
+        }
+        my $debugInfo = join(" ", $const->DEBUG_MSG_USER_ITEM_LIST,@itemList);
+        $rrdCmdCom->debug($f_debug,"$debugInfo\n");
+    }else{
+        #output all items' information
+        @item = @$refArray;
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_DEFAULT_ITEM);
+    }
+}
+
+sub setResourceInfo(){
+    my ($host,$infoType,$usrResource) = @_;
+    my $refArray;
+    if($version eq $rrdCmdCom->VERSION3){
+    	$refArray = $rrdCmdCom->getResourceListOfBoth($infoType);
+    }else{
+    	$refArray = $rrdCmdCom->getResourceList($host,$infoType,$version,$usrCpName);
+    }
+    if(!defined($refArray)){
+        print STDERR $rrdCmdCom->error();
+        exit 1;
+    }elsif(!defined(@$refArray)){
+        #there is no any resource
+        print STDERR $const->ERROR_MSG_NO_RESOURCE_EXIST;
+        exit $const->EXIT_CODE_NO_RESOURCE_EXIST;
+    }
+    if(defined($usrResource)){
+        #user specify some resources
+        my @resourceList = getNetList($usrResource,",");
+        if(scalar(@resourceList)>0){
+            foreach my $resourceName(@resourceList){
+                my $resourceInList = 0;
+                foreach my $resource (@$refArray){
+                    if($$resource{"id"} =~ /^\Q$resourceName\E(\((Node[0|1]|Group[0|1])\))?$/){
+                        push(@resource,$resource);
+                        $resourceInList = 1;
+                    }
+                }
+                if($resourceInList == 0){
+                    #the resource specified does not in the resource list
+                    print STDERR $const->ERROR_MSG_INVALID_RESOURCE,$resourceName,"\n";
+                    exit $const->EXIT_CODE_INVALID_RESOURCE;
+                }
+            }
+        }else{
+            #no useful resource. maybe the user specified as , or ,,
+            print STDERR $const->ERROR_MSG_INVALID_RESOURCE,$usrResource,"\n";
+            exit $const->EXIT_CODE_INVALID_RESOURCE;
+        }
+        my $debugInfo = join(" ", $const->DEBUG_MSG_USER_RESOURCE_LIST,@resourceList);
+        $rrdCmdCom->debug($f_debug,"$debugInfo\n");
+    }else{
+        #output all resources' information
+        @resource = @$refArray;
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_USE_DEFAULT_RESOURCE);
+    }
+}
+
+sub getNetList(){
+    my $objString = shift;
+    my $separator = shift;
+    my @list = reverse(split($separator,$objString));
+    my @result;
+    my $listLength = scalar(@list);
+    for(my $i = 0; $i < $listLength; $i++){
+        if($list[$i] ne ""){
+            my $find = 0;
+            for(my $j = $i+1; $j < $listLength; $j++){
+                if($list[$i] eq $list[$j]){
+                    $find = 1;
+                    last;
+                }
+            }
+            if($find){
+                #there is the same in the following
+                next;
+            }else{
+                unshift(@result,$list[$i]);
+            }
+        }
+    }
+    
+    return @result;
+}
+
+sub getDefaultFormat(){
+    my $tmpInfoType = lc(shift);
+    my %defaultFormat = 
+                ($const->INFOTYPE_CPU => $const->FORMAT_CPU,
+                $const->INFOTYPE_DISKIO => $const->FORMAT_DISKIO,
+                $const->INFOTYPE_NETTRAFFIC => $const->FORMAT_NETTRAFFIC,
+                $const->INFOTYPE_NETPACKETS => $const->FORMAT_NETPACKETS,
+                $const->INFOTYPE_NETERRORS => $const->FORMAT_NETERRORS,
+                $const->INFOTYPE_VOLUME => $const->FORMAT_VOLUME,
+                $const->INFOTYPE_INODE => $const->FORMAT_INODE,
+                $const->INFOTYPE_VOLUME_QUANTITY => $const->FORMAT_VOLUME_QUANTITY,
+                $const->INFOTYPE_INODE_QUANTITY => $const->FORMAT_INODE_QUANTITY,
+                $const->INFOTYPE_ISCSISESSION => $const->FORMAT_ISCSISESSION,
+                $const->INFOTYPE_ISCSILOGOUT => $const->FORMAT_ISCSILOGOUT,
+                $const->INFOTYPE_ISCSILOGIN => $const->FORMAT_ISCSILOGIN,
+                $const->INFOTYPE_VE => $const->FORMAT_EXPORT,
+                $const->INFOTYPE_VS => $const->FORMAT_SERVER,
+                $const->INFOTYPE_NVAVS_REQUEST => $const->FORMAT_NVAVS_REQUEST,
+                $const->INFOTYPE_NVAVS_TAT => $const->FORMAT_NVAVS_TAT,
+                $const->INFOTYPE_VN => $const->FORMAT_NODE);
+    return $defaultFormat{$tmpInfoType};
+}
+
+sub setData(){
+    my $begin = shift;
+    my $leftLines = shift;
+    my $end;
+    if(defined($leftLines) && $leftLines >= 4320){
+        $end = $begin + 2160*$samplingStep;
+    }else{
+        $end = $endTime;
+    }
+    my $resourceNum = scalar(@resource);
+    my @expr;
+    foreach(@item){
+        push(@expr,$$_[2]);
+    }
+    my $refDS;
+    my $refSourceDate;
+    my $rrdFile = ${$resource[0]}{"fname"};
+    if(!(-e $rrdFile)){
+        print STDERR $const->ERROR_MSG_RRD_NOT_EXIST;
+        exit $const->EXIT_CODE_RRD_NOT_EXIST;
+    }
+    ($dataStartTime,$samplingStep,$refDS,$refSourceDate) = 
+        RRDs::fetch("$rrdFile","AVERAGE","-s",$begin,"-e",$end);
+    my $rrdErr = RRDs::error();
+    if($rrdErr){
+        #print the error message and exit the program
+        print STDERR "$rrdErr\n";
+        exit $const->EXIT_CODE_RRD_ERROR;
+    }
+    #set the data for the output
+    $outPutData[0] = DS2ItemData($refDS,$refSourceDate,\@expr);
+    
+    for(my $i = 1; $i < $resourceNum; $i++){
+        my $rrdFile = ${$resource[$i]}{"fname"};
+        if(!(-e $rrdFile)){
+            print STDERR $const->ERROR_MSG_RRD_NOT_EXIST;
+            exit $const->EXIT_CODE_RRD_NOT_EXIST;
+        }
+        my ($start,$stp,$ds);
+        ($start,$stp,$ds,$refSourceDate) = 
+            RRDs::fetch("$rrdFile","AVERAGE","-s",$begin,"-e",$end);
+        my $rrdErr = RRDs::error();
+        if($rrdErr){
+            #print the error message
+            print STDERR "$rrdErr\n";
+            exit $const->EXIT_CODE_RRD_ERROR;
+        }else{
+            $outPutData[$i] = DS2ItemData($refDS,$refSourceDate,\@expr);
+        }
+    }
+}
+
+sub changeLimitLine(){
+    if(!defined($dataLines)||$dataLines<1){
+        #can not get any data from the RRD,exit the program
+        print STDERR $const->ERROR_MSG_FAILD_GET_RRD_DATA;
+        exit $const->EXIT_CODE_FAILD_GET_RRD_DATA;
+    }
+    my $leftLines = shift;
+    if($leftLines == $dataLines){
+        clearStartLine();
+    }
+    
+    if($leftLines < 4320 && scalar(@{$outPutData[0]})>0){
+        clearEndLine();
+    }
+}
+
+sub clearEndLine(){
+    if(havaUndefined(scalar(@{$outPutData[0]}) - 1)){
+        #the last line has the undef data
+        #delete the last line
+        foreach my $refResourceData(@outPutData){
+            pop(@$refResourceData);
+        }
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_RASE_LAST_LINE);
+    }
+}
+
+sub clearStartLine(){
+    if(havaUndefined(0)){
+        #the first line has the undef data
+        #delete the first line
+        foreach my $refResourceData(@outPutData){
+            shift(@$refResourceData);
+        }
+        $dataStartTime = $dataStartTime + $samplingStep;
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_RASE_FIRST_LINE);
+    }
+    
+}
+
+sub havaUndefined(){
+    my $lineIndex =  shift;
+    foreach my $refResourceData(@outPutData){
+        my $refItemData = $$refResourceData[$lineIndex];
+        foreach (@$refItemData){
+            if(!defined($_)){
+                return 1;
+            }
+        }
+    }
+    return 0;
+}
+
+sub CSV_Output(){
+    if(!defined($dataLines)||$dataLines<1){
+        #hava no data to output
+        print STDERR $const->ERROR_MSG_NO_DATA_TO_OUTPUT;
+        exit $const->EXIT_CODE_NO_DATA_TO_OUTPUT;
+    }
+    
+    my $leftLines = shift;
+    if($leftLines == $dataLines){
+        #output the title for one CSV file
+        #begin output the data
+        $rrdCmdCom->debug($f_debug,$const->DEBUG_MSG_BEGIN_OUTPUT);
+        outputTitle();
+    }
+    #output the data lines
+    if(defined($targetFile)){
+        return outputData($dataStartTime);
+    }else{
+        outputData($dataStartTime);
+    }
+    
+}
+
+sub outputData(){
+    #output the data lines
+    my $dataTime = shift;
+    my $lineOutData = $dataTime;
+    my $outputLength = scalar(@{$outPutData[0]});
+    my @finalData;
+    for(my $i = 0; $i < $outputLength; $i++){
+        my @data;
+        #push the first colum: date
+        push(@data,formatDate($dataTime));
+        foreach my $resData(@outPutData){
+            #push the datas of one resource
+            push(@data,roundData(@{$$resData[$i]}));
+        }
+        
+        if(defined($targetFile)){
+            $finalData[$i] = outputOneLine(@data);
+        }else{
+            outputOneLine(@data);
+        }
+        $dataTime += $samplingStep;
+    }
+    if(defined($targetFile)){
+        return \@finalData;
+    }
+    
+}
+
+sub formatDate(){
+    my $tm = localtime(shift);
+    return sprintf("%04d/%02d/%02d %02d:%02d:%02d", $tm->year+1900, $tm->mon+1,
+                     $tm->mday, $tm->hour, $tm->min, $tm->sec);
+}
+
+sub roundData(){
+    my @datas = @_;
+    #change every undefined value to "" and make every data as the format:$dataFormat
+    foreach(@datas){
+        if(defined($_)){
+            $_ = sprintf("$dataFormat",$_);
+        }else{
+            $_ = "";
+        }
+    }
+    return @datas;
+}
+
+sub outputTitle(){
+    my @title;
+    push(@title,"Date");
+    foreach my $refHash(@resource){
+        #push the titles of one resource
+        my $resourceDesc = ${$refHash}{"id"};
+        if("$infoType" eq $const->INFOTYPE_NVAVS_REQUEST || "$infoType" eq $const->INFOTYPE_NVAVS_TAT){
+        	my @tempResourceDesc = split(/#/,$resourceDesc);
+        	$resourceDesc = $tempResourceDesc[1];
+        }
+        if($displayMP){
+            #the option of -m is valid
+            $resourceDesc = ${$refHash}{"MountedOn"};
+        }
+        foreach my $refArray(@item){
+            my $itemDesc = ${$refArray}[1];
+            push(@title, "$resourceDesc: $itemDesc");
+        }
+    }
+    
+    #change every " to two " in the titile. that means "--->""
+    foreach(@title){
+        $_ =~ s/\"/\"\"/g;
+    }
+    if(defined($targetFile)){
+        #add the title into the file
+        if(open(TMPFILE,">>$targetFile")){
+            my $tmpTitile = outputOneLine(@title);
+            if(print TMPFILE $tmpTitile){
+                close(TMPFILE);
+            }else{
+                system("rm -f $targetFile");
+                print STDERR $const->ERROR_MSG_FAILED_WRITE_FILE;
+                exit 1;
+            }
+        }else{
+            system("rm -f $targetFile");
+            print STDERR $const->ERROR_MSG_FAILED_WRITE_FILE;
+            exit 1;
+        }
+    }else{
+        outputOneLine(@title);
+    }
+    
+}
+
+sub outputOneLine(){
+    my @datas = @_;
+    #make every value be in ""
+    foreach(@datas){
+        $_ = "\"$_\"";
+    }
+    my $line = join(",", @datas);
+    if(defined($targetFile)){
+        return "$line\r\n";
+    }else{
+        print "$line\r\n";
+    }
+    
+}
+
+sub processCSVArgv(){
+    Getopt::Long::Configure("noauto_abbrev");
+    Getopt::Long::Configure("getopt_compat");
+    Getopt::Long::Configure("require_order");
+    my $result = GetOptions ("help|h" => \&rrd2csvUsage,    
+                             "d"      => sub{$f_debug = 1;},
+                             "l=i"    => \$limit,
+                             "s=s"    => \&processStart,
+                             "e=s"    => \&processEnd,
+                             "m"      => sub{$displayMP = 1;},
+                             "f=s"    => \&processFormat,
+                             "r=s"    => \&processResource,
+                             "i=s"    => \&processItem,
+                             "o=s"    => \&processTargetFile,
+                             "c=s"    => \&processCpName,
+                             "v=s"    => \$version);
+    if(!$result){    
+        print STDERR helpInformation();
+        exit $const->EXIT_CODE_INVALID_OPTION;
+    }
+    
+}
+
+sub processArgument(){
+    if(scalar(@ARGV) != 2 && scalar(@ARGV) != 1){
+        print STDERR $const->ERROR_MSG_INVALID_OPTION;
+        print STDERR helpInformation();
+        exit $const->EXIT_CODE_INVALID_OPTION;
+    }
+    if(scalar(@ARGV) == 2){
+        $host = shift;
+        $infoType = shift;
+    }else{
+        $infoType = shift;
+    }
+    my $checkResult = 1;
+    if(defined($host)){
+        $checkResult = $rrdCmdCom->checkHostName($host,$version);
+        if($checkResult == 1){
+            #the host name is valid.
+        }elsif($checkResult == 0){
+            print STDERR $rrdCmdCom->error();
+            exit $const->EXIT_CODE_INVALID_HOSTNAME;
+        }else{
+            $rrdCmdCom->unknownErrorHandle();
+        }
+    }
+    
+    $checkResult = $rrdCmdCom->checkInfoType(lc($infoType),$version);
+    if($checkResult == 1){
+        #the infoType is valid.
+    }elsif($checkResult == 0){
+        print STDERR $rrdCmdCom->error();
+        exit $const->EXIT_CODE_INVALID_INFOTYPE;
+    }else{
+        $rrdCmdCom->unknownErrorHandle();
+    }
+}
+
+sub rrd2csvUsage(){
+    print helpInformation();
+    exit 0;
+}
+
+sub helpInformation(){
+    return "Usage:\n\trrd2csv [-h|--help]\n\trrd2csv [-d] [-s <start>] [-e <end>] [-l <days>] [-m] [-f <format>] [-r <resource>[,<resource>...]] [-c <cpname>] [-i <item>[,<item>...]] [-o <outfile>] <hostname> <infotype>\n";
+}
+
+sub processStart(){
+    my $opt = shift;
+    my $val = shift;
+    if(!&isRelativeTime($val)){
+        print STDERR $const->ERROR_MSG_INVALID_START_TIME,$val,"\n";
+        exit $const->EXIT_CODE_INVALID_START_TIME;
+    }else{
+        $usrStartTime = $val
+    }
+}
+
+sub processEnd(){
+    my $opt = shift;
+    my $val = shift;
+    if(!&isRelativeTime($val)){
+        print STDERR $const->ERROR_MSG_INVALID_END_TIME,$val,"\n";
+        exit $const->EXIT_CODE_INVALID_END_TIME;
+    }else{
+        $usrEndTime = $val
+    }
+}
+
+sub processFormat(){
+    my $opt = shift;
+    my $value = shift;
+    if(&isValues($value)){
+        $dataFormat = $value;
+        return;
+    }
+    #the format is invalid
+    print STDERR $const->ERROR_MSG_INVALID_FORMAT;
+    exit $const->EXIT_CODE_INVALID_FORMAT;
+}
+
+sub processTargetFile(){
+    my $opt = shift;
+    my $value = shift;
+    if(&isValues($value)){
+        $targetFile = $value;
+        return;
+    }
+    #the file name is invalid
+    print STDERR $const->ERROR_MSG_INVALID_TARGET_FILE,$value,"\n";
+    exit $const->EXIT_CODE_INVALID_TARGET_FILE;
+}
+
+sub processResource(){
+    my $opt = shift;
+    my $val = shift;
+    if(&isValues($val)){
+        $usrResource = $val;
+        return;
+    }
+    #the resource is invalid
+    print STDERR $const->ERROR_MSG_INVALID_RESOURCE,$val,"\n";
+    exit $const->EXIT_CODE_INVALID_RESOURCE;
+}
+
+sub processItem(){
+    my $opt = shift;
+    my $val = shift;
+    if(&isValues($val)){
+        $usrItem = $val;
+        return;
+    }
+    #the item is invalid
+    print STDERR $const->ERROR_MSG_INVALID_ITEM,$val,"\n";
+    exit $const->EXIT_CODE_INVALID_ITEM;
+}
+
+sub processCpName(){
+    my $opt = shift;
+    my $val = shift;
+    if(&isValues($val)){
+        $usrCpName = $val;
+        return;
+    }
+    #the item is invalid
+    print STDERR $const->ERROR_MSG_INVALID_CPNAME,$val,"\n";
+    exit $const->EXIT_CODE_INVALID_CPNAME;
+}
+
+sub isValues(){
+    return 1;
+}
+ 
+sub isRelativeTime(){
+    if($_[0] =~ m"^-[a-zA-Z]"){
+        return 0;
+    }
+    return 1;
+}
+
+sub DS2ItemData(){
+    my $RefdsArr   = shift;
+    my $RefdataArr = shift;
+    my $RefexprArr = shift;
+    my @result;    
+    
+    foreach my $data(@$RefdataArr) {
+        my @lineData;
+        OUTER:for(my $j=0;$j<scalar(@$RefexprArr);$j++){
+            my $expr = $$RefexprArr[$j];
+            my $needDS2Data = 0;
+            if(index($expr,",") != -1){
+                $needDS2Data = 1;
+            }  
+            if($needDS2Data){            
+                for(my $i = 0; $i < scalar(@$RefdsArr); $i++){
+                    my $ds = $$RefdsArr[$i];
+                    if (($infoType eq "cpu") &&
+			            ($ds eq "CPU_Idle") && ($${data[$i]} eq "")) {
+			                $${data[$i]} = 0;
+		            }
+                    if (($infoType eq "nvavstat") && ($ds eq "Request_Counts") && ($${data[$i]} eq "0")) {
+                        push(@lineData,0);
+                        next OUTER;
+                    }
+                    if(!defined($${data[$i]})){
+                        push(@lineData,undef);
+                        next OUTER;
+                    }
+                    $expr =~ s/\b${ds}\b/$${data[$i]}/g;
+                }
+                my $data = rpn($expr);
+                if($data eq "ERR"){
+                    print STDERR $const->ERROR_MSG_FAILD_CALCULATE_DATA;
+                    exit $const->EXIT_CODE_FAILD_CALCULATE_DATA;
+                }
+                push(@lineData,$data);
+            }else{
+                my $i = 0;
+                for($i = 0; $i < scalar(@$RefdsArr); $i++){
+                    if($expr eq $$RefdsArr[$i]){
+                        last;
+                    }
+                }
+                push(@lineData,$$data[$i]);
+            }
+           
+        } 
+        push(@result,\@lineData);
+    }     
+    return \@result;
+
+}

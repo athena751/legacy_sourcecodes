@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: nas_nashead.xml,v 1.14 2008/04/25 11:24:25 jiangfx Exp $" -->
+<messages>
+	<msg key="common" value="">
+		<msg key="h1_storage" value="Storage" ja="ストレージ" /> 
+		<msg key="h2_storage" value="Storage Information" ja="ストレージ情報" /> 
+		<msg key="h1_volume" value="Volume" ja="ボリューム" /> 
+		<msg key="h2_linklun" value="LUN Batch Link" ja="LUN一括認識" /> 
+		<msg key="h2_initlun" value="LUN Batch Initialization" ja="LUN一括初期化" /> 
+		<msg key="batchset_button" value="LUN Batch Link" ja="LUN一括認識" />
+		<msg key="init_button" value="LUN Batch Initialization" ja="LUN一括初期化" />
+		<msg key="getluninfo_button" value="LUN List" ja="LUN一覧" /> 
+		<msg key="changenickname_button" value="Change Storage Name" ja="ストレージ名称変更" /> 
+		<msg key="h3_lun" value="LUN List" ja="LUN一覧" /> 
+	</msg>
+	<msg key="new" value="">
+	    <msg key="h1_lvm" value="LVM" ja="LVM" /> 
+	    <msg key="h1_replication" value="MVD Sync" ja="MVD Sync" /> 
+	</msg>
+	
+	<msg key="storage" value="">
+		<msg key="getddmapfaild" value="Failed to get the storage information(command:/sbin/getddmap).&lt;br&gt;Please reload the page after confirming the SAN disk array has no problem of connection." ja="ストレージ情報の取得に失敗しました(コマンド:/sbin/getddmap)。&lt;br&gt;SANディスクアレイの接続に問題がないか確認後、再度画面を表示して下さい。" /> 
+		<msg key="nostorage" value="No storages are found." ja="ストレージが存在しません。" /> 
+  		<msg key="storagename" value="Storage" ja="ストレージ" /> 
+  		<msg key="wwnn" value="WWNN" /> 
+  		<msg key="model" value="Model" ja="モデル" /> 
+	</msg>
+	<msg key="changeStorageName" value="">
+		<msg key="h2_changeStorage" value="Change Storage Name" ja="ストレージ名称変更" /> 
+		<msg key="th_storage" value="Storage" ja="ストレージ" /> 
+		<msg key="th_wwnn" value="WWNN" /> 
+		<msg key="th_model" value="Model" ja="モデル" /> 
+		
+	</msg>
+	<msg key="lun" value="">
+		<msg key="nolun" value="No LUNs are found." ja="LUNが存在しません。" /> 
+		<msg key="lun" value="LUN" /> 
+		<msg key="devicepath" value="Device Path" ja="デバイスパス" /> 
+		<msg key="status" value="Storage Connection State" ja="ストレージ接続状態" /> 
+		<msg key="lvm" value="LVM Bind" ja="LVM構築" /> 
+		<msg key="use" value="O" ja="○" /> 
+		<msg key="unuse" value="--" /> 
+		<msg key="lunforconfirm" value="LUN:" />
+    	<msg key="lundelete" value="Delete LUN" ja="LUN削除"/>
+	</msg>
+	<msg key="alert" value="">
+		<msg key="nostorageselect" value="Please specify a storage." ja="ストレージを指定してください。"/> 
+		<msg key="nolunselect" value="Please specify a LUN." ja="LUNを指定してください。"/> 
+		<msg key="osusedld" value="The LUN whose device path is between /dev/ld0 and /dev/ld15 can not be deleted. \r\nPlease specify another LUN." ja="デバイスパスは/dev/ld0−/dev/ld15のＬＵＮを削除できません。\r\n別のLUNを指定してください。"/> 
+		<msg key="lvmusedlun" value="A logical volume is created on the specified LUN. \r\nPlease specify another LUN." ja="指定されたLUNには、論理ボリュームが構築されています。\r\n別のLUNを指定してください。"/> 
+		<msg key="rvusedlun" value="Cannot delete the LUN because it has been set as a pair for DataReplication. \r\nPlease delete the setting of the pair for DataReplication." ja="データレプリケーションのペアが設定されているため、削除できません。\r\nデータレプリケーションのペアを削除してください。"/> 
+		<msg key="faileddeletelun1" value="Failed to delete LUN." ja="LUNの削除に失敗しました。"/> 
+		<msg key="faileddeletelun2" value="Management server&apos;s status is maintenance. \r\nCannot finish the configuration. Please confirm the network." ja="管理サーバは保守状態です。\r\n正常に設定を行えない状態です。\r\nネットワークを確認してください。"/> 
+		<msg key="invalidStorageName" value="~&amp;\&apos;\&quot;;:!@#$%^*()=`,.&lt;&gt;?/ and spaces are invalid. \r\nPlease input the correct storage name." ja="~&amp;\&apos;\&quot;;:!@#$%^*()=`,.&lt;&gt;?/と空白文字を指定できません。\r\n再度ストレージ名を指定してください。"/> 
+		<msg key="overflowStorageName" value="Invalid storage name." ja="不正なストレージ名です。"/> 
+		<msg key="ld_is_full" value="Although LD was added to storage, because the maximum of LUN was exceeded, the new LUN can not be added. \r\nPlease delete unnecessary LUN and delete unnecessary LD simultaneously." ja="ストレージにLDが追加されましたが、LUNの上限を超えたため新規に追加できませんでした。\r\n不要なLUNを削除し、同時に不要なLDを削除して下さい。"/> 
+		<msg key="link_complete" value="The number of Linked LUN : " ja="認識されたLUNの数 ： "/> 
+		<msg key="hasdelete" value="The LUN has been deleted." ja="指定したLUNは削除されました。" /> 
+		<msg key="link_confirm" value="It will take long time to complete this operation, according to system performance.\r\nPlease do NOT operate other settings, until current process is done." ja="この操作は、システムの負荷状況により、処理完了までに長時間かかる場合があります。\r\n処理が完了するまで、他の操作は行なわないで下さい。" /> 
+		<msg key="storageNameExist" value="The specified storage name already exists." ja="指定したストレージ名はすでに存在しています。" /> 
+		</msg>
+	
+	<msg key="gateway" value="">
+		<msg key="state_normal" value="Normal" ja="正常" /> 
+		<msg key="state_fault" value="Fault" ja="異常" />
+		<msg key="state_offline" value="Offline" ja="未接続" />
+		<msg key="h1_gatewayinfo" value="NAS Gateway" ja="NASゲートウェイ" />
+		<msg key="h2_hbainfo" value="HBA Information" ja="HBA情報" />
+		<msg key="btn_portinfo" value="Port Connection Information" ja="ポート接続情報" />
+		<msg key="h3_node" value="Node" ja="ノード" />
+		<msg key="err_hba" value="Cannot get the HBA&apos;s information." ja="HBA情報が取得できません。" />
+		<msg key="no_hba" value="No HBA cards." ja="HBA カードが存在しません。" />
+		<msg key="th_port" value="Port" ja="ポート" />
+		<msg key="th_wwnn" value="WWNN" ja="WWNN" />
+		<msg key="th_wwpn" value="WWPN" ja="WWPN" />
+		<msg key="h2_port0" value="Port Connection Information(Node0)" ja="ポート接続情報(ノード0)" />
+		<msg key="h2_port1" value="Port Connection Information(Node1)" ja="ポート接続情報(ノード1)" />
+		<msg key="err_port" value="Cannot get the port&apos;s connection information." ja="ポート接続情報が取得できません。" />
+		<msg key="no_port" value="No ports are found." ja="ポートが存在しません。" />
+		<msg key="no_lun" value="No LUNs are found." ja="LUNが存在しません。" />
+		<msg key="th_storage_name" value="Storage" ja="ストレージ" />
+		<msg key="th_lun" value="LUN" ja="LUN" />
+		<msg key="th_state" value="State" ja="状態" />
+	</msg>
+		
+		
+	<msg key="luninit" value="">
+		<msg key="noselectlun" value="Please specify LUNs." ja="LUNを指定してください。" />
+		<msg key="exceedselectlun" value="The specified LUN number exceeds the maximum available LUN number." ja="指定されたLUN数が、最大作成可能LUN数を超えています。" />
+		<msg key="confirmcreatelun" value="You are about to commit these settings.\r\nIt will take long time to complete this operation, according to system performance.\r\nPlease do NOT operate other settings, until current process is done." ja="よろしいですか？\r\nこの操作は、システムの負荷状況により、処理完了までに長時間かかる場合があります。\r\n処理が完了するまで、他の操作は行なわないで下さい。" />
+		<msg key="noavaillun" value="No available LUNs are found." ja="利用できるLUNが存在しません。" />
+		<msg key="th_availlun" value="The maximum number of available LUNs :" ja="最大利用可能LUN数：" />
+		<msg key="init_complete" value="The number of initialized LUN: " ja="初期化されたLUNの数：" />
+		<msg key="init_failed" value="The following LUNs were failed to initialize:" ja="以下のLUNは初期化失敗しました：" />
+		<msg key="link_complete" value="The number of Linked LUN:" ja="認識されたLUNの数：" />
+		<msg key="link_failed" value="The following LUNs are failed to link:" ja="以下のLUNは認識失敗しました：" />
+		<msg key="linktip" value="&quot;LUN Batch Link&quot; is used to recognize the LUNs which have data  but have not backup. So please do not use this function in the  usual situation.&lt;br&gt; Please choose all  LUNs that were being used for volumes before rebuilding. &lt;br&gt;Since the re-creation of  the volume which used the choosed LUNs are unnecessary, please do not perform it." ja="LUN一括認識は、中にユーザデータがあり、設定バックアップが存在しないLUNをNASゲートウェイにて認識させる場合に使用します。&lt;br&gt;通常の運用においては使用しないでください。&lt;br&gt;復旧前にボリュームに使用していたLUNを全て選択してください。また、選択したLUNを使用したボリュームの再作成は不要ですので行なわないでください。" />
+		<msg key="inittip" value="When access control in the SAN Storage is not set, if the LUNs which are not used for NAS Gateway are initialized, all of the data in the LUNs will be lost.&lt;br&gt;Please be sure to set the access control in the SAN Storage." ja="SANストレージでのアクセスコントロールが未設定の状態で、NASゲートウェイ以外の用途で使用中のLUNに対し一括初期化を実行した場合、そのLUN中のデータは全て初期化されます。&lt;br&gt;SANストレージでのアクセスコントロールを必ず設定して下さい。" />
+		<msg key="appliancelinktip" value="LUN Batch Link is used to recognize LUN with NEC StorageNV when there is user data in the inside and backup data doesn't exist. &lt;br&gt;In usual operation, please do not use this function.  &lt;br&gt;Please operate LUN Batch Link according to the description of &quot;NEC Storage NV Series Maintenance Manual&quot; when you use this function." ja="LUN一括認識は、中にユーザデータがあり、設定バックアップが存在しないLUNをiStorageNVに認識させる場合に使用します。&lt;br&gt;通常の運用においては使用しないで下さい。&lt;br&gt;本機能を使用する場合は「iStorageソフトウェア NVシリーズ 保守マニュアル」の記述に従って操作してください。" />
+		<msg key="applianceinittip" value="LUN Batch Initialization is used to use a logical disk in storage by NECStorage side. When LUN Batch Initialization is executed for a logical disk where data exists, the data that already exists is destroyed. &lt;br&gt; In usual operation, please do not use this function.&lt;br&gt;  Please operate LUN Batch Initialization according to the description of &quot;NEC Storage NV Series Maintenance Manual&quot; when you use this function." ja="LUN一括初期化はストレージ上の論理ディスクをiStorageNV側で使用するために利用します。データが存在する論理ディスクに対してLUN一括初期化を実行した場合、既に存在するデータが破壊されます。&lt;br&gt;通常の運用においては使用しないで下さい。&lt;br&gt;本機能を使用する場合は「iStorageソフトウェア NVシリーズ 保守マニュアル」の記述に従って操作してください。" />
+	<msg key="btn_selectAll" value="Select All" ja="全LUN選択" />
+	<msg key="btn_unselectAll" value="Select None" ja="全LUN選択解除" />
+	
+	</msg>
+</messages>

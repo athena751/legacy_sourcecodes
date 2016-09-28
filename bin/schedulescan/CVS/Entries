@@ -1,0 +1,16 @@
+/schedulescan_checkComputerName.pl/1.1/Thu May  8 09:15:30 2008//
+/schedulescan_checkUserMapping.pl/1.2/Wed May 14 08:19:07 2008//
+/schedulescan_delConfigFile.pl/1.2/Wed May 21 01:59:29 2008//
+/schedulescan_getAllDomAndCom.pl/1.2/Tue May 13 00:56:15 2008//
+/schedulescan_getAllInterfaces.pl/1.1/Thu May  8 09:15:30 2008//
+/schedulescan_getScanShare4List.pl/1.1/Thu May  8 09:15:30 2008//
+/schedulescan_getSettingInfo.pl/1.1/Thu May  8 09:15:30 2008//
+/schedulescan_getShareInfo.pl/1.2/Thu Dec 18 07:35:32 2008//
+/schedulescan_getVirtualComputerName.pl/1.1/Thu May  8 09:15:30 2008//
+/schedulescan_haveSetGlobal.pl/1.2/Sat May 24 08:07:30 2008//
+/schedulescan_judgeVSSmbPair.pl/1.1/Thu May 29 04:57:45 2008//
+/schedulescan_setComputerInfo.pl/1.5/Thu May 29 04:46:58 2008//
+/schedulescan_setGlobalInfo.pl/1.2/Mon May 26 05:15:48 2008//
+/schedulescan_setNewComputerInfo.pl/1.2/Thu May 29 04:46:58 2008//
+/schedulescan_setShareInfo.pl/1.2/Fri May  9 04:58:55 2008//
+D

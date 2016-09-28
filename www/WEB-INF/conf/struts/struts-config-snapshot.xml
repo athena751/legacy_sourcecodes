@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+		Copyright (c) 2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+-->
+<!-- "@(#) $Id: struts-config-snapshot.xml,v 1.1 2008/05/28 02:17:18 lil Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="snapshotDeleteForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="delSnapshotNames" type="java.lang.String"/>
+        	<form-property name="mp" type="java.lang.String"/>
+        </form-bean>
+	</form-beans>
+	
+	<global-forwards>
+    </global-forwards>
+    
+	<action-mappings>
+    	<action path="/replicaSnapshotList"
+				 forward="/../nas/snapshot/replicasnapshotlist.jsp"/>
+        <action path="/replicaSnapshotListTop"
+        		name="snapshotDeleteForm"
+        		type="com.nec.nsgui.action.snapshot.ReplicaSnapshotListAction"
+                scope="request"
+                validate="false">
+            <forward name="showList" 
+                     path="/nas/snapshot/replicasnapshotlisttop.jsp" module=""/>
+            <forward name="showList4nsview" 
+                     path="/nas/snapshot/replicasnapshotlist4nsview.jsp" module=""/>
+        </action>
+    	<action path="/replicaSnapshotListBottom"
+				 forward="/../nas/snapshot/replicasnapshotlistbottom.jsp"/>
+
+        <action path="/replicaSnapshotDelete"
+        		name="snapshotDeleteForm"
+        		type="com.nec.nsgui.action.snapshot.ReplicaSnapshotDeleteAction"
+                scope="request"
+                validate="false">
+            <forward name="success" 
+                     path="/replicaSnapshotListTop.do"/>
+            <forward name="fail" 
+                     path="/replicaSnapshotListTop.do?result=fail"/>
+        </action>
+	</action-mappings>
+
+	<message-resources parameter="com.nec.nsgui.messages.SnapshotResource"/>
+
+	<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+		<set-property property="confFile" 
+			value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-snapshot.xml"/>
+	</plug-in>
+</struts-config>

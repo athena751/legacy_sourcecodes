@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: displayerror.tld,v 1.1 2004/07/14 07:33:24 baiwq Exp $" -->
+
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>layout</short-name>
+   <uri>http://www.heaven.com.cn/taglib</uri>
+   <description>NS GUI tag library</description>
+
+  <tag>
+    <name>error</name>
+    <tag-class>com.nec.nsgui.taglib.displayerror.DisplayError</tag-class>
+    <body-content>JSP</body-content>
+    <description>Display Error Information</description>
+
+    <attribute>
+	<name>h1_key</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>         
+
+</taglib>

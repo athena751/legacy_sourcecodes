@@ -1,0 +1,11 @@
+/get_nv_info////
+/ndmp_getAllInterfaces.pl////
+/ndmp_getDeviceInfo.pl////
+/ndmp_getNDMPInfo.pl////
+/ndmp_getNDMPSessionInfo.pl////
+/ndmp_getNDMPSessionPath.pl////
+/ndmp_getNDMPV2Info.pl////
+/ndmp_getRunningVersion.pl////
+/ndmp_haveSessionInfo.pl////
+/ndmp_ndmpdManagement.pl////
+/ndmp_setNDMPInfo.pl////

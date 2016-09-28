@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2004-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-volume.xml,v 1.18 2008/05/30 02:56:56 liuyq Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+    <form-beans>
+        <form-bean name="volumeSelectForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="volumeInfo"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+        </form-bean>
+        
+        <form-bean name="volumeAddForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+            <form-property name="volumeInfo"    
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+            <form-property name="mountPointShow" type="java.lang.String" />
+            <form-property name="usableCap" type="java.lang.String"/>
+            <form-property name="selectedLdPath" type="java.lang.String"/>
+            <form-property name="differentSize" type="java.lang.String" initial="0"/>
+        </form-bean>
+        
+        <form-bean name="volumeModifyForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+            <form-property name="volumeInfo"    
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+            <form-property name="canSetDmapi" type="java.lang.String" />
+        </form-bean>
+        
+        <form-bean name="VCNavigatorListForm"
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="rootDirectory" type="java.lang.String"/>
+            <form-property name="nowDirectory" type="java.lang.String"/>
+        </form-bean>
+        
+        <form-bean name="volumeExtendForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+            <form-property name="volumeInfo"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+            <form-property name="usableCap" type="java.lang.String"/>
+            <form-property name="selectedLdPath" type="java.lang.String"/>
+            <form-property name="differentSize" type="java.lang.String" initial="0"/>
+        </form-bean>
+        
+        <form-bean name="diskArrayInfoForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+             <form-property name="aid" type="java.lang.String" />
+             <form-property name="aname" type="java.lang.String" />
+             <form-property name="atype" type="java.lang.String" />
+             <form-property name="pdGroupNumber" type="java.lang.String"/>
+             <form-property name="raidType" type="java.lang.String"/>
+        </form-bean>
+        
+        <form-bean name="volumeBatchCreateForm"
+                   type="org.apache.struts.action.DynaActionForm">
+			<form-property name="kind" type="java.lang.String" initial="max"/>	   
+            <form-property name="diskArray" type="java.lang.String"/>
+			<form-property name="raidType" type="java.lang.String"/>
+            <form-property name="volumes"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean[]" size="512"/>
+            <form-property name="selectOrNot" type="java.lang.String[]"/>
+        </form-bean>
+    </form-beans>
+    
+    <global-forwards>
+        <forward name="displayVolumeErrorMsgOnly"
+                 path="/nas/volume/volumeerror.jsp?onlyErrMsg=true" module=""/>
+        <forward name="forwardToVolumeError"
+                 path="/nas/volume/volumeerror.jsp" module=""/>
+        <forward name="forwardToVolumeErrorPopup" 
+        	       path="/nas/volume/volumeerror.jsp?popup=pop" module=""/>
+        <forward name="forwardToBatchSet" 
+        	       path="/volumeBatchCreate.do?operation=result&amp;toResult=true"/>
+        <forward name="forwardToVolumeList" 
+        	       path="/volumeList.do"/>
+    </global-forwards>	
+
+    <action-mappings>
+        <action path="/volumeList"
+                name="volumeSelectForm"
+                scope="request"
+                type="com.nec.nsgui.action.volume.VolumeListAction"
+                validate="false">
+            <forward name="forwardToList"       
+    	         path="/nas/volume/volumelist.jsp" module=""/>
+    	    <forward name="forwardToList4Nsview"       
+    	         path="/nas/volume/volumelist4nsview.jsp" module=""/>
+        </action>
+            
+	    <action path="/volumeListTop"
+                forward="/../nas/volume/volumelisttop.jsp"/>
+                
+	    <action path="/volumeListMiddle"
+                forward="/../nas/volume/volumelistmiddle.jsp"/>
+
+	    <action path="/volumeListMiddle4Nsview"
+                forward="/../nas/volume/volumelistmiddle4nsview.jsp"/>                
+	    
+	    <action path="/volumeListBottom"
+                forward="/../nas/volume/volumelistbottom.jsp"/>
+
+	    <action path="/volumeListBottom4Nsview"
+                forward="/../nas/volume/volumelistbottom4nsview.jsp"/>                
+		
+		<action path="/volumeDel"
+                name="volumeSelectForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeDelAction">
+            <forward name="delSuccess"    path="/volumeList.do"/>
+            <forward name="delFail"       path="/volumeList.do"/>
+        </action>
+  
+        <action path="/volumeAddShow"
+    		    name="volumeAddForm"
+    		    scope="request"
+    		    validate="false"
+                type="com.nec.nsgui.action.volume.VolumeAddShowAction">
+            <forward name="forwardToAddShow"
+                     path="/nas/volume/volumeaddshow.jsp" module=""/>
+        </action>
+
+        <action path="/volumeAdd"
+                name="volumeAddForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeAddAction">
+            <forward name="addSuccess" path="/volumeList.do"/>
+            <forward name="forwardReplication" 
+                     path="/replication/replicationEntry.do"
+                     module=""/>
+            <forward name="addFail"    path="/volumeAddShow.do"/>
+        </action>
+        
+        <action path="/volumeExtend"
+                name="volumeExtendForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeExtendAction">
+            <forward name="extendSuccess" path="/volumeList.do"/>
+            <forward name="extendFail"    path="/volumeExtendShow.do"/>
+            <forward name="forwardToList" path="/volumeList.do"/>
+        </action>
+        
+        <action path="/volumeExtendShow"
+                name="volumeExtendForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeExtendShowAction">
+            <forward name="forwardToExtendShow"
+                     path="/nas/volume/volumeextendshow.jsp" module=""/>
+        </action>
+        
+        <action path="/volumeModifyShow"
+                name="volumeModifyForm"
+                scope="request"
+                validate="false"
+				type="com.nec.nsgui.action.volume.VolumeModifyShowAction">
+            <forward name="forwardToModifyShow"
+                     path="/nas/volume/volumemodifyshow.jsp" module=""/>
+        </action>
+        
+    	<action path="/volumeModify"
+                name="volumeModifyForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeModifyAction">
+            <forward name="modifySuccess" path="/volumeList.do"/>
+            <forward name="modifyFail"    path="/volumeList.do"/>
+        </action>
+        
+        <action path="/volumeMount"
+                name="volumeSelectForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeMountAction">
+            <forward name="mountSuccess" path="/volumeList.do"/>
+            <forward name="mountFail"    path="/volumeList.do"/>
+        </action>
+        
+        <action path="/volumeUmount"
+                name="volumeSelectForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.volume.VolumeUmountAction">
+            <forward name="umountSuccess" path="/volumeList.do"/>
+            <forward name="umountFail"    path="/volumeList.do"/>
+        </action>
+        
+        <action path="/VCNavigatorList"
+                parameter="method"
+                type="com.nec.nsgui.action.volume.VolumeCreateNavigatorListAction"
+                name="VCNavigatorListForm"
+                scope="session">
+            <forward name="success_call" path="/nas/volume/vcnavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/volume/vcnavigatorlist.jsp"
+                     module=""/>      
+        </action>
+        
+        <action path="/VCNavigatorForwardList"
+                forward="/../nas/volume/vcnavigatorlist.jsp"/>
+    
+        <action path="/VCNavigatorForwardSubmit"
+ 	            forward="/../nas/volume/vcnavigatorsubmit.jsp"/>
+	              
+        <action path="/volumeBatchDispatch"
+                scope="request"
+                type="com.nec.nsgui.action.volume.VolumeBatchDispatch"
+                parameter="operation">                
+            <forward name="volumepoolinfolist"       
+                     path="/nas/volume/volumepoolinfolist.jsp"
+                     module=""/>
+            <forward name="volumeList"       
+                     path="/volumeBatchCreateShow.do?operation=showLUN"/>
+        </action>
+        
+        <action path="/volumepoolinfolist"
+			    name="volumeBatchCreateForm"
+                scope="session"
+                type="com.nec.nsgui.action.volume.VolumePoolListAction"
+                parameter="operation">                
+            <forward name="poolListTop"       
+                     path="/nas/volume/volumepoolinfolisttop.jsp"
+                     module=""/>
+            <forward name="poolListMid"       
+                     path="/nas/volume/volumepoolinfolistmid.jsp"
+                     module=""/>
+            <forward name="poolListBottom"       
+                     path="/nas/volume/volumepoolinfolistbottom.jsp"
+                     module=""/>
+        </action>
+        
+        <action path="/volumeBatchCreateShow"
+                name="volumeBatchCreateForm"
+                scope="session"
+                type="com.nec.nsgui.action.volume.VolumeBatchCreateShowAction"
+                parameter="operation">
+			<forward name="specify"
+                     path="/nas/volume/volumebatchcreatespecifyshow.jsp" module=""/>
+            <forward name="success"
+                     path="/nas/volume/volumebatchcreateshow.jsp" module=""/>
+            <forward name="noLun"
+                     path="/nas/volume/volumebatchcreateshownolun.jsp" module=""/>
+        </action>
+        
+        
+        <action path="/volumeBatchCreateConfirm"
+                name="volumeBatchCreateForm"
+                scope="session"
+                type="com.nec.nsgui.action.volume.VolumeBatchCreateConfirmAction"
+                parameter="operation">
+            <forward name="success"
+                     path="/nas/volume/volumebatchcreateconfirm.jsp" module=""/>
+            <forward name="specifySuccess"
+                     path="/nas/volume/volumebatchcreatespecifyconfirm.jsp" module=""/>
+        </action>
+        
+        <action path="/volumeBatchCreateShowForwardTop"
+                forward="/../nas/volume/volumebatchcreateshowtop.jsp"/>
+        
+        <action path="/volumeBatchCreateShowForwardMiddle"
+                forward="/../nas/volume/volumebatchcreateshowmiddle.jsp"/>
+        
+        <action path="/volumeBatchCreateShowForwardBottom"
+                forward="/../nas/volume/volumebatchcreateshowbottom.jsp"/>
+
+        <action path="/volumeBatchCreateSpecifyShowForwardTop"
+                forward="/../nas/volume/volumebatchcreatespecifyshowtop.jsp"/>
+               
+        <action path="/volumeBatchCreateSpecifyShowForwardBottom"
+                forward="/../nas/volume/volumebatchcreatespecifyshowbottom.jsp"/>
+                        
+        <action path="/volumeBatchCreate"
+                type="com.nec.nsgui.action.volume.VolumeBatchCreateAction"
+                name="volumeBatchCreateForm"
+                scope="session"
+                parameter="operation">
+            <forward name="result"
+                     path="/nas/volume/volumebatchresult.jsp" module=""/>
+            <forward name="forwardToList"
+                     path="/volumeList.do"/>
+        </action>
+		
+	<!-- action-mapping for nashead begin -->
+        <action path="/nasheadHbaInfoShow"
+        	    scope="request"
+                type="com.nec.nsgui.action.nashead.NasheadHbaInfoShowAction"
+                validate="false">
+ 	        <forward name="showHbaInfo" 
+ 	                 path="/nas/nashead/nasheadhbainfoshow.jsp" module=""/>
+        </action>
+
+		<action path="/nasheadPortInfoFramesetShow"
+                forward="/../nas/nashead/nasheadportinfoframeset.jsp"/>
+
+        <action path="/nasheadPortInfoTopShow"
+                forward="/../nas/nashead/nasheadportinfotopframe.jsp"/>
+
+        <action path="/nasheadPortInfoShow"
+                type="com.nec.nsgui.action.nashead.NasheadPortInfoShowAction"
+                scope="request"
+                validate="false">    
+            <forward name="showPortInfo" 
+                     path="/nas/nashead/nasheadportinfoframe.jsp" module=""/>
+        </action>     
+    <!-- action-mapping for nashead end -->
+    <!-- add for replication -->
+	    <action path="/forwardVolumeError"
+                forward="/../nas/volume/volumeerror.jsp"/>
+    <!-- add for replication end-->
+    
+    <!-- add for LUN select begin-->
+	    <action path="/lunSelectShow"
+				type="com.nec.nsgui.action.volume.LunSelectAction"
+				scope="request"
+				validate="false">
+		    <forward name="showLunInfo"
+				     path="/nas/volume/lunselect.jsp"  module=""/>
+		</action>
+		<action path="/lunSelect"
+                forward="/../nas/volume/lunselecttop.jsp"/>
+		<action path="/loadBottomFrame"
+				forward="/../nas/volume/lunselectbottom.jsp"/>				     				                
+    <!-- add for LUN select end--> 
+    
+    <!-- add for LD select begin by liq-->
+	    <action path="/ldSelectShow"
+  	            type="com.nec.nsgui.action.volume.LunSelectAction"
+  	            scope="request"
+                validate="false">
+            <forward name="showLunInfo" path="/nas/volume/ldselect.jsp"  module=""/>
+		</action>
+		<action path="/ldSelect"
+				forward="/../nas/volume/ldselecttop.jsp"/>
+		    				     				                
+    <!-- add for LD select end--> 
+    
+    <!-- add for NAS 128TB begin--> 
+        <action path="/volumeDetailShow"
+        		name="volumeSelectForm"
+        		type="com.nec.nsgui.action.volume.VolumeDetailAction"
+                scope="request"
+                validate="false">
+            <forward name="toVolumeDetail" 
+                     path="/nas/volume/volumedetail.jsp" module=""/>
+         </action>                     
+    	 <action path="/volumeDetailTop"
+				 forward="/../nas/volume/volumedetailtop.jsp"/>
+    	 <action path="/volumeClosePage"
+				 forward="/../nas/volume/closepage.jsp"/>
+			
+		<action path="/volumePoolSelect"
+				name="diskArrayInfoForm"
+				type="com.nec.nsgui.action.volume.DiskarrayShowAction"
+                scope="request"
+                validate="false">
+             <forward name="showDiskarrayInfo"
+                      path="/nas/volume/poolselect.jsp" module=""/>	
+        </action>
+        
+		<action path="/poolSelectTop"
+                forward="/../nas/volume/poolselecttop.jsp"/>
+        
+        <action path="/poolSelectMiddle"
+                name="diskArrayInfoForm"
+                type="com.nec.nsgui.action.volume.PoolShowAction"
+                scope="session"
+                validate="false">
+             <forward name="showPoolInfo"
+                      path="/nas/volume/poolselectmiddle.jsp" module=""/>
+		</action>
+		<action path="/moduleForward" 
+        		name="diskArrayInfoForm" 
+        		type="org.apache.struts.actions.ForwardAction"
+        		scope="session" 
+                validate="false" 
+                parameter="/../moduleForward.jsp"/>
+		                      
+    	<action path="/poolSelectBottom"
+				forward="/../nas/volume/poolselectbottom.jsp"/> 
+				
+    	<action path="/poolNoDiskArray"
+				forward="/../nas/volume/poolnodiskarray.jsp"/>				                     
+    <!-- add for NAS 128TB end--> 
+    
+        <action path="/clearTmpFile"
+                type="com.nec.nsgui.action.volume.VolumeClearTmpFileAction"
+                scope="request"
+                validate="false">
+             <forward name="volume" path="/volumeList.do"/>
+			 <forward name="fs" 
+				     path="/filesystem/filesystemListAndDel.do?operation=display"
+                     module=""/>
+             <forward name="replica" 
+				     path="/replication/replicaList.do?operation=display"
+                     module=""/>		      					 
+		</action>     
+    </action-mappings>
+
+    <message-resources parameter="com.nec.nsgui.messages.VolumeResource"/>
+<!-- message resources for nashead  begin --> 
+     <message-resources parameter="com.nec.nsgui.messages.MenuResource" key="menuResource"/>
+     <message-resources parameter="com.nec.nsgui.messages.NasheadResource" key="nasheadResource"/>
+<!-- message resources for nashead   end  -->   
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile"
+                      value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-volume.xml"/>
+    </plug-in>
+
+</struts-config>

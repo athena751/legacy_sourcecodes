@@ -1,0 +1,85 @@
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_SnapshotConf.xml,v 1.2300 2003/11/24 00:55:16 nsadmin Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:SnapshotConf">
+  <isd:provider type="java"
+                scope="Session"
+                methods="getSnapSchedule addSnapSchedule deleteSnapSchedule setCOWLimit getCOWLimit createSnap deleteSnap getSnapList checkOutSnapshot checkInSnapshot rollBackSnapshot hexMP2DevName">
+    <isd:java class="com.nec.sydney.service.admin.SnapSOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsVector " qname="x:SoapRpsVector "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsVector"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsInteger " qname="x:SoapRpsInteger "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsInteger"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsInteger " qname="x:SoapRpsSnapCowInfo "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsSnapCowInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SnapSchedule " qname="x:SnapSchedule "
+             javaType="com.nec.sydney.atom.admin.snapshot.SnapSchedule"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SnapInfo " qname="x:SnapInfo "
+             javaType="com.nec.sydney.atom.admin.snapshot.SnapInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SnapInfo " qname="x:SnapCowInfo "
+             javaType="com.nec.sydney.atom.admin.snapshot.SnapCowInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SnapSummaryInfo " qname="x:SnapSummaryInfo "
+             javaType="com.nec.sydney.atom.admin.snapshot.SnapSummaryInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsSnapSummaryInfo " qname="x:SoapRpsSnapSummaryInfo "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsSnapSummaryInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsString " qname="x:SoapRpsString"
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsString"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  </isd:mappings>
+</isd:service>
+

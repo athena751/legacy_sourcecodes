@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-framework.xml,v 1.17 2008/05/09 01:26:53 zhangjun Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<form-beans>
+    <form-bean name="controllerForm" type="org.apache.struts.action.DynaActionForm">
+        <form-property name="nodeInfo" type="com.nec.nsgui.model.entity.framework.NodeInfoBean" /> 
+        <form-property name="exportGroup" type="java.lang.String" /> 
+        <form-property name="machineType" type="java.lang.String" /> 
+        <form-property name="operation" type="java.lang.String" />
+	</form-bean>
+
+	<form-bean name="loginForm" type="org.apache.struts.action.DynaActionForm">
+        <form-property name="username" type="java.lang.String" /> 
+        <form-property name="_password" type="java.lang.String" /> 
+	</form-bean>
+</form-beans>
+
+<global-forwards>
+    <forward name="logout" path="/logout.jsp"  module=""/>
+    <forward name="login" path="/login.jsp"  module=""/>
+    <forward name="loginShow" path="/framework/loginShow.do"  module=""/>
+    <forward name="main" path="/mainForward.do"  redirect="true"/>
+    <forward name="nofip" path="/loginnofip.jsp"  module=""/>
+    <forward name="userwrong" path="/loginuserwrong.jsp"  module=""/>
+    <forward name="maxsession" path="/loginmaxsession.jsp"  module=""/>
+    <forward name="settingcluster" path="/system/clusterInfo.do"  module=""/>
+</global-forwards>
+
+    
+<action-mappings>
+
+<action path="/forwardExport" type="com.nec.nsgui.action.framework.ForwardExportAction">
+    <forward name="forwardexport" module="" path="/forwardexport.jsp"/>
+</action>
+<action path="/moduleForward" type="com.nec.nsgui.action.framework.ModuleForwardAction">
+    <forward name="moduleForward" module="" path="/moduleForward.jsp"/>
+</action>
+
+<action path="/menuDisplay"  
+        type="com.nec.nsgui.action.framework.MenuAction" 
+        parameter="operation" validate="false">
+<forward name="display"       
+         path="/menu.jsp"   
+         module=""/>
+<forward name="siteMapDisplay"
+         path="/sitemap.jsp"
+         module=""/>
+</action>
+<action path="/control"  
+        type="com.nec.nsgui.action.framework.ControllerAction" 
+        parameter="operation"
+        name="controllerForm" 
+        scope="request"
+        >
+<forward name="controller"       
+         path="/controller.jsp"   
+         module=""/>
+</action>
+<action path="/noLicense"
+        forward="/../common/nolicense.jsp"/>
+        
+<action path="/loginShow"  
+        type="com.nec.nsgui.action.framework.LoginShowAction" 
+        name="loginForm" 
+        scope="session"
+        validate="false"/>
+
+<action path="/login"  
+        type="com.nec.nsgui.action.framework.LoginAction" 
+        name="loginForm"
+        scope="session"
+        validate="false"/>
+        
+<action path="/logout"  
+        type="com.nec.nsgui.action.framework.LogoutAction" 
+        name="loginForm"
+        scope="request"
+        validate="false"/>
+        
+<action path="/mainForward"
+		forward="/../main.jsp"/>        
+
+</action-mappings>
+
+<message-resources parameter="com.nec.nsgui.messages.MenuResource" key="menuResource"/>
+<message-resources parameter="com.nec.nsgui.messages.FrameworkResource"/>
+<message-resources parameter="com.nec.nsgui.messages.LicenseResource" key="LicenseResource"/>
+
+<plug-in className="com.nec.nsgui.action.framework.NSMenuPlugIn">
+    <set-property property="defaultMachineType" 
+                     value="Single:NasCluster:NasheadCluster:NasheadSingle:OneNodeSirius"/>
+    <set-property property="confFile" 
+                     value="/WEB-INF/conf/menu/menu-config-status.xml,
+                              /WEB-INF/conf/menu/menu-config-manage.xml,
+                              /WEB-INF/conf/menu/menu-config-basic.xml"/>
+</plug-in>
+
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+    <set-property property="confFile" 
+    	             value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-gfs.xml"/>
+</plug-in>
+
+</struts-config>

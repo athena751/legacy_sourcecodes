@@ -1,0 +1,52 @@
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-schedulescan.xml,v 1.2 2008/05/29 04:48:13 chenjc Exp $" -->   
+<ExceptionConf>
+    <ProcessRule errorCode="0x14000001">
+        <ErrorMessage key="schedulescan.error.generalInfo.getInfo" type="generalInfo"/>
+        <ErrorMessage key="schedulescan.error.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="schedulescan.error.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="schedulescan.error.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/scheduleScanListOperation" forward="listtop"/>
+        <Dispatcher srcAction="/scheduleScanComputerSetTop" forward="computersettop"/>
+        <Dispatcher srcAction="/scheduleScanGlobalSetTop" forward="globalsettop"/>
+        <Dispatcher srcAction="/scheduleScanShare" forward="scansharetop"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x14000002">
+        <ErrorMessage key="schedulescan.error.generalInfo.setInfo" type="generalInfo"/>
+        <ErrorMessage key="schedulescan.error.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="schedulescan.error.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="schedulescan.error.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/scheduleScanComputerSetTop" forward="computersettop"/>
+        <Dispatcher srcAction="/scheduleScanGlobalSetTop" forward="globalsettop"/>
+        <Dispatcher srcAction="/scheduleScanShare" forward="scansharetop"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x14000003">
+        <ErrorMessage key="schedulescan.error.generalInfo.delInfo" type="generalInfo"/>
+        <ErrorMessage key="schedulescan.error.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="schedulescan.error.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="schedulescan.error.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/scheduleScanListOperation" forward="list"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x14000004">
+        <ErrorMessage key="schedulescan.error.generalInfo.setInfo" type="generalInfo"/>
+        <ErrorMessage key="schedulescan.error.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="schedulescan.error.detailInfo.checkInfo" type="detailInfo"/>
+        <ErrorMessage key="schedulescan.error.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/scheduleScanComputerSetTop" forward="computersettop"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1400000A">
+        <ErrorMessage key="schedulescan.error.notPair.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="schedulescan.error.notPair.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="schedulescan.error.notPair.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="schedulescan.error.notPair.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/scheduleScanComputerSetTop" forward="computersettop"/>
+    </ProcessRule>
+</ExceptionConf>

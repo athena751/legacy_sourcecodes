@@ -1,0 +1,227 @@
+<!--
+        Copyright (c) 2004-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: menu.css,v 1.6 2007/08/29 07:33:31 liul Exp $" -->
+
+TD.User{
+    background-image: url("/nsadmin/images/nation/bk_login.jpg");
+	background-color: Gainsboro;
+}
+TABLE.User TD{
+	background-image: url("/nsadmin/images/nation/bk_login.jpg");
+	background-color: Gainsboro;
+}
+SPAN.User{
+	font-size: 20px; font-weight: bold;
+}
+
+TABLE.CategoryTitle{
+	border-collapse: collapse;
+}
+TD.CategoryTitle0{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+}
+TD.CategoryTitle1{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+}
+TD.CategoryTitle2{
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+}
+FONT.CategoryTitle0{
+	font-size: 13px;
+	font-weight:bold;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+FONT.CategoryTitle1{
+	font-size: 13px;
+	font-weight:bold;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+FONT.CategoryTitle2{
+	font-size: 13px;
+	font-weight:bold;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+DIV.CategoryTitle{
+	POSITION: relative;
+    left: 5px;
+    width:96%;
+}
+
+DIV.Category0{
+	display:inline;
+    POSITION: absolute;
+    left: 5px;
+    width:96%;
+}
+DIV.Category1{
+	display:none;
+    POSITION: absolute;
+    left: 5px;
+    width:96%;
+}
+DIV.Category2{
+	display:none;
+    POSITION: absolute;
+    left: 5px;
+    width:96%;
+}
+
+TABLE.Category0 TH{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+	border-color:#FFFFFF;
+}
+TABLE.Category1 TH{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+	 border-color:#FFFFFF;
+}
+TABLE.Category2 TH{
+	 background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+	 border-color:#FFFFFF;
+}
+A{TEXT-DECORATION:none}
+FONT.SubCategoryTitle0{
+	font-size: 13px;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+FONT.SubCategoryTitle1{
+	font-size: 13px;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+FONT.SubCategoryTitle2{
+	font-size: 13px;
+    color:#FFFFFF;
+    Text-decoration:none;
+}
+.Space0{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+    font-size: 9px;
+    font-weight: bolder;
+}
+.Space1{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+    font-size: 9px;
+    font-weight: bolder;
+}
+.Space2{
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+    font-size: 9px;
+    font-weight: bolder;
+}
+FONT.Item0{
+	font-size: 13px;
+    color:#0000ff;
+    Text-decoration:none;
+}
+FONT.Item1{
+	font-size: 13px;
+    color:#0000ff;
+    Text-decoration:none;
+}
+FONT.Item2{
+    font-size: 13px;
+    color:#0000ff;
+    Text-decoration:none;
+}
+FONT.ItemNolicense{
+    font-size: 13px;
+    color:#666666;
+    Text-decoration:none;
+}
+TABLE.SiteMapCategoryTitle0 TD{
+	height:20px;
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+}
+TABLE.SiteMapCategoryTitle1 TD{
+	height:20px;
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+}
+TABLE.SiteMapCategoryTitle2 TD{
+	height:20px;
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+}
+
+FONT.SiteMapCategoryTitle0{
+	color:#FFFFFF;
+	font-size: 25;
+}
+FONT.SiteMapCategoryTitle1{
+	color:#FFFFFF;
+	font-size: 25;
+}
+FONT.SiteMapCategoryTitle2{
+	color:#FFFFFF;
+	font-size: 25;
+}
+TABLE.SiteMapSubCategory0{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+}
+TABLE.SiteMapSubCategory1{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+}
+TABLE.SiteMapSubCategory2{
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+}
+TD.SiteMapSubCategory0{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+}
+TD.SiteMapSubCategory1{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+}
+TD.SiteMapSubCategory2{
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+}
+TD.SiteMapBgColor0{
+	background-image: url("/nsadmin/images/menu/bk_status.jpg");
+}
+TD.SiteMapBgColor1{
+	background-image: url("/nsadmin/images/menu/bk_manage.jpg");
+}
+TD.SiteMapBgColor2{
+	background-image: url("/nsadmin/images/menu/bk_basic.jpg");
+	
+}
+FONT.SiteMapSubCategory0{
+	color:#FFFFFF;
+}
+FONT.SiteMapSubCategory1{
+	color:#FFFFFF;
+}
+FONT.SiteMapSubCategory2{
+	color:#FFFFFF;
+}
+.NoLicense{
+    Background-color:#FFF;
+    border:1px solid #FFFFFF;
+}
+.OnMoveOut{
+	Background-color:#FFF;
+	cursor: pointer;
+    border:1px solid #FFFFFF;
+}
+.OnMoveOver0{
+	background: #CCCCCC;
+    cursor: pointer;
+    border:1px solid #999999;
+}
+.OnMoveOver1{
+	background: #CCCCCC;
+    cursor: pointer;
+    border:1px solid #999999;
+}
+.OnMoveOver2{
+	background: #CCCCCC;
+    cursor: pointer;
+    border:1px solid #999999;
+}

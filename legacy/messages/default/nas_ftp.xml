@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_ftp.xml,v 1.2308 2008/12/23 03:01:49 fengmh Exp $" -->
+
+<messages>
+
+<msg key="common" value="">
+    <msg key="h1" value="FTP" ja="FTP"/>
+	<msg key="button_modify" value="Modify" ja="設定変更"/>
+	<msg key="button_set" value="Set" ja="設定"/>
+	<msg key="button_browse" value="Browse..." ja="参照..."/>
+	<msg key="button_change" value="Modify" ja="変更"/>
+	<msg key="auth_set" value="Set" ja="送信"/>
+	<msg key="close_popwin" value="Close" ja="閉じる"/>
+	<msg key="select" value="(select)" ja="(選択)"/>
+	<msg key="button_browse2" value="..." ja="..."/>
+</msg>
+
+<msg key="alert" value="">
+	<msg key="noconffile" value="FTP has not been set."
+						  ja="設定されていません。"/>
+	<msg key="invalidPortNum" value="Invalid port number. Please specify an integer between 1 and 65535." 
+							  ja="不正なポート番号です。1から65535までの整数を入力してください。"/>
+	<msg key="invalidMaxConnect" value="Invalid max connections number. Please specify an integer between 0 and 65535."
+								 ja="不正な最大接続数です。0から65535までの整数を入力してください。"/>
+	<msg key="invalidClient" value="Invalid client name. Please specify IP address or network.
+							  \r\nOnly format like 192.168.1.11 for IP address is allowed.
+                    		  \r\nOnly format like 192.168.1.,192.168.,192. for network is allowed.
+					          \r\nNumeric, .(dot) are allowed. And separate multiple IP addresses and networks by (,)comma." 
+			                 ja="不正なクライアントです。IPアドレスまたはネットワークを指定してください。
+			                  \r\nIPアドレスの指定は192.168.1.11の形式のみ指定可能です。
+			                  \r\nネットワークの指定は192.168.1.、192.168.、192.の形式のみ指定可能です。
+			                  \r\n使用可能な文字は数字とドット(.)です。コンマ(,)で区切ることで複数指定が可能です。"/>
+	<msg key="invalidUserList" value="Invalid username. \r\nOnly alphanumeric characters and -_ and space are allowed.
+	                                  \r\nThe first character can not be - or a numeric or space, and the max length is 4096.
+	                                  \r\n And separate user name by (,)comma." 
+	                           ja="不正なユーザ名です。\r\n半角英数字と-_とスペースが使用できます。
+	                               \r\n最初の文字は数と-とスペースであってはいけません。\r\n最大文字数は4096文字です。
+	                               \r\nコンマで(,)区切ることで複数指定が可能です。"/>
+	<msg key="invalidUserName" value="Invalid user name. \r\nOnly alphanumeric characters and -_ and space are allowed.
+                                     \r\nThe first character can not be - or a numeric or space, and max length is 32." 
+                               ja="不正なユーザ名です。\r\n半角英数字と-_とスペースが使用できます。
+                                   \r\n最初の文字は数と-とスペースであってはいけません。\r\n最大文字数は32文字です。"/>
+	<msg key="noInvalidUserName" value="Invalid user name of AnonymousFTP. \r\nOnly alphanumeric characters and -_ and space are allowed.\r\nThe first character can not be - or a numeric or space, and max length is 32.
+                                     \r\n\&quot;anonymous\&quot; is invalid." 
+                               ja="AnonymousFTP使用するユーザ名は不正です。\r\n半角英数字と-_とスペースが使用できます。
+                                   \r\n最初の文字は数と-とスペースであってはいけません。\r\n最大文字数は32文字です。
+                                   \r\n「anonymous」というユーザは不可です。"/>
+	<msg key="noInvalidGroupName" value="Invalid group name of AnonymousFTP. \r\nOnly alphanumeric characters and -_ and space are allowed.\r\nThe first character can not be - or a numeric or space, and max length is 32." 
+                               ja="AnonymousFTP使用するグループ名は不正です。\r\n半角英数字と-_とスペースが使用できます。\r\n最初の文字は数と-とスペースであってはいけません。\r\n最大文字数は32文字です。"/>
+	<msg key="noHomeDir" value="Please specify the home directory." ja="まずホームディレクトリを指定してください。"/>
+	<msg key="noDirUnderMP" value="Please specify a volume or a directory under the volume." 
+    						ja="まずボリュームまたはボリューム配下のディレクトリを選択してください。"/>
+	<msg key="noAuthDB" value="Pleas specify the Auth DB." ja="まず認証データベースを選択してください。"/>
+	<msg key="invalidUserInputArea" value="Invalid user input area. 
+                       \r\nOnly alphanumeric characters and /-_.% and space are allowed, and must start with %u or %h." 
+                              ja="無効なユーザ入力領域。\r\n半角英数字と/-_.%とスペースのみが使用できます。
+                              \r\nそして、ユーザ入力領域は%uまたは%hで始まる必要があります。"/>
+	<msg key="tooLongHomeDir" value="The maximum length of home directory is 256." 
+                              ja="ホームディレクトリの最大文字数は256文字です。"/>
+	<msg key="noAnonDir" value="Pleas specify the directory of AnonymousFTP." 
+                         ja="まずAnonymousFTP使用するディレクトリを選択してください。"/>
+   	<msg key="invalidPassiveport" value="Invalid passive port number. Please specify an integer between 1024 and 65534." 
+                         ja="不正なパッシブポート番号です。1024から65534までの整数を入力してください。"/>
+    <msg key="invalidNetwork" value="Invalid network address. For example 192.168.1.10, 192.168.1., 192., etc." 
+    					ja="不正なネットワークアドレスです。\r\n例) 192.168.1.10、192.168.1.、192.など。" />
+	<msg key="invalidNetbios" value="Invalid computer name. \r\nOnly alphanumeric characters and - are allowed, the maximum length is 15.
+										\r\nThe first character can not be - ." 
+							  ja="不正なコンピュータ名です。\r\n半角英数字と-が使用できます。\r\n最大文字数は15文字です。
+							            \r\n最初の文字は-であってはいけません。" />
+   <msg key="toolongpw2" value="The maximum length of passwords is 1024." ja="パスワードの最大文字数は1024文字です。"/>
+   <msg key="invalidNtdomain" value="Invalid NT Domain."  ja="不正なNTドメインです。"/>
+   <msg key="invalidLUDB" value="Invalid LUDB."  ja="不正なローカルユーザデータベースです。"/>
+   <msg key="auth_failed"	value="Failed to set the Auth DB Settings." ja="認証設定の操作は失敗しました。"/>
+   <msg key="basic_failed" value="Failed to set the Basic Settings." ja="基本設定の操作は失敗しました。"/>
+   <msg key="reflection_failed" value="Failed to reflect the settings to FTPD." ja="設定内容をFTPDへの反映は失敗しました。"/>
+   <msg key="friend_failed" value="The operation has completed successfully.\r\nHowever, failed to set partner node."
+   						  ja="設定しました。ただし、相方ノードの設定は失敗しました。"/>
+   <msg key="invaliduserinput" value="Invalid user input.\r\nOnly one-byte character is allowed.\r\nThe maximum length of user input is 4096."
+   							 ja="不正な直接編集です。\r\n半角キャラクターが使用できます。\r\n最大文字数は4096文字です。"/>
+   <msg key="nopasswd" value="Please input the password." ja="パスワードを入力してください。"/>
+    <!-- gaozf 2008.12.3 start -->
+   <msg key="friendPort_set" value="The passive port settings are synchronized between the nodes.\r\nYou are about to commit these settings."
+              ja="パッシブポートの設定はノード間で同期されます。\r\nよろしいでしょうか？"/>
+    <!-- end gaozf -->
+</msg>
+
+
+<msg key="ftp_info" value="">
+	<msg key="h2" value="FTP Settings Information" ja="FTP設定情報"/>
+	<msg key="basic_h3" value="Basic Settings" ja="基本設定"/>
+	<msg key="auth_h3" value="Authenticate Settings" ja="認証設定"/>
+	<msg key="anon_h3" value="AnonymousFTP" />
+	<msg key="authdb_h3" value="Auth DB" ja="認証データベース"/>
+	
+	<msg key="service_status" value="FTP Service Status:" ja="FTPサービスの状態："/>
+	<msg key="service_running" value="Running" ja="起動中"/>
+	<msg key="service_stopped" value="Stopped" ja="停止中"/>
+
+	<msg key="reload" value="Reload" ja="最新情報" />
+	<msg key="auth_type" value="Type" ja="タイプ"/>
+	<msg key="connect_limit" value="Connection Limit" ja="ユーザ接続制限" />
+	<msg key="allow_deny" value="Allow/Deny" ja="許可/拒否" />
+	<msg key="allow_user" value="Allow" ja="許可"/>
+	<msg key="deny_user" value="Deny" ja="拒否"/>
+
+</msg>
+
+<msg key="general_settings" value="">
+    <msg key="use_ftp" value="Use FTP Service" ja="FTPを使用する"/>
+    
+    <msg key="h2_ftp_settings" value="FTP Settings" ja="FTP設定"/>
+	<msg key="basic_h3" value="Basic Settings" ja="基本設定"/>
+	<msg key="auth_h3" value="Authenticate Settings" ja="認証設定"/>
+	<msg key="anon_h3" value="AnonymousFTP" />
+   	<msg key="port_number" value="FTP Port Number" ja="使用制御ポート番号"/>
+	<msg key="default_port" value="Default(21)" ja="デフォルト（21）"/>
+	<msg key="change_port" value="Change to" ja="変更する"/>
+	<msg key="passiveport" value="Passive Port Number" ja="パッシブポート番号"/>
+	<msg key="default_passiveport" value="Default(36864-40960)" ja="デフォルト（36864―40960）"/>
+	<msg key="change_passiveport" value="Specify" ja="指定する"/>
+	<msg key="connect_signal" value="-" ja="―"/>
+	<msg key="maxclients" value="Maximum Connections" ja="最大接続数"/>
+	<msg key="nolimit" value="(0: No Limit)" ja="（0: 無制限）"/>
+	<msg key="maxconnect" value="No Limit" ja="無制限"/>
+	<msg key="write_protect" value="Write Protect" ja="書き込み保護"/>
+	<msg key="read_write" value="Read/Write"/>
+	<msg key="read_only" value="ReadOnly"/>
+	<msg key="allow_deny_client" value="Allow/Deny Client" ja="許可/拒否クライアント"/>
+	<msg key="allow_user" value="Allow" ja="許可"/>
+	<msg key="deny_user" value="Deny" ja="拒否"/>
+	<msg key="client_list" value="Client List" ja="クライアントリスト"/>
+	<msg key="use_management_lan" value="Use Management LAN" ja="管理LANでも使用する"/>
+	<msg key="use" value="Use" ja="使用する"/>
+	<msg key="not_use" value="Not Use" ja="使用しない"/>
+	<msg key="client_deny" value="Deny Client" ja="拒否クライアント"/>
+	<msg key="client_allow" value="Allow Client" ja="許可クライアント"/>
+	<!-- shench start 08/12/3 -->
+	<msg key="user_identd" value="User Authentication(identd)" ja="ユーザ認証（identd）"/>
+	<msg key="identd_use" value="Enable" ja="行う"/>
+	<msg key="identd_not_use" value="Disable" ja="行わない"/>
+	<!-- end shench-->
+</msg>
+
+<msg key="auth_settings" value="">
+
+	<msg key="auth_db" value="Auth DB" ja="認証データベース" />
+	
+	<msg key="allow_deny_user" value="Allow/Deny User" ja="許可/拒否ユーザ"/>
+	<msg key="allow_user" value="Allow" ja="許可"/>
+	<msg key="deny_user" value="Deny" ja="拒否"/>
+	<msg key="user_allow" value="Allow User" ja="許可ユーザ"/>
+	<msg key="user_deny" value="Deny User" ja="拒否ユーザ"/>
+	<msg key="user_list" value="User List" ja="ユーザリスト"/>
+	<msg key="user_mapping_mode" value="Access Mode" ja="アクセス方式"/>
+	<msg key="user_mapping_available" value="Normal" ja="通常"/>
+	<msg key="user_mapping_anonymous" value="AnonymousAccess"/>
+	<msg key="anonymous_user" value="AnonymousUser" ja="匿名ユーザ"/>
+	<msg key="home_dir" value="Home Directory" ja="ホームディレクトリ"/>
+	<msg key="use_auth_db" value="Use Auth DB" ja="認証DB利用"/>
+	<msg key="use_fs_specify" value="FS Specify" ja="FS相対指定"/>
+</msg>
+
+<msg key="anonymous_settings" value="">
+	<msg key="use_anonymous_ftp" value="Anonymous FTP Service" ja="AnonymousFTPを使用する"/>
+	<msg key="use_anonymous" value="AnonymousFTP" ja="AnonymousFTP"/>
+	<msg key="use" value="Use" ja="使用する"/>
+	<msg key="nouse" value="Not Use" ja="使用しない"/>
+	<msg key="directory" value="Directory" ja="ディレクトリ"/>
+	<msg key="max_connections" value="Maximum Connections" ja="最大接続数"/>
+	<msg key="write_protect" value="Write Protect" ja="書き込み保護"/>
+	<msg key="read_write" value="Read/Write"/>
+	<msg key="download_only" value="DownloadOnly"/>
+	<msg key="upload_only" value="UploadOnly"/>
+	<msg key="allow_deny_client" value="Allow/Deny Client" ja="許可/拒否クライアント"/>
+	<msg key="allow_user" value="Allow" ja="許可"/>
+	<msg key="deny_user" value="Deny" ja="拒否"/>
+	<msg key="client_list" value="Client List" ja="クライアントリスト"/>
+	<msg key="user_name" value="User Name" ja="ユーザ名"/>
+	<msg key="group_name" value="Group Name" ja="グループ名"/>
+	
+</msg>
+
+<msg key="auth_info" value="">
+	<msg key="pwd" value="LUDB" ja="ローカルユーザデータベース"/>
+	<msg key="nis_network" value="Network Address" ja="ネットワークアドレス"/>
+	<msg key="nis_doamin" value="NIS Domain Name" ja="NISドメイン名"/>
+	<msg key="nis_server" value="NIS Server Name" ja="NISサーバ名"/>
+	<msg key="dmc_domain" value="NT Domain Name" ja="NTドメイン名"/>
+	<msg key="dmc_pdc" value="PDC Name" ja="PDC名"/>
+	<msg key="dmc_bdc" value="BDC Name" ja="BDC名"/>
+	<msg key="ldap_server" value="LDAP Server Name" ja="LDAPサーバ名"/>
+	<msg key="ldap_basedn" value="BaseDN" ja="対象ディレクトリのBaseDN"/>
+	<msg key="ldap_authtype" value="Auth Type" ja="認証方式"/>
+	<msg key="ldap_tls" value="TLS" ja="TLS"/>
+	<msg key="td_no_useTLS" value="Not Use TLS" ja="TLSを使用しない"/>
+    <msg key="td_useStartTLS" value="Use Start TLS" ja="Start TLSを使用する"/>
+    <msg key="td_useSSL_TLS" value="Use SSL/TLS" ja="SSL/TLSを使用する"/>
+
+</msg>
+
+<msg key="auth_set" value="">
+	<msg key="auth_pwd" value="Passwd Domain" ja="Passwdドメイン"/>
+	<msg key="pwd_ludb" value="LUDB" ja="ローカルユーザデータベース"/>
+	<msg key="auth_nis" value="NIS Domain" ja="NISドメイン"/>
+	<msg key="nis_network" value="Network Address" ja="ネットワークアドレス"/>
+	<msg key="nis_domain" value="NIS Domain Name" ja="NISドメイン名"/>
+	<msg key="nis_server" value="NIS Server Name" ja="NISサーバ名"/>
+	<msg key="auth_pdc" value="PDC"/>
+	<msg key="pdc_domain" value="NT Domain Name" ja="NTドメイン名"/>
+	<msg key="pdc_pdc" value="PDC Name" ja="PDC名"/>
+	<msg key="pdc_bdc" value="BDC Name" ja="BDC名"/>
+	<msg key="auth_ldap" value="LDAP Domain" ja="LDAPドメイン"/>
+	<msg key="ldap_server" value="LDAP Server Name" ja="LDAPサーバ名"/>
+	<msg key="ldap_baseDN" value="Directory BaseDN" ja="ディレクトリのBaseDN"/>
+	<msg key="ldap_authtype" value="Auth Type" ja="認証方式"/>
+	<msg key="Anonymous" value="Anonymous" /> 
+  	<msg key="SIMPLE" value="LDAP Simple Authentication" ja="LDAP簡易認証" /> 
+  	<msg key="DIGEST-MD5" value="SASL(DIGEST-MD5)" /> 
+  	<msg key="CRAM-MD5" value="SASL(CRAM-MD5)" /> 
+	<msg key="th_TLS" value="TLS"/>
+	<msg key="td_no_useTLS" value="Not Use TLS" ja="TLSを使用しない"/>
+    <msg key="td_useStartTLS" value="Use Start TLS" ja="Start TLSを使用する"/>
+    <msg key="td_useSSL_TLS" value="Use SSL/TLS" ja="SSL/TLSを使用する"/>
+	<msg key="ldap_auth" value="Authentication" ja="認証"/>
+	<msg key="ldap_authname" value="Auth Name" ja="認証名"/>
+	<msg key="ldap_passwd" value="Password" ja="パスワード"/>
+	<msg key="ldap_passwdRe" value="Password (Retype)" ja="パスワード（確認）"/> 
+	<msg key="ldap_CA" value="Certificate" ja="証明書" />
+	<msg key="ldapCANo" value="Not specify" ja="指定しない" /> 
+	<msg key="ldap_file" value="File" ja="ファイル"/>
+	<msg key="ldap_dir"  value="Directory" ja="ディレクトリ"/>
+	<msg key="ldap_userinput" value="User Input Area" ja="直接編集"/>
+	<msg key="ldap_clientUA" value="Client User Authentication" ja="クライアントユーザ認証"/>
+	<msg key="ldap_utoa" value="Change user name into Distinguished Name" ja="ユーザ名を識別名に変換する"/>
+	<msg key="ldap_utoa_not" value="Do not change user name into Distinguished Name" ja="ユーザ名を識別名に変換しない"/>
+</msg>
+</messages>

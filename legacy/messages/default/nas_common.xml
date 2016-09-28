@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_common.xml,v 1.2305 2004/09/10 09:48:34 zhangjx Exp $" -->
+
+
+<messages>
+    <msg key="alert" value="">
+        <msg key="emptymp" value="Please specify the volume." ja="ボリュームを選択してください。"/>
+        <msg key="deny-" value="The first character can not be \&quot;-\&quot;."
+            ja="最初の文字はマイナス記号であってはいけません。"/>
+ 	<msg key="quota_nopdc" value="If the user database on this filesystem has not been specified yet or specified as share domain, the function of Quota can not work.\r\nTo effect the function of Quota on this filesystem, the user database except for share domain must be specified by using [User Database] menu item." ja="ユーザデータベースが未設定、もしくは共有ドメインとして設定されている場合、クォータ運用を行うことはできません。\r\nクォータ運用を行う場合は、メニュー[ユーザデータベース]から共有ドメイン以外のユーザデータベースを設定してください。"/>
+ 	<msg key="rsync_failed" value="Failed to synchronize LVM configuration. Please confirm your administrative network." ja="LVMの管理情報の同期が正しく行なえませんでした。管理ネットワークの設定を確認してください。" />
+        
+    </msg>
+    <msg key="mountpoint" value="">
+        
+        <msg key="h1_snapshot" value="Snapshot" ja="スナップショット"/>
+        <msg key="h1_mapd" value="User Database" ja="ユーザデータベース"/>
+        <msg key="h1_quota" value="Quotas" ja="クォータ"/>
+        <msg key="h1_dirquota" value="Directory Quota" ja="ディレクトリクォータ"/>
+        
+        <msg key="th_action" value="Action" ja="操作"/>
+        <msg key="th_export" value="Export Group" ja="公開グループ"/>
+        <msg key="th_mp" value="Volume" ja="ボリューム"/>
+        
+        <msg key="button_limit" value="Snapshot Area" ja="領域設定"/>
+        <msg key="msg_no_export_mp" value="No export groups are found." ja="公開グループが設定されていません。"/>
+        
+    </msg>
+    <msg key="common" value="">
+	    <msg key="msg_select" value="(select)" ja="(選択)"/>
+	    <msg key="title_wait" value="Please wait for a while." ja="しばらくお待ちください。"/>
+	    <msg key="msg_start" value="Start Time" ja="処理開始時刻"/>
+	    <msg key="msg_spend" value="Elapsed Time" ja="経過時間"/>
+	    <msg key="msg_second" value="Seconds" ja="秒"/>
+	    <msg key="msg_wait" value="It is under processing now. Please wait for a while. Don&apos;t perform other operations until processing is completed." ja="現在、処理実行中です。しばらくお待ちください。処理が完了するまで他の操作は行なわないで下さい。"/>
+	    <msg key="msg_parent" value="Back to the parent directory" ja="親ディレクトリに戻る"/>
+        <msg key="msg_yes" value="O" ja="○"/>
+        <msg key="msg_no" value="--" ja="--"/>
+    </msg>
+</messages>

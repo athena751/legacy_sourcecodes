@@ -1,0 +1,350 @@
+#!/usr/bin/perl
+#
+#       Copyright (c) 2001-2007 NEC Corporation
+#
+#       NEC SOURCE CODE PROPRIETARY
+#
+#       Use, duplication and disclosure subject to a source code
+#       license agreement with NEC Corporation.
+#
+
+# "@(#) $Id: rrdlist,v 1.3 2007/03/07 06:17:21 yangxj Exp $"
+
+use strict;
+use NS::RRDCommandCommon;
+use NS::RRDConstInfo;
+use Getopt::Long;
+
+my $const   = new NS::RRDConstInfo;
+my $common  = new NS::RRDCommandCommon;
+### check user whether is "nsadmin" or not
+$common -> invalidUserHandle();
+### get the options of command line
+
+Getopt::Long::Configure("posix_default");
+my $debug   = 0;
+my $exitHelp = 0; 
+my $cpname   = "";
+my $version = $common->VERSION1;
+my $result  = GetOptions ("help|h" => sub{$exitHelp = 1;},    
+                             "d"=>sub{$debug = 1;},
+                             "c=s"=>\$cpname,
+                             "v=s"=>\$version);
+if(!$result){
+    print STDERR "Usage:\n",
+            "\trrdlist [-h|--help]\n",
+            "\trrdlist [-d] all [<hostname>] [-v version]\n",
+            "\trrdlist [-d] hosts\n",
+            "\trrdlist [-d] resources [<hostname>] <infotype> [-v version] [-c cpname]\n",
+            "\trrdlist [-d] items <infotype> [-v version]\n";
+    exit $const->EXIT_CODE_INVALID_OPTION;
+}
+if($exitHelp){
+    print "Usage:\n",
+          "\trrdlist [-h|--help]\n",
+          "\trrdlist [-d] all [<hostname>] [-v version]\n",
+          "\trrdlist [-d] hosts\n",
+          "\trrdlist [-d] resources [<hostname>] <infotype> [-v version] [-c cpname]\n",
+          "\trrdlist [-d] items <infotype> [-v version]\n";
+    exit $const->EXIT_CODE_SUCCESS;
+}
+
+### print result of command -- eg."$rrdlist all" or "$rrdlist all hostname"  
+if($ARGV[0] eq $const->PARAM_ALL 
+        && (scalar(@ARGV)==1 || scalar(@ARGV)==2)){
+    if(defined($ARGV[1])){
+    # command is like "rrdlist all jasmine"
+        my $returnCode = $common->checkHostName($ARGV[1],$version); 
+        if($returnCode == 1){
+            my $result = &printOneHostContent($ARGV[1]);
+            if(defined($result)){
+                print STDERR $result;
+                exit $const->EXIT_CODE_DISPLAY_HOSTS_INFO_ERROR;
+            } 
+        }elsif($returnCode == -1){
+            $common->unknownErrorHandle();
+        }else{
+            &invalidHostHandle();
+        }
+    }else{
+	    # command is like "rrdlist all"
+		my @errorMessage;
+	    if($version eq $common->VERSION3){
+	    	my $result = &printOneHostContent();
+	        if(defined($result)){
+	        	push (@errorMessage,$result);
+	        }
+	        print "\n";
+	    }else{
+	        my $hostlist = $common->getHostList($version);
+	        if(!defined($hostlist)){
+	            $common->unknownErrorHandle();
+	        }elsif(!defined(@$hostlist)){
+	            print STDERR $const->ERROR_MSG_NO_HOSTS;
+	            exit $const->EXIT_CODE_NO_HOSTS;
+	        }
+	        $common->debug($debug,$const->DEBUG_MSG_GET_HOST_SUCCESS);
+	        my $length  = scalar(@$hostlist);
+	        foreach(@$hostlist){
+	            my $result = &printOneHostContent($_);
+	            if(defined($result)){
+	                push (@errorMessage,$result);
+	            }
+	            $length--;
+	            if($length>0){
+	                print "\n";
+	            }
+	        }
+	    }
+        if(scalar(@errorMessage)!=0){
+            foreach(@errorMessage){
+                print STDERR $_;
+            }
+            exit $const->EXIT_CODE_DISPLAY_HOSTS_INFO_ERROR;
+        }
+    }
+    exit $const->EXIT_CODE_SUCCESS;
+}
+
+### print result of command -- eg."$rrdlist hosts"  
+if($ARGV[0] eq $const->PARAM_HOSTS
+        && scalar(@ARGV)==1){
+    my $hostlist = $common->getHostList($version);
+    if(defined($hostlist) && defined(@$hostlist)){
+        $common->debug($debug,$const->DEBUG_MSG_GET_HOST_SUCCESS);
+        foreach(@$hostlist){
+            print "$_\n";
+        } 
+        exit $const->EXIT_CODE_SUCCESS;
+    }elsif(defined($hostlist)){
+        print STDERR $const->ERROR_MSG_NO_HOSTS;
+        exit $const->EXIT_CODE_NO_HOSTS;
+    }
+    $common->unknownErrorHandle();
+}
+
+### print result of command -- eg."$rrdlist resources hostname infotype"  
+if($ARGV[0] eq $const->PARAM_RESOURCES
+        && (scalar(@ARGV)==3 || scalar(@ARGV) == 2)){
+    # check host name and infotype
+    my ($host, $infotype, $resourcelist);
+    if(scalar(@ARGV)==3){
+        ($host, $infotype) = @ARGV[1,2];                
+    }else{
+        $infotype = $ARGV[1];
+    }
+    my $infotype = lc($infotype);
+    my $returnCode = $common->checkInfoType($infotype, $version);
+    if($returnCode == 0){
+        &invalidInfotypeHandle();
+    }elsif($returnCode == -1){
+        $common->unknownErrorHandle();
+    }
+    if($version ne $common->VERSION3){
+        $returnCode = $common->checkHostName($host,$version);
+        if($returnCode == 0){
+            &invalidHostHandle();
+        }elsif($returnCode == -1){
+            $common->unknownErrorHandle();
+        }
+        # get the resource list and then print them
+        $resourcelist = $common->getResourceList($host,$infotype,$version,$cpname);
+    }else{
+        $resourcelist = $common->getResourceListOfBoth($infotype);
+    }
+    if(defined($resourcelist)){
+        if(defined(@$resourcelist)){
+            $common->debug($debug,$const->DEBUG_MSG_GET_RESOURCE_SUCCESS);
+            my @resultList = ();
+            foreach my $resource(@$resourcelist){
+                my $tmpResource = $$resource{"id"};
+                if($infotype eq $const->INFOTYPE_VOLUME
+                        || $infotype eq $const->INFOTYPE_INODE
+                        || $infotype eq $const->INFOTYPE_VOLUME_QUANTITY
+                        || $infotype eq $const->INFOTYPE_INODE_QUANTITY){
+                    $tmpResource 
+                        = join("",($tmpResource," (",$$resource{"MountedOn"},")"));
+                }
+                if($infotype eq $const->INFOTYPE_VE || 
+                    $infotype eq $const->INFOTYPE_VN ||
+                    $infotype eq $const->INFOTYPE_VS){
+                    $tmpResource =~ /^\s*([^\(]+)(\((Node[0|1]|Group[0|1])\))?$/;
+                    $tmpResource = $1;  
+                    if(scalar(grep(/^\Q$tmpResource\E$/,@resultList)) != 0){
+                        next;
+                    }              
+                }    
+                print "$tmpResource\n";
+            }
+        }else{
+            $common->debug($debug,$const->ERROR_MSG_NO_RESOURCES);
+        }
+        exit $const->EXIT_CODE_SUCCESS;
+    }
+    $common->unknownErrorHandle();
+}
+
+### print result of command -- eg."$rrdlist items infotype"  
+if($ARGV[0] eq $const->PARAM_ITEMS
+        && scalar(@ARGV)==2){
+    # check the info type
+    my $returnCode = $common->checkInfoType($ARGV[1],$version);
+    if($returnCode == 0){
+        &invalidInfotypeHandle();
+    }elsif($returnCode == -1){
+        $common->unknownErrorHandle();
+    }
+    
+    # get the item list , then print them
+    my $itemlist = $common->getItems($ARGV[1],$version);
+    if(defined($itemlist)){
+        $common->debug($debug,$const->DEBUG_MSG_GET_ITEM_SUCCESS);
+        foreach(@$itemlist){
+            print "$$_[0] ($$_[1])\n";
+        }
+        exit $const->EXIT_CODE_SUCCESS;
+    }
+    $common->unknownErrorHandle();
+}
+
+### invalid argument  
+&invalidOptionHandle($ARGV[0]);
+
+### Function:   print the resource and item list of one host
+###
+### Parameters: string such as "jasmine" "anzac1-0.kbsc5fs.necst.nec.co.jp" etc.
+###
+sub printOneHostContent(){
+    my $hostname = shift;
+    my @infotype;
+    my $hostnameMsg = "";
+    my $errorMessage;
+    if($version ne $common->VERSION3){
+        @infotype = ($const->INFOTYPE_CPU,$const->INFOTYPE_DISKIO,
+                    $const->INFOTYPE_NETTRAFFIC,$const->INFOTYPE_NETPACKETS,
+                    $const->INFOTYPE_NETERRORS,$const->INFOTYPE_VOLUME,
+                    $const->INFOTYPE_INODE,$const->INFOTYPE_VOLUME_QUANTITY,$const->INFOTYPE_INODE_QUANTITY,
+                    $const->INFOTYPE_NVAVS_REQUEST,$const->INFOTYPE_NVAVS_TAT,
+                    $const->INFOTYPE_ISCSISESSION,
+                    $const->INFOTYPE_ISCSILOGOUT,$const->INFOTYPE_ISCSILOGIN);
+        $hostnameMsg = "[${hostname}]";          
+		$common->debug($debug,"Displaying info of [$hostname] starts.\n");
+    	print "Host: $hostname\n";
+    }else{
+    	 @infotype = ($const->INFOTYPE_VE,$const->INFOTYPE_VS,$const->INFOTYPE_VN); 
+    }
+    for(my $i=0; $i<scalar(@infotype); $i++){
+        # get the resource list and item list
+        my ($resourcelist,$item);
+		if($version ne $common->VERSION3){
+	        $resourcelist = $common->getResourceList($hostname,$infotype[$i],$version);
+	    }else{
+	        $resourcelist = $common->getResourceListOfBoth($infotype[$i]);
+	    }
+        my $item = $common->getItems($infotype[$i],$version);
+        my @resource;
+        if(defined($resourcelist) && defined($item)){
+            $common->debug($debug,
+                        join("",("[",$infotype[$i],"] ",
+                                $const->DEBUG_MSG_GET_INFOTYPE_SUCCESS)));
+            if(defined(@$resourcelist)){
+                foreach my $oneResource(@$resourcelist){
+                    my $tmpResource = $$oneResource{"id"};
+                    if($infotype[$i] eq $const->INFOTYPE_VOLUME
+                            || $infotype[$i] eq $const->INFOTYPE_INODE
+                            || $infotype[$i] eq $const->INFOTYPE_VOLUME_QUANTITY
+                            || $infotype[$i] eq $const->INFOTYPE_INODE_QUANTITY
+                            ){
+                        $tmpResource 
+                            = join("",($tmpResource," (",$$oneResource{"MountedOn"},")"));
+                    }
+                    push( @resource,$tmpResource );
+                }
+            }else{
+                @resource = ($const->ERROR_MSG_NO_RESOURCES);
+            }
+        }elsif(defined($resourcelist)){
+            $errorMessage = join("",("rrdlist error:$hostnameMsg\n",
+                                    "\t",$const->ERROR_MSG_GET_ITEMS_FAILED,
+                                    "\t",$common->error(),"\n"));
+            last;
+        }elsif(defined($item)){
+            $errorMessage = join("",("rrdlist error:$hostnameMsg\n",
+                                    "\t",$const->ERROR_MSG_GET_RESOURCES_FAILED,
+                                    "\t",$common->error(),"\n"));
+            last;
+        }else{
+            $errorMessage = join("",("rrdlist error:$hostnameMsg",
+                                    "\t",$const->ERROR_MSG_GET_INFOTYPE_FAILED,
+                                    "\t",$common->error(),"\n"));
+            last;
+        }
+        # print the source list and item list
+        print "  Infotype: $infotype[$i]\n";
+        print "\tResources:\n";
+        foreach(@resource){
+            print "\t\t$_\n";
+        }
+        print "\tItems:\n";
+        if($item){
+            foreach(@$item){
+                my $info    = join("",($$_[0]," (",$$_[1],")"));
+                print "\t\t$info\n";
+            }
+        }else{
+            print "\t\t".$const->ERROR_MSG_NO_ITEMS."\n";
+        }
+    }
+    return $errorMessage; 
+}
+
+### Function:   print error message of invalid host name 
+###             and help mannual, then exit corresponding code
+###
+### Parameters: none.
+###
+sub invalidHostHandle(){
+    print STDERR $common->error();
+    exit $const->EXIT_CODE_INVALID_HOSTNAME;
+}
+
+### Function:   print error message of invalid option 
+###             and help mannual, then exit corresponding code
+###
+### Parameters: none.
+###
+sub invalidOptionHandle(){
+    my $param = shift;
+    print STDERR $const->ERROR_MSG_INVALID_OPTION;
+    if($param eq $const->PARAM_ALL){
+        print STDERR "Usage:\n",
+                    "\trrdlist [-d] all [<hostname>] [-v version]\n";
+    }elsif($param eq $const->PARAM_HOSTS){
+        print STDERR "Usage:\n",
+                    "\trrdlist [-d] hosts\n";
+    }elsif($param eq $const->PARAM_RESOURCES){
+        print STDERR "Usage:\n",
+                    "\trrdlist [-d] resources <hostname> <infotype> [-v version] [-c cpname]\n";
+    }elsif($param eq $const->PARAM_ITEMS){
+        print STDERR "Usage:\n",
+                    "\trrdlist [-d] items <infotype> [-v version]\n";
+    }else{
+        print STDERR "Usage:\n",
+                "\trrdlist [-h|--help]\n",
+                "\trrdlist [-d] all [<hostname>] [-v version]\n",
+                "\trrdlist [-d] hosts\n",
+                "\trrdlist [-d] resources <hostname> <infotype> [-v version] [-c cpname]\n",
+                "\trrdlist [-d] items <infotype> [-v version]\n";
+    }
+    exit $const->EXIT_CODE_INVALID_OPTION;
+}
+
+### Function:   print error message of invalid infotype 
+###             and help mannual, then exit corresponding code
+###
+### Parameters: none.
+###
+sub invalidInfotypeHandle(){
+    print STDERR $common->error();
+    exit $const->EXIT_CODE_INVALID_INFOTYPE;
+}

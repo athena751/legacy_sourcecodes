@@ -1,0 +1,449 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2001-2008 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-cifs.xml,v 1.23 2008/03/01 10:34:54 chenbc Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions =================================== -->
+    <form-beans>
+        <form-bean name="shareOptionForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="shareOption" type="com.nec.nsgui.model.entity.cifs.ShareOptionBean" />
+        </form-bean>
+        <form-bean name="dirAccessControlForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="operationType" type="java.lang.String" />
+            <form-property name="dirAccessControlInfo" type="com.nec.nsgui.model.entity.cifs.DirAccessControlInfoBean" />
+        </form-bean>
+        <form-bean name="directEditForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="fileContent" type="java.lang.String" />
+        </form-bean>
+        <form-bean name="CIFSNavigatorListForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="rootDirectory" type="java.lang.String"/>
+            <form-property name="nowDirectory" type="java.lang.String"/>
+            <form-property name="directoryName" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="shareAccessLogForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="shareName" type="java.lang.String" />
+            <form-property name="logType" type="java.lang.String" />
+            <form-property name="info" type="com.nec.nsgui.model.entity.cifs.CifsShareAccessLogBean" />
+        </form-bean>
+        <form-bean name="globalForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="useAccessLog" type="java.lang.String" />
+            <form-property name="info" type="com.nec.nsgui.model.entity.cifs.CifsGlobalInfoBean" />
+        </form-bean>
+        <form-bean name="logviewForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="viewInfo" type="com.nec.nsgui.model.entity.syslog.SyslogLogviewInfoBean" />
+		</form-bean>
+        <form-bean name="otherOptionsForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="otherOptions" type="com.nec.nsgui.model.entity.cifs.CifsOtherOptionsBean" />
+        </form-bean>
+    </form-beans>
+    
+    <global-forwards>
+        <forward name="enterCIFS"
+            path="/enterCifs.do" />
+    </global-forwards>
+	<!-- ========== Action Mapping Definitions ============================== -->
+
+    <action-mappings>
+
+        <action path="/displayTabTop"
+                forward="/../nas/cifs/cifsTop.jsp"/>
+        <action path="/enterCifs"
+                forward="/../nas/cifs/cifssharelist.jsp"/>
+        <action path="/specialShare"
+                forward="/../nas/cifs/cifsspecialsharelist.jsp"/>
+        <action path="/specialShare4nsview"
+                forward="/../nas/cifs/cifsspecialsharelist.jsp"/>
+	
+        <action path="/loadGlobalFrame"
+                forward="/../nas/cifs/cifsglobaloption.jsp"/>
+        <action path="/cifsDCFrame"
+                forward="/../nas/cifs/cifsdc.jsp"/>
+        <action path="/loadGlobalBottom"
+                forward="/../nas/cifs/cifsglobaloptionbottom.jsp"/>
+    	
+    	 <action path="/loadSetDirAccessControlTop"
+                forward="/../nas/cifs/cifsSetDirAccessControlTop.jsp"/>
+        <action path="/loadSetDirAccessControlBottom"
+                forward="/../nas/cifs/cifsSetDirAccessControlBottom.jsp"/>
+    	
+    	<action path="/loadSetShare"
+                forward="/../nas/cifs/cifsshareoption.jsp"/>
+    	
+        <action path="/loadSetShareBottom"
+                forward="/../nas/cifs/cifsshareoptionbottom.jsp"/>
+                
+    	<action path="/loadSetSpecialShare"
+                forward="/../nas/cifs/cifsspecialshareoption.jsp"/>
+                
+        <action path="/specialShareListBottom"
+                forward="/../nas/cifs/cifsspecialsharelistbottom.jsp"/>
+                
+        <action path="/loadSetSpecialShareBottom"
+                forward="/../nas/cifs/cifsspecialshareoptionbottom.jsp"/>
+    	
+    	<action path="/loadAccessLog"
+                forward="/../nas/cifs/cifsshareaccesslog.jsp"/>
+    	
+    	<action path="/loadAccessLogBottom"
+                forward="/../nas/cifs/cifsshareaccesslogbottom.jsp"/>
+    	<action path="/loadSetAccess"
+                forward="/../nas/cifs/cifsSetDirAccessControl.jsp"/>
+    	
+    	<action path="/loadSetAccessBottom"
+                forward="/../nas/cifs/cifsSetDirAccessControlBottom.jsp"/>
+    	
+    	<action path="/shareList"  
+            type="com.nec.nsgui.action.cifs.CifsShareListAction" 
+            parameter="operation">
+        	
+            <forward name="displayFrame" module=""
+             	path="/nas/cifs/cifsEntry.jsp"   
+            />
+            <forward name="displayTop" module=""
+             	path="/nas/cifs/cifslisttop.jsp"
+            />
+            <forward name="displayBottom" module=""
+             	path="/nas/cifs/cifslistbottom.jsp"
+            />
+            <forward name="toAddDomain" module="" redirect="true"
+             	path="/menu/nas/mapd/userdbdomainconf.jsp?fromWhere=cifs&amp;dispMode=sxfsfw&amp;firstTime=true"
+            />
+            <forward name="reloadTop"
+             	path="/shareList.do?operation=loadTop"
+            />
+            <forward name="displayFrame4Nsview" module=""
+                path="/nas/cifs/cifsEntry4nsview.jsp"
+            />
+            <forward name="notRefer4nsview" module=""
+                path="/nas/cifs/cifsnotrefer4nsview.jsp"
+            />
+            <forward name="hasSetDirectHosting" module=""
+                path="/nas/cifs/cifshassetdirecthosting.jsp"
+            />
+    	</action>
+        
+        <action path="/specialShareList"
+            type="com.nec.nsgui.action.cifs.CifsSpecialShareListAction" 
+            parameter="operation">
+            <forward name="displayTop" module=""
+                path="/nas/cifs/cifsspecialsharelisttop.jsp"
+            />
+            <forward name="displayBottom" module=""
+             	path="/nas/cifs/cifsspecialsharelistbottom.jsp"
+            />
+            <forward name="reloadTop"
+             	path="/specialShareList.do?operation=loadTop"
+            />
+        </action>
+    	
+    	<action path="/cifsDC"
+    	    type="com.nec.nsgui.action.cifs.CifsDCAction"
+    	    parameter="operation">
+    	    
+    	    <forward name="displayDCTop" module=""
+    	        path="/nas/cifs/cifsdctop.jsp" />
+    	        
+    	    <forward name="displayDCBottom" module=""
+    	        path="/nas/cifs/cifsdcbottom.jsp" />
+    	</action>
+    	
+    	<action path="/cifsDCLog"
+    	    type="com.nec.nsgui.action.cifs.CifsDCAction"
+    	    name="logviewForm" 
+    	    scope="request"
+    	    parameter="operation">
+            <forward name="displayDCLog" path="/nas/cifs/cifsdclogview.jsp" module=""/>
+    	</action>
+        
+        <action path="/cifsDCLogAutoConnect"
+                forward="/../nas/cifs/cifsdclogautoconnect.jsp"/>       
+                    	
+        <action path="/displayDCLogFrame"
+                forward="/../nas/cifs/cifsdclogframe.jsp"/>    	
+    	
+    	<action path="/cifsDCBottom"
+                forward="/../nas/cifs/cifsdcbottom.jsp" />
+
+        <action path="/setShare"  
+            type="com.nec.nsgui.action.cifs.CifsSetShareAction" 
+            parameter="operation"
+            name="shareOptionForm" 
+            scope="request"
+            validate="false">
+        	
+        	<forward name="displayPage" module=""
+             	path="/nas/cifs/cifsshareoptiontop.jsp"   
+            />
+            <forward name="displayDetail" module=""
+             	path="/nas/cifs/cifssharedetail.jsp"   
+            />
+            <forward name="toSnapSchedulePage" module="" redirect="true"
+             	path="/menu/nas/snapshot/snapSchedule.jsp?fromWhere=cifs"
+            />
+            <forward name="forwardShareList" module=""
+                 path="/nas/cifs/cifsshareoptionforward.jsp"
+            />
+            
+    	</action>
+        
+        <action path="/setSpecialShare"
+            type="com.nec.nsgui.action.cifs.CifsSetSpecialShareAction"
+            parameter="operation"
+            name="shareOptionForm"
+            scope="request"
+            validate="false">
+            
+            <forward name="displayPage" module=""
+                path="/nas/cifs/cifsspecialshareoptiontop.jsp"
+            />
+            <forward name="forwardShareList" module=""
+                 path="/nas/cifs/cifsspecialshareoptionforward.jsp"
+            />
+            <forward name="displayDetail" module=""
+                 path="/nas/cifs/cifsspecialsharedetail.jsp"
+            />
+            
+        </action>
+        
+        <action path="/dirAccessControl"  
+            type="com.nec.nsgui.action.cifs.CifsDirAccessControlAction" 
+            parameter="operation"
+            name="dirAccessControlForm" 
+            scope="request"
+            validate="false">
+        	
+            <forward name="displayList" module=""
+             	path="/nas/cifs/cifsDirAccessList.jsp"   
+            />
+            <forward name="displayList_topPage" module=""
+             	path="/nas/cifs/cifsDirAccessListTop.jsp"   
+            />
+            <forward name="displayList_bottomPage" module=""
+             	path="/nas/cifs/cifsDirAccessListBottom.jsp"   
+            />
+            <forward name="displaySettingPage" module=""
+             	path="/nas/cifs/cifsSetDirAccessControlTop.jsp"   
+            />
+            <forward name="reloadTop"
+             	path="/dirAccessControl.do?operation=loadTop"
+            />
+            <forward name="setDirForward" module=""
+             	path="/nas/cifs/cifsSetDirAccessControlForward.jsp"
+            />
+            
+    	</action>
+        
+    	<action path="/directEdit"  
+            type="com.nec.nsgui.action.cifs.CifsDirectEditAction" 
+            parameter="operation"
+            name="directEditForm" 
+            scope="request"
+            validate="false">
+        	
+            <forward name="cifsDirectEdit" module=""
+             	path="/nas/cifs/cifsdirectedit.jsp"   
+            />
+            <forward name="direct_top_page" module=""
+             	path="/nas/cifs/cifsDirectEditTop.jsp"   
+            />
+            <forward name="direct_bottom_page" module=""
+             	path="/nas/cifs/cifsDirectEditBottom.jsp"   
+            />
+    	</action>
+    	
+    	<action path="/CSNavigatorList"
+                parameter="operation"
+                type="com.nec.nsgui.action.cifs.CifsNavigatorListAction"
+                name="CIFSNavigatorListForm"
+                scope="session"
+                validate="false">
+            <forward name="success_call" path="/nas/cifs/csnavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/cifs/csnavigatorlist.jsp"
+                     module=""/>
+        </action>
+        
+        <action path="/CSNavigatorForwardList"
+                forward="/../nas/cifs/csnavigatorlist.jsp"/>
+    
+        <action path="/CSNavigatorForwardSubmit"
+ 	              forward="/../nas/cifs/csnavigatorsubmit.jsp"/>
+        <action path="/setAccessLog"  
+            type="com.nec.nsgui.action.cifs.CifsShareAccessLogAction" 
+            parameter="operation"
+            name="shareAccessLogForm" 
+            scope="request"
+            validate="false">
+            <forward name="display" module=""
+                 path="/nas/cifs/cifsshareaccesslogtop.jsp"   
+            />
+    	</action>
+        <action path="/setGlobal"  
+            type="com.nec.nsgui.action.cifs.CifsSetGlobalAction" 
+            parameter="operation"
+            name="globalForm" 
+            scope="request"
+            validate="false">
+            <forward name="display" module=""
+                 path="/nas/cifs/cifsglobaloptiontop.jsp"
+            />
+            <forward name="displaySuccess" module=""
+                 path="/cifs/setGlobal.do?operation=display"
+            />
+    	</action>            
+        <action path="/CGNavigatorList"
+                parameter="operation"
+                type="com.nec.nsgui.action.cifs.CifsNavigatorListAction"
+                name="CIFSNavigatorListForm"
+                scope="session"
+                validate="false">
+            <forward name="success_call" path="/nas/cifs/cgnavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/cifs/cgnavigatorlist.jsp"
+                     module=""/>      
+        </action>
+        
+        <action path="/CGNavigatorForwardList"
+                forward="/../nas/cifs/cgnavigatorlist.jsp"/>
+    
+        <action path="/CGNavigatorForwardSubmit"
+ 	            forward="/../nas/cifs/cgnavigatorsubmit.jsp"/>
+        
+        <action path="/loadOtherOptions"
+                forward="/../nas/cifs/cifsotheroptions.jsp"/>
+                
+        <action path="/loadOtherOptionsBottom"
+                forward="/../nas/cifs/cifsotheroptionsbottom.jsp"/>
+                
+        <action path="/otherOptions"
+                parameter="operation"
+                type="com.nec.nsgui.action.cifs.CifsOtherOptionsAction"
+                name="otherOptionsForm"
+                scope="request">
+                
+                <forward name="loadTop" module=""
+                    path="/nas/cifs/cifsotheroptionstop.jsp"/>
+                    
+                <forward name="set_directHostingSuccess" module=""
+                    path="/cifs/otherOptions.do?operation=displayOtherOptions"/>
+        </action>
+                
+	<!-- actions for nsview-->
+	
+    <action path="/displayTabTop4nsview"
+                forward="/../nas/cifs/cifsTop4nsview.jsp"/>
+    <action path="/enterCifs4nsview"
+                forward="/../nas/cifs/cifssharelist4nsview.jsp"/>
+	
+	<action path="/shareList4nsview"  
+            type="com.nec.nsgui.action.cifs.CifsShareListAction" 
+            parameter="operation">
+        	
+            <forward name="displayFrame" module=""
+             	path="/nas/cifs/cifsEntry4nsview.jsp"   
+            />
+            <forward name="displayTop" module=""
+             	path="/nas/cifs/cifslisttop4nsview.jsp"
+            />
+            <forward name="displayBottom" module=""
+             	path="/nas/cifs/cifslistbottom4nsview.jsp"
+            />
+            <forward name="preferDeny" module="" 
+             	path="/nas/cifs/cifspreferdeny4nsview.jsp"
+            />
+            <forward name="reloadTop"
+             	path="/shareList4nsview.do?operation=loadTop"
+            />
+    	</action>
+
+	
+	  <action path="/dirAccessControl4nsview"  
+            type="com.nec.nsgui.action.cifs.CifsDirAccessControlAction" 
+            parameter="operation"
+            name="dirAccessControlForm" 
+            scope="request"
+            validate="false">
+        	
+            <forward name="displayList" module=""
+             	path="/nas/cifs/cifsDirAccessList4nsview.jsp"   
+            />
+            <forward name="displayList_topPage" module=""
+             	path="/nas/cifs/cifsDirAccessListTop4nsview.jsp"   
+            />
+            <forward name="displayList_bottomPage" module=""
+             	path="/nas/cifs/cifsDirAccessListBottom4nsview.jsp"   
+            />           
+            <forward name="reloadTop"
+             	path="/dirAccessControl4nsview.do?operation=loadTop"
+            />
+           
+    	</action>
+        
+    	<action path="/directEdit4nsview"  
+            type="com.nec.nsgui.action.cifs.CifsDirectEditAction" 
+            parameter="operation"
+            name="directEditForm" 
+            scope="request"
+            validate="false">
+            
+            <forward name="cifsDirectEdit" module=""
+             	path="/cifs/directEdit4nsview.do?operation=loadTop"   
+            />
+            <forward name="direct_top_page" module=""
+             	path="/nas/cifs/cifsdirectedit4nsview.jsp"   
+            />
+    	</action>
+	
+	 <action path="/setGlobal4nsview"  
+            type="com.nec.nsgui.action.cifs.CifsSetGlobalAction" 
+            parameter="operation"
+            name="globalForm" 
+            scope="request"
+            validate="false">
+            <forward name="display" module=""
+                 path="/nas/cifs/cifsglobaloption4nsview.jsp"
+            />
+    	</action>
+	<action path="/setAccessLog4nsview"  
+            type="com.nec.nsgui.action.cifs.CifsShareAccessLogAction" 
+            parameter="operation"
+            name="shareAccessLogForm" 
+            scope="request"
+            validate="false">
+            <forward name="display" module=""
+                 path="/nas/cifs/cifsshareaccesslog4nsview.jsp"   
+            />
+    	</action>
+        
+    <action path="/otherOptions4nsview"
+                parameter="operation"
+                type="com.nec.nsgui.action.cifs.CifsOtherOptionsAction"
+                name="otherOptionsForm"
+                scope="request">
+                
+                <forward name="loadTop" module=""
+                    path="/nas/cifs/cifsotheroptions4nsview.jsp"
+                />
+    	</action>
+    </action-mappings>
+    
+    <!-- ========== Message Resources Definitions =========================== -->
+    <message-resources parameter="com.nec.nsgui.messages.CifsResource"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-cifs.xml"/>
+    </plug-in>
+</struts-config>

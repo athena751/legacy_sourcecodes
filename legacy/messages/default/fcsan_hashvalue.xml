@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: fcsan_hashvalue.xml,v 1.2304 2007/05/09 07:31:34 liuyq Exp $" -->
+<messages>
+    <msg key="hashvalue"  value=""    >
+        <msg key="no_licence"  value="No licence" ja="ライセンスなし"/>
+        <msg key="no_monitoring"  value="Unknown" ja="不明"/>
+        <msg key="running"  value="Running" ja="実行中"/>
+        <msg key="stop(f)"  value="Stop(Fault)" ja="停止中(障害)"/>
+        <msg key="stop(m)"  value="Stop(Maintenance)" ja="停止中(保守)"/>
+        <msg key="config"  value="Configuration" ja="構成設定中"/>
+        <msg key="init"  value="Starting demand" ja="監視準備中"/>
+        <msg key="term"  value="Stopping demand" ja="停止準備中"/>
+        <msg key="stop"  value="Stop" ja="停止中"/>
+        <msg key="wait"  value="Wait recovery" ja="監視回復待ち"/>
+        <msg key="ready"  value="Ready" ja="正常"/>
+        <msg key="offline"  value="Off-line" ja="オフライン"/>
+        <msg key="fault"  value="Fault" ja="障害"/>
+        <msg key="unknown" value="--" ja="--"/>
+        <msg key="-" value="-" ja="-"/>
+        <msg key="attn"  value="Ready(Maintenance)" ja="正常(保守)"/>
+        <msg key="component_attn" value="Attention" ja="注意"/>
+        <msg key="available"  value="Available" ja="利用可能"/>
+        <msg key="not available"   value="Not available" ja="利用不可"/>
+        <msg key="not available(cp)"  value="Not available(The product more than total capacity is needed)" ja="利用不可(総容量以上のプロダクトが必要)"/>
+        <msg key="not available(pp)"  value="Not available(The product is needed)" ja="利用不可(プロダクトが必要)"/>
+        <msg key="reduce"  value="Attn(reduce)"  ja="注意(reduce)"/>
+        <msg key="preventive copy"  value="Attn(preventive copy)" ja="注意(preventive copy)"/>
+        <msg key="copy back"  value="Attn(copy back)" ja="注意(copy back)"/>
+        <msg key="unformatted"  value="Attn(unformatted)" ja="注意(unformatted)"/>
+        <msg key="formatting"   value="Attn(formatting)" ja="注意(formatting)"/>
+        <msg key="format fail"  value="Attn(format fail)" ja="注意(format fail)"/>
+        <msg key="expanding"    value="Attn(expanding)" ja="注意(expanding)"/>
+        <msg key="expand fail"  value="Attn(expand fail)" ja="注意(expand fail)"/>
+        <msg key="media error"  value="Fault(media error)" ja="障害(media error)"/>
+        <msg key="rebuilding"   value="Attn(rebuilding)" ja="注意(rebuilding)"/>
+        <msg key="powering up"  value="Attn(powering up)" ja="注意(powering up)"/>
+        <msg key="charge"       value="Attn(charge)" ja="注意(charge)"/>
+        <msg key="warning1"     value="Attn(maintenance)" ja="注意(maintenance)"/>
+        
+        <msg key="Expanding(Normal)"  value="Attn(Expanding Normal)" ja="注意(Expanding Normal)"/>
+        <msg key="Expanding(SuspendPD)"  value="Attn(Expanding Suspend PD)" ja="注意(Expanding Suspend PD)"/>
+        <msg key="RAID Conversioning(Normal)"  value="Attn(RAID Conversioning Normal)" ja="注意(RAID Conversioning Normal)"/>
+        <msg key="RAID Conversioning(SuspendPD)"  value="Attn(RAID Conversioning Suspend PD)" ja="注意(RAID Conversioning Suspend PD)"/>
+        <msg key="Expand Fail"  value="Attn(Expand Fail)" ja="注意(Expand Fail)"/>
+     
+        <msg key="invalid"  value="Fault(invalid)" ja="障害(invalid)"/>
+
+        <msg key="41h"  value="Basic Cabinet Junction Box" ja="基本筐体 受電部"/>
+        <msg key="PS"   value="Power Supply" ja="電源"/>
+        <msg key="battery"  value="Battery" ja="バッテリ"/>
+        <msg key="fan"  value="Fan" ja="ファン"/>
+        <msg key="6ch"  value="Temperature" ja="温度"/>
+        <msg key="dir_10h"  value="Host Director" ja="ホストディレクタ"/>
+        <msg key="dir_20h"  value="Replication Director" ja="レプリケーションディレクタ"/>
+        <msg key="dir_30h"  value="Disk Director" ja="ディスクディレクタ"/>
+        <msg key="CHE"  value="Cache Module" ja="キャッシュモジュール"/>
+        <msg key="backboard"  value="Backboard" ja="バックボード"/>
+        <msg key="b3h"  value="Service Processor" ja="サービスプロセッサ"/>
+        <msg key="b5h"  value="Panel" ja="パネル"/>
+        
+        <msg key="b6h"  value="Maintenance Processor" ja="管理プロセッサ"/>
+        <msg key="b7h"  value="EtherHUB " ja="通信ハブ"/>
+        <msg key="b8h"  value="Maintenance PC" ja="管理PC"/>
+        <msg key="b9h"  value="Power Control Card" ja="パワーコントロールカード"/>
+        <msg key="bbh"  value="Extended Battery Backup Unit" ja="拡張バッテリ"/>
+        <msg key="cfh"  value="Adapter Card" ja="アダプタ"/>
+        <msg key="ETC"  value="Others" ja="その他"/>
+
+        <msg key="DE_PS"  value="Power Supply" ja="電源"/>
+        <msg key="DE_ADP"  value="Adapter" ja="アダプタ"/>
+        <msg key="DE_BB"  value="Backboard"  ja="バックボード"/>
+        <msg key="DE_FAN"  value="Fan"  ja="ファン"/>
+        <msg key="DE_TEMP_ALM"  value="Temperature" ja="温度"/>
+        <msg key="DE_ADP(SATA)"  value="Adapter(SATA)" ja="アダプタ(SATA)"/>
+        <msg key="LD"  value="Logical Disk" ja="論理ディスク"/>
+        <msg key="PD"  value="Physical Disk" ja="物理ディスク"/>
+        <msg key="DAC"  value="Controller" ja="コントローラ"/>
+        <msg key="DE"  value="Enclosure" ja="エンクロージャ"/>
+        <msg key="controller0"  value="Controller 0" ja="コントローラ 0"/>
+        <msg key="controller1"  value="Controller 1" ja="コントローラ 1"/>
+        <msg key="data"  value="Data" ja="データ"/>
+        <msg key="spare"  value="Spare" ja="スペア"/>
+        <msg key="none"  value="No Setting" ja="未設定"/>
+    </msg>
+    <msg key="activitystate"  value=""    >
+        <msg key="replicate"  value="Replicate" ja="レプリケート"/>
+        <msg key="restore"  value="Restore" ja="リストア"/>
+        <msg key="separate"  value="Separate" ja="セパレート"/>
+    </msg>
+    <msg key="syncstate"  value=""    >
+        <msg key="separated"  value="Separated" ja="セパレート完了"/>
+        <msg key="cancel"  value="Forced Separate" ja="強制分離"/>
+        <msg key="fault"  value="Failure Separation" ja="障害分離"/>
+        <msg key="sep_exec"  value="Sync Execution" ja="同期実行中"/>
+        <msg key="rpl_exec"  value="Sync Execution" ja="同期実行中"/>
+        <msg key="rst_exec"  value="Sync Execution" ja="同期実行中"/>
+        <msg key="rpl_sync"  value="Sync State" ja="同期状態"/>
+        <msg key="rst_sync"  value="Sync State" ja="同期状態"/>
+    </msg>
+    <msg key="copycontrolstate"  value=""    >
+        <msg key="foreground_copy(sync)"  value="Foreground Copy" ja="フォアグラウンドコピー"/>
+        <msg key="foreground_copy(semi)"  value="Foreground Copy" ja="フォアグラウンドコピー"/>
+        <msg key="foreground_copy(sync)_detail"  value="Foreground Copy(sync mode)" ja="フォアグラウンドコピー(同期モード)"/>
+        <msg key="foreground_copy(semi)_detail"  value="Foreground Copy(semi-sync mode)" ja="フォアグラウンドコピー(セミ同期モード)"/>
+        <msg key="normal_suspend"  value="Suspend" ja="サスペンド状態"/>
+        <msg key="abnormal_suspend"  value="Suspend due to a failure" ja="サスペンド状態(障害)"/>
+        <msg key="background_copy"  value="Background Copy" ja="バックグラウンドコピー"/>
+        <msg key="freeze"  value="Freeze" ja="フリーズ"/>
+    </msg>
+    <msg key="previousstate"  value=""    >
+        <msg key="separated"  value="Separated" ja="セパレート完了"/>
+        <msg key="cancel"  value="Forced Separate" ja="強制分離"/>
+        <msg key="fault"  value="Failure Separation" ja="障害分離"/>
+        <msg key="sep_exec"  value="Sync Execution(separate)" ja="同期実行中(セパレート)"/>
+        <msg key="rpl_exec"  value="Sync Execution(replicate)" ja="同期実行中(レプリケート)"/>
+        <msg key="rst_exec"  value="Sync Execution(restore)" ja="同期実行中(リストア)"/>
+        <msg key="rpl_sync"  value="Sync State(replicate)" ja="同期状態(レプリケート)"/>
+        <msg key="rst_sync"  value="Sync State(restore)" ja="同期状態(リストア)"/>
+    </msg>
+    <msg key="rvaccess"  value=""    >
+        <msg key="rw"  value="Read/Write Permit"/>
+        <msg key="ro"  value="Read Only"/>
+        <msg key="nr"  value="Not Ready"/>
+    </msg>
+    <msg key="pathstate"  value=""    >
+        <msg key="Ready"  value="Normal" ja="正常"/>
+        <msg key="Offline"  value="Offline" ja="オフライン"/>
+        <msg key="Freeze"  value="Freeze" ja="フリーズ"/>
+        <msg key="Link_Check"  value="Link Check" ja="リンクチェック中"/>
+        <msg key="Fault"  value="Failure" ja="障害"/>
+    </msg>
+</messages>

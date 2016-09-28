@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2005 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_componentdisp.xml,v 1.2306 2005/12/27 07:47:04 wangli Exp $" -->
+
+<messages>
+    <msg key="common" value="">
+        <msg key="h1" value="Disk Components" ja="ディスク構成"/>
+        <msg key="errmsg_alreadyexist" value="The specified value is being used now, please select another one." ja="指定された値は、既に使用されています。別の値を指定してください。" />
+        <msg key="err_same_name" value="The name which you input is same as the old one. Please try a new name." ja="指定された値は現在の値と同じです。新しい値を入力してください。"/>
+        <msg key="err_invalid_name" value="The name is invalid. Only alphanumeric characters, &apos;/&apos; and &apos;_&apos; are allowed. The name&apos;s maximum length is 32." ja="入力可能な文字は、半角英数字、&apos;/&apos; および &apos;_&apos; です。最大文字数は、32文字です。"/>
+        <msg key="invalid_cmd_output"
+	     value="Invalid command output."
+	     ja="無効なコマンド出力です。"/>
+    </msg>
+    <msg key="table" value="" >
+        <msg key="table_id" value="ID"/>
+        <msg key="table_diskarrayname" value="Disk Array Subsystem Name" ja="ディスクアレイ名"/>
+        <msg key="table_state" value="State" ja="状態"/>
+        <msg key="table_observ" value="Monitoring State" ja="監視"/>
+        <msg key="table_wwnn" value="WWNN"/>
+        <msg key="table_type" value="Type" ja="タイプ" />
+        <msg key="table_count" value="Element Num" ja="要素数" />
+        
+        <msg key="table_pid" value="Product ID" ja="プロダクトID"/>
+        <msg key="table_rev_diskarray" value="Product FW Rev." ja="プロダクトFW Rev."/>
+        <msg key="table_snumber" value="Serial Number" ja="シリアル番号"/>
+        <msg key="table_total" value="Total Capacity" ja="総容量"/>
+        <msg key="table_path1" value="Control path(1)" ja="コントロールパス(1)"/>
+        <msg key="table_path2" value="Control path(2)" ja="コントロールパス(2)"/>
+        <msg key="table_crosscall" value="Cross call" ja="クロスコール"/>
+        <msg key="table_access" value="Access Control" ja="アクセスコントロール"/>
+        <msg key="table_assign" value="Auto Assignment" />
+        <msg key="table_usersystemcode" value="User System Code" ja="ユーザシステムコード"/>
+        
+        <msg key="table_portnumber" value="Port Number" ja="ポート番号"/>
+        <msg key="table_portname" value="Port Name" ja="ポート名"/>
+        <msg key="table_mode" value="Mode" ja="モード"/>
+        <msg key="table_protocol" value="Protocol" ja="プロトコル"/>
+        <msg key="table_platform" value="Platform" ja="プラットフォーム"/>
+        <msg key="table_name" value="Name" ja="名称"/>
+        <msg key="table_pathinfo" value="Path Information" ja="パス情報"/>
+        <msg key="table_product" value="Product" ja="プロダクト"/>
+
+        <msg key="table_abbrname" value="Abbreviated Name" ja="略称" />
+        <msg key="table_number" value="Number" ja="番号"/>
+        <msg key="table_others" value="Others" ja="その他" />
+        
+        <msg key="table_capacity" value="Capacity(GB)" ja="容量(GB)" />
+        <msg key="table_rank" value="Pool" ja="プール"/>
+        <msg key="table_division" value="Classification" ja="区分" />
+
+        <msg key="table_capa" value="Capacity" ja="容量" />
+        <msg key="table_rpm" value="r.p.m." ja="回転数" />
+        <msg key="table_rev_pd" value="Product Rev." ja="プロダクトRev." />
+        
+        <msg key="table_poolname_no" value="Pool Name(Number)" ja="プール名(番号)" />
+    
+        <msg key="table_ldnum" value="Logical Disk Number" ja="論理ディスク番号"/>
+        <msg key="table_ostype" value="OS Type" ja="形式" />
+        <msg key="table_ldname" value="Logical Disk Name" ja="論理ディスク名" />
+        <msg key="table_ldn" value="Logical Disk Name" ja="論理ディスク名" />
+        <msg key="table_raid" value="RAID" />
+        <msg key="table_cache" value="Cache Resident" ja="常駐" />
+        <msg key="table_ldsetname" value="LDset Name" ja="LDセット" />
+
+        <msg key="table_rate" value="Progress Rate" ja="進捗率" />
+        <msg key="table_progress" value="Progression" ja="進捗率" />
+        <msg key="table_currrentowner" value="Current Owner" ja="カレントオーナー" />
+        <msg key="table_defaultowner" value="Default Owner" ja="デフォルトオーナー" />
+        <msg key="table_physicaldisknumber" value="Physical Disk Number" ja="物理ディスク番号" />
+        <msg key="table_pathinformation" value="Path Information" ja="パス情報" />
+   </msg>
+   <msg key="diskarray" value="">
+        <msg key="h2" value="Disk Array&apos;s Information" ja="ディスクアレイ情報"/>
+        <msg key="button_constitution" value="Components" ja="構成一覧"/>
+        <msg key="button_modifyname" value="Modify Name..." ja="名前の変更..."/>
+        <msg key="button_modifyportname" value="Modify Port Name..." ja="ポート名変更..."/>
+
+        <msg key="msg_nodisk" value="No disk arrays are found." ja="ディスクアレイが存在しません。"/>
+   </msg>
+    <msg key="diskarray_detail" value="">
+        <msg key="page_title" value="Disk Array Detail Info" ja="ディスクアレイ詳細情報"/>
+        <msg key="h2" value="Components" ja="構成一覧" />
+        <msg key="h3_component" value="Component:" ja="構成:"/>
+        <msg key="h3_portmode" value="Port:" ja="ポート:"/>
+        <msg key="h3_wwnmode" value="LDset:" ja="LDセット:"/>
+        <msg key="h3_product" value="Product:" ja="プロダクト状況:"/>
+        <msg key="msg_count" value="[Count:%1]" ja="[要素数:%1]"/>
+        <msg key="pathappendix" value="fault" ja="障害"/>
+        <msg key="msg_getnodisk_detail" value="Can not get the disk array&apos;s detail information." ja="ディスクアレイ詳細情報を取得できません。"/>
+        <msg key="port_none" value="No ports are found." ja="ポートが存在しません。"/>
+        <msg key="wwn_none" value="No LDsets are found." ja="LDセットが存在しません。"/>
+        <msg key="product_none" value="No products are found." ja="プロダクトが存在しません。"/>
+    </msg>
+    <msg key="mod_diskarrayname" value="">
+        <msg key="page_title" value="Disk Array Rename" ja="ディスクアレイ名設定"/>
+        <msg key="h2_name" value="Disk Array Subsystem Name" ja="ディスクアレイ名称設定"/>
+        <msg key="msg_failure" value="Some errors occurred when setting disk array subsystem name." ja="ディスクアレイ名の設定でエラーが発生しました。"/>
+        <msg key="msg_diskarraynamechangeconfirm"
+             value="Diskarray name \&quot;%1\&quot; will be changed into \&quot;%2\&quot;.\nAre you sure?"
+             ja="ディスクアレイ名を%1から%2に変更します。\nよろしいですか？" />   
+    </msg>
+    <msg key="mod_portname" value="">
+        <msg key="page_title" value="Disk Array Port Rename" ja="ポート名設定"/>
+        <msg key="h2" value="Port Name" ja="ポート名設定"/>
+        <msg key="err_noport" value="Can not get the port&apos;s information." ja="ポート情報を取得できません。"/>
+        <msg key="msg_failure" value="Some errors occurred when setting disk array port." ja="ポートの設定でエラーが発生しました。"/>
+    </msg>
+    <msg key="constitute" value="">
+        <msg key="msg_failed" value="Can not get the disk array&apos;s constitution information." ja="ディスクアレイ構成情報の取得でエラーが発生しました。" /> 
+        <msg key="msg_refresh_failed" value="Can not refresh the disk array&apos;s constitution information." ja="ディスクアレイ構成情報を再取得できません。" />
+        <msg key="constitution" value="Components" ja="構成一覧" />
+    </msg>
+    <msg key="enclosure" value="">
+        <msg key="h2" value="Disk Enclosure" ja="ディスクエンクロージャ一覧" />
+        <msg key="msg_failed" value=" Can not get the enclosure&apos;s information." ja="ディスクエンクロージャ情報を取得できません。" />
+        <msg key="msg_refresh_failed" value="Can not refresh the enclosure&apos;s information." ja="ディスクエンクロージャ情報を再取得できません。" />    
+    </msg>
+    <msg key="controller" value="">
+        <msg key="h2" value="Disk Array Controller" ja="コントローラ一覧" />
+        <msg key="get_ctrl_info_failed" value="Can not get the controller&apos;s information." ja="コントローラ情報を取得できません。" />
+        <msg key="msg_refresh_failed" value="Can not refresh the controller&apos;s information." ja="コントローラ情報を再取得できません。" />     
+        <msg key="msg_capacity" value="Capacity" ja="容量"/>   
+    </msg>
+    <msg key="pd" value="">
+		    <msg key="h2" value="Physical Disk" ja="物理ディスク一覧" />
+        <msg key="msg_getnophysical" value="Can not get the physical disks&apos; information." ja="物理ディスク情報を取得できません。"/>
+        <msg key="msg_refreshnophysical" value="Can not refresh the physical disks&apos; information." ja="物理ディスク情報を再取得できません。" />
+        <msg key="none" value="No physical disks are found." ja="物理ディスクが存在しません。" />
+    </msg>
+    <msg key="pddetail" value="">
+	    <msg key="page_title" value="Physical Disk Detail Info" ja="物理ディスク詳細" />
+        <msg key="h3_detail" value="Logical Disk List" ja="論理ディスク一覧" />       
+    </msg>
+    <msg key="ld" value="">
+        <msg key="h2_ldconstitutetop" value="Logical Disk" ja="論理ディスク一覧" />
+        <msg key="p_accesscontrol" value="Access Control:" ja="アクセスコントロール:" />
+        <msg key="no_physical_disk" value="No physical disks are found." ja="物理ディスクが存在しません。" />
+        <msg key="no_port" value="No ports are found." ja="ポートが存在しません。" />
+        <msg key="no_wwn" value="No LDsets are found." ja="LDセットが存在しません。" />
+        <msg key="select_all" value="All"/>
+        <msg key="select_ldset" value="LDset"/>
+        <msg key="select_port" value="Port"/>
+        <msg key="select_pool" value="Pool"/>
+        <msg key="p_ldconstituterefresh" value="Can not refresh the logical disks&apos; information." ja="論理ディスク情報を再取得できません。" />
+        <msg key="no_logical_disk" value="No logical disks are found." ja="論理ディスクが存在しません。" />
+        <msg key="button_modifyname" value="Modify Name..." ja="名前の変更..."/>
+    </msg>
+    <msg key="lddetail" value="">
+        <msg key="page_title" value="Logical Disk Detail Info" ja="論理ディスク詳細" />
+        <msg key="th_physicaldisklist" value="Physical Disk List:" ja="物理ディスク一覧:"/>
+        <msg key="h3_portmode" value="Port:" ja="ポート:"/>
+        <msg key="h3_wwnmode" value="LDset:" ja="LDセット:"/>
+        <msg key="p_lddetailtop" value="Can not get logical disks&apos; information." ja="論理ディスク情報を取得できません。"/>
+        <msg key="no_physical_disk" value="No physical disks are found." ja="物理ディスクが存在しません。" />
+        <msg key="no_port" value="No ports are found." ja="ポートが存在しません。" />
+        <msg key="no_wwn" value="No LDsets are found." ja="LDセットが存在しません。" />
+    </msg>
+    <msg key="mod_ldname" value="">
+        <msg key="page_title" value="Logical Disk Rename" ja="論理ディスク形式／名称" />
+         <msg key="ldtypeandnameshow" value="Logical Disk OS Type/Name" ja="論理ディスク形式／名称" />
+         <msg key="h2_failed" value="Some errors occurred when setting the logical disk&apos;s type and name." ja="設定でエラーが発生しました。" />
+        <msg key="newname" value="Please input a new name." ja="新しい論理ディスク名を入力してください。" />
+        <msg key="invalidname" value="The name is invalid. Only alphanumeric characters, &apos;/&apos; and &apos;_&apos; are allowed. The name&apos;s maximum length is 24." ja="不正な名前が入力されました。入力可能な文字は半角英数字と&apos;/&apos;と&apos;_&apos;です。最大文字数は、24文字です。" />
+        <msg key="confirm" value="Different OS Type from the existing one is set. If continue executing, the future access to the applicable logical disk will be influenced tremendously. Will you continue?" ja="現在と異なるOS Typeが設定されています。
+論理ディスクの今後のアクセスに大きく影響しますがよろしいですか？" />
+   </msg>
+ </messages>

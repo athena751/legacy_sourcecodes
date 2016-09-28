@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+<!-- "@(#) $Id: struts-config-replication.xml,v 1.6 2008/05/28 01:41:15 lil Exp $" -->
+    <!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+
+	<form-beans>
+		<form-bean name="replicaCreateForm" type="org.apache.struts.validator.DynaValidatorForm">
+        	<form-property name="replicaInfo"
+                           type="com.nec.nsgui.model.entity.replication.ReplicaInfoBean"/>
+            <form-property name="volumeInfo"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+            <form-property name="newVolume" type="java.lang.String" initial="newVolume"/>
+            <form-property name="format" type="java.lang.Boolean" initial="false"/>
+            <form-property name="mountPointShow" type="java.lang.String" />
+            <form-property name="filesetNameSuffix" type="java.lang.String" initial="sxfs"/>
+            <form-property name="filesetNamePrefix" type="java.lang.String" initial=""/>  
+			<form-property name="usableCap" type="java.lang.String"/> 
+			<form-property name="selectedLdPath" type="java.lang.String"/>
+			<form-property name="differentSize" type="java.lang.String" initial="0"/>                     
+   		</form-bean>
+   		
+   		<form-bean name="replicaInfoForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="replicaInfo" type="com.nec.nsgui.model.entity.replication.ReplicaInfoBean"/>
+   		</form-bean> 
+   		<form-bean name="replicaPromoteForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="replicaInfo" type="com.nec.nsgui.model.entity.replication.ReplicaInfoBean"/>
+			<form-property name="hour" type="java.lang.String" initial="2"/> 
+			<form-property name="minute" type="java.lang.String" initial="0"/>			
+   		</form-bean>   		 
+   		
+   		<form-bean name="ctrlInNodeInfoForm" type="org.apache.struts.validator.DynaValidatorForm">
+   		    <form-property name="replicaInfo" type="com.nec.nsgui.model.entity.replication.ReplicaInfoBean"/>
+   		    <form-property name="operation" type="java.lang.String" initial="replace"/>
+   		</form-bean> 
+
+   		<form-bean name="ReplicaVolumeSyncForm" type="org.apache.struts.validator.DynaValidatorForm">
+   		    <form-property name="replicaInfo" type="com.nec.nsgui.model.entity.replication.ReplicaInfoBean"/>
+   		    <form-property name="syncType" type="java.lang.String" initial="cur"/>
+   		</form-bean> 
+   		
+   		<form-bean name="sslInfoForm" type="org.apache.struts.validator.DynaValidatorForm">
+   			<form-property name="sslStatus" type="java.lang.String"/>
+   		</form-bean>
+   		 
+   		<form-bean name="originalForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="originalInfo" type="com.nec.nsgui.model.entity.replication.OriginalBean" />
+            <form-property name="convert" type="java.lang.String"  initial="off"/>
+            <form-property name="filesetNameSuffix" type="java.lang.String" />
+            <form-property name="filesetNamePrefix" type="java.lang.String" /> 
+             
+             
+            <form-property name="errorFrom" type="java.lang.String" />
+            <form-property name="chkBandLimit" type="java.lang.String" />
+            <form-property name="txtBandWidth" type="java.lang.String" />
+            <form-property name="slctBandWidthUnit" type="java.lang.String" />
+        
+            <form-property name="chkPermitExternalHost" type="java.lang.String" />
+            <form-property name="radioHost" type="java.lang.String"  initial="permitall"/>
+            <form-property name="txtReplicaHost" type="java.lang.String" /> 
+        </form-bean>                 
+	</form-beans>
+    
+    <global-forwards>
+    	<forward name="replicaList" path="/replicaList.do?operation=display" redirect="true"/>
+    	<forward name="originalList" path="/originalAction.do?operation=list" redirect="true"/>
+        <forward name="showError" path="/nas/replication/replicationerror.jsp" module=""/>
+    </global-forwards>
+    
+    <action-mappings>
+        <action path="/replicationEntry"
+        		validate="false"
+                type="com.nec.nsgui.action.replication.ReplicationEntryAction">
+            <forward name="replicationEntry4Nsadmin"       
+    	             path="/nas/replication/replicationentry.jsp" module=""/>
+			<forward name="replicationEntry4Nsview"       
+    	             path="/nas/replication/replicationentry4nsview.jsp" module=""/>
+        </action>        
+                               
+        <action path="/displayTabTop"
+                forward="/../nas/replication/replicationtab.jsp"/>
+                
+		<action path="/replicaList"
+		        name="replicaInfoForm"
+				scope="request"
+                validate="false"
+                parameter="operation"
+                type="com.nec.nsgui.action.replication.ReplicaListAction">
+            <forward name="replicaList4Nsadmin"       
+    	             path="/nas/replication/replicalisttop.jsp" module=""/>
+			<forward name="replicaList4Nsview"       
+    	             path="/nas/replication/replicalist4nsview.jsp" module=""/>
+    	    <forward name="delFail"       
+    	             path="/replicaList.do?operation=display"/>
+    	    <forward name="replicaCreate"       
+    	             path="/replicaCreateShow.do"/>  
+        </action>
+                
+        <action path="/replicaListBottom"
+                forward="/../nas/replication/replicalistbottom.jsp"/>
+        
+        <action path="/forwardReplicaPromote"
+                name="replicaPromoteForm"
+        		scope="request"
+        		validate="false"
+                forward="/../nas/replication/replicapromote.jsp"/>
+                
+        <action path="/replicaPromote"
+                name="replicaPromoteForm"
+        		scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.replication.ReplicaPromoteAction">
+        </action>
+        
+        <action path="/forwardReplicaCtrlInNode"
+                name="ctrlInNodeInfoForm"
+        		scope="request"
+        		validate="false"
+                forward="/../nas/replication/replicactrlinnode.jsp"/>
+                
+        <action path="/replicaCtrlInNode"
+                name="ctrlInNodeInfoForm"
+        		scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.replication.ReplicaCtrlInNodeAction">
+        </action>        
+
+        <action path="/replicaVolumeSyncShow"
+                name="ReplicaVolumeSyncForm"
+        		scope="request"
+        		validate="false"
+                forward="/../nas/replication/replicavolumesync.jsp"/>
+
+        <action path="/replicaVolumeSyncSet"
+                name="ReplicaVolumeSyncForm"
+        		scope="request"
+        		validate="false"
+                type="com.nec.nsgui.action.replication.ReplicaVolumeSyncAction">
+                <forward name="setFailed" path="/nas/replication/replicavolumesync.jsp" module=""/>
+        </action>
+       
+        <action path="/ssl"
+        		name="sslInfoForm"
+        		scope="request"
+        		validate="false"
+        		parameter="operation"
+                type="com.nec.nsgui.action.replication.SslAction">
+            <forward name="sslShow"  
+            		 path="/ssl.do?operation=display"/>
+            <forward name="ssl4Nsadmin"       
+    	             path="/nas/replication/ssl.jsp" module=""/>
+			<forward name="ssl4Nsview"       
+    	             path="/nas/replication/ssl4nsview.jsp" module=""/>
+        </action>
+         
+        <action path="/forwardSubmit"
+                forward="/../nas/replication/commonsubmit.jsp"/>
+                
+        <action path="/forwardExecute"
+                forward="/../nas/replication/commonexecute.jsp"/>
+                   
+    	<action path="/replicaCreateShow"
+                type="com.nec.nsgui.action.replication.ReplicaCreateShowAction"
+                name="replicaCreateForm"
+                scope="request"
+                validate="false">
+                <forward name="forwardToVolumeError"
+                 		 path="/volume/forwardVolumeError.do?from=replication"  
+                 		 module=""/>
+                <forward name="fromReplication" 
+                	     path="/nas/replication/replicacreatefromreplication.jsp"
+                	     module=""/> 		 
+                <forward name="fromOthers" 
+                	     path="/nas/replication/replicacreatenotfromreplication.jsp"
+                	     module=""/>
+		</action>                
+
+		<action path="/replicaCreate"
+                type="com.nec.nsgui.action.replication.ReplicaCreateAction"
+                name="replicaCreateForm"
+                scope="request"
+                validate="false">
+                <forward name="replicaCreateShow" path="/replicaCreateShow.do"/>
+                <forward name="forwardToVolumeError"
+                 		 path="/volume/forwardVolumeError.do?from=replication" 
+                 		 module=""/>
+		</action> 
+
+		<action path="/replicaModify"
+                type="com.nec.nsgui.action.replication.ReplicaModifyAction"
+                name="replicaInfoForm"
+                parameter="operation"
+                scope="request"
+                validate="false">
+                <forward name="replicaModifyShow" 
+                	     path="/nas/replication/replicamodifyshow.jsp" 
+                	     module=""/>
+                <forward name="replicaModifyErr" 
+                	     path="/replicaModify.do?operation=display"/>                	     
+               
+		</action>
+                
+ <!--BEGIN  original action  LYB -->
+               
+        <action path="/toListBtm"
+                forward="/../nas/replication/originallistbtm.jsp"/>
+                                 
+        <action path="/originalAction"
+           		type="com.nec.nsgui.action.replication.OriginalAction" 
+            	parameter="operation"
+            	name="originalForm" 
+            	scope="request"
+            	validate="false"> 
+            	<forward name="listDo" 
+             			path="/originalAction.do?operation=list" redirect="true"/>     	
+            	<forward name="list" module=""
+             			path="/nas/replication/originallistmid.jsp" />
+            	<forward name="list4nsview" module=""
+             			path="/nas/replication/originallist4nsview.jsp"/>
+            	<forward name="transfer" module=""
+             			path="/nas/replication/originaltransfermid.jsp"/>
+            	<forward name="preCreate" module=""
+             			path="/nas/replication/originalcreatemid.jsp" />
+           	 	<forward name="preModify" module=""
+             			path="/nas/replication/originalmodifymid.jsp"/>
+            	<forward name="preDemote" module=""
+             			path="/nas/replication/originaldemotemid.jsp"/>
+             	<forward name="afterError" path="/originalAction.do?operation=afterError" />
+             	<forward name="afterCreateError" path="/originalAction.do?operation=preCreate" />
+             	<forward name="afterTransferError" path="/originalAction.do?operation=transfer" />
+             	
+             			
+      
+    	</action>
+ <!--END  original action LYB--> 
+        
+    </action-mappings>
+    
+
+
+    <message-resources parameter="com.nec.nsgui.messages.ReplicationResource"/>
+    <message-resources parameter="com.nec.nsgui.messages.VolumeResource" key="volume"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile"
+                      value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-replication.xml"/>
+    </plug-in>
+
+</struts-config>

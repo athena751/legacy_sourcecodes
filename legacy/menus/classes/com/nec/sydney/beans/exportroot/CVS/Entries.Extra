@@ -1,0 +1,14 @@
+/EGCIFSShareListBean.java////
+/EGFilesetListBean.java////
+/EGMountPointListBean.java////
+/EGNFSListBean.java////
+/EGSnapScheduleBean.java////
+/EGUMListBean.java////
+/ExportRootBean.java////
+/ExportRootCreateBean.java////
+/ExportRootModifyBean.java////
+/ExportRootSOAPClient.java////
+/NSBeanUtil.java////
+/NfsClientTDataRender.java////
+/NfsClientTHeaderRender.java////
+/NfsDirTDataRender.java////

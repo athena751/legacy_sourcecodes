@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: framework.xml,v 1.2308 2008/05/21 00:40:46 hetao Exp $" -->
+
+<messages>
+	<msg key="myname" value="StorageManager"/>
+	<msg key="login" value="StorageManager">
+		<msg key="username" value="Username" ja="ユーザ名"/>
+		<msg key="password" value="Password" ja="パスワード"/>
+		<msg key="submit" value="Login" ja="ログイン"/>
+		<msg key="success" value="Logged in." ja="ログインしました。"/>
+		<msg key="error" value="Cannot login" ja="ログインできません。">
+			<msg key="nousername" 
+					value="Please specify the username."
+					ja="ユーザ名を指定してください。"/>
+			<msg key="passwd" 
+					value="The password does not match. Please enter the correct password."
+					ja="パスワードが不正です。" />
+			<msg key="over" 
+				value="You have already logged in the system."
+				ja="指定したユーザ名ですでにログインされています。"/>
+			<msg key="invalidxml"
+				value="/home/nsadmin/etc/nsusers.xml: invalid file"
+				ja="アカウント管理ファイルが不正です。"/>
+		</msg>
+		<msg key="current" value="Current logged in users" 
+					ja="現在ログイン中のユーザ">
+			<msg key="from" value="From"/>
+			<msg key="browser" value="Browser" ja="ブラウザ"/>
+			<msg key="last" value="Last Access" ja="最終アクセス時刻"/>
+			<msg key="in10minitues" 
+				value="Please retry in %1 minutes, if your previous session is abnormally ended."
+				ja="万一、前回の処理が異常終了した場合は、約 %1 分後にログインしなおしてください"/>
+		</msg>
+		<msg key="lang" value="Language" ja="言語">
+			<msg key="ja" value="Japanese" ja="日本語"/>
+			<msg key="en" value="English" ja="英語"/>
+		</msg>
+		<msg key="notice" value="notice">
+			<msg key="environment" value="Your Environment" ja="ご利用環境"/>
+			<msg key="browser" value="Browser" ja="ブラウザ"/>
+			<msg key="unknow" value="Unknown" ja="不明"/>
+			<msg key="from" value="From" ja="接続元"/>
+			<msg key="notes" value="Notes" ja="注意事項"/>
+			<msg key="others" value="Others" ja="その他"/>
+		</msg>
+
+	</msg>		
+	<msg key="logout" value="StorageManager Logout...">
+		<msg key="bye" value="Bye" ja="終了"/>
+		<msg key="confirm" value="Do you want to logout?" ja="ログアウトしますか"/>
+		<msg key="close" value="Are you sure to close the operation window?" ja="操作ウィンドウをクローズしますか。"/>
+		<msg key="loginmsg" value="Cluster employment of the node is carried out.&lt;BR&gt;Please connect with the active server from the following URL.&lt;BR&gt;" 
+			ja="ノードはクラスタ運用されています。&lt;BR&gt;主系サーバへは以下のURLから接続してください。&lt;BR&gt;"/>
+	</msg>
+	<msg key="button" value="buttons message">
+		<msg key="help" value="Help" ja="ヘルプ">
+			<msg key="tip" value="Show you the detail help message"
+				ja="ヘルプを表示します。"/>
+		</msg>
+		<msg key="logout" value="Logout">
+			<msg key="tip" value="Logout from StorageManager" 
+					ja="ログアウトします。"/>
+		</msg>
+	</msg>
+	<msg key="error" value="Internal Error" ja="内部エラー">
+		<msg key="h1" value="Internal Error" ja="内部エラー">
+			<msg key="warning" value="Warning" ja="警告"/>
+		</msg>
+		<msg key="msg" value="System is reduced state." ja="システムが縮退状態です。"/>
+		<msg key="commmsg" value="The information of the cluster status is not available." ja="クラスタの状態が取得できません。"/>
+		<msg key="back" value="Back" ja="戻る"/>
+		<msg key="debug" value="Detail" ja="詳細"/>
+		<msg key="notavailable" value="Status: Maintenance" ja="保守状態です。"/>
+		<msg key="reason"       value="The following errors might have been occurred:" ja="可能性のある原因:"/>
+		<msg key="reasonlist1"  value="The takeover/takeback operation is processing." ja="takeover/takeback実行中。"/>
+		<msg key="reasonlist2"  value="The management network cable is not connected." ja="管理ネットワークケーブル未接続。"/>
+		<msg key="reasonlist3"  value="The filesystem is blocked." ja="ファイルシステム閉塞。"/>
+		<msg key="operation"    value="Please try the following:" ja="対処方法:"/>
+		<msg key="operationlist1" value="Check if any abnormal events have been reported through the Mail Notification/SNMP Notification." ja="メール通報/SNMP通報で異常な事象が通報されていないか確認してください。"/>
+		<msg key="operationlist2" value="If it is likely to be abnormal, contact the system administrator or the maintenance center." ja="異常と思われる場合は、システム管理者、もしくは弊社カスタマーサポートセンターへ連絡してください。"/>
+	</msg>
+	<msg key="menu" value="Menus" ja="メニュー">
+		<msg key="top" value="Top Menu" ja="トップメニュー"/>
+		<msg key="reload" value="Reload" ja="リロード"/>
+		<msg key="diskarray" value="Storage" ja="ストレージ">
+			<msg key="tip" value="iStorage Disk Array Information"
+				ja="iStorageディスクアレイの設定をします。"/>
+		</msg>
+		<msg key="admin" value="Administration" ja="システム管理">
+			<msg key="tip" value="Administrative menus"
+				ja="システム管理メニュー"/>
+		</msg>
+		<msg key="ipsan" value="IP-SAN">
+			<msg key="tip" value="IP-SAN Management and iSCSI Configuration"
+				ja="IP-SAN管理および iSCSIの設定を行います。"/>
+		</msg>
+		<msg key="mp" value="Management Processors" ja="管理プロセッサ">
+			<msg key="tip" value="Basic Configuration"
+				ja="管理プロセッサの基本設定"/>
+		</msg>
+		<msg key="nas" value="iStorage NV8220/NV7200/NV7200S">
+			<msg key="tip" value="NV8220/NV7220/NV7200S Configuration"
+					ja="NV8220/NV7220/NV7200Sを管理します。"/>
+			<msg key="node" value="Node Configuration" ja="ノード管理">
+				<msg key="tip" value="Node Configuration" ja="ノード管理"/>
+			</msg>
+			<msg key="vs" value="NAS Services Configuration" ja="NASサービス管理">
+				<msg key="tip" value="Configuration NAS Services on each server" ja="NASサービスを設定します。"/>
+			</msg>
+		</msg>
+		<msg key="clusternas" value="iStorage NV7200G">
+			<msg key="tip" value="NV7200G Configuration"
+					ja="NV7200G を管理します。"/>
+		</msg>
+		<msg key="singlenas" value="iStorage NV8210">
+			<msg key="tip" value="NV8210 Configuration"
+					ja="NV8210を管理します。"/>
+		</msg>
+		<msg key="nodeconfig" value="StorageType" ja="ストレージタイプ">
+			<msg key="tip" value="iStorage NV series configuration menus."
+					ja="iStorage NVシリーズを統合管理します。"/>
+		</msg>
+		<msg key="targetdown" 
+			value="unknown machine type\r\nPlease check whether the target is alive or not."
+			ja="マシンタイプが取得できません。\r\nターゲットノードが正しく稼働しているか確認してください。"/>
+		<msg key="unknown" value="Failed to make menus"
+					ja="メニュー生成エラー"/>
+	</msg>
+	<msg key="exception" value="Internal Error" ja="内部エラー">
+		<msg key="nologin" value="Please log in." ja="ログインしてください。"/>
+		<msg key="noaccess" value="You have no menus." 
+					ja="利用可能なメニューがありません。"/>.
+	</msg>
+	<msg key="soap" value="Soap Messages">
+		<msg key="noaddr" value="No address" ja="IPアドレスが無効です。"/>
+		<msg key="noserver" value="Unknown server" ja="サーバが存在しません。"/>
+	</msg>
+	<msg key="cluster" value="Cluster Messages">
+		<msg key="down" value="Failed to control the system."
+				ja="正常に設定を行えない状態です。">
+			<msg key="dead" value="Network is down." 
+					ja="ネットワークを確認してください。"/>
+			<msg key="commondir" 
+					value="When the system is reduced, some operations are not available."
+					ja="クラスタが縮退運転中の場合、設定変更等は行なえません。"/>
+			<msg key="nogroup"
+					value="Cluster group is not activated."
+					ja="サービスグループが正しく稼働していません。"/>
+			<msg key="unknowntype"
+					value="Unknown machine type"
+					ja="マシンタイプが取得できません"/>
+		</msg>
+	</msg>
+	<msg key="nolicense" value="You have no license for using this facility."
+		ja="この機能を利用するためには、以下のライセンスを解除する必要があります。"/>
+	<msg key="server" value="Server" ja="サーバ">
+		<msg key="admin" value="Management Server" ja="管理サーバ"/>
+	</msg>
+	<msg key="session" value="Session" ja="セッション">
+		<msg key="timeout" value="Session is invalid."
+				ja="セッションはタイムアウトしました。"/>
+		<msg key="closewindow" value="Popup window(s) will be closed. Please log in again."
+				ja="ポップアップウィンドウを閉じ、ログイン画面に戻ります。"/>
+	</msg>
+	<msg key="pleasewait" value="Please Wait!" ja="しばらくお待ちください">
+		<msg key="wait" value="Please wait." 
+			ja="しばらくお待ちください。"/>
+		<msg key="menuloading" value="Now loading menu items." 
+			ja="メニュー項目をロード中です。"/>
+	</msg>
+	<msg key="checkTarget" value="Configuration Node"
+				ja="操作対象ノード">
+		<msg key="h1"  value="Current Configuration Node"
+				ja="現在の操作対象ノード"/>
+		<msg key="type" value="Storage Type"
+				ja="ストレージタイプ">
+			<msg key="admin" value="Management Server"/>
+			<msg key="ipsan" value="iStorage S series iSCSI Option"
+					ja="iStorage Sシリーズ iSCSIオプション"/>
+			<msg key="unknown" value="unknown" ja="不明"/>
+			<msg key="fip" value="(Cluster)" ja="(クラスタ)"/>
+			<msg key="node" value="(Cluster Node)" 
+					ja="(クラスタノード)"/>
+		</msg>
+		<msg key="targetnode" value="Target Node(Host Name)" 
+					ja="対象ノード(ホスト名)"/>
+		<msg key="targetnickname" value="Target Node(Nick Name)" 
+					ja="対象ノード(ニックネーム)"/>
+	</msg>
+</messages>

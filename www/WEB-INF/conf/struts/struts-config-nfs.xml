@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-nfs.xml,v 1.19 2008/09/23 09:48:52 penghe Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name="directEditForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property name="fileContent" type="java.lang.String" /> 
+		<form-property name="operation" type="java.lang.String" /> 
+	</form-bean>
+	<form-bean name="nfsListForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="selectedDir" type="java.lang.String"/>
+	</form-bean>
+	<form-bean name="nfsDetailForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="opType" type="java.lang.String"/>
+		<form-property  name="selectedDir" type="java.lang.String"/>
+		<form-property  name="orgSelectedDir" type="java.lang.String"/>
+		<form-property  name="detailInfo" type="com.nec.nsgui.model.entity.nfs.DetailInfoBean"/>
+	</form-bean>
+	<form-bean name="NfsNavigatorListForm"
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="rootDirectory" type="java.lang.String"/>
+            <form-property name="nowDirectory" type="java.lang.String"/>
+            <form-property name="fsType" type="java.lang.String"/>
+            <form-property name="isSubMount" type="java.lang.String"/>
+            <form-property name="hasDomain" type="java.lang.String"/>
+     </form-bean>
+        
+     <form-bean name="NfsLogForm"
+        type="org.apache.struts.action.DynaActionForm">
+        <form-property name="accessLogInfo" type="com.nec.nsgui.model.entity.nfs.LogInfoBean"/>
+    </form-bean>
+    <form-bean name="NfsLogNavigatorListForm"
+                   type="org.apache.struts.action.DynaActionForm">
+        <form-property name="rootDirectory" type="java.lang.String"/>
+        <form-property name="nowDirectory" type="java.lang.String"/>
+        <form-property name="type" type="java.lang.String"/>
+    </form-bean>   
+    <form-bean name="NfsFileCheckForm"
+        type="org.apache.struts.action.DynaActionForm">
+        <form-property name="accessFilePath" type="java.lang.String"/>
+        <form-property name="performFilePath" type="java.lang.String"/>
+    </form-bean>
+    <form-bean name="AddedOptionsForm"
+        type="org.apache.struts.action.DynaActionForm">
+        <form-property name="accessRight" type="java.lang.String"/>
+    </form-bean>
+</form-beans>
+<global-forwards>
+	<forward name="nfsList" path="/nfsList.do"/>
+</global-forwards>    
+<action-mappings>
+    <action path="/nfsLogEntry"  forward="/../nas/nfs/nfslog.jsp"/>
+    <action path="/nfsLog"
+		name="NfsLogForm"
+		scope="request"
+		parameter="operation"
+		type="com.nec.nsgui.action.nfs.NfsLogAction">
+		<forward name="display" path="/nas/nfs/nfslogtop.jsp" module=""/>
+	</action>
+    <action path="/nfsLogBottom" forward="/../nas/nfs/nfslogbottom.jsp"/>	
+
+	<action path="/NfsLogNavigatorList"
+            parameter="operation"
+            type="com.nec.nsgui.action.nfs.NfsNavigatorListAction"
+            name="NfsLogNavigatorListForm"
+            scope="session"
+            validate="false">
+        <forward name="success_call" path="/nas/nfs/nfslognavigator.jsp"
+                 module=""/>
+        <forward name="success_list" path="/nas/nfs/nfslognavigatorlist.jsp"
+                 module=""/>      
+    </action>
+    <action path="/NfsLogNavigatorForwardList"
+            forward="/../nas/nfs/nfslognavigatorlist.jsp"/>
+    <action path="/NfsLogNavigatorForwardSubmit"
+            forward="/../nas/nfs/nfslognavigatorsubmit.jsp"/>
+
+	<action path="/nfsDetail" name="nfsDetailForm" scope="session" forward="/../nas/nfs/nfsdetail.jsp"/>	
+	<action path="/nfsDetailTop"
+		name="nfsDetailForm"
+		scope="session"
+		parameter="operation"
+		type="com.nec.nsgui.action.nfs.NfsDetailAction">
+		<forward name="display" path="/nas/nfs/nfsdetailtop.jsp" module=""/>
+		<forward name="list" path="/nfs/nfsList.do" module=""/>
+		<forward name="commitSuccess" path="/nas/nfs/forward.jsp" module=""/>
+		<forward name="commitFailed" path="/nas/nfs/nfsdetailtop.jsp" module=""/>
+	</action>
+	
+	<action path="/nfsDetailBottom" forward="/../nas/nfs/nfsdetailbottom.jsp"/>	
+	
+	<action path="/menuEntryAction" forward="/../nas/nfs/nfsTabEntry.jsp"/>	
+	<action path="/nfsList" forward="/../nas/nfs/nfslist.jsp"/>
+	<action path="/tabTopAction" forward="/../nas/nfs/nfsTabTop.jsp"/>
+	
+	<action path="/nfsListTop"
+		name="nfsListForm"
+		scope="request"
+		parameter="operation"
+		type="com.nec.nsgui.action.nfs.NfsListAction">
+		<forward name="display" path="/nas/nfs/nfslisttop.jsp" module=""/>
+		<forward name="delSuccess" path="/nfs/nfsListTop.do?operation=display" module=""/>
+		<forward name="delFailed" path="/nfs/nfsListTop.do?operation=display" module=""/>
+	</action>
+	<action
+		path="/nfsListBottom"
+		forward="/../nas/nfs/nfslistbottom.jsp"/>
+
+    <action path="/directEdit" forward="/../nas/nfs/directedit.jsp"/>	
+	<action path="/directEditTop"  
+		type="com.nec.nsgui.action.nfs.DirectEditAction" 
+		parameter="operation"
+		name="directEditForm" 
+		scope="request">     
+		<forward name="nfsDirectEdit"       
+			path="/nas/nfs/directedittop.jsp"   
+			module=""/>
+	</action>
+    <action path="/directEditBottom" forward="/../nas/nfs/directeditbottom.jsp"/>	
+	    
+        <action path="/NfsNavigatorList"
+                parameter="operation"
+                type="com.nec.nsgui.action.nfs.NfsNavigatorListAction"
+                name="NfsNavigatorListForm"
+                scope="session"
+                validate="false">
+            <forward name="success_call" path="/nas/nfs/nfsnavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/nfs/nfsnavigatorlist.jsp"
+                     module=""/>      
+        </action>
+        
+        <action path="/NfsNavigatorForwardList"
+                forward="/../nas/nfs/nfsnavigatorlist.jsp"/>
+    
+        <action path="/NfsNavigatorForwardSubmit"
+	              forward="/../nas/nfs/nfsnavigatorsubmit.jsp"/>
+
+        <action path="/NfsAccesslogproc"
+	              forward="/../nas/nfs/nfsaccesslogproc.jsp"/>
+
+    <action path="/nfsDetailInfo" name="nfsDetailForm" scope="session" forward="/../nas/nfs/nfsdetailinfo.jsp"/>	
+    <action path="/nfsDetailInfoTop" forward="/../nas/nfs/nfsdetailinfotop.jsp"/>	
+	<action path="/nfsDetailInfoMid"
+		name="nfsDetailForm"
+		scope="session"
+		type="com.nec.nsgui.action.nfs.NfsDetailInfoAction">
+		<forward name="display" path="/nas/nfs/nfsdetailinfomiddle.jsp" module=""/>
+	</action>
+	
+	<action path="/nfsDetailInfoBottom" forward="/../nas/nfs/nfsdetailinfobottom.jsp"/>	
+	
+	<!-- actions for nsview-->
+	<action path="/menuEntry4nsview" 
+		forward="/../nas/nfs/nfsTabEntry4nsview.jsp"/>
+	<action path="/tabTop4nsview" 
+		forward="/../nas/nfs/nfsTabTop4nsview.jsp"/>
+	
+	<action path="/nfsList4nsview" 
+		forward="/../nas/nfs/nfslist4nsview.jsp"/>
+	<action path="/nfsListTop4nsview"
+		name="nfsListForm"
+		scope="request"
+		parameter="operation"
+		type="com.nec.nsgui.action.nfs.NfsListAction">
+		<forward name="display" path="/nas/nfs/nfslisttop4nsview.jsp" module=""/>
+	</action>
+	<action	path="/nfsListBottom4nsview"
+		forward="/../nas/nfs/nfslistbottom4nsview.jsp"/>
+
+	<action path="/directEdit4nsview"  
+		type="com.nec.nsgui.action.nfs.DirectEditAction" 
+		parameter="operation"
+		name="directEditForm" 
+		scope="request">     
+		<forward name="nfsDirectEdit"       
+			path="/nas/nfs/directedit4nsview.jsp"   
+			module=""/>
+	</action>
+
+    <action path="/nfsLog4nsview"
+		name="NfsLogForm"
+		scope="request"
+		parameter="operation"
+		type="com.nec.nsgui.action.nfs.NfsLogAction">
+		<forward name="display" path="/nas/nfs/nfslog4nsview.jsp" module=""/>
+	</action>
+    <action path="/addedOptions"
+            forward="/../nas/nfs/nfsaddedoptions.jsp" />
+    <action path="/addedOptionsBottom"
+            forward="/../nas/nfs/nfsaddedoptionsbottom.jsp" />
+    <action path="/addedOptions4nsview"
+            scope="request"
+            parameter="operation"
+            type="com.nec.nsgui.action.nfs.AddedOptionsAction">
+            <forward name="addedoptions4nsview" path="/nas/nfs/nfsaddedoptions4nsview.jsp" module=""/>
+    </action>
+    <action path="/addedOptionsTop"
+            name="AddedOptionsForm"
+            scope="request"
+            parameter="operation"
+            type="com.nec.nsgui.action.nfs.AddedOptionsAction">
+            <forward name="display" path="/nas/nfs/nfsaddedoptionstop.jsp" module=""/>
+            <forward name="addedoptions4nsview" path="/nas/nfs/nfsaddedoptions4nsview.jsp" module=""/>
+            <forward name="load" path="/nfs/addedOptionsTop.do?operation=display" module=""/>
+    </action>
+	
+</action-mappings>
+
+<message-resources parameter="com.nec.nsgui.messages.NFSResource"/>
+
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+	<set-property property="confFile" 
+		value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-nfs.xml"/>
+</plug-in>
+
+</struts-config>

@@ -1,0 +1,68 @@
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: errorpage.css,v 1.1 2004/11/25 07:29:51 het Exp $" -->
+
+BODY {
+	background-color: White;
+	background-repeat: no-repeat;
+       	background-position: center center;
+	font-size: 12px
+}
+TABLE {
+	background-image: url("/nsadmin/images/nation/bk_login.jpg");
+	background-color: Gainsboro;
+}
+TABLE th{
+	white-space:nowrap;
+}
+TABLE td{
+	
+}
+H1 {
+	background-image: url("/nsadmin/images/nation/line2.gif");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 22px; 
+	font-weight: bold;
+}
+H2 {
+	background-image: url("/nsadmin/images/nation/grid2.gif");
+	background-repeat: no-repeat;
+	padding-left: 24px;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 20px; 
+	font-weight: bold;
+}
+H3 {
+	background-image: url("/nsadmin/images/nation/grid3.gif");
+	background-repeat: no-repeat;
+	padding-left: 24px;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 16px; 
+	font-weight: bold;
+}
+.body09_10 {  font-size: 9px; line-height: 10px}
+.body10 {  font-size: 10px; line-height: 12px}
+.body11 {  font-size: 11px; line-height: 13px}
+.body12 {  font-size: 12px; line-height: 16px}
+.body13 {  font-size: 13px; line-height: 18px}
+.body12b {  font-size: 12px; line-height: 13px; font-weight: bold}
+.body14 {  font-size: 14px; line-height: 16px}
+.body14b {  font-size: 14px; font-weight: bold}
+.body16b {  font-size: 16px; font-weight: bold}
+.body18b {  font-size: 18px; font-weight: bold}
+.body20b {  font-size: 20px; font-weight: bold}
+.body22b {  font-size: 22px; font-weight: bold}

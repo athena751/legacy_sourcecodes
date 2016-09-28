@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_accesscontrol.xml,v 1.2300 2003/11/24 00:55:17 nsadmin Exp $" -->
+<messages>
+    <msg key="common" value="">
+        <msg key="h1_accctrl" value="Access Control" ja="アクセス制御" />
+        <msg key="comf_warning" value=
+" *********************************************************\n
+*********************  [WARNING]  ***********************\n
+*********************************************************\n
+        (Read following warning before using.)\n
+A setting in the access state where it does not stop from an \n
+Business Server is accompanied by the following risks.\n
+Moreover, since it is accompanied by the same risk when a setting is \n
+mistaken, sufficient cautions are required for a setting.\n
+*There is a case where it becomes impossible for a logical disk  to recognize \n
+ suddenly from an Business Server.\n
+*The data mismatching by being cash un-reflected on an \n
+ Business Server may occur.\n
+*The data in logical disk  may be damaged.\n\n
+*********************************************************\n"
+ja=
+" *********************************************************\n
+************************  [警告]  *************************\n
+*********************************************************\n
+業務サーバからのアクセス未停止状態での設定は、以下のような\n
+リスクをともないます。\n
+また、設定を誤った場合にも同様のリスクをともないますので、\n
+設定には十分注意してください。\n
+\n
+・	業務サーバから論理ディスクを突然認識できなくなる。\n
+・	業務サーバ上のキャッシュ未反映によるデータの不整合が発生する場合がある。\n
+・	論理ディスク内のデータが破壊される場合がある。\n
+*********************************************************\n"
+/>
+	<msg key="msg_ldset" value="LDset" ja="LDセット" />
+	<msg key="msg_ld" value="LDset Name" ja="LDセット名" />
+	<msg key="replication" value="Replication" ja="レプリケーション" />
+	<msg key="preserve"     value="Preserve" ja="保管" />
+	<msg key="button_pathinfo" value="Path Info" ja="パス情報" />
+    </msg>
+    
+    <msg key="table" value="">
+	<msg key="table_id" value="ID"/>
+	<msg key="table_diskarrayname" value="Disk Array Subsystem Name" ja="ディスクアレイ名"/>
+	<msg key="table_state" value="State" ja="状態"/>
+	<msg key="table_observ" value="Monitoring State" ja="監視"/>
+	<msg key="table_saa" value="SAA"/>
+	
+	
+	<msg key="th_plat" value="Platform" ja="プラットフォーム" />
+	<msg key="th_name" value="LDset Name" ja="LDセット名" />
+	<msg key="th_pathno" value="Path Count" ja="パス数" />
+	<msg key="th_pathsta" value="Path State" ja="パス状態" />
+	
+	<msg key="th_pathinfo" value="Path Info" ja="パス情報" />
+	<msg key="th_pattern" value="Pattern" ja="パターン" />
+	
+	<msg key="th_lun" value="LUN"/>
+	<msg key="th_num" value="Logical Disk Number" ja="論理ディスク番号" />
+	<msg key="th_type" value="OS Type" ja="形式" />
+	<msg key="th_ldn" value="Logical Disk Name" ja="論理ディスク名" />
+	<msg key="th_rank"  value="RANK"/>
+	<msg key="th_raid" value="RAID"/>
+	<msg key="th_cap" value="Capacity[GB]" ja="容量[GB]" />
+	<msg key="th_purpose" value="Purpose" ja="用途" />
+	<msg key="th_group" value="Group" ja="グループ" />
+	
+	<msg key="th_pno" value="Port Number" ja="ポート番号" />
+	<msg key="th_pn" value="Port Name" ja="ポート名" />
+	<msg key="th_pm" value="Mode" ja="モード" />
+    </msg>
+    <msg key="accesscontrolmenu" value="">
+	<msg key="button_acc" value="Access Control(WWN)" ja="アクセスコントロール(WWN)" />
+	<msg key="button_set" value="Setting/Reference" ja="設定／情報参照" />
+	<msg key="h2_disk" value="Disk Array&apos;s Information" ja="ディスクアレイ情報" />
+	<msg key="msg_nodisk" value="No disk arrays are found." ja="ディスクアレイが存在しません。"/>
+    </msg>
+
+    <msg key="accesswwn" value="">
+	<msg key="button_accessable" value="Accessible Logical Disk" ja="アクセス可能論理ディスク" />
+	<msg key="button_new" value="New..." ja="新規作成..." />
+	<msg key="button_delete" value="Delete..." ja="削除..." />
+	<msg key="h2_accwwn" value="Access Control(WWN)" ja="アクセスコントロール(WWN)" />
+	<msg key="msg_list" value="LDset List" ja="LDセット一覧" />
+	<msg key="path_state_inconsistent" value="Inconsistent" ja="不一致" />
+	<msg key="msg_no_ldset" value="No LDsets are found." ja="LDセットが存在しません。" />
+	<msg key="path_state_normal" value="Normal" ja="正常" />
+	<msg key="msg_list" value="LDset List" ja="LDセット一覧" />
+	<msg key="msg_noentry" value="The specified LDset has been deleted." ja="指定されたLDセットは、既に削除されています。" />
+	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="msg_tip" value="LDset %1 will be deleted." ja="LDセット %1 を削除してもよろしいですか？" />
+	<msg key="err_delete" value="Some errors occurred when deleting a LDset." ja="LDセットの削除でエラーが発生しました。" /> 
+	<msg key="msg_refresh_failed" value="Cannot refresh the LDset&apos;s information." ja="LDセット情報を再取得できません。" />
+   </msg>
+
+
+    <msg key="pathinfo" value="">
+	<msg key="button_accessable" value="Accessible Logical Disk..." ja="アクセス可能論理ディスク..."/>
+	<msg key="button_add" value="Add..." ja="追加..." />
+	<msg key="button_modify" value="Replace..." ja="置換..." />
+	<msg key="button_delete" value="Delete..." ja="削除..." />
+	<msg key="msg_nopathinfo" value="No links of paths are found." ja="パス情報のリンクが存在しません。" />
+	<msg key="h2_pathinfo" value="Path Info" ja="パス情報" />
+	<msg key="err_nopathinfo" value="Cannot get Path Info." ja="パス情報を取得できません。" />
+	<msg key="err_refresh_failed" value="Cannot refresh Path Info." ja="パス情報を再取得できません。" />
+	<msg key="delete_confirm" value="Path %1 will be deleted." ja="パス情報 %1 のリンクを削除してもよろしいですか？" />
+	<msg key="err_delete" value="Some errors occurred when deleting Path Info." ja="パス情報の削除でエラーが発生しました。" />
+	<msg key="msg_noentry" value="The specified path or LDset has been deleted." ja="指定されたパス情報またはLDセットは、既に削除されています。" />
+	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="msg_mismatch" value="The specified LDset mismatched the logical disk list for every path." ja="指定されたLDセットは、パス毎の論理ディスクリストに不整合が発生しています。" />
+    </msg>
+
+    <msg key="pathinput" value="">
+	<msg key="msg_input" value="Path Info Input" ja="パス情報の入力" />
+	<msg key="title_input" value="Path Info Input" ja="パス情報の入力" />
+	<msg key="msg_confirm" value="Path %1 will be linked." ja="パス情報 %1 のリンクを登録してもよろしいですか？" />
+	<msg key="msg_already" value="The specified path has been linked." ja="指定されたパスは既に登録されています。" />
+	<msg key="msg_exist" value="The specified path has been linked with other LDset." ja="指定されたパスは他のLDセットに設定されています。" />
+	<msg key="msg_noentry" value="The specified LDset has been deleted." ja="指定されたLDセットは、既に削除されています。" />
+	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="msg_mismatch" value="The specified LDset mismatched the logical disk list for every path." ja="指定されたLDセットは、パス毎の論理ディスクリストに不整合が発生しています。" />
+	<msg key="err_modifypathinfo" value="Some errors occurred when linking the path." ja="パス情報のリンクでエラーが発生しました。" />
+	<msg key="alert" value="The Path Info is invalid. Only HEX numbers are allowed. The Path Info&apos;s length is 16. \&quot;ffff-ffff-ffff-ffff\&quot; is not allowed." ja="パス情報が不正です。パス情報は16進数のみ入力可能です。パス情報の長さは、16文字までです。また、\&quot;ffff-ffff-ffff-ffff\&quot;を入力できません。" />
+	<msg key="alert_same" value="The path you input is the same as the old one. Please input a new path." ja="入力したパスは以前のものと同一です。新しいパスを入力してください。" />
+    </msg>
+
+    <msg key="ldsetlistpath" value="">
+	<msg key="h2_list" value="Accessible Logical Disk List" ja="アクセス可能論理ディスク一覧" />
+	<msg key="title_accessibleld" value="Accessible Logical Disk List" ja="アクセス可能論理ディスク一覧" />
+	<msg key="msg_noaccessibleld" value="No accessible logical disks are found." ja="アクセス可能な論理ディスクは存在しません。" />
+	<msg key="msg_err" value="Cannot get the accessible logical disks." ja="アクセス可能論理ディスクを取得できません。" />
+    </msg>
+
+    <msg key="ldsetlistldset" value="">
+	<msg key="h2_list" value="Accessible Logical Disk List" ja="アクセス可能論理ディスク一覧" />
+	<msg key="button_add" value="Add..." ja="追加..." />
+	<msg key="button_delete" value="Delete..." ja="削除..." />
+	<msg key="msg_noentry" value="The specified logical disk or LDset has been deleted." ja="指定された論理ディスクまたはLDセットは、既に削除されています。" />
+	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="msg_mismatch" value="The specified LDset mismatched the logical disk list for every path." ja="指定されたLDセットは、パス毎の論理ディスクリストに不整合が発生しています。" />
+	<msg key="rld"  value="remove logical disk %1" ja="論理ディスク %1 を削除します" />
+	<msg key="msg_refresh_failed" value="Cannot refresh the logical disk&apos;s information of the LDset." ja="LDセット中の論理ディスク情報を再取得できません。" />
+	<msg key="msg_command_err"  value="Cannot get logical disk&apos;s information of the LDset." ja="LDセット中の論理ディスク情報を取得できません。" />
+	<msg key="msg_delete_err" value="Some errors occurred when deleting a logical disk from LDset." ja="LDセットからの論理ディスクの削除でエラーが発生しました。" />
+	<msg key="msg_nold" value="No accessible logical disks are found." ja="アクセス可能な論理ディスクは存在しません。" />
+	<msg key="msg_confirm" value="Delete logical disk %1 from LDset %2 ." ja="LDセット %2 から、論理ディスク %1 を削除してもよろしいですか？"/>
+	<msg key="msg_err" value="Cannot get  LDset&apos;s information." ja="LDセット情報を取得できません。"/>
+    </msg>
+
+    <msg key="candidate" value="">
+    <msg key="h2_list" value="Candidate Logical Disk List" ja="候補論理ディスク一覧" />
+	<msg key="msg_select" value="Select:" ja="選択" />
+	<msg key="msg_already" value="The specified LUN has been registered." ja="指定されたLUNは既に登録されています。" />
+	<msg key="msg_entry_over"   value="The maximum number of logical disk which can be specified was exceeded." ja="指定可能な論理ディスクの最大数を超えました。" />
+	<msg key="msg_exist" value="The specified logical disk has been registered." ja="指定された論理ディスクは既に登録されています。" />
+	<msg key="msg_noentry" value="The specified logical disk and LDset don't exist." ja="指定された論理ディスクまたは、LDセットが存在しません。" />
+	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="msg_mismatch" value="The specified LDset mismatched the logical disk list for every path." ja="指定されたLDセットは、パス毎の論理ディスクリストに不整合が発生しています。" />  
+	<msg key="msg_command_err"  value="Cannot get logical disk&apos;s information." ja="論理ディスク情報を取得できません。" /> 
+	<msg key="title_candidate" value="Candidate Logical Disk List" ja="候補論理ディスク一覧" />
+	<msg key="select_ldset" value="LDset" ja="LDセット" />
+	<msg key="select_a2"    value="A2:*"/>
+	<msg key="select_a4"    value="A4:*"/>
+	<msg key="select_ax"    value="AX:*"/>
+	<msg key="select_cx"    value="CX:*"/>
+	<msg key="select_lx"    value="LX:*"/>
+	<msg key="select_nx"    value="NX:*"/>
+	<msg key="select_wn"    value="WN:*"/>
+	<msg key="select_null"  value=":*"/>
+	<msg key="select_keep"  value="Preserve Group" ja="保管グループ" />
+	<msg key="select_pool"  value="POOL(WWN)"/>
+	<msg key="select_all"   value="ALL"/>
+	<msg key="msg_confirm"  value="Add logical disk %1 (0x%2) in LDset %3 ." ja="LDセット %3に、論理ディスク %1 (0x%2) を追加します。よろしいですか？" />
+	<msg key="error_msg"    value="Some errors occurred when adding the logical disk to the LDset ." ja="論理ディスクの追加でエラーが発生しました。" />
+	<msg key="msg_nold"     value="No logical disks are found ." ja="論理ディスクが存在しません。" /> 
+	<msg key="msg_reserve"  value="preserve" ja="保管" />
+    </msg>
+
+    <msg key="newldset" value="">
+    	<msg key="msg_new" value="New LDset " ja="LDセットの新規作成" />
+        	<msg key="msg_fc" value="FC"/>
+        	<msg key="msg_fcsan" value="FC-SAN"/>
+        	<msg key="msg_ip" value="IP-SAN"/> 
+        	<msg key="msg_nas" value="NAS"/> 
+ 	<msg key="msg_already" value="The specified value has been used. Please input other values." ja="指定された値は、既に使用されています。別の値を指定してください。" />
+ 	<msg key="msg_ldset_forbidden" value="The operation on the specified LDset is forbidden." ja="指定されたLDセットに対する操作は、禁止されています。" />
+	<msg key="confirm_ldset_new" value="LDset %1 will be created." ja="LDセット %1 を作成します。よろしいですか？" />
+	<msg key="confirm_ldsetname_error1" value="The LDset name is invalid. Only alphanumeric characters,&apos;\/&apos; and &apos;_&apos; are allowed. The name&apos;s maximum length is %1." ja="LDセット名は不正です。LDセット名には半角英数字と&apos;\/&apos; と &apos;_&apos;のみが使用可能です。LDセット名の最大文字数はq` %1 です。" />
+	<msg key="err_new" value="Some errors occurred when creating a LDset." ja="LDセットの作成でエラーが発生しました。" /> 
+
+    </msg>
+
+    <msg key="setting" value="">
+	<msg key="h2_set" value="Setting/Reference" ja="設定／情報参照" />
+	<msg key="msg_accset" value="Setting Access Control" ja="アクセスコントロール設定／情報参照" />
+	<msg key="button_change" value="Change Port Mode..." ja="ポートモードの変更..." />
+	<msg key="button_start" value="Start Access Control" ja="アクセスコントロールの開始" />
+	<msg key="msg_productinfo" value="Product Info" ja="プロダクト情報" />
+	<msg key="msg_accwwn" value="AccessControl(WWN)(%1)" ja="アクセスコントロール(WWN)(%1)" />
+	<msg key="msg_type" value="Purchase Product Classification" ja="購入プロダクト種別" />
+	<msg key="msg_usage" value="Product Use Situation" ja="プロダクト使用状況" />
+	<msg key="msg_refresh_failed" value="Cannot refresh the product&apos;s information." ja="プロダクト情報を再取得できません。" />
+	<msg key="conf_start" value="Start Access control." ja="アクセスコントロールを開始してもよろしいですか？" />
+	<msg key="msg_productinfo_err" value="Cannot get the product&apos;s information." ja="プロダクト情報を取得できません。" />
+	<msg key="msg_starterr" value="Some errors occurred when starting access control." ja="アクセスコントロールの開始でエラーが発生しました。" />
+	<msg key="msg_starterr15" value="Access control has been started." ja="アクセスコントロールは既に開始されています。" />
+	<msg key="msg_already" value="Access Control has been started." ja="アクセスコントロールは既に開始されています。" />
+    </msg>
+
+    <msg key="mode" value="">
+	<msg key="h2_mode" value="Change to WWN mode" ja="WWNモードへの変更" />
+	<msg key="button_all" value="Change All" ja="一括変更" />
+	<msg key="button_change" value=" Change " ja="変更" />
+	<msg key="conf_all" value="Are you sure to change all ports to WWN mode?" ja="全てのポートをWWNモードに変更しますか？" />
+	<msg key="conf_app" value="Are you sure to change the specified port to WWN mode?" ja="指定したポートをWWNモードに変更しますか？" />
+	<msg key="msg_changeerr" value="Some errors occurred when changing the mode." ja="モード変更でエラーが発生しました。" />
+	<msg key="msg_porterr" value="Cannot get the port&apos;s information." ja="ポート情報を取得できません。" />
+	<msg key="msg_noport" value="No ports are found." ja="ポートが存在しません。" />
+        	<msg key="msg_already" value="The specified AccessControl mode has been set." ja="指定されたアクセスコントロールモードは既に設定済みです。" />
+ 	<msg key="msg_noentry" value="The specified port doesn't exist." ja="指定されたポートが存在しません。" />
+ 	<msg key="msg_acmode_err" value="The specified port's mode cannot be changed." ja="指定されたポートはモード変更できません。" />
+
+    </msg>
+
+</messages>
+    

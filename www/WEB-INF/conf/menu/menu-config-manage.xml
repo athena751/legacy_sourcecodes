@@ -1,0 +1,594 @@
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: menu-config-manage.xml,v 1.77 2008/05/30 02:50:00 liuyq Exp $" -->
+<NSMenus>
+	<Category msgKey="apply" detailMsgKey="apply.detailMsg">
+		<SubCategory msgKey="apply.fileShare" detailMsgKey="apply.fileShare.detailMsg">
+			<Item msgKey="apply.fileShare.nfs"
+                detailMsgKey="apply.fileShare.nfs.detailMsg"
+                href="nfs/menuEntryAction.do"
+                helpAnchor="/help.html#network_nfs"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="nfs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="nfs/menuEntry4nsview.do">
+            </Item> 
+            <Item msgKey="apply.fileShare.nfs"
+                detailMsgKey="apply.fileShare.nfs.detailMsg"
+                href="nfs/menuEntryAction.do"
+                helpAnchor="/help.html#network_nfs"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="nfs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="nfs/menuEntry4nsview.do">
+            </Item>
+            
+            <Item msgKey="apply.fileShare.cifs"
+                detailMsgKey="apply.fileShare.cifs.detailMsg"
+                href="cifs/shareList.do?operation=enterCIFS"
+                helpAnchor="/help.html#network_cifs"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="cifs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="cifs/shareList.do?operation=enterCIFS">
+            </Item>
+            <Item msgKey="apply.fileShare.cifs"
+                detailMsgKey="apply.fileShare.cifs.detailMsg"
+                href="cifs/shareList.do?operation=enterCIFS"
+                helpAnchor="/help.html#network_cifs"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="cifs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="cifs/shareList.do?operation=enterCIFS">
+            </Item>
+            
+            
+            <Item msgKey="apply.fileShare.http"
+                detailMsgKey="apply.fileShare.http.detailMsg"
+                href="menu/nas/http/httpinfo.jsp"
+                helpAnchor="/help.html#network_http"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="http"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/http/httpinfo_nsview.jsp">
+            </Item>
+            <Item msgKey="apply.fileShare.http"
+                detailMsgKey="apply.fileShare.http.detailMsg"
+                href="menu/nas/http/httpinfo.jsp"
+                helpAnchor="/help.html#network_http"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="http"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/http/httpinfo_nsview.jsp">
+            </Item>
+            
+            <Item msgKey="apply.fileShare.ftp"
+                detailMsgKey="apply.fileShare.ftp.detailMsg"
+                href="menu/nas/ftp/ftpinfo.jsp"
+                helpAnchor="/help.html#network_ftp"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="ftp"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/ftp/ftpinfo4nsview.jsp">
+            </Item>
+            <Item msgKey="apply.fileShare.ftp"
+                detailMsgKey="apply.fileShare.ftp.detailMsg"
+                href="menu/nas/ftp/ftpinfo.jsp"
+                helpAnchor="/help.html#network_ftp"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="ftp"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/ftp/ftpinfo4nsview.jsp">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="apply.volumn" detailMsgKey="apply.volumn.detailMsg">
+        	<Item msgKey="apply.volumn.volumn"
+                detailMsgKey="apply.volumn.volumn.detailMsg"
+                href="volume/volumeList.do"
+                helpAnchor="/help.html#volume_volume"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="volume/volumeList.do">
+                <Hidden name="h1" value="apply.volumn.volumn"/>
+                <Hidden name="msgKey" value="apply.volume.volume.forward.to.volume.list"/>
+            </Item>
+            <Item msgKey="apply.volumn.volumn"
+                detailMsgKey="apply.volumn.volumn.detailMsg"
+                href="volume/volumeList.do"
+                helpAnchor="/help.html#volume_volume"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="volume/volumeList.do">
+                <Hidden name="h1" value="apply.volumn.volumn"/>
+                <Hidden name="msgKey" value="apply.volume.volume.forward.to.volume.list"/>
+            </Item>
+            
+            <Item msgKey="apply.volumn.snapshot"
+                detailMsgKey="apply.volumn.snapshot.detailMsg"
+                href="menu/nas/common/mountpoint.jsp"
+                helpAnchor="/help.html#volume_snapshot"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/common/mountpoint.jsp">
+                <Hidden name="h1" value="apply.volumn.snapshot"/>
+                <Hidden name="msgKey" value="apply.volume.volume.forward.to.volume.list"/>
+                <Hidden name="nextAction" value="Snapshot"/>
+            </Item>
+            <Item msgKey="apply.volumn.snapshot"
+                detailMsgKey="apply.volumn.snapshot.detailMsg"
+                href="menu/nas/common/mountpoint.jsp"
+                helpAnchor="/help.html#volume_snapshot"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/common/mountpoint.jsp">
+                <Hidden name="h1" value="apply.volumn.snapshot"/>
+                <Hidden name="msgKey" value="apply.volume.volume.forward.to.volume.list"/>
+                <Hidden name="nextAction" value="Snapshot"/>
+            </Item>
+            
+            <Item msgKey="apply.volumn.quota"
+                detailMsgKey="apply.volumn.quota.detailMsg"
+                href="menu/nas/common/mountpoint.jsp"
+                helpAnchor="/help.html#volume_quota"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/common/mountpoint.jsp">
+                <Hidden name="nextAction" value="quota"/>
+            </Item>
+            <Item msgKey="apply.volumn.quota"
+                detailMsgKey="apply.volumn.quota.detailMsg"
+                href="menu/nas/common/mountpoint.jsp"
+                helpAnchor="/help.html#volume_quota"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/common/mountpoint.jsp">
+                <Hidden name="nextAction" value="quota"/>
+            </Item>
+            
+            <Item msgKey="apply.volumn.dirQuota"
+                detailMsgKey="apply.volumn.dirQuota.detailMsg"
+                href="menu/nas/dirquota/dirquotadatasetmain.jsp"
+                helpAnchor="/help.html#volume_dirquota"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/dirquota/dirquotadatasetmain.jsp">
+                <Hidden name="nextAction" value="dirquota"/>
+            </Item>
+            <Item msgKey="apply.volumn.dirQuota"
+                detailMsgKey="apply.volumn.dirQuota.detailMsg"
+                href="menu/nas/dirquota/dirquotadatasetmain.jsp"
+                helpAnchor="/help.html#volume_dirquota"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/dirquota/dirquotadatasetmain.jsp">
+                <Hidden name="nextAction" value="dirquota"/>
+            </Item>
+            
+            <Item msgKey="apply.volumn.storage"
+                detailMsgKey="apply.volumn.storage.detailMsg"
+                href="menu/nas/nashead/ldlist.jsp"
+                helpAnchor="/help.html#volume_storage"
+                machineType="NasheadCluster:NasheadSingle"
+                targetType="adminTarget"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/nashead/ldlist4nsview.jsp">
+            </Item>
+            <Item msgKey="apply.volumn.gfs"
+                detailMsgKey="apply.volumn.gfs.detailMsg"
+                href="gfs/gfsMenuForward.do"
+                helpAnchor="/help.html#volume_gfs"
+                machineType="NasheadCluster:NasheadSingle"
+                changeNode="enable"
+                licenseKey="gfs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="gfs/gfsMenuForward4Nsview.do">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="apply.replication" detailMsgKey="apply.replication.detailMsg">
+            <Item msgKey="apply.replication.mvdsync"
+                detailMsgKey="apply.replication.mvdsync.detailMsg"
+                href="replication/replicationEntry.do"
+                helpAnchor="/help.html#replication_1"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                targetType="adminTarget"
+                licenseKey="mvdsync"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="replication/replicationEntry.do">
+            </Item>
+            <Item msgKey="apply.replication.mvdsync"
+                detailMsgKey="apply.replication.mvdsync.detailMsg"
+                href="replication/replicationEntry.do"
+                helpAnchor="/help.html#replication_1"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                targetType="adminTarget"
+                licenseKey="mvdsync"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="replication/replicationEntry.do">
+            </Item>        	
+        	
+        	<Item msgKey="apply.replication.ddr"
+                detailMsgKey="apply.replication.ddr.detailMsg"
+                href="menu/nas/ddr/ddrpairinglist.jsp"
+                helpAnchor="/help.html#ddr_schedule"
+                machineType="NasheadCluster:NasheadSingle"
+                changeNode="enable"
+                licenseKey="repctrl"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/ddr/ddrpairinglist4nsview.jsp">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="apply.backup" detailMsgKey="apply.backup.detailMsg">
+            <Item msgKey="apply.backup.ndmp"
+                detailMsgKey="apply.backup.ndmpv4.detailMsg"
+                href="ndmpv4/ndmpConfig.do?operation=ndmpEntry"
+                helpAnchor="/help.html#backup_ndmp"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="ndmp"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="ndmpv4/ndmpConfig.do?operation=ndmpEntry">
+            </Item>
+        	<Item msgKey="apply.backup.ddr"
+                detailMsgKey="apply.backup.ddr.detailMsg"
+                href="ddr/ddrEntry.do"
+                helpAnchor="/help.html#disk_backup"
+                changeNode="enable"
+                licenseKey="diskrep"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="ddr/ddrEntry.do">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="apply.security" detailMsgKey="apply.security.detailMsg">
+            <Item msgKey="apply.security.filterLog"
+                detailMsgKey="apply.security.filterLog.detailMsg"
+                href="menu/nas/ethguard/filteringlog.jsp"
+                helpAnchor="/help.html#security_log"
+                machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/ethguard/filteringlog4nsview.jsp">
+            </Item>
+        </SubCategory>
+
+        <SubCategory msgKey="apply.nvavs" detailMsgKey="apply.nvavs.detailMsg">
+            <Item msgKey="apply.nvavs.realtimescan"
+                detailMsgKey="apply.nvavs.realtimescan.detailMsg"
+                href="serverprotect/serverProtectConfig.do"
+                helpAnchor="/help.html#nvavs_realtimescan"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="nvavs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="serverprotect/serverProtectConfig.do">
+            </Item>
+            <Item msgKey="apply.nvavs.realtimescan"
+                detailMsgKey="apply.nvavs.realtimescan.detailMsg"
+                href="serverprotect/serverProtectConfig.do"
+                helpAnchor="/help.html#nvavs_realtimescan"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="nvavs"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="serverprotect/serverProtectConfig.do">
+            </Item>
+            <Item msgKey="apply.nvavs.service"
+                detailMsgKey="apply.nvavs.service.detailMsg"
+                href="antivirus/entry.do"
+                helpAnchor="/help.html#nvavs_service"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="nvavs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="antivirus/entry4Nsview.do">
+            </Item>
+            <Item msgKey="apply.nvavs.service"
+                detailMsgKey="apply.nvavs.service.detailMsg"
+                href="antivirus/entry.do"
+                helpAnchor="/help.html#nvavs_service"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="nvavs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="antivirus/entry4Nsview.do">
+            </Item>
+            <Item msgKey="apply.nvavs.schedulescan"
+                detailMsgKey="apply.nvavs.schedulescan.detailMsg"
+                href="schedulescan/scheduleScanConfig.do"
+                helpAnchor="/help.html#nvavs_schedulescan"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="schedulescan/scheduleScanConfig.do">
+            </Item>
+            <Item msgKey="apply.nvavs.schedulescan"
+                detailMsgKey="apply.nvavs.schedulescan.detailMsg"
+                href="schedulescan/scheduleScanConfig.do"
+                helpAnchor="/help.html#nvavs_schedulescan"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="schedulescan/scheduleScanConfig.do">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="apply.userMapping" detailMsgKey="apply.userMapping.detailMsg">
+        	<Item msgKey="apply.userMapping.userDataBase"
+                detailMsgKey="apply.userMapping.userDataBase.detailMsg"
+                href="mapd/getMPList.do?meth=getMPList"
+                helpAnchor="/help.html#usermap_database"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="mapd/getMPList.do?meth=getMPList">
+            </Item>
+            <Item msgKey="apply.userMapping.userDataBase"
+                detailMsgKey="apply.userMapping.userDataBase.detailMsg"
+                href="mapd/getMPList.do?meth=getMPList"
+                helpAnchor="/help.html#usermap_database"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="mapd/getMPList.do?meth=getMPList">
+            </Item>
+        
+        	<Item msgKey="apply.userMapping.clientUserDataBase"
+                detailMsgKey="apply.userMapping.clientUserDataBase.detailMsg"
+                href="menu/nas/mapdnative/nativelist.jsp"
+                helpAnchor="/help.html#policy_user_mapping_native"
+                machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/mapdnative/nativelist4nsview.jsp">
+            </Item>
+            
+            <Item msgKey="apply.userMapping.changeRule"
+                detailMsgKey="apply.userMapping.changeRule.detailMsg"
+                href="mapdrule/entryRule.do"
+                helpAnchor="/help.html#policy_namechange_rule"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="mapdrule/entryRule_nsview.do">
+            </Item>
+            <Item msgKey="apply.userMapping.changeRule"
+                detailMsgKey="apply.userMapping.changeRule.detailMsg"
+                href="mapdrule/entryRule.do"
+                helpAnchor="/help.html#policy_namechange_rule"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="enable"
+                userType="nsadmin:nsview"
+                refHref="mapdrule/entryRule_nsview.do">
+            </Item>
+            <Item msgKey="apply.userMapping.krb5"
+                detailMsgKey="apply.userMapping.krb5.detailMsg"
+                href="krb5/krb5Entry.do"
+                helpAnchor="/help.html#trusted_domain"
+                machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="krb5/krb5Entry.do">
+            </Item>
+        </SubCategory>
+<!--        
+         <SubCategory msgKey="apply.nasswitch" detailMsgKey="apply.nasswitch.detailMsg">
+        	<Item msgKey="apply.nasswitch.control"
+                detailMsgKey="apply.nasswitch.control.detailMsg"
+                href="nasswitch/nsGetStatus.do"
+                helpAnchor="/help.html#virtual_nfs_1"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                licenseKey="swnfs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nasswitch/nsGetStatus.do">
+            </Item>
+            <Item msgKey="apply.nasswitch.control"
+                detailMsgKey="apply.nasswitch.control.detailMsg"
+                href="nasswitch/nsGetStatus.do"
+                helpAnchor="/help.html#virtual_nfs_1"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="swnfs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nasswitch/nsGetStatus.do">
+            </Item>
+            <Item msgKey="apply.nasswitch.expoint"
+                detailMsgKey="apply.nasswitch.expoint.detailMsg"
+                href="nasswitch/nasSwitchList.do"
+                helpAnchor="/help.html#virtual_nfs_4"
+                machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="swnfs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nasswitch/nasSwitchList.do">
+            </Item>
+            <Item msgKey="apply.nasswitch.pfslink"
+                detailMsgKey="apply.nasswitch.pfslink.detailMsg"
+                href="nasswitch/pfsLinkList.do?operation=display"
+                helpAnchor="/help.html#virtual_nfs_9"
+                machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                licenseKey="swnfs"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nasswitch/pfsLinkList.do?operation=display">
+            </Item>
+            <Item msgKey="apply.nasswitch.migration" 
+            	detailMsgKey="apply.nasswitch.migration.detailMsg" 
+            	href="nasswitch/migList.do?operation=display" 
+            	helpAnchor="/help.html#virtual_nfs_12" 
+            	machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius" 
+            	changeNode="disable" 
+            	licenseKey="swnfs" 
+            	selectExpgrp="disable" 
+                userType="nsadmin:nsview"
+                refHref="nasswitch/migList.do?operation=display"/> 
+  			<Item msgKey="apply.nasswitch.clientip" 
+  				detailMsgKey="apply.nasswitch.clientip.detailMsg" 
+  				href="nasswitch/clientIPList.do?operation=display" 
+  				helpAnchor="/help.html#virtual_nfs_17" 
+  				machineType="NasCluster:NasheadCluster" 
+  				changeNode="disable" 
+  				licenseKey="swnfs" 
+  				selectExpgrp="disable" 
+                userType="nsadmin:nsview"
+                refHref="nasswitch/clientIPList.do?operation=display"/> 
+  			<Item msgKey="apply.nasswitch.serverip" 
+  				detailMsgKey="apply.nasswitch.serverip.detailMsg" 
+  				href="nasswitch/serverIPList.do?operation=display" 
+  				helpAnchor="/help.html#virtual_nfs_14" 
+  				machineType="NasCluster:NasheadCluster:Single:NasheadSingle:OneNodeSirius" 
+  				changeNode="disable" 
+  				licenseKey="swnfs" 
+  				selectExpgrp="disable" 
+                userType="nsadmin:nsview"
+                refHref="nasswitch/serverIPList.do?operation=display"/> 
+        </SubCategory>
+-->
+        <SubCategory msgKey="apply.recover" detailMsgKey="apply.recover.detailMsg">
+        	<Item msgKey="apply.recover.ld"
+                detailMsgKey="apply.recover.ld.detailMsg"
+                href="menu/fcsan/componentconf/ldmenu.jsp"
+                helpAnchor="/help.html#recov_losical"
+                machineType="NasCluster:Single:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+            </Item>
+            <Item msgKey="apply.volumn.storage"
+                detailMsgKey="apply.volumn.storage.detailMsg"
+                href="menu/nas/nashead/ldlist.jsp"
+                helpAnchor="/help.html#recov_storage"
+                machineType="NasCluster:Single:OneNodeSirius"
+                targetType="adminTarget"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/nashead/ldlist4nsview.jsp">
+            </Item>            
+            <Item msgKey="apply.recover.lvm"
+                detailMsgKey="apply.recover.lvm.detailMsg"
+                href="menu/nas/lvm/LVMList.jsp"
+                helpAnchor="/help.html#volume_lvm"
+                targetType="adminTarget"
+                machineType="NasCluster:OneNodeSirius:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/lvm/LVMList4nsview.jsp">
+                <Hidden name="cluster" value="true"/>
+                <Hidden name="h1" value="apply.recover.lvm"/>
+                <Hidden name="msgKey" value="apply.apply.recover.lvm.forward.to.lvm.list"/>
+            </Item>
+            <Item msgKey="apply.recover.lvm"
+                detailMsgKey="apply.recover.lvm.detailMsg"
+                href="menu/nas/lvm/LVMList.jsp"
+                helpAnchor="/help.html#volume_lvm"
+                targetType="adminTarget"
+                machineType="Single:NasheadSingle"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/lvm/LVMList4nsview.jsp">
+                <Hidden name="cluster" value="false"/>
+                <Hidden name="h1" value="apply.recover.lvm"/>
+                <Hidden name="msgKey" value="apply.apply.recover.lvm.forward.to.lvm.list"/>
+            </Item>
+            
+            <Item msgKey="apply.recover.fileSystem"
+                detailMsgKey="apply.recover.fileSystem.detailMsg"
+                href="filesystem/filesystemListAndDel.do?operation=display"
+                helpAnchor="/help.html#volume_filesystem"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                targetType="adminTarget"
+                selectExpgrp="enable"
+                userType="nsadmin"
+                refHref="">
+                <Hidden name="h1" value="apply.recover.fileSystem"/>
+                <Hidden name="msgKey" value="apply.apply.recover.fileSystem.forward.to.fileSystem.list"/>
+            </Item>
+            <Item msgKey="apply.recover.fileSystem"
+                detailMsgKey="apply.recover.fileSystem.detailMsg"
+                href="filesystem/filesystemListAndDel.do?operation=display"
+                helpAnchor="/help.html#volume_filesystem"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="enable"
+                userType="nsadmin"
+                refHref="">
+                <Hidden name="h1" value="apply.recover.fileSystem"/>
+                <Hidden name="msgKey" value="apply.apply.recover.fileSystem.forward.to.fileSystem.list"/>          
+            </Item>
+        </SubCategory>        
+	</Category>
+</NSMenus>

@@ -1,0 +1,187 @@
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_APIConf.xml,v 1.7 2007/05/21 07:16:40 fengmh Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:APIConf">
+  <isd:provider type="java"
+               scope="Session"
+               methods="getLocalDomain checkNisDomain getAllExportRootInfo getExportGroups getCodepage getMountpointLV hasUnixStyleNative isUsedNISDomain getNativeList checkNativeDomain getNativeDomain getAuthDomain getAuthDomainByKind getAuthList makeAllDirectory getNisDomainServer getDirList">
+  <isd:java class="com.nec.sydney.service.admin.APISOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsVector " qname="x:SoapRpsVector "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsVector"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsHashtable " qname="x:SoapRpsHashtable "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsHashtable"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsBoolean " qname="x:SoapRpsBoolean "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsBoolean"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsString " qname="x:SoapRpsString "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsString"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthDomain " qname="x:AuthDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthNISDomain " qname="x:AuthNISDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthNISDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthNISDomain4Win " qname="x:AuthNISDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthNISDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthPWDDomain " qname="x:AuthPWDDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthPWDDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthPWDDomain4Win " qname="x:AuthPWDDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthPWDDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthLDAPUDomain " qname="x:AuthLDAPUDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthLDAPUDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthLDAPUDomain4Win " qname="x:AuthLDAPUDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthLDAPUDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthSHRDomain " qname="x:AuthSHRDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthSHRDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthDMCDomain " qname="x:AuthDMCDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthDMCDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthADSDomain " qname="x:AuthADSDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.AuthADSDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+       
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeDomain " qname="x:NativeDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeNISDomain " qname="x:NativeNISDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeNISDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeNISDomain4Win " qname="x:NativeNISDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeNISDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativePWDDomain " qname="x:NativePWDDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativePWDDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativePWDDomain4Win " qname="x:NativePWDDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.NativePWDDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeLDAPUDomain " qname="x:NativeLDAPUDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeLDAPUDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeLDAPUDomain4Win " qname="x:NativeLDAPUDomain4Win "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeLDAPUDomain4Win"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeSHRDomain " qname="x:NativehSHRDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeSHRDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeDMCDomain " qname="x:NativeDMCDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeDMCDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeADSDomain " qname="x:NativeADSDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.NativeADSDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+          
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-LocalDomain " qname="x:LocalDomain "
+             javaType="com.nec.sydney.atom.admin.base.api.LocalDomain"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-ExportRoot " qname="x:ExportRoot "
+             javaType="com.nec.sydney.atom.admin.base.api.ExportRoot"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+          
+ </isd:mappings>
+</isd:service>

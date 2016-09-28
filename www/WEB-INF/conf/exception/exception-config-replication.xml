@@ -1,0 +1,367 @@
+<!--
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-replication.xml,v 1.8 2008/07/29 03:42:13 chenb Exp $" -->
+<ExceptionConf>
+
+
+	<ProcessRule errorCode = "0x12400010"><!--ERR_FS_EXIST-->
+        <ErrorMessage key="error.generalInfo.fsexit" type="generalInfo"/>
+	    <ErrorMessage key="error.generalDeal.fsexit" type="generalDeal"/>
+        <ErrorMessage key="error.detailInfo.fsexit" type="detailInfo"/>
+        <ErrorMessage key="error.detailDeal.fsexit" type="detailDeal"/>
+        <Dispatcher srcAction="/originalAction" forward="afterError"/>
+   </ProcessRule>  
+	
+	<ProcessRule errorCode = "0x10800010"><!--ERR_FS_DIFF_TYPE-->
+		<ErrorMessage key = "error.add.FSTypeDiff.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+		    <ErrorMessage key = "error.add.FSTypeDiff.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+			<ErrorMessage key = "error.add.FSTypeDiff.generalDeal" type = "detailDeal" bundle="volume/replication" />
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800011"><!--ERR_FS_IN_FRIEND_NODE-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.mpIsUsed.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800013"><!--ERR_FS_PARENT_UMOUNTED -->
+		<ErrorMessage key = "error.add.parentNotMounted.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.parentNotMounted.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.parentNotMounted.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800014"><!--ERR_FS_PARENT_READ_ONLY-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.parentReadonly.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800015"><!--ERR_FS_HAS_CHILD-->
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+	        <ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    	    <ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+        	<ErrorMessage key = "error.add.hasChild.detailInfo"  type = "detailInfo" bundle="volume/replication"/>
+        	<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800017"><!--ERR_FS_MP_EXIST -->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.mpIsUsed.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+ 
+ 	<ProcessRule errorCode = "0x1080001d"><!--ERR_REPLI_PARENT-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.parentIsReplic.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+
+	<ProcessRule errorCode = "0x10800020"><!--ERR_LVM_USED_LVNAME -->
+        <ErrorMessage key = "error.add.generalInfo" type = "generalInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.volumeExist.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.volumeExist.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.volumeExist.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate" forward = "replicaCreateShow"/>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800022"><!--ERR_LVM_COUNT256-->
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.has256LV.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800033"><!--ERR_LD_1024_LD-->
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.has1024LD.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+	</ProcessRule>
+    
+    <ProcessRule errorCode = "0x10800061"><!--ERR_EXECUTE_LVMAKE-->
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+        <ErrorMessage key = "error.lvmCmdFail.lvmake.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+        <Dispatcher srcAction = "/replicaCreate"   forward = "forwardToVolumeError">
+            <ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+        </Dispatcher>
+    </ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x1080006d"><!--ERR_EXECUTE_VGDISPLAY-->
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.lvmCmdFail.vgdisplay.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaCreate"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/replicaCreateShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.addshow.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>    		
+    </ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800082"><!--ERR_EXECUTE_ISADISKLIST-->
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaCreate"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/replicaCreateShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.addshow.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800080"><!--ERR_EXECUTE_ISASETLD_B-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetld.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaCreate" forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800083"><!--ERR_EXECUTE_ISASETMON-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetmon.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaCreate"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+	<ProcessRule errorCode = "0x10800016"><!--ERR_FS_UMOUNTED -->
+		<ErrorMessage key = "error.del.isUmounted.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+		<ErrorMessage key = "error.del.isUmounted.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+		<ErrorMessage key = "error.del.isUmounted.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x10800062"><!--ERR_EXECUTE_LVDELETE-->
+ 	    <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+        <ErrorMessage key = "error.lvmCmdFail.lvdelete.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+        <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+        <Dispatcher srcAction = "/replicaList"   forward = "delFail">
+            <ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+        </Dispatcher>
+    </ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800081"><!--ERR_EXECUTE_ISASETLD_R-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetld.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400041"><!--ERR_EXECUTE_SYNCCKPT_NO_ORIGINAL-->
+   			<ErrorMessage key="error.volumeSyncCmdFail.generalInfo" type="generalInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noOriginalVolume.generalDeal" type="generalDeal"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noOriginalVolume.detailInfo" type="detailInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noOriginalVolume.generalDeal" type="detailDeal"/>
+    		<Dispatcher srcAction="/replicaVolumeSyncSet" forward="setFailed"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400042"><!--ERR_EXECUTE_SYNCCKPT_NO_REPLICA-->
+   			<ErrorMessage key="error.volumeSyncCmdFail.generalInfo" type="generalInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noReplicaVolume.generalDeal" type="generalDeal"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noReplicaVolume.detailInfo" type="detailInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.noReplicaVolume.generalDeal" type="detailDeal"/>
+    		<Dispatcher srcAction="/replicaVolumeSyncSet" forward="setFailed"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400043"><!--ERR_EXECUTE_SYNCCKPT_OTHER_SYNCING-->
+   			<ErrorMessage key="error.volumeSyncCmdFail.generalInfo" type="generalInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.beingSynchronized.generalDeal" type="generalDeal"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.beingSynchronized.detailInfo" type="detailInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.beingSynchronized.detailDeal" type="detailDeal"/>
+    		<Dispatcher srcAction="/replicaVolumeSyncSet" forward="setFailed"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400044"><!--ERR_EXECUTE_SYNCCKPT_UNKNOWN-->
+   			<ErrorMessage key="error.volumeSyncCmdFail.generalInfo" type="generalInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.generalInfo" type="detailInfo"/>
+    		<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+    		<Dispatcher srcAction="/replicaVolumeSyncSet" forward="setFailed"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400017"><!--ERR_EXECUTE_ORIGINAL_SWITCH-->
+    		<ErrorMessage key="original.error.switch.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="original.error.switch.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="original.error.switch.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="original.error.switch.detailDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/originalAction?operation=modify" forward="originalList"/>
+   	</ProcessRule>
+   	<ProcessRule errorCode = "0x12400021"><!--ERR_EXECUTE_ORIGINAL_SETCRON , promote,modify or create-->
+    		<ErrorMessage key="original.error.setcron.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="original.error.setcron.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/originalAction?operation=modify" forward="originalList"/>        	
+        	<Dispatcher srcAction="/originalAction?operation=create" forward="originalList"/>
+
+        	<Dispatcher srcAction="/originalAction?operation=delete" forward="originalList">
+	    		<ErrorMessage key="original.error.deletecron.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="original.error.deletecron.detailInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/originalAction?operation=demote" forward="originalList">
+	    		<ErrorMessage key="original.error.deletecron.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="original.error.deletecron.detailInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/replicaPromote" forward="replicaList"/>
+        	<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList"/>
+   	</ProcessRule>
+   	<ProcessRule errorCode = "0x12400022"><!--ERR_EXECUTE_ORIGINAL_SYNCCRON , promote,modify or create-->
+    		<ErrorMessage key="original.error.synccron.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="original.error.synccron.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="original.error.partner.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="original.error.partner.detailDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/originalAction?operation=modify" forward="originalList"/>        	
+        	<Dispatcher srcAction="/originalAction?operation=create" forward="originalList"/>
+
+        	<Dispatcher srcAction="/originalAction?operation=delete" forward="originalList">
+	    		<ErrorMessage key="original.error.deletepartnercron.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="original.error.deletepartnercron.detailInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/originalAction?operation=demote" forward="originalList">
+	    		<ErrorMessage key="original.error.deletepartnercron.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="original.error.deletepartnercron.detailInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/replicaPromote" forward="replicaList"/>
+        	<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList"/>
+   	</ProcessRule>
+   	
+	<ProcessRule errorCode = "0x12400023"><!--ERR_EXECUTE_ORIGINAL_READCRON-->
+    		<ErrorMessage key="original.error.readcron.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="original.error.readcron.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/originalAction?operation=list" forward="showError"/>
+   	</ProcessRule>
+   	
+	<ProcessRule errorCode = "0x12400051"><!--INFO_VOLSYNC_IN_FILESET-->
+			<ErrorMessage key="original.error.sync.info" type="generalInfo"/>
+	        <ErrorMessage key="original.error.sync.info" type="detailInfo"/>
+	        <ErrorMessage key="original.error.sync.deal" type="generalDeal"/>
+	        <ErrorMessage key="original.error.sync.deal" type="detailDeal"/>
+
+        	<Dispatcher srcAction="/originalAction?operation=modify" forward="originalList"/>
+        	<Dispatcher srcAction="/originalAction?operation=demote" forward="originalList"/>
+
+        	<Dispatcher srcAction="/replicaModify" forward="replicaList"/>
+        	<Dispatcher srcAction="/replicaPromote" forward="replicaList"/>
+        	<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList"/>
+    		<Dispatcher srcAction = "/replicaCreate"   forward = "replicaCreateShow">
+				<ErrorMessage key="error.replicaCreate.generalInfo" type="generalInfo"/>
+		        <ErrorMessage key="error.replicaCreate.hasSyncVolInFileset.detailInfo" type="detailInfo"/>
+		        <ErrorMessage key="error.replicaCreate.hasSyncVolInFileset.generalDeal" type="generalDeal"/>
+		        <ErrorMessage key="error.replicaCreate.hasSyncVolInFileset.detailDeal" type="detailDeal"/>
+    		</Dispatcher>        	
+   	</ProcessRule>
+	<ProcessRule errorCode = "0x12400052"><!--ERR_ORIGINAL_NOT_EXIST-->
+        	<ErrorMessage key="error.orignalStatus.confirm" type="generalDeal"/>
+        	<ErrorMessage key="error.orignalStatus.confirm" type="detailDeal"/>
+        	<Dispatcher srcAction="/originalAction?operation=modify" forward="originalList">
+	    		<ErrorMessage key="error.originalModify.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="error.originalModify.generalInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/originalAction?operation=demote" forward="originalList">
+	    		<ErrorMessage key="error.originalDemote.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="error.originalDemote.generalInfo" type="detailInfo"/>
+        	</Dispatcher>
+        	<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList">
+	    		<ErrorMessage key="error.ctrlInNode.generalInfo" type="generalInfo"/>
+	        	<ErrorMessage key="error.ctrlInNode.generalInfo" type="detailInfo"/>
+        	</Dispatcher>        	    	
+   	</ProcessRule>  
+
+	<ProcessRule errorCode = "0x12400071"><!--ERR_EXECUTE_REPL_PROMOTE-->
+    		<ErrorMessage key="error.replicaPromote.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="error.replicaPromote.generalInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.replicaPromote.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.replicaPromote.generalDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/replicaPromote" forward="replicaList"/>
+   	</ProcessRule>   	
+   	
+	<ProcessRule errorCode = "0x12400072"><!--ERR_EXECUTE_REPL_REIMPORT-->
+    		<ErrorMessage key="error.replicaModify.generalInfo" type="generalInfo"/>
+        	<ErrorMessage key="error.replicaModify.generalInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+        	<Dispatcher srcAction="/replicaModify" forward="replicaModifyErr"/>
+   	</ProcessRule>   	
+   	
+   	<ProcessRule errorCode = "0x12400073"><!--ERR_EXECUTE_REPL_REPLACE-->
+   			<ErrorMessage key="error.replicaCtrlInNode.replaceError" type="generalInfo"/>
+   			<ErrorMessage key="error.replicaCtrlInNode.replaceError" type="detailInfo"/>
+   			<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+   			<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+   			<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList"/>
+   	</ProcessRule>
+   	<ProcessRule errorCode = "0x12400074"><!--ERR_EXECUTE_REPL_EXCHANGE-->
+   			<ErrorMessage key="error.replicaCtrlInNode.exchangeError" type="generalInfo"/>
+   			<ErrorMessage key="error.replicaCtrlInNode.exchangeError" type="detailInfo"/>
+   			<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="generalDeal"/>
+   			<ErrorMessage key="error.volumeSyncCmdFail.unknownError.generalDeal" type="detailDeal"/>
+   			<Dispatcher srcAction="/replicaCtrlInNode" forward="replicaList"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400095"><!--ERR_EXECUTE_VGPAIRCHECK-->
+    		<ErrorMessage key = "error.systemStatus.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.vgPairCheckFailed.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+    		<ErrorMessage key = "error.systemStatus.detailDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400094"><!--ERR_IS_PAIRED-->
+    		<ErrorMessage key = "error.vgPairCheckHavePair.detailInfo" type = "detailInfo" bundle="volume/replication"/>
+            <ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "generalDeal" bundle="volume/replication"/>
+            <ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "detailDeal" bundle="volume/replication"/>
+    		<Dispatcher srcAction = "/replicaList"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo" bundle="volume/replication"/>
+    		</Dispatcher>
+   	</ProcessRule>
+</ExceptionConf>

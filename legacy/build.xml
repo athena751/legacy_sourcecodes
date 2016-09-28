@@ -1,0 +1,273 @@
+<project name="Sydney" default="all" basedir=".">
+
+  <!-- set global properties for this build -->
+  <property name="dest" value="/home/nsadmin"/>
+  <property name="destmenu" value="/home/nsadmin/www/menu"/>
+  <property name="sourcemenu" value="/home/nsadmin/src/menus"/>
+  <property name="sourcestatis" value="/home/nsadmin/src/statis"/>
+  <property name="src" value="${sourcemenu}/classes/com/nec/sydney"/>
+  <property name="build" value="${dest}/www/WEB-INF/classes"/>
+  <property name="cgi" value="${dest}/www/WEB-INF/cgi"/>
+  <property name="build.sysclasspath" value="first"/>
+
+
+<target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the build directory structure used by compile -->
+    <mkdir dir="${build}"/>
+    <mkdir dir="${dest}"/>
+    <mkdir dir="${destmenu}"/>
+    <mkdir dir="${destmenu}/common"/>
+    <mkdir dir="${destmenu}/nas"/>
+    <mkdir dir="${destmenu}/ipsan"/>
+    <mkdir dir="${destmenu}/fcsan"/>
+    <mkdir dir="${destmenu}/statistics"/>
+    <mkdir dir="${cgi}"/>
+    
+  </target>
+  
+      
+      <target name="new-compile" depends="init">
+        <echo message="iStorage Web Manager Building..."/>
+        <antcall target="compile-services-lib"/>
+        <antcall target="compile-services-war"/>
+        <echo message="iStorage Web Manager building...done"/>
+    </target>
+
+    <target name="compile-services-lib">
+        <javac debug="on" destdir="${build}" deprecation="on">
+<!--            <classpath refid="project.tomcat4lib"/> -->
+            <src path="menus/classes"/>
+            <include name="**/atom/admin/**/*.java"/>
+            <include name="**/service/admin/**/*.java"/>
+        </javac>
+    </target>
+
+    <target name="compile-services-war" depends="compile-services-lib">
+        <javac debug="on"    destdir="${build}" deprecation="on">
+            <src path="menus/classes"/>
+        </javac>
+    </target>
+
+   
+  <target name="compile_base" depends="init">
+      <echo message="Building base java ....."/>
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on">
+    <include name="**/NasConstants.java"/>
+    <include name="**/NSExceptionMsg.java"/>
+    </javac>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/nfs" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/cifs" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/filesystem" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/beans/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapd" destdir="${build}" debug="on" deprecation="on">
+        <include name="**/AuthInfoBaseBean.java"/>
+        <include name="**/MAPDSOAPClient.java"/>
+    </javac>
+  </target>
+
+  <target name="snapshot" depends="init">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/snapshot" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/snapshot" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/snap_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/snapshot" >
+    <fileset dir="${sourcemenu}/nas/snapshot" includes="**/*.jsp"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/common" >
+    <fileset dir="${sourcemenu}/nas/common" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+  
+  <target name="exportroot" depends="init">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/nfs" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/system" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/exportroot" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/exportroot_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/exportroot" >
+    <fileset dir="${sourcemenu}/nas/exportroot" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+  
+    <target name="lvm" depends="init">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}"  debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/lvm" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/system" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/lvm" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/lvm_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/lvm" >
+    <fileset dir="${sourcemenu}/nas/lvm" includes="**/*.jsp"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/common" >
+    <fileset dir="${sourcemenu}/nas/common" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+  
+    <target name="nic" depends="init">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/nic" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/system" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/nic" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/lvm_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/common/net/nic" >
+    <fileset dir="${sourcemenu}/common/net/nic" includes="**/*.jsp"/> 
+    </copy>
+    <copy todir="${destmenu}/common" >
+    <fileset dir="${sourcemenu}/common" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+
+  <target name="quota" depends="init">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/quota" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/system" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/base" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/quota" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/snapshot" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/quota_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/quota" >
+    <fileset dir="${sourcemenu}/nas/quota" includes="**/*.jsp"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/common" >
+    <fileset dir="${sourcemenu}/nas/common" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+
+   <target name="mapd" depends="init,compile_base">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/mapd" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapd" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+    <fileset dir="${sourcemenu}/bin" includes="**/mapd_*.pl"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/mapd" >
+    <fileset dir="${sourcemenu}/nas/mapd" includes="**/*.jsp"/> 
+    </copy>
+    <copy todir="${destmenu}/nas/common" >
+    <fileset dir="${sourcemenu}/nas/common" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+
+  
+  <target name="nfs" depends="init,compile_base">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney/beans/base" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapd" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/beans/nfs" destdir="${build}" debug="on" deprecation="on"/>
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/nfs" destdir="${build}" debug="on" deprecation="on" />
+    <javac srcdir="menus/classes/com/nec/sydney/atom/admin/mapd" destdir="${build}" debug="on" deprecation="on" />
+    <copy todir="${destmenu}/nas/nfs" >
+    <fileset dir="${sourcemenu}/nas/nfs" includes="**/*.jsp"/> 
+    </copy>
+  </target>
+  <target name="compile" depends="init,compile_base">
+    <!-- Compile the java code from menus/classes/com/nec/sydney into ${build} -->
+    <javac srcdir="menus/classes/com/nec/sydney" destdir="${build}"/>
+    
+  </target>
+
+  <target name="cifs" depends="init,compile_base">
+      <javac srcdir="menus/classes/com/nec/sydney/atom/admin/mapd" destdir="${build}"  debug="on" deprecation="on"/>
+      <javac srcdir="menus/classes/com/nec/sydney/atom/admin/cifs" destdir="${build}"  debug="on" deprecation="on"/>
+      <javac srcdir="menus/classes/com/nec/sydney/beans/mapd" destdir="${build}"  debug="on" deprecation="on"/>
+      <javac srcdir="menus/classes/com/nec/sydney/beans/mapdcommon" destdir="${build}"  debug="on" deprecation="on"/>
+      <javac srcdir="menus/classes/com/nec/sydney/beans/cifs" destdir="${build}"  debug="on" deprecation="on"/>
+      <javac srcdir="menus/classes/com/nec/sydney/service/admin" destdir="${build}" debug="on" deprecation="on"/>
+    <copy todir="${dest}/bin" >
+        <fileset dir="${sourcemenu}/bin" includes="**/cifs_*.pl"/>
+    </copy>
+    <copy todir="${destmenu}/nas/cifs" >
+        <fileset dir="${sourcemenu}/nas/cifs" includes="**/*.jsp"/>
+    </copy>
+    <copy todir="${destmenu}/nas/common" >
+        <fileset dir="${sourcemenu}/nas/common" includes="**/*.jsp"/>
+    </copy>
+  </target>
+
+  <target name="copyscripts" depends="compile">
+    <copy todir="${dest}/bin" >
+      <fileset dir="${sourcemenu}/bin" includes="**/*.pl"/>
+    </copy>
+    <copy todir="${dest}/bin/lib" >
+      <fileset dir="${sourcemenu}/bin/lib" includes="**/*.*"/>
+    </copy>
+    <copy todir="${dest}/bin" >
+      <fileset dir="${sourcestatis}/collector" includes="**/*.pl"/>
+    </copy>
+    <copy todir="${dest}/bin" >
+      <fileset dir="${sourcestatis}/grapher" includes="**/*.pl"/>
+    </copy>
+    <copy todir="${cgi}" >
+      <fileset dir="${sourcestatis}/cgi" includes="**/*.pl"/>
+    </copy>
+   <chmod perm="775">
+     <fileset dir="${dest}/bin">
+        <include name="**/*.pl"/>
+     </fileset>
+   </chmod>
+
+  </target>
+
+  <target name="copyjsp" depends="copyscripts">
+    <copy todir="${destmenu}" >
+      <fileset dir="${sourcemenu}" includes="**/*.jsp,**/*.gif/*.js"/>
+    </copy>
+  </target>
+  
+  <target name="all" depends="copyjsp">
+    <copy file="${sourcemenu}/services/urn_TimeNTPConf.xml" tofile="${dest}/services/urn:TimeNTPConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_DNSClientConf.xml" tofile="${dest}/services/urn:DNSClientConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_LVMConf.xml" tofile="${dest}/services/urn:LVMConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_NICConf.xml" tofile="${dest}/services/urn:NICConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_SecurityFilterConf.xml" tofile="${dest}/services/urn:SecurityFilterConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_MapdCommonConf.xml" tofile="${dest}/services/urn:MapdCommonConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_SnapshotConf.xml" tofile="${dest}/services/urn:SnapshotConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_ExportRootConf.xml" tofile="${dest}/services/urn:ExportRootConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_QuotaConf.xml" tofile="${dest}/services/urn:QuotaConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_FileSystemConf.xml" tofile="${dest}/services/urn:FileSystemConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_NfsExportsConf.xml" tofile="${dest}/services/urn:NfsExportsConf.xml"/>
+    <copy file="${sourcemenu}/services/urn_CIFSConf.xml" tofile="${dest}/services/urn:CIFSConf.xml"/>
+
+       <copy todir="${dest}/services" >
+         <fileset dir="${sourcemenu}/services" includes="**/*.sh"/>
+       </copy>
+      <chmod perm="775">
+        <fileset dir="${dest}/services">
+           <include name="**/*.sh"/>
+        </fileset>
+      </chmod>
+  </target>
+</project>

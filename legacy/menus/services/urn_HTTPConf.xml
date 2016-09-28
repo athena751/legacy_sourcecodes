@@ -1,0 +1,61 @@
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_HTTPConf.xml,v 1.2300 2003/11/24 00:55:15 nsadmin Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:HTTPConf">
+  <isd:provider type="java"
+               scope="Session"
+               methods="setDirectoryInfo getHTTPInfo getBasicInfo getServerInfo getDirectoryInfo setBasicInfo setServerInfo doConfig getDir">
+    <isd:java class="com.nec.sydney.service.admin.HTTPSOAPServer" static="false"/>
+  </isd:provider>
+
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+
+  <isd:mappings>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsVector " qname="x:SoapRpsVector "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsVector"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-HTTPInfo " qname="x:HTTPInfo "
+             javaType="com.nec.sydney.atom.admin.http.HTTPInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-HTTPBasicInfo " qname="x:HTTPBasicInfo "
+             javaType="com.nec.sydney.atom.admin.http.HTTPBasicInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-HTTPServerInfo " qname="x:HTTPServerInfo "
+             javaType="com.nec.sydney.atom.admin.http.HTTPServerInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-HTTPDirectoryInfo " qname="x:HTTPDirectoryInfo "
+             javaType="com.nec.sydney.atom.admin.http.HTTPDirectoryInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+ </isd:mappings>
+</isd:service>

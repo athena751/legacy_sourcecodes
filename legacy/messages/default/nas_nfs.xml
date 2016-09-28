@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_nfs.xml,v 1.2304 2005/07/12 01:02:17 wangzf Exp $" -->
+
+<messages>
+
+<msg key="common" value="">
+    <msg key="h1" value="NFS" />
+    <msg key="select_nodata" value="----------"/>
+    <msg key="th_action" value="Action" ja="操作"/>
+</msg>
+
+<msg key="alert" value="">
+   <msg key="same_nis_domain" value="The specified NIS domain has already been
+added." ja="既に同じ名前のNISドメインが設定されています。" /> 
+    <msg key="nis_no_server" value="Please input NIS server." ja="NISサーバを入力してください。" />
+   <msg key="nis_del" value="Delete NIS Domian" ja="NISドメインの削除"/>
+   <msg key="nis_noexist" value="The NIS Domain can not be deleted, because it has not be registered." ja="未登録のNISドメインです、NISドメインは削除できません。"/>
+   <msg key="nis_by_mapd" value="The same NIS Domain is used by User Mapping.\r\nPlease release the User Mapping,then delete the NIS Domain." ja="ユーザマッピングにて同一のNISドメインを使用しています。\r\nユーザマッピングを解放した後NISドメインの削除を実行して下さい。"/>
+   <msg key="delete_nis_usebynfs" value="The specified NIS Domain is being used now.\r\nThe NFS Export that is using the specified NIS Domain will be impossible to access,\r\nIs it OK? " ja="該当のNISドメインは使用中です。\r\nNISドメイン使用中のNFSエクスポートは接続できなくなりますが、\r\nよろしいですか？"/>
+   <msg key="invalid_nisdomain" value="Please select a NIS domain."
+        ja="NISドメインを選択して下さい。"/> 
+    <msg key="invalid_name" value="Invalid directory[%1]. \r\nOnly alphanumeric characters and \&quot;/_-.~\&quot; are allowed.\r\nThe first character can not be \&quot;.-~\&quot;." 
+        ja="不正なディレクトリ[%1]です。半角英数字と\&quot;/_-.~\&quot;が指定できます。最初の文字は\&quot;.-~\&quot;であってはいけません。"/>
+    <msg key="invalid_id" value="Invalid user or group ID." ja="不正なユーザまたはグループIDです。"/>
+    <msg key="invalid_exportto" value="Invalid notation for \&quot;Clients to Export\&quot;.\r\nPlease specify a valid host name, IP address or network.\r\nAlphanumeric characters and .*/_-@ are available.\r\n./- are not allowed for the first character.\r\n@ can be used only for the first character. Please specify the patition except @ with the same rule as a host name."
+        ja="エクスポート対象クライアントの記述が正しくありません。\r\n有効なホスト名、IPアドレス、またはネットワークを指定してください。\r\n半角英数字と.*/_-@のみが使用できます。\r\n最初の文字は、./- 以外を指定してください。\r\n@は最初の文字にのみ使用可能です。\r\n@以外の部分は、ホスト名と同じルールで指定してください。"/>
+    <msg key="invalid_network" value="Invalid network address. For example 192.168.1., 192.168.1, 192., etc." 
+        ja="不正なネットワークアドレスです。\r\n例) 192.168.1.、192.168.1、192.など。"/>
+    <msg key="invalid_server" value="Invalid server name. Only alphanumeric characters and .- are allowed. \r\nThe first character can not be .-, the maximum length is 32."
+        ja="不正なサーバ名です。\r\n半角英数字と.-のみが使用できます。\r\n最初の文字は.-であってはいけません。最大文字数は32文字です。"/>
+    <msg key="invalid_domain" value="Invalid domain name.\r\nOnly alphanumeric characters and .- are allowed.\r\nThe first character can not be .-, the maximum length is 32."
+         ja="不正なドメインです。\r\n半角英数字と.-のみが使用できます。\r\n最初の文字は.-であってはいけません。最大文字数は32文字です。"/>
+    <msg key="no_dir" value="Please select a directory." ja="ディレクトリを選択してください。"/>
+    <msg key="no_path" value="Please specify an exporting directory." 
+        ja="エクスポートディレクトリを選択してください。"/>
+    <!-- for setMsg in java -->
+    <msg key="set_native_warn" value="At first, please add a UNIX client domain." 
+        ja="まずUNIX系クライアントドメインを作成してください。"/>
+    <msg key="set_auth_err" value="Please specify a data domain." 
+        ja="データドメインを指定してください。"/>
+    <msg key="set_auth_warn" value="Please specify the data domain first." 
+        ja="まずデータドメインを指定してください。"/>
+    <msg key="no_path_warn" value="Warning: The exporting directory does not exist." 
+        ja="警告：エクスポートディレクトリが存在しません。"/>
+    <msg key="no_cifs_dir" value="Please mount an sxfsfw filesystem or an sxfs filesystem with data domain on this export group. " 
+        ja="この公開グループ上に、sxfsfwファイルシステム、またはデータドメイン設定済みのsxfsファイルシステムを作成してください。"/>
+    <msg key="mounted_dir" value=" The mount point already exists." 
+        ja="マウントポイントはすでに存在しています。"/>
+    <msg key="version_notfound" value="The version information is not found." ja="バージョン情報が見つかりません。"/>
+    <msg key="version_notmatch" value="The configuration file has been changed by another user, please try again." 
+        ja="設定ファイルが別のユーザによって変更されました。再度実行してください。"/>
+    <msg key="export_duplicated" value="The export already exists." 
+        ja="エクスポートはすでに存在しています。"/>
+    <msg key="order_notChange" value="The priority is same as before." 
+        ja="優先順位が変更されていません。"/>
+    <msg key="need_file" value="Please select a file." ja="ファイルを選択してください。"/>
+    <msg key="file_not_allowed" value="/etc/passwd and /etc/group are not allowed." 
+        ja="/etc/passwdと/etc/groupファイルを設定できません。"/>
+    <msg key="no_exportgroup" value="No export groups are found." ja="公開グループが存在しません。"/>
+    <msg key="need_auth" value="Please set data domain first." 
+        ja="まずデータドメインを定義してください。"/>
+    <msg key="over_max" value="Maximum length of the full path name is 2047." 
+        ja="絶対パスの最大文字数は2047文字です。"/>
+    <msg key="over_level_max" value="Maximum length of directory name is 255." 
+        ja="ディレクトリの最大文字数は255文字です。"/>
+    <msg key="nfs_path_toolong" value="The directory name is too long.\r\nThe maximum length of directory name is 1023." 
+        ja="ディレクトリが指定可能文字数を越えています。\r\n最大1023文字まで指定可能です。"/>
+</msg>
+
+<msg key="nfsmain" value="">
+    <msg key="h3_selectExportGroup" value="Select Export Group" ja="公開グループ選択"/>
+    <msg key="th_exportroot" value="Export Group" ja="公開グループ"/>
+    <msg key="h3_exports" value="Exports List" ja="エクスポートリスト"/>
+    <msg key="h3_order" value="Change Priority" ja="優先順位変更"/>
+    <msg key="h3_submount" value="Submount Point List" ja="サブマウントポイントリスト"/>
+    <msg key="p_nodata" value="Please select an export group." ja="公開グループを選択してください。"/>
+    <msg key="p_noexports" value="No exports in this export group." 
+        ja="選択された公開グループ配下に、エクスポートは存在しません。"/>
+    <msg key="th_dir" value="Directory" ja="ディレクトリ"/>
+    <msg key="th_from" value="From"/>
+    <msg key="th_to" value="To"/>
+    <msg key="th_order" value="Priority" ja="優先順位"/>
+    <msg key="th_submount" value="Submount Point" ja="サブマウントポイント"/>
+    <msg key="selectopt_top" value="Top" ja="先頭"/>
+    <msg key="selectopt_bottom" value="Bottom" ja="最後"/>
+    <msg key="selectopt_under"   value="Under Priority[%1]"
+                ja="優先順位: %1 の下"/>
+    <msg key="selectopt_order" value="Priority" ja="優先順位"/>
+    <msg key="th_exportto" value="Clients to Export" ja="エクスポート対象クライアント"/>
+    <msg key="button_edit" value="Edit" ja="編集"/>
+</msg>
+
+<msg key="navi" value="">
+    <msg key="p_nodata" value="No directories are found." ja="ディレクトリが存在しません。"/>
+    <msg key="p_nodir" value="Failed to list [%1]: No such directory."
+        ja="ディレクトリ[%1]が存在しないため、ディレクトリ情報を取得できません。"/>
+ 
+    <msg key="th_status" value="Status" ja="状態"/>
+    <msg key="th_name" value="Name" ja="名前"/>
+    <msg key="th_size" value="Size" ja="サイズ"/>
+    <msg key="th_date" value="Date" ja="日付"/>
+    <msg key="th_time" value="Time" ja="時刻"/>
+    <msg key="title_h2_directory" value="Select a directory" ja="ディレクトリ選択"/>
+    <msg key="title_h1_file" value="Select a file" ja="ファイル選択"/>
+</msg>
+
+<msg key="nfsdetail" value="">
+    <msg key="nis_add" value="Add NIS Domain" ja="NISドメインの追加"/>
+　　<msg key="nis_change" value="Change NIS Domain" ja="NISドメインの変更"/>
+　　<msg key="nis_del" value="Delete NIS Domain" ja="NISドメインの削除"/>
+    <msg key="h2_nisdomain" value="NIS Domain Setting" ja="NISドメイン設定"/>
+    <msg key="th_nisdomain" value="NIS Domain" ja="NISドメイン"/>
+    <msg key="nisdomain_set" value="When you specify Netgroup to be a client to export, &lt;BR&gt;please choose the NIS domain to which Netgroup belongs." ja="エクスポート対象クライアントにNetgroupを指定する場合は、&lt;BR&gt;Netgroupの所属するNISドメインを選択して下さい。"/>
+    <msg key="h2_create" value="Create a new export" ja="エクスポート作成"/>
+    <msg key="h2_detail" value="Export Details" ja="エクスポート詳細"/>
+    <msg key="th_directory" value="Directory" ja="ディレクトリ"/>
+    <msg key="th_exportto" value="Clients to Export" ja="エクスポート対象クライアント"/>
+    <msg key="th_uid" value="uid"/>
+    <msg key="th_gid" value="gid"/>
+    <msg key="th_map" value="User Mapping" ja="ユーザマッピング"/>
+    <msg key="radio_notuse" value="Not Used" ja="無効"/>
+    <msg key="radio_use" value="Use" ja="有効"/>
+    <msg key="th_accessmode" value="Write Protect" ja="書き込み保護"/>
+    <msg key="radio_ro" value="Read Only"/>
+    <msg key="radio_rw" value="Read/Write"/>
+    <msg key="th_treechk" value="Subtree Checking" ja="サブツリーチェック"/>
+    <msg key="radio_no" value="No"/>
+    <msg key="radio_yes" value="Yes"/>
+    <msg key="th_trust" value="Squashed Users" ja="AnonymousIDに変換するユーザ"/>
+    <msg key="radio_rootonly" value="root Only" ja="rootのみ"/>
+    <msg key="radio_none" value="None" ja="なし"/>
+    <msg key="radio_all" value="All" ja="すべて"/>
+    <msg key="radio_enable" value="Enable" ja="有効"/>
+    <msg key="radio_disable" value="Disable" ja="無効"/>
+    <msg key="radio_required" value="Required" ja="必要"/>
+    <msg key="radio_notrequired" value="Not Required" ja="不要"/>
+    <msg key="th_securelocks" value="Authentication for File Locking Requests" ja="ファイルロックの認証"/>
+    <msg key="th_secure" value="Privileged Port Checking" ja="特権ポートのチェック"/>
+    
+    <msg key="th_profile" value="Collect Performance Information" ja="性能情報の採取"/>
+	<msg key="th_accesslog" value="Collect Access Log" ja="アクセスログの採取"/>
+
+    <msg key="th_anonymous" value="Anonymous ID"/>
+    <msg key="th_hide" value="Local Mount Point" ja="ローカルマウントポイント"/>
+    <msg key="radio_hide" value="Hide"/>
+    <msg key="radio_nohide" value="No Hide"/>
+    <msg key="th_anon" value="Anonymous Access" ja="Anonymous Access"/>
+</msg>
+<msg key="nis" value="">
+  <msg key="h2_add" value="Add NIS Domain" ja="NISドメイン追加" /> 
+  <msg key="h2_change" value="Modify NIS Domain" ja="NISドメイン変更" /> 
+  <msg key="th_domain" value="NIS Domain" ja="NISドメイン" /> 
+  <msg key="th_server" value="NIS Server" ja="NISサーバ" /> 
+</msg>
+</messages>

@@ -1,0 +1,78 @@
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-cifs.xml,v 1.6 2008/03/06 14:36:34 qim Exp $" -->   
+<ExceptionConf>
+    <ProcessRule errorCode="0x10200006">
+        <ErrorMessage key="cifs.error.shareNameExist.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.shareNameExist.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.shareNameExist.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.shareNameExist.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setShare" forward="displayPage"/>
+        <Dispatcher srcAction="/setSpecialShare" forward="displayPage"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10200007">
+        <ErrorMessage key="cifs.error.notMpPath.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.notMpPath.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.notMpPath.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.notMpPath.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setShare" forward="displayPage"/>
+        <Dispatcher srcAction="/setSpecialShare" forward="displayPage"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10200008">
+        <ErrorMessage key="cifs.error.noUnixDomain.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.noUnixDomain.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.noUnixDomain.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.noUnixDomain.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setShare" forward="displayPage"/>
+        <Dispatcher srcAction="/setSpecialShare" forward="displayPage"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1020000A">
+        <ErrorMessage key="cifs.error.fileIsDir.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.fileIsDir.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.fileIsDir.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.fileIsDir.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setGlobal" forward="display"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1020000B">
+        <ErrorMessage key="cifs.error.dirIsFile.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.dirIsFile.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.dirIsFile.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.dirIsFile.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setGlobal" forward="display"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1020000C">
+        <ErrorMessage key="cifs.error.logFileInWrongArea.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.logFileInWrongArea.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.logFileInWrongArea.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.logFileInWrongArea.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setGlobal" forward="display"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1020000D">
+        <ErrorMessage key="cifs.error.logFileNotInSxfs.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.logFileNotInSxfs.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.logFileNotInSxfs.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.logFileNotInSxfs.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setGlobal" forward="display"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10200016">
+        <ErrorMessage key="cifs.error.dirAccessExist.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.dirAccessExist.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.dirAccessExist.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.dirAccessExist.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/dirAccessControl" forward="displaySettingPage"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10200026">
+        <ErrorMessage key="cifs.error.backupShareCanNotUsesxfs.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="cifs.error.backupShareCanNotUsesxfs.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="cifs.error.backupShareCanNotUsesxfs.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="cifs.error.backupShareCanNotUsesxfs.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/setSpecialShare" forward="displayPage"/>
+    </ProcessRule>
+</ExceptionConf>

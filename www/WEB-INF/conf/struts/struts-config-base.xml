@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: struts-config-base.xml,v 1.13 2007/05/09 05:01:30 liul Exp $" -->
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="displayErrorForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="errorID" type="java.lang.String"/>
+            <form-property name="generalInfo" type="java.lang.String"/>
+            <form-property name="detailInfo" type="java.lang.String"/>
+            <form-property name="detailDeal" type="java.lang.String"/>
+            <form-property name="h1_key" type="java.lang.String"/>
+            <form-property name="logInfo" type="java.lang.String"/>
+            <form-property name="nsException" type="com.nec.nsgui.model.biz.base.NSException"/>
+        </form-bean>
+    </form-beans>
+
+    <global-exceptions>
+        <exception handler="com.nec.nsgui.exception.NSExceptionHandler"
+            type="java.lang.Exception" key="" scope="session"/>
+    </global-exceptions>
+
+    <global-forwards>
+        <forward name="errorPage" 
+                 path="/common/maintenancepage.jsp" 
+                 module=""/>
+        <forward name="communicateError" 
+                 path="/common/communicateerrorpage.jsp" 
+                 module=""/>
+        <forward name="noLicense"
+         		 path="/framework/noLicense.do"
+         		 module=""/>
+     </global-forwards>
+    
+    <action-mappings>
+        <action path="/displayError"
+                type="com.nec.nsgui.action.framework.DisplayErrorAction"
+                name="displayErrorForm"
+                scope="request"
+        >
+        <forward name="displayError" module="" path="/common/errorpagedetail.jsp" />
+        </action>
+    </action-mappings>
+
+    <controller inputForward="true"/>
+
+</struts-config>

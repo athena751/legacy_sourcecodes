@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_dataset.xml,v 1.2323 2008/02/29 04:40:43 lil Exp $" -->
+
+<messages>
+    <msg key="alert" value="">
+        <msg key="dirquota_path_toolong" value="The directory name is too long.\r\nThe maximum length of directory name is 2047." 
+        ja="指定されたディレクトリ名は指定可能文字数を越えています。\r\n最大2047文字まで指定可能です。"/>
+    	<msg key="invalid_name" value="Invalid directory. \r\nOnly alphanumeric characters and \&quot;/_-.~\&quot; are allowed.\r\nThe first character can not be \&quot;.-~\&quot;." 
+        ja="不正なディレクトリ名です。半角英数字と\&quot;/_-.~\&quot;が指定できます。最初の文字は\&quot;.-~\&quot;であってはいけません。"/>
+		<msg key="invalid_name_rpq1" value="Invalid directory. \r\n:,\;*?\\\&quot;&lt;&gt;| and space are not allowed." 
+    	ja="不正なディレクトリ名です。\r\n:,\;*?\\\&quot;&lt;&gt;|と空白は使用できません。"/>
+ 	    <msg key="dirquota_nopdc" value="The user database on this filesystem has not been specified yet or specified as share domain, therefor the function of Directory Quota can not work.&lt;br&gt;To effect the function of Directory Quota on this filesystem, the user database except for share domain must be specified by using [User Database] menu item." ja="ユーザデータベースが未設定、もしくは共有ドメインとして設定されている場合、ディレクトリクォータ運用を行うことはできません。&lt;br&gt;ディレクトリクォータ運用を行う場合は、メニュー[ユーザデータベース]から共有ドメイン以外のユーザデータベースを設定してください。"/>
+ 	    <msg key="alert_dirquota_nopdc" value="If you want to use the Directory User Quota and Directory Group Quota, \r\nplease specify the user database except for share domain by using [User Database] menu item." ja="ディレクトリユーザクォータおよびディレクトリグループクォータの運用を行う場合、\r\nメニュー[ユーザデータベース]から共有ドメイン以外のユーザデータベースを設定してください。"/>
+		<msg key="msg_nomp" value="No volumes are found." ja="ボリュームが存在しません。"/>
+	    <msg key="delete" value="Dataset Delete" ja="データセット解放"/>	    
+	    <msg key="add_dir" value="Please select a directory." ja="ディレクトリを選択してください。"/>
+	    <msg key="dataset_full" value="There are 4095 datasets in this filesystem, it can not add any more." ja="データセット数は既に4095に達しているため、該当のマウントポイント内では&lt;br&gt;新たにデータセットを作成する事ができません。"/>
+	    <msg key="not_enter" value="This directory does not contain any sub-diretories which can be set as a dataset." ja="選択したディレクトリの配下にデータセット作成可能のディレクトリは存在しません。\r\n配下に移行できません。"/>
+	    <msg key="not_set" value="This directory can not be set as a dataset." ja="選択したディレクトリにデータセットを設定できません。"/>
+	    <msg key="registered" value="The parent directory is already registered as dataset.\r\nPlease add the dataset after deleteing the registered directory." ja="データセットの作成は出来ません。\r\n上位ディレクトリにデータセットが存在します。\r\n上位ディレクトリのデータセットを削除するか、\r\n別のディレクトリにデータセットを設定して下さい。"/>
+	    <msg key="no_dataset" value="Can not delete the dataset, it is not a dataset directory." ja="データセットの解放はできません。\r\nディレクトリにデータセットは未設定、\r\nまたは他の方により解放されたました。"/>
+	    <msg key="no_dir" value="Can not delete the dataset, no such file or directory." ja="データセットの解放はできません。\r\nディレクトリは存在しません。"/>
+	    <msg key="dir_not_empty" value="Can not delete the dataset, there are some files or directories in this directory." ja="データセット設定ディレクトリに、ファイルまたはディレクトリが存在するため、\r\nデータセットを解放できません。\r\nデータセットを解放する場合は、ファイルやディレクトリを削除して下さい。"/>
+	    <msg key="no_such_fs" value="The selected filesystem is unmounted.\r\nPlease mount the filesystem by using [mount] in filesystem page." ja="選択されたファイルシステムがアンマウントされています。\r\nメニュー[ファイルシステム]にて[マウント]を実行して下さい。"/>
+	    <msg key="no_such_export" value="The export group has been deleted.\r\nPlease create the export group again or add dataset on a normal export group." ja="公開グループが削除されています。\r\n公開グループを再作成するか、正常な公開グループにデータセットを構築してください"/>
+	    <msg key="dataset_navi_notice" value="When the data set is added, the directory specified on this screen is automatically created if it does not exist.\r\nEveryone full control is set to NTFS compatible ACL of the created directory when the filesystem type is sxfsfw." ja="本画面で指定したディレクトリが存在しない場合は、データセット追加時に自動的に作成されます。\r\nファイルシステムがsxfsfwのときは、作成したディレクトリのNTFS互換ACLにEveryoneフルコントロールを設定します。"/>
+	</msg>
+    <msg key="datasettop" value="">
+        <msg key="dirquota" value="Directory Quotas" ja="ディレクトリクォータ"/>
+        <msg key="dataset" value="Data Set" ja="データセット"/>
+        <msg key="datasetlist" value="Dataset List" ja="データセット一覧表示"/>
+        <msg key="datasetadd" value="Dataset Add" ja="データセット追加"/>
+        <msg key="datasetdel" value="Dataset Destroy" ja="データセット解放"/>
+    </msg>
+    <msg key="datasetmiddle" value="">
+        <msg key="dataset" value="Data Set" ja="データセット"/>
+        <msg key="id" value="ID" ja="ID"/>
+        <msg key="dir" value="Directory" ja="ディレクトリ"/>
+        <msg key="no_dataset" value="No datasets are found." ja="データセットが存在しません。"/>
+        <msg key="h2_datasetlist" value="Data Set List" ja="データセット一覧"/>
+    </msg>
+    <msg key="datasetbottom" value="">
+        <msg key="dirquota" value="Directory Quota List/Set" ja="ディレクトリクォータ参照/設定"/>
+        <msg key="dirquota4Nsview" value="Directory Quota List..." ja="ディレクトリクォータ参照..."/>
+    </msg>
+   <msg key="datasetdelete" value="">
+        <msg key="delete" value="Destroy" ja="解放"/>
+   </msg>
+   <msg key="datasetadd" value="">
+        <msg key="" value="" ja=""/>
+   </msg>
+   <msg key="datasetnavi" value="">
+        <msg key="notice" value="[Notice]" ja="[注意]"/>
+    </msg>
+</messages>

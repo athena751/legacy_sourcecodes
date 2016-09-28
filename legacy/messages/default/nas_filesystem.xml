@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_filesystem.xml,v 1.2312 2005/01/20 00:44:41 wangzf Exp $" -->
+
+
+<messages>
+    <msg key="common" value="">
+        <msg key="h1" value="File System" ja="ファイルシステム"/>
+        <msg key="th_wmode" value="Access Mode" ja="アクセスモード"/>
+        <msg key="radio_rw" value="Read/Write"/>
+        <msg key="radio_ro" value="Read Only"/>
+        <msg key="th_auto" value="Mount on boot" ja="システムブート時"/>
+        <msg key="radio_yes" value="Yes" ja="マウントする"/>
+        <msg key="radio_no" value="No" ja="マウントしない"/>
+        <msg key="th_replication" value="Replication" ja="レプリケーション"/>
+        <msg key="radio_enable" value="Yes" ja=""/>
+        <msg key="radio_disable" value="No" ja=""/>
+        <msg key="button_advanced" value="Advanced Option&gt;&gt;" ja="アドバンスオプション&gt;&gt;"/>
+        <msg key="button_hide" value="&lt;&lt;Hide" ja="&lt;&lt;アドバンスオプションを隠す"/>
+        <msg key="th_quota" value="Quota" ja="クォータ"/>
+        <msg key="th_noatime" value="Update access time" ja="参照時刻更新"/>
+        <msg key="th_dmapi" value="DMAPI" ja="DMAPI"/>
+        <msg key="check_norecovery" value="NoRecovery" ja="ジャーナルリカバリ無し"/>
+    </msg>
+    <msg key="alert" value="">
+    	<!-- for make all directory in partner node-->
+        <msg key="mkAllDirFailInParter1" value="Error occurs in %1." ja="%1に問題があります。"/>
+        <msg key="mkAllDirFailInParter2" value="Please umount the filesystem then mount it again." ja="一旦マウント解除を行い再度マウントして下さい。"/>    
+        <msg key="noexport" value="Please select an export group." ja="公開グループを選択してください。"/>
+        <msg key="needexport" value="Please select an export group before creating a filesystem." ja="ファイルシステムを作成する前に、公開グループを選択してください。"/>
+        <msg key="selectlv" value="Please select a logical volume." ja="論理ボリュームを選択してください。"/>
+        <msg key="selectmp" value="Please select a mount point." ja="マウントポイントを選択してください。"/>
+        <msg key="need_mount" value="Please mount the logical volume first." ja="まず論理ボリュームをマウントしてください。"/>
+        <msg key="be_mounted" value="The mount point is already mounted." ja="マウントポイントは既にマウントされます。"/>
+
+        <!-- for java setMsg -->
+        <msg key="mountDirect" value="Please mount the direct mount point first." ja="まずダイレクトマウントポイントへマウントしてください。"/>
+        <msg key="mountParent" value="Can not create this submount because its parent isn&apos;t mounted. \r\nPlease mount its parent." ja="上位ディレクトリがマウントされていないため、サブマウントの作成が出来ませんでした。\r\n上位ディレクトリをマウントしてください。"/>
+        <msg key="fstype" value="The filesystem type of submount point isn&apos;t same to the direct mount point." ja="ファイルシステムタイプが、ダイレクトマウントポイントと異なります。"/>
+        <msg key="setauto" value="Can not mount the volume on boot, the parent isn&apos;t mounted on boot." ja="マウント先ボリュームがシステムブート時にマウントされないため、設定できません。"/>
+        <msg key="mountfailed" value="Please mount the parent volume first." ja="まずマウント先ボリュームをマウントしてください。"/>
+        <msg key="tumountfailed" value="The mount point is used by other application." ja="このマウントポイントは他のアプリケーションにて使用中です。"/>
+        <msg key="fumountfailed" value="Please destroy the submount first." ja="まずサブマウントを解放してください。"/>
+
+        <msg key="setlimintfailed" value="The volume has been mounted successfully,\r\n but setting snapshot area failed." ja="ボリュームがマウントされましたが、\r\nスナップショット領域の設定に失敗しました。"/>
+        <msg key="delmp_failed" value="Failed to delete mount point directory." ja="マウントポイントの削除に失敗しました。"/>       
+        <msg key="readonly" value="Can not make mount point directory on read-only filesystem." ja="マウント先がRead onlyのため、マウントポイントを作成できませんでした。"/>
+        <msg key="usedByRelication" value="Submount can not be created under a replication. " ja="レプリケーションの下にサブマウントは作成できません。"/>
+        <msg key="wrong_type" value="The specified file system type maybe different with the file system type of the selected logic volume.\r\nWhen the DMAPI option is effective, error will occur because snapshot has been set on the specified logical volume.\r\nPlease change the DMAPI option to \&quot;No\&quot; and submit again." 
+                              ja="指定されたファイルシステムタイプは選択された論理ボリュームのファイルシステムタイプと異なる可能性があります。\r\nDMAPIオプションが有効の場合、選択した論理ボリュームにスナップショットが存在するためエラーとなった可能性があります。\r\nDMAPIオプションを「No」として、再度実行してください。"/>
+        <msg key="dmapi" value="Failed to mount the file system.\r\nWhen the DMAPI option is effective, error will occur because snapshot has been set on the specified logical volume.\r\nPlease change the DMAPI option to \&quot;No\&quot; and submit again."
+                         ja="マウント処理が失敗しました。\r\nDMAPIオプションが有効の場合、選択した論理ボリュームにスナップショットが存在するためエラーとなった可能性があります。\r\nDMAPIオプションを「No」として、再度実行してください。"/>
+		<msg key="destroy_warning" value="Warning: Can not access files when destroying filesystem. " ja="警告：ファイルシステムを解放すると、ファイルアクセスが出来なくなります。"/>
+		<msg key="reuse_failed" value="Because this filesystem's user mapping information doesn't exist, it can not be reused. Please create a new one." ja="このファイルシステムは、ユーザマッピング情報が存在しないため、再使用できません。ファイルシステムの新規作成を行ってください。"/>
+		<msg key="remount_failed" value="This filesystem's user mapping information doesn't exist. Please destroy it." ja="このファイルシステムは、ユーザマッピング情報が存在しません。それを解放してください。"/>
+        <msg key="big_warning" value="It will take much time to complete this operation, according to the resource and system performance.\r\nPlease do NOT operate other settings, until current setting is done." 
+             ja="この操作は、指定されたリソースなどの大きさ、システムの負荷状況により、処理完了までに長時間かかる場合があります。\r\n処理が完了するまで、他の操作は行なわないで下さい。"/>
+        <msg key="failed_reason" value="Mount command is failed. Can not delete mount configuration on \&quot;%1\&quot;. Please check and unmount filesystem." 
+             ja="マウント処理で異常が発生しました。マウント処理の異常のため\&quot;%1\&quot;の設定を削除できませんでした。ファイルシステムに異常がないかをチェックの上ファイルシステムの解放を実行してください。"/>
+        <msg key="has_exported" value="NFS exports, CIFS shares or FTP settings exist on this filesystem. \r\nPlease delete these settings before destroying the filesystem." 
+             ja="このファイルシステムにはNFSエクスポート、CIFS共有、FTP設定のうちいずれかが存在します。\r\nこれらの設定を削除してからファイルシステムの解放を行ってください。"/>
+        <msg key="umount_repli_failed" value="Failed to delete setting of replication." ja="レプリケーション設定の削除に失敗しました。"/>
+        <msg key="wrong_codepage" value="The codepage [%1] for previous mounted export group is different from the codepage [%2] for current export group. \r\nPlease select an export group that has the same codepage as the previous export group." ja="以前マウントされていた公開グループの言語[%1]と、現在指定されている公開グループの言語[%2]が異なります。\r\n以前マウントされていた公開グループの言語と同じ言語が指定されている公開グループを選択してください。"/>
+		<msg key="sel_none" value="Please select a directory or input a new one." ja="ディレクトリを選択するか、あるいは新規ディレクトリ名を入力してください。"/>
+		<msg key="force_umount" value="The mount point [%1] is forced to unmount. \r\nThe serivce using [%1] is forced to terminate." ja="マウントポイント[%1]の強制解放を行います。\r\nマウントポイント[%1]を使用中のサービスは強制終了します。"/>
+		<msg key="force_failed" value="Force unmount has failed." ja="強制解放に失敗しました。"/>
+		<msg key="hasAuth" value="When user mapping is set, the specified filesystem cannot be moved." ja="ユーザマッピングが設定されているため、ファイルシステムの移行が行えません。"/>
+		<msg key="hasExport" value="When network filesystem is set, the specified filesystem cannot be moved." ja="ネットワークファイルシステムが設定されているため、ファイルシステムを移行できません。"/>
+		<msg key="hasSnap" value="When snapshot schedule is set, the specified filesystem cannot be moved." ja="スナップショットスケジュールが設定されているため、ファイルシステムを移行できません。"/>
+		<msg key="hasReplication" value="When replication is set, the specified filesystem cannot be moved." ja="レプリケーションが設定されているため、ファイルシステムを移行できません。"/>
+		<msg key="moveFailed" value="Failed to move filesystem [%1]." ja="ファイルシステム[%1]の移行に失敗しました。"/>
+		<msg key="over_max" value="Maximum length of the full path name is 2047." ja="絶対パスの最大文字数は2047文字です。"/>
+		<msg key="over_level_max" value="Maximum length of directory name is 255." ja="ディレクトリの最大文字数は255文字です。"/>
+		<msg key="error_level_count" value="The level of the specified mount point directory isn&apos;t same as the moving
+mount point." 
+			ja="移行元と移行先のディレクトリ階層が違います。"/>
+        <msg key="mountParentFSTypeErr" value="The filesystem type of the specified mount point&apos;s parent isn&apos;t
+same as the moving filesystem." 
+        	ja="移行先のファイルシステムタイプが違うため、ファイルシステムの移行が行えません。"/>
+        <msg key="dirExist" value="The mount point directory has existed in destination node." 
+        	ja="移行先に同じ名前のディレクトリ名が存在します。"/>
+        <msg key="mountParentOnlyRead" value="The parent of the specified mount point is a read only filesystem."
+        	ja="移行先のディレクトリがReadOnlyです。"/>
+        <msg key="mountFailedInDes" value="The moving filesystem cannot be mounted in destination node."
+        	ja="移行の対象となるファイルシステムを相手ノードにマウントできませんでした。"/>
+        <msg key="exp_none" value="Please select a directory." ja="ディレクトリを選択してください。"/>
+        <msg key="diskstatuserr" value="Please confirm the disk array's status." ja="ディスクアレイの状態を確認してください。"/>
+        <msg key="mkFriendDirFail" value="Failed to set on partner node.\r\nPlease delete the error filesystem." ja="クラスタ環境において相手ノードへの設定に失敗しました。\r\nエラーになったファイルシステムを削除してください。"/>
+    </msg>
+    <msg key="mountPointConf" value="">
+        <msg key="h2" value="Mount" ja="マウント"/>
+        <msg key="h3" value="Mount Configuration" ja="マウント設定"/>
+    </msg>
+    <msg key="FSVolumeSelect" value="">
+        <msg key="title" value="Logical Volume List" ja="論理ボリュームリスト"/>
+        <msg key="h1_replication" value="Replication" ja="レプリケーション"/>
+        <msg key="h2" value="Logical Volume List" ja="論理ボリュームリスト"/>
+        <msg key="msg_noLV" value="No unused logical volumes are found." ja="未使用の論理ボリュームが存在しません。"/>
+        <msg key="th_name" value="Name" ja="名前"/>
+        <msg key="th_nick" value="Nickname" ja="ニックネーム"/>
+        <msg key="th_size" value="Size[MB]" ja="サイズ[MB]"/>
+    </msg>
+    <msg key="fssuccess" value="">
+        <msg key="h2" value="Configuration Result" ja="ファイルシステム設定結果"/>
+        <msg key="msg_volume" value="Logical Volume" ja="論理ボリューム"/>
+        <msg key="th_type" value="Filesystem Type" ja="ファイルシステムタイプ"/>
+        <msg key="th_mp" value="Mount Point" ja="マウントポイント"/>
+        <msg key="submit_setuse" value="User Mapping(Data)" ja="ユーザマッピング(データ)"/>
+        <msg key="submit_original" value="Create Original" ja="オリジナル構築"/>
+    </msg>
+    <msg key="FSMountPoint" value="">
+        <msg key="h2_mplist" value="Mount Point List" ja="マウントポイントリスト"/>
+        <msg key="h3_pick" value="Select Export Group" ja="公開グループ選択"/>
+        <msg key="th_exportroot" value="Export Group" ja="公開グループ"/>
+        <msg key="th_mountpoint" value="Mount Point" ja="マウントポイント"/>
+        <msg key="submit_pickup" value="List" ja="リスト"/>
+        <msg key="h3_mp" value="Mount Point List" ja="マウントポイントリスト"/>
+        <msg key="msg_needmp" value="No export group is specified." ja="公開グループが選択されていません。"/>
+        <msg key="msg_nomp" value="No mount points are found." ja="マウントポイントが存在しません。"/>
+        <msg key="th_status" value="Status" ja="状態"/>
+        <msg key="th_type" value="Filesystem Type" ja="ファイルシステムタイプ"/>
+        <msg key="th_replication" value="Replication" ja="レプリケーション"/>
+        <msg key="submit_extend" value="Extend" ja="拡張"/>
+        <msg key="submit_mount" value="Mount" ja="マウント"/>
+        <msg key="submit_move" value="Move" ja="移行"/>
+        <msg key="status_mounted" value="Mounted" ja="マウント"/>
+        <msg key="status_unmounted" value="-"/>
+        <msg key="repli_enable" value="Enable" ja="有効"/>
+        <msg key="repli_disable" value="-"/>
+        <msg key="submit_temp_umount" value="Unmount" ja="マウント解除"/>
+        <msg key="force" value="Force unmount" ja="強制解放"/>
+        <msg key="srcNode" value="Source Node" ja="移行元"/>
+        <msg key="desNode" value="Destination Node" ja="移行先"/>
+    </msg>
+    <msg key="fileSystemConf" value="">
+        <msg key="h2" value="Create a filesystem" ja="ファイルシステム作成"/>
+        <msg key="h3_selectLV" value="Select Logical Volume" ja="論理ボリューム選択"/>
+        <msg key="th_name" value="Name" ja="名前"/>
+        <msg key="th_nick" value="Nickname" ja="ニックネーム"/>
+        <msg key="th_size" value="Size[MB]" ja="サイズ[MB]"/>
+        <msg key="h3_fsconf" value="Filesystem Configuration" ja="ファイルシステム設定"/>
+        <msg key="th_format" value="Format" ja="フォーマット"/>
+        <msg key="th_fstype" value="Filesystem Type" ja="ファイルシステムタイプ"/>
+        <msg key="radio_unix" value="sxfs"/>
+        <msg key="radio_nt" value="sxfsfw"/>
+        <msg key="th_journal" value="Journal Size" ja="ジャーナルサイズ"/>
+        <msg key="radio_normal" value="Standard" ja="標準"/>
+        <msg key="radio_expansion" value="Expand" ja="拡張"/>
+        <msg key="h3_mountconf" value="Mount Configuration" ja="マウント設定"/>
+        <msg key="th_mp" value="Mount Point" ja="マウントポイント"/>
+        <msg key="mountpoint" value="Mount Point" ja="マウントポイント"/>
+        <msg key="volume" value="Logical Volume" ja="論理ボリューム"/>
+        <msg key="msg_select" value="(select)" ja="(選択)"/>
+    </msg>
+    <msg key="FSExtend" value="">
+    	<msg key="volume" value="Logical Volume" ja="論理ボリューム"/>
+    	<msg key="mountpoint" value="Mount Point" ja="マウントポイント"/>
+    	<msg key="extend" value="Extend" ja="拡張"/>
+    	<msg key="ldselect" value="Logical Disk Select" ja="論理ディスク選択">
+	    	<msg key="for_nashead" value="LUN Select" ja="LUN選択"/>
+	    </msg>
+       	<msg key="lvsize_over" value="The maximum size of a logical volume is 2TBytes." ja="論理ボリュームの最大サイズは2TBytesです。"/>
+    </msg>
+    <msg key="fsmove" value="">
+    	<msg key="h2" value="Mount Point Move" ja="マウントポイント移行"/>
+    	<msg key="mp_select_title" value="Select a directory" ja="ディレクトリ選択"/>
+    	<msg key="no_exportgroup" value="No export groups are found." ja="公開グループが存在しません。"/>
+    	<msg key="no_directory" value="No directories are found." ja="ディレクトリが存在しません。"/>
+    	<msg key="th_name" value="Name" ja="名前"/>
+    	<msg key="th_date" value="Date" ja="日付"/>
+    	<msg key="th_time" value="Time" ja="時刻"/>
+    	<msg key="th_source" value="Source　Mount Point" ja="移行元"/>
+    	<msg key="th_destination" value="Destination Mount Point" ja="移行先"/>
+  	    <msg key="invalid_name" value="Invalid directory[%1]. \r\nOnly alphanumeric characters and \&quot;/_-.~\&quot; are allowed.\r\nThe first character can not be \&quot;.-~\&quot;." 
+        ja="不正なディレクトリ[%1]です。半角英数字と\&quot;/_-.~\&quot;が指定できます。最初の文字は\&quot;.-~\&quot;であってはいけません。"/>
+    </msg>
+</messages>

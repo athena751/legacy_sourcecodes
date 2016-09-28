@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!-- 
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_replication.xml,v 1.2300 2003/11/24 00:55:17 nsadmin Exp $" -->
+<messages>
+    <msg key="common" value="">
+	<msg key="h1_rep" value="Data Replication" ja="データレプリケーション"/>
+	<msg key="IV" value="IV"/>
+	<msg key="RV" value="RV"/>
+	<msg key="MV" value="MV"/>
+	<msg key="MV(ATG)" value="MV(ATG)"/>
+    </msg>
+    
+    <msg key="table" value="">
+    	<msg key="table_id" value="ID"/>
+	<msg key="table_diskarrayname" value="Disk Array Subsystem Name" ja="ディスクアレイ名"/>
+	<msg key="table_state" value="State" ja="状態"/>
+	<msg key="table_observ" value="Monitoring State" ja="監視"/>
+	<msg key="table_saa" value="SAA"/>
+	
+	<msg key="th_cl" value="Classification" ja="種別"/>
+	<msg key="th_num" value="Number" ja="番号"/>
+	<msg key="th_type" value="OS Type" ja="形式"/>
+	<msg key="th_ldname" value="Logical Disk Name" ja="論理ディスク名"/>
+	<msg key="th_pnum" value="Pair Number" ja="ペア番号"/>
+	<msg key="th_pname" value="Paired Disk Name" ja="ペアディスク名"/> 
+	<msg key="th_astate" value="Activity State" ja="主動作状態"/>
+	<msg key="th_da" value="Disk Array" ja="ディスクアレイ"/>
+	<msg key="th_sync" value="Sync State" ja="同期化状態"/>
+	<msg key="th_ccs" value="Copy Control State" ja="コピー制御状態"/>
+	<msg key="th_diff" value="Differential Volume" ja="差分量"/> 
+	<msg key="th_cap" value="Capacity[GB]" ja="容量[GB]"/>
+	
+	<msg key="th_start" value="Start Time" ja="開始時間"/>
+	<msg key="th_stop" value="End Time" ja="終了時間"/>
+	<msg key="th_accessrv" value="RV Access" ja="RVアクセス"/>
+	<msg key="th_previous" value="Previous State" ja="直前の状態"/> 
+	<msg key="th_separatediff" value="Separate Difference" ja="セパレート差分"/>
+	<msg key="th_copydiff" value="Copy Difference" ja="レプリケート差分"/>
+	
+	<msg key="th_num_link" value="LINK Number" ja="LINK番号"/>
+	<msg key="th_lname_link" value="LINK Disk Array Subsystem Name" ja="LINKディスクアレイ名"/>
+	<msg key="th_pathnum_link" value="Path Number" ja="パス番号"/>
+	<msg key="th_pathsta_link" value="Path State" ja="パス状態"/>
+	<msg key="th_dirnum_link" value="Director Number" ja="ディレクタ番号"/>
+	
+    </msg>
+    
+    
+    <msg key="disklist" value="">
+	<msg key="h2_diskinfo" value="Disk Array&apos;s Information" ja="ディスクアレイ情報"/> 
+	<msg key="button_rep" value="Replication Information " ja="ボリューム一覧"/>
+	<msg key="button_link" value="Disk Array LINK Information " ja="ディスクアレイLINK情報"/>
+	<msg key="msg_nodisk" value="No disk arrays are found." ja="ディスクアレイが存在しません。"/>
+    </msg>
+    
+    <msg key="volumelist" value="">
+	<msg key="button_detail" value="Detail..." ja="詳細..."/> 
+	<msg key="button_pset" value="Pair Setting..." ja="ペア設定..."/>
+	<msg key="button_unpair" value="Unpair..." ja="ペア解除..."/>
+	<msg key="h2_repinfo" value="Replication Information" ja="ボリューム一覧"/>
+	<msg key="msg_conf" value="Unpair (MV : %1, RV : %2)." ja="ペア(MV : %1, RV : %2)を解除します。"/> 
+	<msg key="msg_err" value="Some errors occurred when executing unpairing." ja="ペア解除でエラーが発生しました。"/>
+	<msg key="msg_refresh_failed" value="Cannot refresh the volumes&apos; information." ja="ボリューム情報を再取得できません。"/>
+	<msg key="msg_get_failed"   value="Cannot get the volumes&apos; information." ja="ボリューム情報を取得できません。"/>
+	<msg key="msg_novolume" value="No volumes are found." ja="ボリュームが存在しません。"/>
+    </msg>
+    
+    <msg key="repstate" value="">
+	<msg key="h2_relicationstate" value="Replication State" ja="レプリケート状態"/> 
+	<msg key="msg_err" value="Cannot get replication state." ja="レプリケート状態を取得できません。"/>
+    </msg>
+    
+    <msg key="setting" value="">
+	<msg key="h2_set" value="Pair Setting" ja="ペア設定"/> 
+	<msg key="msg_ddr" value="Dynamic Data Replication (Inside Disk Array)" ja="ダイナミックデータレプリケーション(ディスクアレイ内)"/>
+	<msg key="msg_rdr" value="Remote Data Replication (Between Disk Arrays)" ja="リモートデータレプリケーション(ディスクアレイ間)"/>
+	<msg key="msg_ld" value="Logical Disk" ja="論理ディスク"/>
+	<msg key="button_change" value="Changing Disk Array..." ja="ディスクアレイ変更..."/>
+	<msg key="msg_sele" value="Disk Array Selecting" ja="ディスクアレイ選択"/>
+	<msg key="conf_pair" value="Set the pair (MV : %1, RV : %2)." ja="ペア(MV : %1, RV : %2)を設定します。"/>
+	<msg key="msg_err" value="Some errors occurred when setting pair." ja="ペア設定でエラーが発生しました。"/>
+	<msg key="msg_want_diskarray" value="Please choose a disk array." ja="ディスクアレイを選択してください。"/>
+	<msg key="msg_nold" value="No available logical disks." ja="指定可能な論理ディスクがありません。"/>
+	<msg key="msg_noarray" value="No available disk arrays are found." ja="指定可能なディスクアレイがありません。"/>
+	<msg key="err_pair" value="Some errors occurred when pairing." ja="ペア設定でエラーが発生しました。"/> 
+	<msg key="alert_same_LD" value="The pair layer of the specified volume will serve as a loop." ja="指定されたボリュームでは、ペア階層がループになります。"/> 
+	<msg key="msg_nas" value="The specified logical disk is contained in LDset for NAS purpose. The logical disk for NAS purpose can not be set as the object of pair setting." ja="指定された論理ディスクはNAS用途のLDセットに含まれています。NAS用途の論理ディスクはペア設定の対象にできません。"/> 
+    </msg>
+    
+    <msg key="link" value="">
+	<msg key="h2_link" value="Disk Array LINK Information" ja="ディスクアレイLINK情報"/> 
+	<msg key="msg_error" value="Cannot get LINK information." ja="LINK情報を取得できません。"/>
+	<msg key="msg_nolink" value="No LINKs are found." ja="LINKが存在しません。"/>
+    </msg>
+   
+</messages>
+    

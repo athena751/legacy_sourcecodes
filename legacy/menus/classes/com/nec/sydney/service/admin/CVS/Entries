@@ -1,0 +1,21 @@
+/APISOAPServer.java/1.12/Fri Apr 27 03:22:13 2007//
+/ClusterGroupSoapServer.java/1.2301/Mon Jul 19 08:10:39 2004//
+/ClusterSOAPServer.java/1.2300/Mon Nov 24 00:54:58 2003//
+/CmdErrHandler.java/1.2300/Mon Nov 24 00:54:58 2003//
+/CmdHandler.java/1.2300/Mon Nov 24 00:54:58 2003//
+/CmdHandlerBase.java/1.2300/Mon Nov 24 00:54:58 2003//
+/DirQuotaSOAPServer.java/1.2303/Mon Feb 20 00:36:34 2006//
+/EthguardSOAPServer.java/1.2304/Wed Apr 25 02:38:41 2007//
+/ExportRootSOAPServer.java/1.2302/Thu Apr 26 07:37:50 2007//
+/FTPSOAPServer.java/1.2309/Tue Dec 23 05:11:39 2008//
+/HTTPSOAPServer.java/1.2305/Mon Feb 12 05:10:47 2007//
+/MAPDSOAPServer.java/1.2313/Thu Apr 26 07:37:50 2007//
+/MapdCommonSOAPServer.java/1.2314/Fri Feb 29 11:46:49 2008//
+/NICSOAPServer.java/1.2303/Tue Sep  6 06:37:32 2005//
+/NasHeadSOAPServer.java/1.5/Sat Apr 19 15:11:53 2008//
+/QuotaSOAPServer.java/1.2309/Fri Dec  8 02:51:49 2006//
+/SOAPServerBase.java/1.2302/Mon Jul 19 08:10:39 2004//
+/SiriusInfoSoapServer.java/1.2301/Mon Jul 19 08:10:39 2004//
+/SnapSOAPServer.java/1.2308/Tue Jul  1 07:22:06 2008//
+/Transaction.java/1.2301/Mon Jul 19 08:10:39 2004//
+D

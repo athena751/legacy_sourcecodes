@@ -1,0 +1,53 @@
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_MAPDConf.xml,v 1.2302 2004/02/20 07:47:55 liuyq Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:MAPDConf">
+  <isd:provider type="java" scope="Session"  methods="setAuthNIS setAuthPWD setAuthSHR setAuthDMC setAuthNISAgain getAuthRegion getFsType delNative addLocalDomain setMapdDelete setSHRMapdDomain addNative getFsTypeFromFstab RSyncYPConf remoteSyncYPConf setAuthPWD4CIFS getLUDBRoot cpsmbpasswd rmsmbpasswd copyLUDB removeLUDB setAuthLDAP writeSMB4ADS setAuthADS setAuthADSDomain writeYPConf">
+    <isd:java class="com.nec.sydney.service.admin.MAPDSOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+ 
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsString " qname="x:SoapRpsString"
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsString"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthInfo " qname="x:AuthInfo"
+             javaType="com.nec.sydney.atom.admin.mapd.AuthInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeInfo " qname="x:NativeInfo "
+             javaType="com.nec.sydney.atom.admin.nfs.NativeInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+    </isd:mappings>
+</isd:service>

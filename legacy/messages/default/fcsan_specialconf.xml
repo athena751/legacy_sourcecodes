@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+ 
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_specialconf.xml,v 1.2300 2003/11/24 00:55:17 nsadmin Exp $" -->
+<messages>
+    <msg key="common" value="">
+        <msg key="h1_spem" value="Misc." ja="その他" />
+    </msg>
+
+    <msg key="table" value="">
+        <msg key="th_id" value="ID" />
+        <msg key="th_dan" value="Disk Array Subsystem Name" ja="ディスクアレイ名" />
+        <msg key="th_state" value="State" ja="状態" />
+        <msg key="th_obs" value="Monitoring State" ja="監視" />
+        <msg key="th_saa" value="SAA"/>
+
+    </msg>
+
+    <msg key="specialmenu" value="">
+        <msg key="button_dts" value="Change Disk Array Time..." ja="ディスクアレイ時刻変更..." />
+        <msg key="h2_did" value="Disk Array&apos;s Information" ja="ディスクアレイ情報" />
+        <msg key="msg_nodisk" value="No disk arrays are found." ja="ディスクアレイが存在しません。" />
+    </msg>
+
+    <msg key="timeset" value="">
+        <msg key="title_dts" value="Change Disk Array Time" ja="ディスクアレイ時刻変更" />
+	<msg key="msg_byserver" value="Auto" ja="自動" />
+        <msg key="msg_st" value="Transfer to the current server time (%1 approx)" ja="現在のサーバタイムに変更する (%1 前後)" />
+        <msg key="msg_custom" value="Manual" ja="手動" />
+
+
+        <msg key="msg_hms" value="(H:M:S)"/>
+	<msg key="time_format" value="(yyyy/mm/dd)"/>
+        <msg key="h2_option" value="Change Disk Array Time" ja="ディスクアレイ時刻変更" />
+        <msg key="msg_gettimeerr" value="Can not get server&apos;s current time." ja="サーバの時刻を取得できません。" />
+        <msg key="settime_failed" value="Some errors occurred when changing time." ja="時刻の設定でエラーが発生しました。" />
+    </msg>
+</messages>

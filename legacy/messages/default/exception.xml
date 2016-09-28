@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: exception.xml,v 1.2305 2008/02/29 12:30:28 liy Exp $" -->
+
+
+<messages>
+    <msg key="common" value="">
+        <msg key="invalid_param"
+	     value="Invalid parameter."
+	     ja="無効な値です。"/>
+        <msg key="soap_call"
+	     value="Internal command error."
+	     ja="内部コマンドが失敗しました。"/>
+        <msg key="soap_param"
+	     value="Wrong parameters of SOAP calling."
+	     ja="Soapのパラメータ設定に失敗しました。"/>
+        <msg key="miss_export"
+	     value="Can not find any export group in session."
+	     ja="セッションで公開グループを見つけることができませんでした。"/>
+        <msg key="invalidHostName"
+	     value="Invalid host name.\r\nOnly alphanumeric characters and \&quot;-\&quot; are allowed,\r\nthe maximum length is 63 \r\n and the first character can not be \&quot;-\&quot; ."
+	     ja="無効なホスト名です。\r\n半角英数字と\&quot;-\&quot;のみが使用できます。\r\n最大文字数は63文字です。また、最初の文字は\&quot;-\&quot;であってはいけません。"/>
+        <msg key="invalidDomain"
+	     value="Invalid domain name.\r\nOnly alphanumeric characters and \&quot;-_.\&quot; are allowed.\r\nThe first character can not be \&quot;.-\&quot;"
+	     ja="不正なドメイン名です。\r\n半角英数字と\&quot;-_.\&quot;のみが使用できます。\r\n最初の文字は\&quot;.-\&quot;であってはいけません。"/>
+        <msg key="overMaxLength"
+         value="The name's maximum length is %1. Japanese character is treated as two characters."
+         ja="最大文字数は%1文字です。全角文字や半角カタカナは2文字として扱われます。"/>
+    </msg>
+
+    <msg key="securityfilter" value="">
+        <msg key="invalid_rule"
+	     value="Invalid rules."
+	     ja="無効なルールです。"/>
+    </msg>
+
+    <msg key="snapshot" value="">
+        <msg key="invalid_schedule"
+	     value="Invalid schedule."
+	     ja="無効なスケジュールです。"/>
+        <msg key="invalid_action"
+	     value="Please set the destination URL parameter[nextAction] = [Snapshot/Mapd/Quota]."
+	     ja="宛先URLのパラメータ[Snapshot/Mapd/Quota]を設定してください。"/>
+	    <msg key="getVolumeInfoErr" value="Failed to get the volumes information.\r\nPlease confirm the system's status." 
+        	ja="ボリューム情報の取得に失敗しました。\r\nシステムの状態を確認してください。"/>
+    </msg>
+
+    <msg key="mapd" value="">
+        <msg key="authdomain_same"
+	     value="Another NIS server has been already assigned to this NIS domain."
+	     ja="既に他のNISサーバがこのNISドメインに対応づけられています。"/>
+        <msg key="addxmlfailed"
+	     value="Can not add the data domain into xml file."
+	     ja="XMLファイルへデータドメインを追加できません。"/>
+        <msg key="editxml_nodomain"
+	     value="The data domain does not exists in the xml file."
+	     ja="データドメインはXMLファイル内に存在しません。"/>
+        <msg key="editxml_notedit"
+	     value="The data domain can not be modified in xml file."
+	     ja="データドメインはXMLファイル内で編集できませんでした。"/>
+        <msg key="delxml_auth"
+	     value="Failed to delete the data domain from xml."
+	     ja="データドメインのXMLからの削除は失敗しました。"/>
+        <msg key="set_localdomain"
+	     value="The NT domain or computer name is not set."
+	     ja="NTドメインまたはコンピュータ名は設定されていません。"/>
+    </msg>
+
+    <msg key="exportroot" value="">
+        <msg key="xml_add"
+	     value="Adding export group failed: permission denied, or the export group already exists."
+	     ja="公開グループの追加に失敗しました: 権限がありません、または同じ公開ルートパスがすでに登録されています。"/>
+        <msg key="exist_in_friendTarget"
+	     value="Adding export group failed: the export group already exists in the cluster node."
+	     ja="公開グループの追加に失敗しました: 同じ公開ルートパスがクラスタノード内にすでに登録されています。"/>
+    </msg>
+
+    <msg key="cifs" value="">
+        <msg key="null_localdomain"
+	     value="The NT domain is null."
+	     ja="NTドメインはnullです。"/>
+        <msg key="delxml_netbios"
+	     value="Can not delete the computer name from the xml file."
+	     ja="XMLファイルからコンピュータ名を削除できません。"/>
+        <msg key="sync_export"
+	     value="Failed to sync export group."
+	     ja="SyncExportGroupに失敗しました。"/>
+    </msg>
+
+    <msg key="fs" value="">
+        <msg key="sync_auth"
+	     value="Failed to sync auth domain."
+	     ja="SyncAuthDomainに失敗しました。"/>
+        <msg key="check_xml"
+	     value="A volume has been grafted onto a subdirectory of the given mount point."
+	     ja="ボリュームは指定されたマウントポイントのサブディレクトリに設定されました。"/>
+        <msg key="sync_device"
+	     value="Failed to sync device."
+	     ja="SyncDeviceは失敗しました。"/>
+        <msg key="authType_err"
+	     value="Invalid data domain type."
+	     ja="データドメインのタイプが不正です。"/>
+        <msg key="umount_err"
+	     value="The device to unmount doesn't exist."
+	     ja="マウント解除するデバイスは存在しません。"/>
+    </msg>
+
+    <msg key="config" value="">
+        <msg key="target_getFailed"
+	     value="Can not get the target definition."
+	     ja="ターゲット定義を取得できません。"/>
+        <msg key="target_typeNull"
+	     value="Invalid target type."
+	     ja="無効なターゲットタイプです。"/>
+        <msg key="item_listFailed"
+	     value="Can not get the collection item list."
+	     ja="コレクションアイテムリストを取得できません。"/>
+        <msg key="item_def"
+	     value="Can not get the collection item."
+	     ja="コレクションアイテムを取得できません。"/>
+        <msg key="item_desc"
+	     value="Can not get the collection item."
+	     ja="コレクションアイテムを取得できません。" />
+        <msg key="subitem_def"
+	     value="Can not get the collection subitem definition."
+	     ja="コレクションサブアイテム定義を取得できません。"/>
+        <msg key="rrd_size"
+	     value="The RRD file size is negative."
+	     ja="RRDファイルのサイズはマイナスです。"/>
+        <msg key="period_failed"
+	     value="Can not get the stock period."
+	     ja="採取期間を取得できません。"/>
+        <msg key="period_value"
+	     value="Invalid stock period."
+	     ja="無効な採取期間です。"/>
+        <msg key="arch_def"
+	     value="Can not get the archive definition."
+	     ja="アーカイブ定義を取得できません。"/>
+        <msg key="interval_failed"
+	     value="Can not get the interval."
+	     ja="インターバルを取得できません。"/>
+        <msg key="interval_value"
+	     value="Invalid interval."
+	     ja="無効なインターバルです。"/>
+        <msg key="param_pass"
+	     value="Invald parameters."
+	     ja="無効なパラメータです。"/>
+        <msg key="period_change"
+	     value="Failed to change stock period."
+	     ja="採取期間の変更に失敗しました。"/>
+        <msg key="target_nick"
+	     value="Can not get the target nickname."
+	     ja="ターゲットのニックネームを取得できません。"/>
+        <msg key="date_start"
+	     value="The start date is later than the modified date."
+	     ja="開始日時は変更日より後です。"/>
+        <msg key="item_single"
+	     value="Can not get the collection item."
+	     ja="コレクションアイテムを取得できません。"/>
+        <msg key="time_now"
+	     value="The time is in future."
+	     ja="時刻が未来をさしています。"/>
+    </msg>
+
+    <msg key="grapher" value="">
+        <msg key="user_ident"
+	     value="Can not identify the user."
+             ja="ユーザを識別できません。"/>
+        <msg key="user_invalid"
+	     value="Invalid user."
+	     ja="無効なユーザです。"/>
+        <msg key="exception"
+	     value="An exception occurred. Please try again."
+	     ja="例外が発生しました。もう一度実行してください。"/>
+        <msg key="object_value"
+	     value="Object must contain a value."
+	     ja="オブジェクトは値を持たなければいけません。"/>
+        <msg key="graph_type"
+	     value="Invalid diagram type."
+	     ja="無効な図形タイプです。"/>
+
+        <msg key="watchitem_def"
+	     value="Can not get the watch item."
+	     ja="監視項目を取得できません。"/>
+        <msg key="device_name"
+	     value="Invalid device name format."
+	     ja="無効なデバイス名の形式です。"/>
+        <msg key="snap_type"
+	     value="Invalid snapshot type."
+	     ja="無効なスナップショットのタイプです。"/>
+        <msg key="snap_size"
+	     value="Invalid snapshot size."
+	     ja="無効なスナップショットのサイズです。"/>
+        <msg key="watchitem_id"
+	     value="Invalid watch item ID."
+	     ja="無効な監視項目IDです。"/>
+        <msg key="invalid_comm"
+	     value="Invalid command."
+	     ja="無効なコマンドです。"/>
+        <msg key="device_info"
+	     value="Failed to get the device information."
+	     ja="デバイス情報の取得に失敗しました。"/>
+        <msg key="java_excep"
+	     value="Java exception."
+	     ja="Javaの例外が発生しました。"/>
+        <msg key="invlid_high"
+	     value="Invalid height."
+	     ja="無効な高さです。"/>
+        <msg key="reload_choose"
+	     value="Please set the auto reload field."
+	     ja="オートリロードフィールドを設定してください。"/>
+        <msg key="reload_interval"
+	     value="Please enter the reload interval."
+	     ja="リロード間隔を入力して下さい。"/>
+        <msg key="sample_interval"
+	     value="Please enter the sampling interval."
+	     ja="サンプリング間隔を入力して下さい。"/>
+        <msg key="sample_choose"
+	     value="Please set the auto interval field, or specify the sampling interval."
+	     ja="オートインターバルフィールドへ設定してください、またはサンプリング間隔を指定してください。"/>
+        <msg key="start_kind"
+	     value="Please select the start time type."
+	     ja="開始時間のタイプを選択してください。"/>
+        <msg key="end_kind"
+	     value="Please select the end time type."
+	     ja="終了時間のタイプを選択してください。"/>
+        <msg key="period_kind"
+	     value="Please select the display interval."
+	     ja="表示間隔を選択してください。"/>
+        <msg key="reload_out"
+	     value="The auto reload interval is out of range."
+	     ja="オートリロード間隔は範囲外です。"/>
+        <msg key="sample_out"
+	     value="The sampling interval is out of range."
+	     ja="サンプリング間隔は範囲外です。"/>
+        <msg key="select_blank"
+	     value="The selected value is blank."
+	     ja="指定の値は空白です。"/>
+        <msg key="diagram_failed"
+	     value="Can not reload the diagram."
+	     ja="図形をリロードできません。"/>
+        <msg key="start_out"
+	     value="The start time is out of range."
+	     ja="開始時刻が範囲外です。"/>
+        <msg key="end_out"
+	     value="The end time is out of range."
+	     ja="終了時刻が範囲外です。"/>
+        <msg key="rrd_files"
+	     value="Loading RRD files failed."
+	     ja="RRDファイルの読み込みに失敗しました。"/>
+        <msg key="color_def"
+	     value="Can not get the color definition."
+	     ja="色定義を取得できません。"/>
+        <msg key="stock_out"
+	     value="The stock period is out of range."
+	     ja="採取期間は範囲外です。"/>
+        <msg key="item_ident"
+	     value="Can not get the collection item identifier."
+	     ja="コレクションアイテム識別子を取得できません。"/>
+        <msg key="display_id"
+	     value="Can not get the display ID."
+	     ja="表示情報IDを取得できません。"/>
+        <msg key="invalid_unit"
+	     value="Invalid interval or time unit."
+	     ja="無効なインターバルまたは時刻ユニットです。"/>
+        <msg key="diagram_type"
+	     value="Unknown diagram type."
+	     ja="不明な図形タイプです。"/>
+        <msg key="param_error"
+	     value="Call RRDdiagram.jsp with invalid parameters."
+	     ja="無効なパラメータでRRDdiagram.jspを呼び出しました。"/>
+        <msg key="stock_failed"
+	     value="Getting the stock period failed."
+	     ja="採取期間の取得に失敗しました。"/>
+        <msg key="instance_failed"
+	     value="Can not get [RRDFile] instance."
+	     ja="[RRDFile]のインスタンスを取得できませんでした。"/>
+        <msg key="mp_failed"
+	     value="Can not get the mount point."
+	     ja="マウントポイントを取得できません。"/>
+        <msg key="table_column"
+	     value="Invalid table column number."
+	     ja="無効なテーブルの列番号です。"/>
+
+    </msg>
+
+    <msg key="dnsclient" value="">
+        <msg key="invalid_dnsname"
+	     value="The server name is invalid.\nPlease specify it as IP address format."
+	     ja="指定されたサーバ名は無効です。\nIPアドレス形式で指定してください。"/>
+        <msg key="no_domain"
+	     value="Please specify the domain and the search order."
+	     ja="ドメイン名もしくは検索ドメインリストを指定してください。"/>
+        <msg key="num_error"
+	     value="The search domain is too long (>6)."
+	     ja="検索ドメインリストが多すぎます。\r\n6つの入力フィールドとしてください。"/>
+        <msg key="invalid_domain"
+	     value="Invalid domain name[%1].\r\nOnly alphanumeric characters and \&quot;._\&quot; are allowed."
+	     ja="不正なドメイン名[%1]です。\r\n半角英数字と\&quot;._\&quot;を指定できます。"/>
+        <msg key="domain_len"
+	     value="Invalid search domain. The maximum length is 256."
+	     ja="不正な検索ドメインです。\r\n最大256文字まで使用できます。" />
+    </msg>
+    <msg key="nfs" value="">
+        <msg key="invalid_param"
+	     value="Invalid parameter."
+	     ja="無効なパラメータです。"/>
+        <msg key="msg_seterr"
+	     value="Invalid client domain."
+	     ja="無効なクライアントドメインです。"/>
+        <msg key="some_err"
+	     value="The network address has been already registered."
+	     ja="ネットワークアドレスはすでに登録されています。"/>
+
+	    <msg key="same_err_nis"
+	     value="The network address has been already registered."
+	     ja="ネットワークアドレスはすでに登録されています。"/>
+	    <msg key="same_err_pwd"
+	     value="The network address has been already registered."
+	     ja="ネットワークアドレスはすでに登録されています。"/>
+	    <msg key="same_err_dmc"
+	     value="NT domain already exists."
+	     ja="NTドメインはすでに登録されています。"/>
+	    <msg key="same_err_shr"
+	     value="NT domain already exists."
+	     ja="NTドメインはすでに登録されています。"/>
+
+        <msg key="invalid_nativeinput"
+	     value="Invalid client domain."
+	     ja="無効なクライアントドメインです。"/>
+        <msg key="miss_frameNo"
+	     value="The frame number doesn&apos;t exist in the navigator."
+	     ja="フレーム番号はナビゲータ内にありません。"/>
+        <msg key="miss_act"
+	     value="The parameter &quot;act&quot; doesn&apos;t exist in navigator."
+	     ja="パラメータ&quot;act&quot;はナビゲータ内にありません。"/>
+    </msg>
+    <msg key="fcsangui" value="">
+        <msg key="session_err"
+	     value="Bean can not get value from session."
+	     ja="Beanはセッションから値を取得できません。"/>
+    </msg>
+
+    <msg key="fcsan" value="">
+        <msg key="invalid_param"
+	     value="Invalid parameter"
+	     ja="無効なパラメータです。"/>
+        <msg key="get_ctrl_info_failed"
+	     value="Can not get the controller information."
+	     ja="コントローラ情報を取得できません。"/>
+        <msg key="get_disk_info_failed"
+	     value="Can not get the disk constitute information."
+	     ja="ディスク構成の情報を取得できません。"/>
+        <msg key="invalid_cmd_output"
+	     value="Invalid command output."
+	     ja="無効なコマンド出力です。"/>
+        <msg key="err_ds_state"
+	     value="The disk array state is error."
+	     ja="ディスクアレイの状態が不正です。"/>
+        <msg key="session_null"
+	     value="The session is null."
+	     ja="セッションがnullです。"/>
+        <msg key="get_port_info_failed"
+	     value="Can not get the port information."
+	     ja="ポート情報を取得できません。"/>
+        <msg key="get_encl_info_failed"
+	     value="Can not get the enclosure information."
+	     ja="エンクロージャ情報を取得できません。"/>
+        <msg key="refresh_failed"
+	     value="Refresh failed."
+	     ja="リフレッシュに失敗しました。"/>
+        <msg key="set_failed"
+	     value="Setting failed."
+	     ja="設定に失敗しました。"/>
+        <msg key="set_succeed"
+	     value="Setting finished."
+	     ja="設定が終了しました。"/>
+    </msg>
+
+    <msg key="portfailover" value="">
+        <msg key="nolist"
+	     value="There is no Network Interface in the port group."
+	     ja="ポートグループのネットワークインタフェースがありません。"/>
+    </msg>
+</messages>

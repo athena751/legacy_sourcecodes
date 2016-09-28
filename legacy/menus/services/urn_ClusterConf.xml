@@ -1,0 +1,46 @@
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_ClusterConf.xml,v 1.2300 2003/11/24 00:55:15 nsadmin Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:ClusterConf">
+  <isd:provider type="java" scope="Application"  methods="getCluster makeDir deleteDir chmod activeSync standbySync sendStaticRoute receiveStaticRoute">
+    <isd:java class="com.nec.sydney.service.admin.ClusterSOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsCluster" qname="x:SoapRpsCluster"
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsCluster"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-ClusterInfo " qname="x:ClusterInfo "
+             javaType="com.nec.sydney.atom.admin.base.ClusterInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+    <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-ClusterNode " qname="x:ClusterNode "
+             javaType="com.nec.sydney.atom.admin.base.ClusterNode"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>             
+  </isd:mappings>
+</isd:service>

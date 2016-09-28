@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+--> 
+<!-- "@(#) $Id: struts-config-schedulescan.xml,v 1.1 2008/05/08 09:45:02 hanh Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+
+<form-beans>
+
+        <form-bean name="GlobalForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="globalBean" type="com.nec.nsgui.model.entity.schedulescan.ScheduleScanGlobalBean"/>
+            <form-property name="shouldRestart" type="java.lang.String" initial="no"/>
+        </form-bean>
+        
+        <form-bean name="ComputerForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="computerName" type="java.lang.String"/>
+        </form-bean>
+        
+        <form-bean name="ScanShareForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="usedScanShareSet" type="java.lang.String"/>
+            <form-property name="unusedScanShareSet" type="java.lang.String"/>
+        </form-bean>
+        
+</form-beans>
+
+<action-mappings>
+    
+    <action path="/scheduleScanConfig"
+            type="com.nec.nsgui.action.schedulescan.ScheduleScanConfigAction"
+            scope="request">
+        <forward name="noads"
+                 path="/nas/schedulescan/schedulescannoads.jsp"
+                 module=""/>
+        <forward name="tabentry"
+                 path="/nas/schedulescan/schedulescantabentry.jsp"
+                 module=""/>
+        <forward name="tabentry4nsview"
+                 path="/nas/schedulescan/schedulescantabentry4nsview.jsp"
+                 module=""/>
+	</action>		
+
+	<action path="/scheduleScanListOperation"
+		    type="com.nec.nsgui.action.schedulescan.ScheduleScanListAction"
+		    scope="request" 
+            parameter="operation">
+		<forward name="listtop"
+			     path="/nas/schedulescan/schedulescanlisttop.jsp"
+                 module=""/>
+        <forward name="list"
+			     path="/nas/schedulescan/schedulescanlist.jsp"
+                 module=""/>
+	</action>
+    
+    <action path="/scheduleScanComputerSetTop"
+            type="com.nec.nsgui.action.schedulescan.ScheduleScanComputerAction"
+            name="ComputerForm"
+            scope="request"
+            parameter="operation">
+        <forward name="computersettop"
+                 path="/nas/schedulescan/schedulescancomputersettop.jsp"
+                 module=""/>
+    </action>
+    
+    <action path="/scheduleScanGlobalSetTop"
+            type="com.nec.nsgui.action.schedulescan.ScheduleScanGlobalAction"
+            name="GlobalForm"
+            scope="request"
+            parameter="operation">
+        <forward name="globalsettop"
+                 path="/nas/schedulescan/schedulescanglobalsettop.jsp"
+                 module=""/>
+        <forward name="nocomputer"
+                 path="/nas/schedulescan/schedulescannocomputer.jsp"
+                 module=""/>
+    </action>
+       
+    <action path="/scheduleScanShare"
+            type="com.nec.nsgui.action.schedulescan.ScheduleScanShareAction"
+            name="ScanShareForm"
+            scope="request"
+            parameter="operation">
+        <forward name="scansharetop" 
+                 path="/nas/schedulescan/schedulescansharetop.jsp"
+                 module=""/>
+        <forward name="nosetting" 
+                 path="/nas/schedulescan/schedulescannosetting.jsp"
+                 module=""/>                      
+    </action>
+    
+	<action path="/scheduleScanDisplayTab"
+    	forward="/../nas/schedulescan/schedulescantab.jsp">
+	</action>
+	<action path="/scheduleScanDisplayTab4nsview"
+    	forward="/../nas/schedulescan/schedulescantab4nsview.jsp">
+	</action>
+	<action path="/scheduleScanList"
+    	forward="/../nas/schedulescan/schedulescanlist.jsp">
+	</action>
+	<action path="/scheduleScanListBottom"
+    	forward="/../nas/schedulescan/schedulescanlistbottom.jsp">
+	</action>
+    <action path="/scheduleScanComputerSet"
+        forward="/../nas/schedulescan/schedulescancomputerset.jsp">
+    </action>
+    <action path="/scheduleScanComputerSetBottom"
+        forward="/../nas/schedulescan/schedulescancomputersetbottom.jsp">
+    </action>
+    <action path="/scheduleScanAddUser"
+        forward="/../nas/schedulescan/schedulescanaddusermapping.jsp">
+    </action>
+	<action path="/scheduleScanGlobalSet"
+    	forward="/../nas/schedulescan/schedulescanglobalset.jsp">
+	</action>
+    <action path="/scheduleScanGlobalSetBottom"
+        forward="/../nas/schedulescan/schedulescanglobalsetbottom.jsp">
+    </action>
+    <action path="/scheduleScanShareSet"
+    	forward="/../nas/schedulescan/schedulescanshareframe.jsp">
+	</action>
+    <action path="/scheduleScanShareBottom"
+        forward="/../nas/schedulescan/schedulescansharebottom.jsp">
+    </action>
+    
+    
+</action-mappings>
+
+<!-- ========== Message Resources Definitions =========================== -->
+<message-resources parameter="com.nec.nsgui.messages.ScheduleScanResource"/>
+
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-schedulescan.xml"/>
+</plug-in>
+</struts-config>

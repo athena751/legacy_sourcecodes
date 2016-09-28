@@ -1,0 +1,414 @@
+<!--
+        Copyright (c) 2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-ddr.xml,v 1.13 2008/05/06 07:38:58 liuyq Exp $" -->
+<ExceptionConf>
+
+	<ProcessRule errorCode="0x13700001"><!--Failed to get the volume list.-->
+        <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.list.error.repl2listvol.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairList" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail">
+            <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x137f0003"><!--FAILED TO GET ASYNC PAIR INFO-->
+        <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.list.error.getAsyncPairInfo.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairList" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail">
+            <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>    
+
+    <ProcessRule errorCode="0x13700005"><!--Failed to get the LD list.-->
+        <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.list.error.repl2ldlist.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairList" forward="fail"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700002"><!--FAILED TO GET PAIR INFO-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status.try" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.infoVolPair.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+        <Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail">
+			<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+		</Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700011"><!--SYNC STATE IS SPE/EXEC-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.unpair.error.syncState.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.syncState.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.unpair.error.syncState.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700213"><!--THE STATE OF MACHINE IS TAKEOVER-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.unpair.error.takeOver.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.takeOver.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.unpair.error.takeOver.detailDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700214"><!--FAILED TO GET RPL FILE PATH-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.getRplFilePath.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700215"><!--FAILED TO CREATE TMP FILE-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.createTmpFile.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>    
+    
+    <ProcessRule errorCode="0x13700216"><!--FAILED TO DELETE VG PAIR-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteVgPair.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700217"><!--FAILED TO DELETE LD PAIR-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteLdPair.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700218"><!--FAILED TO DELETE LUN-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteLUN.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700219"><!--FAILED TO DELETE LD-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteLD.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x1370021a"><!--FAILED TO CHECK LD USAGE-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.checkLV.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x1370021b"><!--FAILED TO RECOGNIZE LD INFORMATION-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.recognizeLdInfo.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x1370021c"><!--FAILED TO GET RVVG-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.getRVVG.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700019"><!--FAILED TO DELETE SCHEDULE-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteSchedule.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+       
+    <ProcessRule errorCode="0x13700031"><!--INTERNAL ERROR OCCURED-->
+        <ErrorMessage key="ddr.unpair.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.unpair.error.deleteInternal.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrUnpair" forward="globalForward2PairList"/>
+    </ProcessRule>
+       
+    <ProcessRule errorCode="0x13700070"><!--FAILED TO GET MV-->
+        <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.pair.error.getExport" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700071"><!--FAILED TO GET MV-->
+        <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.contactME" type="generalDeal"/>
+        <ErrorMessage key="ddr.pair.error.getCandidate" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.contactME" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700072"><!--FAILED TO GET MV-->
+        <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.cluster.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.pair.error.getCandidatePartner" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.cluster.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700077"><!--FAILED TO CHECK POOL-->
+        <ErrorMessage key="ddr.pair.error.generalInfo.makePair" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.pair.error.confirmPool" type="generalDeal"/>
+        <ErrorMessage key="ddr.pair.error.createOnPool" type="detailInfo"/>
+        <ErrorMessage key="ddr.pair.error.confirmPool" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrCapacityCheck" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairCreate"    forward="checkFail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700022"><!--FAILED VOL SCAN-->
+        <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.entry.error.cmd.volscan.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairList" forward="fail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x13700023"><!--FAILED VOL SCAN-->
+        <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/> 
+	    <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.entry.error.cmd.volscan.friend.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairList" forward="fail"/>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x1080006d"><!--ERR_EXECUTE_VGDISPLAY-->
+        <ErrorMessage key="ddr.detail.error.lvmCmdFail.vgdisplay.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.lvmCmdFail.vgdisplay.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.detail.error.lvmCmdFail.vgdisplay.generalDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail">
+            <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail">
+            <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairList" forward="fail">
+            <ErrorMessage key="ddr.list.error.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800082"><!--ERR_EXECUTE_ISADISKLIST-->
+        <ErrorMessage key="ddr.detail.error.fcsanCmdFail.iSAdisklist.generalDeal" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.fcsanCmdFail.iSAdisklist.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.detail.error.fcsanCmdFail.iSAdisklist.generalDeal" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail">
+            <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail">
+            <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairExtend" forward="extendfail">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x108000a3"><!--ERR_EXECUTE_CAT-->
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.cat.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail">
+            <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairCreateShow" forward="fail">
+            <ErrorMessage key="ddr.pair.error.generalInfo.getMv" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getmvinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction="/ddrPairExtend" forward="extendfail">
+            <ErrorMessage key="ddr.extend.error.getmvinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x137000a0"><!--ERR_OPEN_FILE_READING-->
+        <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.try" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.readfile.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x137000a1"><!--ERR_EXECUTE_VGGETGROUP-->
+        <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.try" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.vggetgroup.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x137000a2"><!--ERR_EXECUTE_CAT_FRIEND-->
+        <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.cluster.status.try" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.catfriend.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.cluster.status.tryAndContact" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail"/>
+        <Dispatcher srcAction="/ddrPairExtendShow" forward="globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800095"><!--ERR_FRIEND_NODE_DEACTIVE-->
+        <ErrorMessage key="ddr.common.deal.check.cluster.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.detail.error.inactive.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.cluster.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrPairDetail" forward="fail">
+            <ErrorMessage key="ddr.detail.error.common.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction = "/ddrPairCreateShow"   forward = "fail">
+            <ErrorMessage key = "ddr.pair.error.generalInfo.getMv"  type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction = "/ddrPairExtendShow"   forward = "globalForward2PairList">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail">
+            <ErrorMessage key="ddr.extend.error.getinfo.failed.generalInfo" type="generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+
+    <ProcessRule errorCode="0x13700061"><!--DDR_EXCEP_MODIFY_READCRON-->
+        <ErrorMessage key="ddr.schedule.error.modify.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.schedule.error.modify.read.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrSchedule" forward="globalForward2PairList"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13700062"><!--DDR_EXCEP_MODIFY_EDITCRON-->
+        <ErrorMessage key="ddr.schedule.error.modify.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.schedule.error.modify.edit.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrSchedule" forward="globalForward2PairList"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13700063"><!--DDR_EXCEP_MODIFY_RELOADCRON-->
+        <ErrorMessage key="ddr.schedule.error.modify.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.schedule.error.modify.reload.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrSchedule" forward="globalForward2PairList"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13700064"><!--DDR_EXCEP_MODIFY_SYNCCRON-->
+        <ErrorMessage key="ddr.schedule.error.modify.generalInfo" type="generalInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="generalDeal"/>
+        <ErrorMessage key="ddr.schedule.error.modify.sync.detailInfo" type="detailInfo"/>
+        <ErrorMessage key="ddr.common.deal.check.system.status" type="detailDeal"/>
+        <Dispatcher srcAction="/ddrSchedule" forward="globalForward2PairList"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10810084"><!--ERR_EXECUTE_ISADISKLIST-->
+   		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volumeResource/ddr" type = "generalDeal"/>
+   		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" bundle="volumeResource/ddr" type = "detailInfo"/>
+   		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volumeResource/ddr" type = "detailDeal"/>
+		<ErrorMessage key = "error.list.generalInfo" bundle="volumeResource/ddr" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairDetail"   forward = "fail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10820084"><!--ERR_EXECUTE_ISADISKLIST-->
+   		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volumeResource/ddr" type = "generalDeal"/>
+   		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" bundle="volumeResource/ddr" type = "detailInfo"/>
+   		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volumeResource/ddr" type = "detailDeal"/>
+		<ErrorMessage key = "error.list.generalInfo"  bundle="volumeResource/ddr" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairDetail"   forward = "fail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x13700090"><!--ERR_SYNC_STATUS-->
+   		<ErrorMessage key = "ddr.extend.error.failed.generalDeal" type = "generalDeal"/>
+   		<ErrorMessage key = "ddr.extend.error.failed.detailInfo" type = "detailInfo"/>
+   		<ErrorMessage key = "ddr.extend.error.failed.detailDeal" type = "detailDeal"/>
+		<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x13700091"><!--ERR_CHECK_RV_PARA-->
+   		<ErrorMessage key = "ddr.extend.error.rvsize.failed.generalDeal" type = "generalDeal"/>
+   		<ErrorMessage key = "ddr.extend.error.rvsize.failed.detailInfo" type = "detailInfo"/>
+   		<ErrorMessage key = "ddr.extend.error.rvsize.failed.generalDeal" type = "detailDeal"/>
+		<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x137f0006"><!--ERR_EDIT_DDR_ASYNCFILE-->
+   		<ErrorMessage key = "ddr.common.deal.check.system.status" type = "generalDeal"/>
+   		<ErrorMessage key = "ddr.error.editAsyncFile.detailInfo" type = "detailInfo"/>
+   		<ErrorMessage key = "ddr.common.deal.check.system.status"  type = "detailDeal"/>
+		<Dispatcher srcAction = "/ddrDelAsyncFile"   forward = "globalForward2PairList">
+			<ErrorMessage key = "ddr.error.clear.generalDeal"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction="/ddrPairCreate" forward="fail">
+            <ErrorMessage key="ddr.pair.error.generalInfo.makePair" type="generalInfo"/>
+        </Dispatcher>
+		<Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail">
+			<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+		</Dispatcher>
+    </ProcessRule>
+
+    <ProcessRule errorCode = "0x10000004"><!--ERR_EXE_RSH-->
+   		<ErrorMessage key = "ddr.pair.error.generalInfo.getMv"  type = "generalInfo"/>
+   		<ErrorMessage key = "ddr.common.deal.check.cluster.status" type = "generalDeal"/>
+   		<ErrorMessage key = "ddr.pair.error.exeRsh"             type = "detailInfo"/>
+		<ErrorMessage key = "ddr.common.deal.check.cluster.status" type = "detailDeal"/>
+   		<Dispatcher srcAction = "/ddrPairCreateShow"   forward = "fail"/>
+    </ProcessRule>    
+    
+    <ProcessRule errorCode = "0x10800035">
+   		<ErrorMessage key = "error.noEnoughCapacity.extend.generalDeal" bundle="volumeResource/ddr" type = "generalDeal"/>
+   		<ErrorMessage key = "error.noEnoughCapacity.detailInfo" bundle="volumeResource/ddr" type = "detailInfo"/>
+   		<ErrorMessage key = "error.noEnoughCapacity.extend.generalDeal" bundle="volumeResource/ddr" type = "detailDeal"/>
+    	<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10800016">
+   		<ErrorMessage key = "error.del.isUmounted.generalDeal" bundle="volumeResource/ddr" type = "generalDeal"/>
+   		<ErrorMessage key = "error.del.isUmounted.detailInfo" bundle="volumeResource/ddr" type = "detailInfo"/>
+   		<ErrorMessage key = "error.del.isUmounted.generalDeal" bundle="volumeResource/ddr" type = "detailDeal"/>
+    	<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairExtend"   forward = "extendfail"/>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10800048">
+   		<ErrorMessage key = "error.snapshotCmdFail.generalDeal" bundle="volumeResource/ddr" type = "generalDeal"/>
+   		<ErrorMessage key = "error.snapshotCmdFail.detailInfo" bundle="volumeResource/ddr" type = "detailInfo"/>
+   		<ErrorMessage key = "error.snapshotCmdFail.detailDeal" bundle="volumeResource/ddr" type = "detailDeal"/>
+    	<ErrorMessage key = "ddr.extend.error.failed.generalInfo" type = "generalInfo"/>
+   		<Dispatcher srcAction = "/ddrPairExtendShow"   forward = "globalForward2PairList"/>
+    </ProcessRule>
+    
+</ExceptionConf>

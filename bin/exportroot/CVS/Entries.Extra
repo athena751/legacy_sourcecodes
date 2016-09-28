@@ -1,0 +1,6 @@
+/exportgroup_add.pl////
+/exportgroup_delSPConf.pl////
+/exportgroup_delScheduleScanConf.pl////
+/exportgroup_delete.pl////
+/exportgroup_hasScheduleScanInfo.pl////
+/exportgroup_list.pl////

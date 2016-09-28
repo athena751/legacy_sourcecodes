@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2005 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: nas_cifs.xml,v 1.2312 2005/12/14 06:43:42 fengmh Exp $" -->
+
+<messages>
+    <msg key="common" value="">
+        <msg key="h1_cifs" value="CIFS"/>
+        <msg key="h3_secp" value="Security Properties" ja="セキュリティ設定"/>
+        <msg key="button_navi" value="..."/>
+        <msg key="submit_SetGlobal" value="Global Options" ja="グローバルオプション"/>
+        <msg key="submit_SharesList" value="Shares List" ja="共有リスト"/>
+        <msg key="submit_DirectEdit" value="Direct Edit" ja="直接編集"/>
+        <msg key="submit_IndirectEdit" value="Indirect Edit" ja="間接編集"/>
+        <msg key="select_nodata" value="----------"/>
+
+        <msg key="th_validusers" value="Valid Users" ja="接続可能ユーザ"/>
+        <msg key="th_guestok" value="Guest Ok" />
+        <msg key="radio_yes" value="Yes"/>
+        <msg key="radio_no" value="No"/>
+        <msg key="msg_account" value="Account"/>
+        <msg key="th_invalidusers" value="Invalid Users" ja="接続拒否ユーザ"/>
+        <msg key="th_hostsallow" value="Hosts Allow" ja="接続可能クライアント"/>
+        <msg key="th_hostsdeny" value="Hosts Deny" ja="接続拒否クライアント"/>
+        <msg key="select_title" value="Select a file" ja="ファィル選択"/>
+		<msg key="th_EncryptPassword" value="Encrypt Passwords" ja="暗号化パスワード"/>
+        <msg key="td_no_useEncrypt" value="Not use" ja="使用しない"/>
+        <msg key="td_useEncrypt" value="Use" ja="使用する"/>
+
+    </msg>
+
+    <msg key="confirm" value="">
+	<msg key="old_version" value="Global Option hasn't set, or Global Option has set in the old version.\r\nYou should set the Global Option first, then set the Share.\r\nSet the Global Option?" ja="グローバルオプションが未設定か、または古いバージョンで設定されたものです。\r\nまずグローバルオプションの設定を行うことで新しいバージョンに変換され、\r\n共有設定が行えるようになります。\r\nグローバルオプションの設定を行いますか？"/>
+        <msg key="delete_share" value="Share Name : %1" ja="共有名：%1"/>
+        <msg key="delete_share_withclients" 
+            value="Some clients are still connected to this share.
+                   \r\nAfter deleting the share, no new CIFS connection can be made.
+                   \r\nDo you wish to continue?" 
+            ja="現在、当該共有に接続しているクライアントが存在します。
+                \r\n削除した場合、以降の新規のCIFS接続は不可能となります。
+                \r\n削除を行いますか？"/>
+        <!-- "localdomain.jsp" -->
+        <msg key="delete_localDomain" 
+            value="NT domain : %1 \r\nNote : Computer name and configuration file are also deleted." 
+            ja="NTドメイン : %1 \r\n注意：同時にコンピュータ名、および、共有も削除されます。"/>
+        <msg key="add_localDomain" value="NT domain : " ja="NTドメイン："/>
+        <msg key="delete_NetBIOS" 
+            value="Computer name : %1 \r\nNote : shares are also deleted." 
+            ja="コンピュータ名 : %1 \r\n注意：同時に共有も削除されます。"/>
+        <msg key="add_netbios" value="Computer Name :" ja="コンピュータ名 :" />
+    </msg>
+
+    <msg key="alert" value="">
+        <msg key="availableServiceNIC_null" value="Service network settings are not in effect.\r\nWithout these settings CIFS service cannot be used.\r\nPlease make the service network settings." ja="サービスネットワークの設定がありません。\r\nサービスネットワークの設定がない状態ではCIFSサービスが利用できませんので、サービスネットワークの設定を行ってください。"/>
+        <!-- "configfileselection" -->
+        <msg key="overflowServerString" value="Invalid server string." ja="不正なサーバコメントです。"/>
+        <msg key="overflowComment" value="Invalid comment." ja="不正なコメントです。"/> 
+        <msg key="overflowShareName" value="Invalid share name." ja="不正な共有名です。"/>
+        <msg key="config_local" value="Please set [NT domain] for export group first."
+            ja="まず公開グループ[NTドメイン]を設定してください。"/>
+        <msg key="config_security" value="Please set the security mode first."
+            ja="まずセキュリティモードを設定してください。"/>
+        <msg key="config_needsecurity" value="Please set the global options first."
+            ja="まずグローバルオプションを設定してください。"/>
+
+        <!-- "shareslist" -->
+	<msg key="invalid_name" value="Invalid directory[%1].\r\nOnly alphanumeric characters and \&quot;/_-.~%\&quot; are allowed.\r\nThe first character can not be \&quot;.-~\&quot;.\r\nOnly alphabet can follow with \&quot;%\&quot;." 
+        ja="不正なディレクトリ[%1]です。\r\n半角英数字と\&quot;/_-.~%\&quot;が指定できます。\r\n最初の文字は\&quot;.-~\&quot;であってはいけません。\r\n\&quot;%\&quot;の後にアルファベット以外であってはいけません。"/>
+        <msg key="badname" value="Invalid share name.\r\n&lt;&gt;|:;\&quot;][,\/\\ are not allowed."
+            ja="不正な共有名です。\r\n&lt;&gt;|:;\&quot;][,\/\\は使用できません。"/>
+        <msg key="duplicate_name" value="This name has been used." ja="この名前はすでに使用されています。"/>
+        <msg key="reservedname" value="\&quot;global\&quot;, \&quot;printers\&quot; and \&quot;homes\&quot; are reserved share names."
+            ja="\&quot;global\&quot;、\&quot;printers\&quot;、\&quot;homes\&quot;は共有名には使用できません。"/>
+
+        <!-- "check for direct, indirect pages." -->
+        <msg key="path" value="Please specify the directory." ja="ディレクトリを指定してください。"/>
+        <msg key="invalid_username" value="Invalid username %1. \r\nOnly alphanumeric characters and -_ are allowed.\r\nThe first character can not be - or a numeric."
+            ja="不正なユーザ名[%1]です。\r\n半角英数字と-_が使用できます。\r\n最初の文字は数と-であってはいけません。"/>
+        <msg key="invalid_winuser" value="Invalid username %1. \r\nOnly valid Windows users are allowed."
+            ja="不正なユーザ名[%1]です。\r\n有効なWindowsユーザ名のみが使用できます。"/>
+        <msg key="invalid_serverstring" value="Invalid input of Server String. \r\n\&quot; is not allowed." 
+            ja="不正なサーバコメントです。\r\n\&quot;は使用できません。"/>
+        <msg key="root_username" value="%1 can not be root." ja="%1にrootは指定できません。"/>
+        <msg key="need_sth" value="Please input %1." ja="%1を入力してください。"/>
+        <msg key="invalid_users" value="Invalid input of %1. \r\nMultiple usernames can be separated by space."
+            ja="不正なユーザ名[%1]です。\r\nスペースで区切った複数の有効なユーザ名が指定できます。"/>
+        <msg key="p_m" value="The password is not correct." ja="パスワードが不正です。"/>
+        <msg key="invalid_hosts" 
+        	value="Invalid client %1. \r\nPlease specify IP addresses or networks.
+                   \r\nOnly format like 192.168.1.0/255.255.255.0 for network is allowed.
+                   \r\nNumeric, .(dot), and /(slash) are allowed. And separate multiple IP addresses and networks by space."
+            ja="不正なクライアント[%1]です。\r\nIPアドレスまたはネットワークを指定してください。
+                \r\nネットワークの指定は192.168.1.0/255.255.255.0の形式のみ指定可能です。
+                \r\n使用可能な文字は数字とドット(.)、スラッシュ(/)です。スペースで区切ることで複数指定が可能です。"/>
+        <msg key="invalid_hostname" value="Invalid input of %1. \r\nOnly alphanumeric characters and .-_ and spaces are allowed.\r\nThe first character can not be . or - ."
+            ja="不正なホスト名[%1]です。\r\n半角英数字と.-_とスペースが使用できます。\r\n最初の文字は.-であってはいけません。"/>
+        <msg key="invalid_comment" value="Invalid input of %1. \r\n\&quot; is not allowed."
+            ja="不正なコメント[%1]です。\r\n\&quot;は使用できません。"/>
+        <msg key="null_interface" value="Please specify the interfaces (Cluster node only)."
+            ja="クラスタノードの時は、インタフェースの指定が必要です。"/>
+        <msg key="up_nic_first" value="Interface(s) is/are expected in case of cluster mode.\r\nPlease check your network interface settings."
+            ja="クラスタの場合は、インタフェースの指定が必要です。\r\nネットワークインタフェースの設定を確認してください。"/> 
+　　　　<msg key="direct_comment" value="Invalid comment in direct edit text area at line %1. \r\n\&quot; is not allowed."
+            ja="%1行目に不正な指定があります。\r\nコメントには\&quot;は使用できません。"/>
+        <msg key="direct_interface" value="Invalid interfaces in direct edit text area at line %1. \r\nPlease input valid IP addresses. Separate the IP addresses by space."
+            ja="%1行目に不正な指定があります。\r\nインタフェースには有効なIPアドレスを入力してください。スペースで複数記述が可能です。"/>
+        <msg key="direct_lean" value="Invalid input in direct edit text area at line %1. \r\nCan not use \\ at the end of the line."
+            ja="%1行目に不正な指定があります。\r\n行最後に\\は指定できません。"/>
+        <msg key="direct_num" value="Invalid input in direct edit text area at line %1. \r\nOnly numeric are allowed for %2."
+            ja="%1行目に不正な指定があります。\r\n数字は%2のみに指定できます。"/>
+        <msg key="direct_codepage" value="Invalid input in direct edit text area at line %1. \r\nOnly 437 or 932 is allowed for %2."
+            ja="%1行目に不正な指定があります。\r\n437または932は%2のみに指定できます。"/>
+        <msg key="direct_users" value="Invalid input in direct edit text area at line %1.\r\nPlease specify the valid user name.\r\nSeparate the user names by space."
+            ja="%1行目に不正な指定があります。\r\n有効なユーザ名を指定してください。\r\nスペースで区切ることで複数指定が可能です。"/>
+        <msg key="direct_username" value="Invalid input in direct edit text area at line %1. \r\nOnly alphanumeric characters and -_ are allowed.\r\nThe first character can not be - or a numeric."
+            ja="%1行目に不正な指定があります。\r\n半角英数字と-_が使用できます。\r\n最初の文字は数と-であってはいけません。"/>
+        <msg key="direct_userroot" value="Invalid input in direct edit text area at line %1. \r\n%2 can not be root."
+            ja="%1行目に不正な指定があります。\r\nrootは指定できません。"/>
+        <msg key="direct_hosts" 
+        	value="Invalid input in direct edit text area at line %1. 
+                   \r\nPlease specify IP addresses or networks for %2. 
+                   \r\nOnly format like 192.168.1.0/255.255.255.0 for network is allowed.
+                   \r\nNumeric, .(dot), and /(slash) are allowed. And separate multiple IP addresses and networks by space."
+            ja="%1行目に不正な指定があります。
+                \r\n%2にはIPアドレスまたはネットワークを指定してください。
+                \r\nネットワークの指定は192.168.1.0/255.255.255.0の形式のみ指定可能です。
+                \r\n使用可能な文字は数字とドット(.)、スラッシュ(/)です。スペースで区切ることで複数指定が可能です。"/>
+        <msg key="direct_chars" value="Invalid input in direct edit text area at line %1. \r\n[ is not allowed."
+            ja="%1行目に不正な指定があります。\r\n[は使用できません。"/>
+        <msg key="direct_serverstring" value="Invalid input in direct edit text area at line %1. \r\n\&quot; is not allowed."
+            ja="%1行目に不正な指定があります。\r\n\&quot;は使用できません。"/>
+        <msg key="toolong_dir" value="The maximum length of each directory name is 64."
+            ja="個々のディレクトリは最大64文字まで指定可能です。" />
+        <msg key="toolong_wholedir" value="The directory name is too long. \r\nThe maximum length of directory name is 255."
+            ja="ディレクトリが指定可能文字数を越えています。\r\n最大255文字まで指定可能です。" />
+        <msg key="err_clientdomain" value="Another type of client domain(%1) has already existed.\r\nAt first, please delete the client domain(%1)."
+            ja="異なるドメイン種別のクライアントドメイン(%1)が存在します。\r\nまずこのクライアントドメイン(%1)を削除してください。"/>
+        <msg key="haveSetAnonymous" value="When uses the [Encrypt Password], Auth Type must not be Anonymous. \r\n Please select the Auth Type except Anonymous. \r\n If [User Database] is not displayed, Please delete the corresponding [Client Domain] from the page of [User Mapping(Client)] first."
+            ja="暗号化パスワードを使用する場合は、認証方式がAnonymous以外である必要があります。\r\n Anonymous以外の認証方式を選択してください。\r\nもし「ユーザデータベース」項目が表示されていない場合は、まずユーザマッピング（クライアント）画面から該当するクライアントドメインを削除してください。"/>
+        <msg key="cannotUseEncrypt" value="When uses the [Encrypt Password], Please select the Auth Type except Anonymous."
+            ja="暗号化パスワードを使用するときは、認証方式はAnonymous以外を選択してください。"/>
+            
+        <!-- "NT Domain" -->
+        <msg key="l_d_ldname" value="Invalid domain.\r\nOnly alphanumeric characters and .-_ are allowed, the maximum length is 15.\r\nThe first character can not be .-. "
+            ja="不正なドメインです。\r\n半角英数字と.-_が使用できます。\r\n最大文字数は15文字です。\r\n最初の文字は.-であってはいけません。"/>
+        <msg key="l_d_nb" value="Invalid computer name. \r\nOnly alphanumeric characters and - are allowed, the maximum length is 15."
+            ja="不正なコンピュータ名です。\r\n半角英数字と-が使用できます。\r\n最大文字数は15文字です。"/>
+        <msg key="l_d_DelComputer" value="One or more data domain related to the export group[%1] exist.\r\nPlease delete the computer name after destroying all user mapping information (data domain) related to the export group linked to the computer name."
+            ja="公開グループ[%1]上に、データドメインが設定されたファイルシステムが一つ以上存在します。\r\nユーザマッピング情報（データドメイン）を解放してからコンピュータ名の削除を行ってください。"/>
+	<msg key="l_d_DelDomain" value="One or more data domain related to the export group[%1] exist.\r\nPlease delete the NT domain name after destroying all user mapping information(data domain) related to the export group linked to the NT domain name."
+            ja="公開グループ[%1]上に、データドメインが設定されたファイルシステムが一つ以上存在します。\r\nユーザマッピング情報（データドメイン）を解放してからNTドメイン名の削除を行ってください。"/>
+        <msg key="ld_existed" value="The NT domain already exists." ja="指定されたNTドメインはすでに存在しています。"/>
+        <msg key="nb_existed" value="The computer name already exists." ja="指定されたコンピュータ名はすでに存在しています。"/>
+        <msg key="sync_er" value="Deleting the native region failed." ja="native regionの削除に失敗しました。"/>
+        <msg key="file_dir_none" value="Please select a directory or a file." ja="ディレクトリーまたはファイルを選択してください。"/>
+        <msg key="no_openldap_dir" value="The directory &quot;/etc/openldap&quot; is not found." ja="&quot;/etc/openldap&quot;が存在しません。"/>
+        <msg key="file_none" value="Please select a file." ja="ファイルを選択してください。"/>
+        <msg key="changeNetbios_failed" value="Can not change the netbios name." ja="コンピュータ名を変更できません。"/>
+	<msg key="old_netbios_confirm" value="Current Computer Name: %1" ja="現在のコンピュータ名: %1"/>
+	<msg key="new_netbios_confirm" value="New Computer Name: %1" ja="新しいコンピュータ名: %1"/>
+	<msg key="changeNetbios_check_withclients" value="Some clients are already connected to this computer.\r\nDo you wish to change computer name?" ja="現在、当該コンピュータに接続しているクライアントが存在します。\r\nコンピュータ名を変更しますか？"/>
+	<msg key="delete_check_withclients" value="Some clients are already connected to this computer about the export group.\r\nDo you wish to delete it?" ja="現在、当該公開グループに対するコンピュータには、接続しているクライアントが存在します。\r\n削除しますか？"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/alert/"/> -->
+
+    <msg key="configfileselection" value="">
+        <msg key="h2_config" value="Select Export Group" ja="公開グループ選択"/>
+        <msg key="h3_configfile" value="NT Domain/Computer Name" ja="NTドメイン名/コンピュータ名"/>
+        <msg key="td_action" value="Action" ja="操作"/>
+        <msg key="td_export" value="Export Group [Domain]" ja="公開グループ[ドメイン]"/>
+        <msg key="td_netbios" value="Computer Name" ja="コンピュータ名"/>
+        <msg key="msg_no_valid_eg" value="The export group which has  Domain and Computer Name does not exist." ja="ドメインとコンピュータ名が設定されている公開グループは存在しません。"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/configfileselection/"/> -->
+
+    <msg key="shareslist" value="">
+        <msg key="h2_sharelist" value="Shares List" ja="共有リスト"/>
+        <msg key="h3_add" value="Add a share" ja="共有追加"/>
+        <msg key="td_action" value="Action" ja="操作"/>
+        <msg key="td_share" value="Share Name" ja="共有名"/>
+        <msg key="h3_sharelist" value="Shares List" ja="共有リスト"/>
+        <msg key="th_index" value="Index"/>
+        <msg key="th_sharename" value="Name" ja="名前"/>
+         <msg key="info_noshare" value="No shares are found." ja="シェアの定義はありません。"/>
+    <msg key="th_sharepath" value="Directory" ja="ディレクトリ"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/shareslist/"/> -->
+
+    <msg key="sharelistindirect" value="">
+ 	<msg key="radio_use_pwd" value="Enable" ja="有効"/>
+ 	<msg key="radio_nouse_pwd" value="Disable" ja="無効"/>
+        <msg key="h2_detail" value="Setting Share [Indirect Edit]" ja="共有設定[間接編集]"/>
+        <msg key="h3_file" value="NT Domain/Computer Name" ja="NTドメイン名/コンピュータ名"/>
+        <msg key="th_sharename" value="Name" ja="名前"/>
+        <msg key="th_avail" value="Available" ja="有効"/>
+        <msg key="th_path" value="Directory" ja="ディレクトリ"/>
+        <msg key="th_comment" value="Comment" ja="コメント"/>
+        <msg key="th_password" value="Password" ja="パスワード"/>
+        <msg key="check_changep" value="Change Password" ja="パスワードの変更"/>
+        <msg key="check_sharesnap" value="Share Snapshot" ja="スナップショットの共有"/>
+        <msg key="th_pass1" value="New Password" ja="パスワード"/>
+        <msg key="th_pass2" value="Retype new password" ja="パスワード(確認)"/>
+        <msg key="th_w" value="Access Mode" ja="アクセスモード"/>
+        <msg key="radio_ro" value="Read Only"/>
+        <msg key="msg_wl" value="Write Permitted List" ja="Write許可リスト"/>
+        <msg key="radio_rw" value="Read/Write"/>
+        <msg key="th_wb" value="Using ServerProtect" ja="ServerProtectの利用"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/sharelistindirect/"/> -->
+
+    <msg key="sharelistdirect" value="">
+        <msg key="h2_share" value="Setting Share [Direct Edit]" ja="共有設定[直接編集]"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/sharelistdirect/"/> -->
+
+    <msg key="cifsglobalindirect" value="">
+        <msg key="option_domain" value="domain" ja="ドメイン"/>
+        <msg key="option_share" value="share" ja="共有"/>
+	<msg key="option_nis" value="User(NIS)" ja="ユーザ(NIS)"/>
+	<msg key="option_pwd" value="User(Passwd)" ja="ユーザ(Passwd)"/>
+	<msg key="option_ldap" value="User(LDAP)" ja="ユーザ(LDAP)"/>
+	<msg key="option_ads" value="ADS" ja="ADS"/>
+        <msg key="h2_g_i" value="Global Options [Indirect Edit]" ja="グローバルオプション[間接編集]"/>
+        <msg key="h3_g_i" value="NT Domain/Computer Name" ja="NTドメイン名/コンピュータ名"/>
+        <msg key="td_basic" value="Basic Properties" ja="基本設定"/>
+        <msg key="td_se" value="Security Mode" ja="セキュリティモード"/>
+        <msg key="td_native" value="Client Domain" ja="クライアントドメイン"/>
+	<msg key="td_ludb" value="User Database" ja="ユーザデータベース"/>
+        <msg key="td_pdc_name" value="NT Domain Name" ja="NTドメイン名"/>
+        <msg key="td_pdc_server" value="NT Domain Controller" ja="NTドメインコントローラ"/>
+        <msg key="text_username" value="User Name" ja="ユーザ名"/>
+        <msg key="text_pass" value="Password" ja="パスワード"/>
+        <msg key="td_Server" value="Server String" ja="サーバ コメント"/>
+        <msg key="td_Client" value="Client Code Page" ja="クライアント コードページ"/>
+        <msg key="radio_English" value="English" ja="英語"/>
+        <msg key="radio_Japanese" value="Japanese" ja="日本語"/>
+        <msg key="td_Auto" value="Auto Disconnect Timeout[minutes]" ja="接続タイムアウト[分]"/>
+        <msg key="th_interface" value="Interfaces" ja="インタフェース"/>
+        <msg key="msg_currentSetting" value="Current Setting:" ja="現在の設定："/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/cifsglobalindirect/"/> -->
+
+    <msg key="cifsglobaldirect" value="">
+        <msg key="h2_g_d" value="Global Options [Direct Edit]" ja="グローバルオプション[直接編集]"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/cifsglobaldirect/"/> -->
+
+    <msg key="localdomain" value="">
+        <msg key="h1_local" value="NT Domain" ja="NTドメイン"/>
+        <msg key="h3_local" value="NT Domain" ja="NTドメイン"/>
+        <msg key="h3_net" value="Computer Name" ja="コンピュータ名"/>
+        <msg key="td_action" value="Action" ja="操作"/>
+        <msg key="td_ExportRoot" value="Export Group" ja="公開グループ"/>
+        <msg key="td_LocalDomain" value="NT Domain" ja="NTドメイン"/>
+        <msg key="td_ExportRoot1" value="Export Group [NT Domain]" ja="公開グループ[NTドメイン]"/>
+        <msg key="td_NetBIOS" value="Computer Name" ja="コンピュータ名"/>
+    </msg>
+    <!-- <nsgui:message key="nas_cifs/localdomain/"/> -->
+    <msg key="changeNetbios" value="">
+	<msg key="check_status" value="Check clients under the connection" ja="接続中クライアントの確認を行う"/>
+	<msg key="changenetbios_button" value="Change Computer Name" ja="コンピュータ名の変更"/>
+	<msg key="old_netbios" value="Current Computer Name" ja="現在のコンピュータ名"/>
+	<msg key="new_netbios" value="New Computer Name" ja="新しいコンピュータ名"/>
+	<msg key="h2_changebios" value="Change Computer Name" ja="コンピュータ名の変更"/>
+	
+    </msg>
+</messages>
+
+<!-- <%@ taglib uri="taglib-nsgui" prefix="nsgui" %> -->

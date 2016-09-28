@@ -1,0 +1,1768 @@
+<!--
+        Copyright (c) 2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-csar.xml,v 1.3 2008/04/24 00:52:30 fengmh Exp $" -->
+<ExceptionConf>
+    <!-- errorCode config for collection on one node -->
+    <ProcessRule errorCode="0x13900200">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900201">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>        
+    <ProcessRule errorCode="0x13900202">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.2.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900203">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.3.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900204">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900205">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900206">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900207">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.7.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.7.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900208">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.8.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.8.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900209">
+        <ErrorMessage key="csar.exception.onenode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.onenode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.othernode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    
+    <!-- errorCode config for collection on both node, first on node0,and then on node1, and fip is on node0 -->
+    <ProcessRule errorCode="0x13900000">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900001">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900002">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900003">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900004">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900005">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900006">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900009">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390000a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900010">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900011">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900012">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900013">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900014">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900015">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900016">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900019">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390001a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900020">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900021">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900022">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900023">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900024">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900025">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900026">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900029">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390002a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900030">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900031">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900032">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900033">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900034">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900035">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900036">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900039">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390003a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900040">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900041">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900042">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900043">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900044">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900045">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900046">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900049">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390004a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900050">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900051">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900052">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900053">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900054">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900055">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900056">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900059">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390005a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900060">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900061">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900062">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900063">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900064">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900065">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900066">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900069">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390006a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900070">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900071">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900072">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900073">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900074">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900075">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900076">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900079">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390007a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900080">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900081">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900082">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900083">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900084">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900085">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900086">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900089">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390008a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900090">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900091">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900092">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900093">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900094">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900095">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900096">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900099">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390009a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a7">
+        <ErrorMessage key="csar.exception.bothachive.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothachive.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.7.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.7.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000a8">
+        <ErrorMessage key="csar.exception.bothachive.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothachive.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.8.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.8.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000b5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000c5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+        <ProcessRule errorCode="0x139000d0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000d1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000d2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000d3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000d4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139000d5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <!-- errorCode config for collection on both node, first on node1,and then on node0, and fip is on node1 -->
+    <ProcessRule errorCode="0x13900100">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900101">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900102">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900103">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900104">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900105">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900106">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900109">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390010a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900110">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900111">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900112">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900113">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900114">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900115">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900116">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900119">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390011a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900120">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900121">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900122">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900123">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900124">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900125">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900126">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900129">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390012a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900130">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900131">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900132">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900133">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900134">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900135">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900136">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900139">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390013a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900140">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900141">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900142">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900143">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900144">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900145">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900146">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900149">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390014a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900150">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900151">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900152">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900153">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900154">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900155">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900156">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900159">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390015a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900160">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900161">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900162">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900163">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900164">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900165">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900166">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900169">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390016a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900170">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900171">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900172">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900173">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900174">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900175">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900176">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900179">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390017a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900180">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900181">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900182">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900183">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900184">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900185">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900186">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900189">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390018a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900190">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900191">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900192">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900193">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900194">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900195">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900196">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.6.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.othernode.6.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13900199">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.9.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1390019a">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.a.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a7">
+        <ErrorMessage key="csar.exception.bothachive.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothachive.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.7.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.7.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001a8">
+        <ErrorMessage key="csar.exception.bothachive.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothachive.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.8.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.8.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001b5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001c5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d0">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.0.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d1">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.1.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d2">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.2.detail.deal" type="detailDeal">
+            <arg property ="csar_main_info"/>
+        </ErrorMessage>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d3">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.3.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d4">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.4.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+    <ProcessRule errorCode="0x139001d5">
+        <ErrorMessage key="csar.exception.bothnode.general.info" type="generalInfo"/>
+        <ErrorMessage key="csar.exception.bothnode.general.deal" type="generalDeal"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.info" type="detailInfo"/>
+        <ErrorMessage key="csar.exception.mainnode.5.detail.deal" type="detailDeal"/>
+        <Dispatcher srcAction="/csarSetting"       forward="csarframe"/>
+    </ProcessRule>
+</ExceptionConf>

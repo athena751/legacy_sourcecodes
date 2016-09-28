@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+--> 
+<!-- "@(#) $Id: struts-config-serverprotect.xml,v 1.8 2007/05/18 01:27:31 wangzf Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name="ScanServerForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="globalOption" type="com.nec.nsgui.model.entity.serverprotect.ServerProtectGlobalOptionBean"/>
+		<form-property  name="scanServer" type="java.lang.String"/>
+		<form-property  name="scanUserChange" type="java.lang.String"/>
+		<form-property  name="scanServerChange" type="java.lang.String"/>
+	</form-bean>
+	<form-bean name="ScanShareForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="selectedShare" type="java.lang.String"/>
+	</form-bean>
+	<form-bean name="ScanShareChangeForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="selectedShare" type="java.lang.String"/>
+		<form-property  name="readCheck" type="java.lang.String"/>
+		<form-property  name="writeCheck" type="java.lang.String"/>
+	</form-bean>
+	<form-bean name="directEditForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property name="fileContent" type="java.lang.String" /> 
+	</form-bean>
+</form-beans>
+  
+<action-mappings>
+    <action path="/serverProtectConfig"
+            type="com.nec.nsgui.action.serverprotect.ServerProtectConfigAction"
+            scope="request">
+        <forward name="noads"
+                 path="/nas/serverprotect/serverprotectnoads.jsp"
+                 module=""/>
+        <forward name="nocifsshare"
+                 path="/nas/serverprotect/serverprotectnocifsshare.jsp"
+                 module=""/>
+        <forward name="cifsdeny"
+                 path="/nas/serverprotect/serverprotectcifsdeny.jsp"
+                 module=""/>
+        <forward name="nointerface"
+                 path="/nas/serverprotect/serverprotectnointerface.jsp"
+                 module=""/>
+        <forward name="nocifslicense"
+                 path="/nas/serverprotect/serverprotectnocifslicense.jsp"
+                 module=""/>
+        <forward name="tabentry"
+                 path="/nas/serverprotect/serverprotecttabentry.jsp"
+                 module=""/>
+        <forward name="tabentry4nsview"
+                 path="/nas/serverprotect/serverprotecttabentry4nsview.jsp"
+                 module=""/>
+	</action>
+    <action path="/serverProtectDisplayTab"
+    	forward="/../nas/serverprotect/serverprotecttabtop.jsp">
+	</action>
+    <action path="/serverProtectDisplayTab4nsview"
+    	forward="/../nas/serverprotect/serverprotecttabtop4nsview.jsp">
+	</action>
+    <action path="/serverProtectDisplayScanServer"
+    	forward="/../nas/serverprotect/serverprotectscanserver.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShare"
+    	forward="/../nas/serverprotect/serverprotectscanshare.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanServerBottom"
+    	forward="/../nas/serverprotect/serverprotectscanserverbottom.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShareBottom"
+    	forward="/../nas/serverprotect/serverprotectscansharebottom.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShareModify"
+	    name="ScanShareChangeForm"
+    	forward="/../nas/serverprotect/serverprotectscansharemodify.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShareModifyBottom"
+    	forward="/../nas/serverprotect/serverprotectscansharemodifybottom.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShareAdd"
+    	forward="/../nas/serverprotect/serverprotectscanshareadd.jsp">
+	</action>
+	<action path="/serverProtectDisplayScanShareAddBottom"
+    	forward="/../nas/serverprotect/serverprotectscanshareaddbottom.jsp">
+	</action>
+	<action path="/serverProtectScanServer"
+            type="com.nec.nsgui.action.serverprotect.ServerProtectScanServerAction"
+            name="ScanServerForm"
+            scope="session"
+            parameter="operation">
+        <forward name="scanservertop" 
+                 path="/nas/serverprotect/serverprotectscanservertop.jsp"
+                 module=""/>
+        <forward name="setsuccess" 
+                 path="/nas/serverprotect/serverprotectscanserver.jsp"
+                 module=""/>
+    </action>
+    <action path="/serverProtectScanShare"
+            type="com.nec.nsgui.action.serverprotect.ServerProtectScanShareAction"
+            name="ScanShareForm"
+            scope="session"
+            parameter="operation">
+        <forward name="scansharetop" 
+                 path="/nas/serverprotect/serverprotectscansharetop.jsp"
+                 module=""/>
+        <forward name="setsuccess" 
+                 path="/nas/serverprotect/serverprotectscanshare.jsp"
+                 module=""/>
+        <forward name="noconfigfile" 
+                 path="/nas/serverprotect/serverprotectnoconfigfile.jsp"
+                 module=""/>                 
+    </action>
+    <action path="/serverProtectScanShareModify"
+            type="com.nec.nsgui.action.serverprotect.ServerProtectScanShareModifyAction"
+            name="ScanShareChangeForm"
+            scope="session"
+            parameter="operation">
+        <forward name="scansharemodifytop" 
+                 path="/nas/serverprotect/serverprotectscansharemodifytop.jsp"
+                 module=""/>
+        <forward name="setsuccess" 
+                 path="/nas/serverprotect/serverprotectscanshare.jsp"
+                 module=""/>
+    </action>
+    <action path="/serverProtectScanShareAdd"
+            type="com.nec.nsgui.action.serverprotect.ServerProtectScanShareAddAction"
+            name="ScanShareChangeForm"
+            scope="session"
+            parameter="operation">
+        <forward name="scanshareadd" 
+                 path="/nas/serverprotect/serverprotectscanshareadd.jsp"
+                 module=""/>
+        <forward name="scanshareaddtop" 
+                 path="/nas/serverprotect/serverprotectscanshareaddtop.jsp"
+                 module=""/>
+        <forward name="setsuccess" 
+                 path="/nas/serverprotect/serverprotectscanshare.jsp"
+                 module=""/>
+        <forward name="noshare4add" 
+                 path="/nas/serverprotect/serverprotectscanshare.jsp"
+                 module=""/>
+    </action>
+	<action path="/serverProtectList"
+		type="com.nec.nsgui.action.serverprotect.ServerProtectListAction"
+		scope="request" parameter="operation">
+		<forward name="display" module=""
+			path="/nas/serverprotect/serverprotectlist.jsp" />
+	</action>
+    <action path="/serverProtectDirectEdit"
+    	forward="/../nas/serverprotect/serverprotectdirectedit.jsp">
+	</action>
+	<action path="/serverProtectDirectEditBottom" 
+	    forward="/../nas/serverprotect/serverprotectdirecteditbottom.jsp">
+	</action>
+	<action path="/serverProtectExtensionList" 
+	    forward="/../nas/serverprotect/serverprotectdefaultextension.jsp">
+	</action>
+	<action path="/serverProtectExtensionListTop" 
+	    forward="/../nas/serverprotect/serverprotectdefaultextensiontop.jsp">
+	</action>
+	<action path="/serverProtectExtensionListBottom" 
+	    forward="/../nas/serverprotect/serverprotectdefaultextensionbottom.jsp">
+	</action>
+    <action path="/serverProtectFile"  
+		type="com.nec.nsgui.action.serverprotect.ServerProtectFileAction" 
+		parameter="operation"
+		name="directEditForm" scope="request">     
+        <forward name="serverProtectFileToNsview"       
+		    path="/nas/serverprotect/serverprotectfile4nsview.jsp" 
+		    module=""/>
+		<forward name="serverProtectFileToNsadmin"       
+		    path="/nas/serverprotect/serverprotectdirectedittop.jsp" 
+		    module=""/>
+		<forward name="serverProtectFileReloadNsadmin" module=""
+		    path="/serverprotect/serverProtectFile.do?operation=readVrscanFile"/>
+	</action>	
+</action-mappings>
+
+<!-- ========== Message Resources Definitions =========================== -->
+<message-resources parameter="com.nec.nsgui.messages.ServerProtectResource"/>
+
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml"/>
+</plug-in>
+</struts-config>

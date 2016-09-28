@@ -1,0 +1,787 @@
+#!/bin/sh
+#
+#       Copyright (c) 2005 NEC Corporation
+#
+#       NEC SOURCE CODE PROPRIETARY
+#
+#       Use, duplication and disclosure subject to a source code
+#       license agreement with NEC Corporation.
+#
+# "@(#) $Id: nsgui_syncwrite,v 1.3 2005/09/14 08:58:16 wangzf Exp $"
+
+
+#####################################################################
+### FUNCTION:
+###     1. Synchronize one file to disk
+###        $0 -f <sg_file>
+###     2. Synchronously write data to file. 
+###        $0 -o [--owner|-O <owner>] [--group|-G <group>] [--mode|-M <mode>] <sg_file>            
+###     3. Synchronously append data to file. 
+###        $0 -a [--owner|-O <owner>] [--group|-G <group>] [--mode|-M <mode>] <sg_file>
+###     4. Synchronously copy a file to another file. 
+###        $0 -c [--owner|-O <owner>] [--group|-G <group>] [--mode|-M <mode>] <tmp_file> <sg_file>
+###     5. Synchronously mv a file to another file. 
+###        $0 -m [--owner|-O <owner>] [--group|-G <group>] [--mode|-M <mode>] <tmp_file> <sg_file>
+###     6. Synchronously a tar package.
+###        $0 -u <package.tar.gz>
+###
+### RETURN
+###     0 -- success
+###     1 -- parameter error
+###     2 -- system call error
+###     3 -- shell command error
+###
+### OUTPUT
+###     All message will be output to standard error.
+###     1. Usage 
+###          see "-h" option
+###     2. ErrorMessage 
+###          e.g.  Failed to open tmp_file.
+###
+#####################################################################
+### INSTALL:
+###     1. copy nsgui_fsync to some place 
+###     2. modify "CMD_FSYNC"'s value
+###     3. add the execute access mode for this script
+###     4. then can use this command as normal binary file
+###
+#####################################################################
+### LIMIT:
+###     1. All the input file's name must be normal,
+###        composed of alpha character, number, "_", 
+###        "-", ".".
+###     2. the file name cannot start with ".".
+###     
+###
+#####################################################################
+### HISTORY:
+###     Date        Modifier    Contents
+###     2005/04/01  Liuyq       First time finished.
+###     2005/04/04  Liuyq       Add process for copying or moving to a dir.
+###                             Add message(both output and error)'s redirection  of 
+###                                 a command to /dev/null for leaking in some place
+###                             Add tempory file's deleting for leaking in some place
+###     2005/04/04  Liuyq       When copying, if the sg file exists, 
+###                             keep its owner and mask.
+###     2005/04/08  Liuyq       When file exists, keep file's owner, 
+###                                  [cp -fp] can not keep file's owner
+###                             When moving ,if failed, keep the source file
+###     2005/04/13  Liuyq       Add options to for specifying owner/group/mode.
+###                             Classify system error and options error
+###                             Delete redirecting error of "nsgui_fsync" to /dev/null
+###     2005/06/08  Liuyq       modfiy the structure of code.
+###                             use getopt to parse parameters
+###                             delete useless back quote
+###     2005/09/14  Liuyq       delete the limit of file name with "+"
+#####################################################################
+### Constants defination start
+MYDIR=`dirname $0`
+CMD_FSYNC=$MYDIR/nsgui_fsync
+SYNC_SUFFIX="_sync_tmp"
+SYNC_PREFIX="."
+DIR_PREFIX="/tmp/.sync_tmp_"
+CMDNAME=`basename $0`
+
+#####################################################################
+###Function's Defination start
+
+###Function: Output the usage of this shell
+###Parameter: none
+###Return: none
+function usage(){
+    cat >&2 <<-EOF
+	Usage:  
+	    $CMDNAME  --fsync|-f <sg_file>
+	    $CMDNAME  --overwrite|-o|--append|-a
+	                     [--owner|-O <owner>] [--group|-G <group>]
+	                     [--mode|-M <mode>] <sg_file>
+	    $CMDNAME  --copy|-c|--move|-m
+	                     [--owner|-O <owner>] [--group|-G <group>]
+	                     [--mode|-M <mode>] <tmp_file> <sg_file>
+	    $CMDNAME  --uncompress|-u <package.tar.gz>
+	    $CMDNAME  --help|-h
+	     
+	EOF
+}
+
+###Function: syncronize one single file to disk
+###Parameter:
+###     file-- the file's name  
+###Output:
+###     none
+###Return:
+###     0: success
+###     2: system call error
+###     3: shell command error     
+function fsync(){
+    _SG_FILE=$1
+    $CMD_FSYNC $_SG_FILE
+    RET=$?
+    if [ $RET -ne 0 ] && [ $RET -ne 2 ]; then
+        return 3
+    fi
+    
+    return $RET
+}
+
+###Function: syncronize one dir 
+###Parameter:
+###     _DIR -- dir's path
+###     _BASE -- the string to replaced with ""
+###Output:
+###     error message of "$0 -c"
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function syncdir(){
+    _TMPDIR=$1
+    _TARPKG=$2
+    
+    tar tzf $_TARPKG|
+    while read file
+    do 
+        tmpfile=$_TMPDIR/$file
+        if [ -f "$tmpfile" ]; then
+            $0 -c "$tmpfile" "/$file"
+            RET=$?
+            if [ $RET -ne 0 ]; then
+                return $RET
+            fi
+        elif [ -d "$tmpfile" ]; then
+            mkdir -p "/$file"
+            if [ $? -ne 0 ]; then
+                echo "Failed to create dir /$file." >&2
+                return 3
+            fi
+        fi
+    ### other case is not dealt. e.g. link file or device file
+    done
+
+    return 0
+}
+
+###Function: syncronisly uncompress a tar package to its path 
+###Parameter:
+###     _TARPKG -- the tar package's  path
+###Output:
+###     error message 
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function uncompress(){
+    
+    _TARPKG=$1
+    _BASENAME=`basename $_TARPKG 2>/dev/null`
+    _TMPDIR=$DIR_PREFIX$_BASENAME
+    rm -fr $_TMPDIR >&/dev/null&& mkdir -p $_TMPDIR >&/dev/null
+    if [ $? -ne 0 ]; then 
+        echo "Failed to create $_TMPDIR." >&2
+        return 3
+    fi
+    
+    tar zxf $_TARPKG -C $_TMPDIR>&/dev/null
+    if [ $? -ne 0 ]; then 
+        echo "Failed to uncompress tar package($_TARPKG)." >&2
+        rm -fr $_TMPDIR >&/dev/null
+        return 3
+    fi
+    
+    syncdir $_TMPDIR $_TARPKG ### Message's output is in syncdir
+    _RET=$?
+    rm -fr $_TMPDIR >&/dev/null
+    return $_RET
+}
+
+###Function: create tmporary file and remove its exist file and mkdir its dir
+###          set globals variant TMPFILE and SG_FILE
+###GOLBAL:
+###     TMPFILE -- temporay file's path
+###     SGFILE -- sg file's path
+###Parameter:
+###     _SG_FILE -- dest file's  path
+###     _SRC_FILE -- source file's  path
+###Output:
+###     error message 
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function creTmpFileNameClean(){
+    _SG_FILE=$1
+    _SRC_FILE=$2
+    
+    _DIR=""
+    _BASENAME=""
+    if [ -d $_SG_FILE ]; then
+        _DIR=$_SG_FILE
+        _BASENAME=`basename $_SRC_FILE 2>/dev/null`
+        SG_FILE=$_DIR/$_BASENAME                         ### modify globals variant
+    else 
+        _DIR=`dirname $_SG_FILE 2>/dev/null`
+        _BASENAME=`basename $_SG_FILE 2>/dev/null` 
+    fi
+    
+    _TMPFILE=$_DIR/$SYNC_PREFIX$_BASENAME$SYNC_SUFFIX      
+    TMPFILE=$_TMPFILE                                   ### modify globals variant
+    
+    ###make sg file's directory
+    mkdir -p $_DIR >&/dev/null
+    if [ $? -ne 0 ]; then 
+        echo "Failed to create $_DIR." >&2
+        return 3
+    fi 
+    rm -f $_TMPFILE >&/dev/null ###remove sg file's image
+    if [ $? -ne 0 ]; then 
+        echo "Failed to remove $_TMPFILE." >&2
+        return 3
+    fi 
+    return 0;
+}
+
+###Function: set file's owner and group to global variants
+###GOLBAL:
+###     OWNER -- sg file's owner 
+###     GROUP -- sg file's group
+###Parameter:
+###     _SG_FILE -- dest file's  path
+###Output:
+###     none
+###Return:
+###     0: success
+function getOwnerGroup(){
+    _SG_FILE=$1
+    
+    if [ "X$_SG_FILE" != "X" ] && [ -f $_SG_FILE ]; then
+        if [ "X$OWNER" = "X" ]; then
+            OWNER=`stat -c '%U' $_SG_FILE` ###get file's owner
+        fi
+        if [ "X$GROUP" = "X" ]; then
+            GROUP=`stat -c '%G' $_SG_FILE` ###get file's group
+        fi
+    fi
+    return 0;
+}
+
+###Function: operation in the end
+###          1.fsync tmpfile
+###          2. change owner and group of tmpfile
+###          3. change mode of tmpfile
+###          3. move tmpfile to sg file
+###GOLBAL:
+###     SG_FILE TMPFILE 
+###     OWNER GROUP MODE
+###Parameter:
+###     _SG_FILE -- dest file's  path
+###Output:
+###     none
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function endOper(){
+    fsync $TMPFILE
+    RET=$?
+    if [ $RET -ne 0 ]; then 
+        echo "Failed to synchronize $TMPFILE." >&2
+        return $RET
+    fi 
+    
+    changeFileOwner $TMPFILE $OWNER $GROUP
+    RET=$?
+    if [ $RET -ne 0 ]; then 
+        return $RET
+    fi 
+    
+    changeFileMode $TMPFILE $MODE
+    RET=$?
+    if [ $RET -ne 0 ]; then 
+        return $RET
+    fi 
+    
+    mvFile $TMPFILE $SG_FILE
+    return $?
+}
+
+###Function: 
+###     move source file to dest file
+###GOLBAL:
+###     error message
+###Parameter:
+###     _SRCFILE -- source file's  path
+###     _DESTFILE -- dest file's  path
+###Output:
+###     none
+###Return:
+###     0: success
+###     3: shell command errors
+function mvFile(){
+    _SRCFILE=$1
+    _DESTFILE=$2
+    mv -f $_SRCFILE $_DESTFILE>&/dev/null
+    if [ $? -ne 0 ]; then 
+        echo "Failed to move $_SRCFILE to $_DESTFILE." >&2
+        return 3
+    fi
+    return 0
+}
+
+###Function: 
+###     change dest file's mode
+###GOLBAL:
+###     none
+###Parameter:
+###     _FILE -- dest file's  path
+###     _MODE -- file's access mdoe
+###Output:
+###     error message
+###Return:
+###     0: success
+###     3: shell command errors
+function changeFileMode(){
+    _FILE=$1
+    _MODE=$2
+    
+    if [ "X$_MODE" != "X" ]; then
+        chmod $_MODE $_FILE >&/dev/null
+        if [ $? -ne 0 ]; then
+            echo "Failed to change mode of file $_FILE." >&2
+            return 3
+        fi
+    fi
+    return 0
+}
+
+###Function: 
+###     change dest file's owner and group
+###GOLBAL:
+###     none
+###Parameter:
+###     _FILE -- dest file's  path
+###     _OWNER -- file's owner
+###     _GROUP -- file's group
+###Output:
+###     error message
+###Return:
+###     0: success
+###     3: shell command errors
+function changeFileOwner(){
+    _FILE=$1
+    _OWNER=$2
+    _GROUP=$3
+
+    _RET=0
+    if [ "X$_OWNER" != "X" ] || [ "X$_GROUP" != "X" ]; then
+        if [ "X$_OWNER" != "X" ] && [ "X$_GROUP" = "X" ]; then
+            chown $_OWNER $_FILE >&/dev/null
+            _RET=$?
+        else
+            chown $_OWNER:$_GROUP $_FILE >&/dev/null
+            _RET=$?
+        fi
+        if [ $_RET -ne 0 ]; then
+            echo "Failed to change owner or group of file $_FILE." >&2
+            return 3
+        fi
+    fi
+    return 0
+}
+
+###Function: 
+###     rm temporary file when is not move 
+###     or mv temporary file to source file when move
+###GOLBAL:
+###     none
+###Parameter:
+###     _OPT -- operation's type
+###     _TMPFILE -- temporay file's path
+###     _SRC_FILE -- source file's path
+###Output:
+###     none
+###Return:
+###     0: success
+function rollback(){
+    _OPT=$1
+    _TMPFILE=$2
+    _SRC_FILE=$3
+    
+    if [ "$_OPT" = "move" ]; then
+        mv -f $_TMPFILE $_SRC_FILE >&/dev/null
+    else
+        rm -f $_TMPFILE >&/dev/null
+    fi
+    return 0
+}
+
+###Function: 
+###     operations for  append or overwrite
+###     creTmpFileNameClean  getOwnerGroup createTmpFile writeData endOpr
+###GOLBAL:
+###     SG_FILE SRC_FILE TMPFILE OPT
+###Parameter:
+###     none
+###Output:
+###     error message
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function appendOverwrite(){
+
+    creTmpFileNameClean $SG_FILE $SRC_FILE
+    _RET=$?
+    if [ $_RET -ne 0 ]; then
+        return $_RET
+    fi
+    
+    getOwnerGroup $SG_FILE
+    
+    if [ -f $SG_FILE ]; then 
+        cp -fp $SG_FILE $TMPFILE >&/dev/null
+        if [ $? -ne 0 ]; then 
+            echo "Failed to copy $SG_FILE to $TMPFILE." >&2
+            return 3
+        fi
+    else
+        touch $TMPFILE >&/dev/null
+        if [ $? -ne 0 ]; then 
+            echo "Failed to create $TMPFILE." >&2
+            return 3
+        fi 
+    fi                    
+    
+    ####write data to sg file's image
+    if [ "$OPT" = "overwrite" ]; then
+        cat >$TMPFILE 2>/dev/null
+    else
+        cat >>$TMPFILE 2>/dev/null
+    fi
+    if [ $? -ne 0 ]; then 
+        rm -f $TMPFILE >&/dev/null
+        echo "Failed to write $TMPFILE." >&2
+        return 3
+    fi
+    
+    endOper
+    _RET=$?
+    if [ $_RET -ne 0 ]; then
+        rollback $OPT $TMPFILE $SRC_FILE
+    fi
+    return $_RET
+}
+
+###Function: 
+###     operations for  copy or move
+###     creTmpFileNameClean  getOwnerGroup createTmpFile  endOpr
+###GOLBAL:
+###     SG_FILE SRC_FILE TMPFILE OPT
+###Parameter:
+###     none
+###Output:
+###     error message
+###Return:
+###     0: success
+###     2: system call error 
+###     3: shell command errors
+function copyMove(){
+    creTmpFileNameClean $SG_FILE $SRC_FILE
+    _RET=$?
+    if [ $_RET -ne 0 ]; then
+        return $_RET
+    fi
+    
+    if [ -e $SG_FILE ] && [ ! -f $SG_FILE ]; then
+        echo "$SG_FILE is not a normal file." >&2
+        return 3
+    fi
+    
+    getOwnerGroup $SG_FILE
+    ###make sg file's image
+    _CMD=""
+    _MSG=""
+    if [ "$OPT" = "copy" ]; then
+        if [ -f $SG_FILE ]; then
+            cp -fp $SG_FILE $TMPFILE >&/dev/null ###keep sg file's mask
+            if [ $? -ne 0 ]; then 
+                echo "Failed to copy $SG_FILE to $TMPFILE." >&2
+                return 3
+            fi
+            
+            _CMD="cp -f $SRC_FILE $TMPFILE >&/dev/null"
+        else    
+            _CMD="cp -fp $SRC_FILE $TMPFILE >&/dev/null" ###for copy
+        fi
+            
+        _MSG="copy"
+    else
+        _CMD="mv -f $SRC_FILE $TMPFILE >&/dev/null" ### for move
+        _MSG="move"
+    fi
+    eval $_CMD
+    if [ $? -ne 0 ]; then 
+        echo "Failed to $_MSG $SRC_FILE to $TMPFILE." >&2
+        return 3
+    fi
+    
+    endOper
+    _RET=$?
+    if [ $_RET -ne 0 ]; then
+        rollback $OPT $TMPFILE $SRC_FILE
+    fi
+    return $_RET
+            
+}
+
+function validateFileName(){
+    _FILENAME=$1
+    
+    if [ "X$_FILENAME" != "X" ]; then
+        echo "$_FILENAME"|grep "[^0-9a-zA-Z_.\:/+-]" >&/dev/null
+        if [ $? -eq 0 ]; then
+            echo "Invalid file name $_FILENAME." >&2
+            return 1
+        fi
+    fi
+    return 0
+}
+#####################################################################
+### Main program start
+
+OPT=""
+SG_FILE=""
+SRC_FILE=""
+TARPKG=""
+TMPFILE=""
+OWNER=""
+GROUP=""
+MODE=""
+
+### Parse options and parameters
+STRING_ARGUMENT=`getopt -q -o f:aocmu:hO:G:M: \
+    -l fsync:,append,overwrite,copy,move,uncompress:,help,owner:,group:,mode: -- "$@"`
+eval set -- "$STRING_ARGUMENT"
+
+RET=0
+while true; do
+    case "$1" in
+         -f|--fsync)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="fsync"
+                    SG_FILE=$2
+                    shift 2
+                else
+                    RET=1
+                    break
+                fi
+                ;;
+         -a|--append)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="append"
+                    shift
+                else
+                    RET=1
+                    break
+                fi
+                ;;
+         -o|--overwrite)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="overwrite"
+                    shift
+                else
+                    RET=1
+                    break
+                fi    
+                ;;
+         -c|--copy)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="copy"
+                    shift
+                else
+                    RET=1
+                    break
+                fi      
+                ;;       
+         -m|--move)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="move"
+                    shift
+                else
+                    RET=1
+                    break
+                fi    
+                ;;
+         -u|--uncompress)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="uncompress"
+                    TARPKG=$2
+                    shift 2
+                else
+                    RET=1
+                    break
+                fi      
+                ;;   
+         -h|--help)
+                if [ "X$OPT" = "X" ]; then
+                    OPT="help"
+                    shift
+                else
+                    RET=1
+                    break
+                fi       
+                ;;
+         -O|--owner)
+                if [ "X$OPT" = "X" ] || [ "X$OPT" = "Xfsync" ] || \
+                   [ "X$OPT" = "Xhelp" ] || [ "X$OPT" = "Xuncompress" ]; then
+                    RET=1
+                    break
+                fi
+                if [ "X$OWNER" = "X" ]; then  ### start with "-" or "--" ,also can be recognize as parameter
+                    OWNER=$2
+                    shift 2
+                else
+                    RET=1
+                    break
+                fi     
+                ;;
+         -G|--group)
+                if [ "X$OPT" = "X" ] || [ "X$OPT" = "Xfsync" ] || \
+                   [ "X$OPT" = "Xhelp" ] || [ "X$OPT" = "Xuncompress" ]; then
+                    RET=1
+                    break
+                fi
+                if [ "X$GROUP" = "X" ]; then
+                    GROUP=$2
+                    shift 2
+                else
+                    RET=1
+                    break
+                fi    
+                ;;   
+         -M|--mode)
+                if [ "X$OPT" = "X" ] || [ "X$OPT" = "Xfsync" ] || \
+                   [ "X$OPT" = "Xhelp" ] || [ "X$OPT" = "Xuncompress" ]; then
+                    RET=1
+                    break
+                fi
+                if [ "X$MODE" = "X" ]; then
+                    MODE=$2
+                    shift 2
+                else
+                    RET=1
+                    break
+                fi    
+                ;;  
+         --)
+                shift
+                break
+                ;;
+         *)
+                usage
+                exit 1;                                          
+    esac
+done
+
+if [ "X$OPT" = "X" ] ; then
+    usage
+    exit 1
+fi   
+
+if [ "$OPT" = "append" ] || [ "$OPT" = "overwrite" ]; then
+    SG_FILE=$1
+    shift
+elif [ "$OPT" = "copy" ] || [ "$OPT" = "move" ]; then    
+    SRC_FILE=$1
+    SG_FILE=$2
+    shift 2
+fi
+
+if [ $# -ne 0 ] ; then
+    usage
+    exit 1
+fi   
+
+### validate parameters : OWNER GROUP MODE SG_FILE SRC_FILE TARPKG
+if [ "X$MODE" != "X" ]; then
+    echo "$MODE"|grep "[^0-9]" >&/dev/null
+    if [ $? -eq 0 ]; then
+        echo "Invalid mode." >&2
+        exit 1
+    fi
+fi
+
+validateFileName $SG_FILE
+RET=$?
+if [ $RET -ne 0 ]; then
+    exit $RET
+fi
+
+validateFileName $SRC_FILE
+RET=$?
+if [ $RET -ne 0 ]; then
+    exit $RET
+fi
+
+validateFileName $TARPKG
+RET=$?
+if [ $RET -ne 0 ]; then
+    exit $RET
+fi
+
+### main program
+case $OPT in
+    fsync)
+            fsync $SG_FILE
+            RET=$?
+            if [ $RET -ne 0 ]; then 
+                echo "Failed to synchronize $SG_FILE." >&2
+                exit $RET
+            fi
+            exit 0
+            ;;
+    append |overwrite) 
+            if [ "X$SG_FILE" = "X" ]; then
+                usage
+                exit 1
+            fi 
+            
+            if [ -e $SG_FILE ] && [ ! -f $SG_FILE ]; then
+                echo "$SG_FILE is not a normal file." >&2
+                exit 1
+            fi
+            
+            appendOverwrite
+            RET=$?
+            
+            ###jump out case block to continue
+            ;;
+    
+    copy|move)
+            if [ "X$SRC_FILE" = "X" ]||[ "X$SG_FILE" = "X" ];then 
+                usage
+                exit 1
+            fi
+            
+            if [ ! -f $SRC_FILE ]; then
+                echo "$SRC_FILE is not a normal file." >&2
+                exit 1
+            fi
+            
+            copyMove
+            RET=$?
+            
+            ###jump out case block to continue
+            ;;
+
+    uncompress)
+            uncompress $TARPKG
+            exit $?;
+            ;;
+
+    help)
+            usage
+            exit 0
+            ;;    
+esac
+
+exit $RET

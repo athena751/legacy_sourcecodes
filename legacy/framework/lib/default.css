@@ -1,0 +1,162 @@
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: default.css,v 1.2305 2008/11/28 02:14:36 chenb Exp $" -->
+
+BODY {
+	background-color: White;
+	background-repeat: no-repeat;
+       	background-position: center center;
+	font-size: 12px;
+}
+BODY.Menu {
+	background-color: White;
+	margin: 0px;
+	font-family: sans-serif, serif, monospace;
+	font-weight: bold;
+	font-size: 14px;
+}
+BODY.Login {
+	background-image: url("/nsadmin/images/nation/bk_login.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #F1F1F1;
+	color: #000000;
+	font-size: 12px; 
+	line-height: 13px; 
+	font-family: sans-serif, serif, monospace;
+	font-weight: bold;
+}
+TABLE {
+	background-image: url("/nsadmin/images/nation/bk_login.jpg");
+	background-color: Gainsboro;
+}
+TABLE.Controll {
+	background-color: White;
+}
+TABLE.Login {
+  background-image: none;
+  background-color: transparent;
+}
+TABLE.Menu {
+	background-color: White;
+}
+a 	{ text-decoration: none;}
+a:hover { color: #FF0000;}
+H1 {
+	background-image: url("/nsadmin/images/nation/line2.gif");
+	background-repeat: repeat-x;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 22px; 
+	font-weight: bold;
+}
+H1.Error {
+	color: Teal;
+}
+H1.Warning {
+	color: LightSalmon;
+}
+H2 {
+	background-image: url("/nsadmin/images/nation/grid2.gif");
+	background-repeat: no-repeat;
+	padding-left: 24px;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 20px; 
+	font-weight: bold;
+}
+H2.Menu {
+	background-color: White;
+	padding-left: 18px;
+	color: Navy;
+}
+H2.Error {
+	color: Teal;
+}
+H2.Warning {
+	color: LightSalmon;
+}
+H3 {
+	background-image: url("/nsadmin/images/nation/grid3.gif");
+	background-repeat: no-repeat;
+	padding-left: 24px;
+	background-position: left bottom;
+	background-color: White;
+	color: Blue;
+	font-size: 16px; 
+	font-weight: bold;
+}
+H3.Error {
+	color: Teal;
+}
+H3.Warning {
+	color: LightSalmon;
+}
+
+div.Error {
+	font-size: 16px; 
+	font-weight: bold;
+	color: Teal;
+}
+div.Warning {
+	font-size: 16px; 
+	font-weight: bold;
+	color: LightSalmon;
+}
+
+h1.popup{
+         font-size: large;	
+}
+
+h2.popup{
+         font-size: medium;	
+}
+
+h3.popup{
+         font-size: medium;	
+}
+
+h1.popupError {
+	color: Teal;
+	font-size: large;		
+}
+
+H2.popupError {
+	color: Teal;
+	font-size: medium;	
+}
+
+H3.popupError {
+	color: Teal;
+	font-size: medium;		
+}
+.advice {
+      font-style: italic;
+      font-size: 80%;
+ }
+.body09_10 {  font-size: 9px; line-height: 10px;}
+.body10 {  font-size: 10px; line-height: 12px;}
+.body11 {  font-size: 11px; line-height: 13px;}
+.body12 {  font-size: 12px; line-height: 16px;}
+.body13 {  font-size: 13px; line-height: 18px;}
+.body12b {  font-size: 12px; line-height: 13px; font-weight: bold;}
+.body14 {  font-size: 14px; line-height: 16px;}
+.body14b {  font-size: 14px; font-weight: bold;}
+.body16b {  font-size: 16px; font-weight: bold;}
+.body18b {  font-size: 18px; font-weight: bold;}
+.body20b {  font-size: 20px; font-weight: bold;}
+.body22b {  font-size: 22px; font-weight: bold;}
+
+span.redmessage {
+	color: red;
+	font-weight: bold;
+}

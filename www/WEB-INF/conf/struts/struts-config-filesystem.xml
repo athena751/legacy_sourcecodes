@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-filesystem.xml,v 1.5 2008/06/17 07:34:49 jiangfx Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+	<form-beans>
+		<form-bean name="filesystemSelectForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="fsInfo"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+            <form-property name="forceFlag" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="filesystemAddForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="fsInfo"
+                           type="com.nec.nsgui.model.entity.filesystem.FilesystemInfoBean"/>  
+            <form-property name="mountPointShow" type="java.lang.String"/>                    
+        </form-bean>
+        <form-bean name="filesystemMountForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="fsInfo"
+                           type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/>
+        </form-bean>
+        <form-bean name="VCNavigatorListForm"
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="rootDirectory" type="java.lang.String"/>
+            <form-property name="nowDirectory" type="java.lang.String"/>
+        </form-bean>
+        
+        <!-- add form-bean by jiangfx begin-->
+        <form-bean name="filesystemExtendForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+             <form-property name="ldList"  type="java.lang.String"/>
+             <form-property name="fsInfo"
+                            type="com.nec.nsgui.model.entity.volume.VolumeInfoBean"/> 
+        </form-bean>
+        <form-bean name="filesystemMoveForm"
+                   type="org.apache.struts.validator.DynaValidatorForm">            
+             <form-property  name="fsInfo" 
+                             type="com.nec.nsgui.model.entity.volume.VolumeInfoBean" />
+             <form-property name="mountPointShow"  type="java.lang.String"/>              
+        </form-bean>
+        <form-bean name="moveFSNavigatorForm"
+                   type="org.apache.struts.action.DynaActionForm">
+            <form-property name="rootDirectory" type="java.lang.String"/>
+            <form-property name="nowDirectory"  type="java.lang.String"/>
+            <form-property name="fsType"        type="java.lang.String"/>
+        </form-bean>
+        <!-- add form-bean by jiangfx end-->
+	</form-beans>
+	
+	<global-forwards>
+        <forward name="fsList" path="/filesystemListAndDel.do?operation=display"/>
+        <forward name="forwardToFSError"
+                 path="/nas/filesystem/filesystemerror.jsp" module=""/>
+    </global-forwards>
+    
+    <action-mappings>
+    	<action path="/filesystemListAndDel"
+                name="filesystemSelectForm"
+                scope="request"
+                parameter="operation"
+                validate="false"
+                type="com.nec.nsgui.action.filesystem.FilesystemListAndDelAction"> 
+            <forward name="forwardToList"       
+    	             path="/nas/filesystem/filesystemlist.jsp" module=""/>
+    	    <forward name="delSuccess"  path="/filesystemListAndDel.do?operation=display"/>
+            <forward name="delFail"     path="/filesystemListAndDel.do?operation=display"/>
+        </action>
+        <action path="/filesystemListTop"
+                forward="/../nas/filesystem/filesystemlisttop.jsp"/>
+        <action path="/filesystemListBottom"
+                forward="/../nas/filesystem/filesystemlistbottom.jsp"/>
+        <action path="/addFS"
+				name="filesystemAddForm"
+				scope="request"
+				parameter="operation"
+				validate="false"
+                type="com.nec.nsgui.action.filesystem.FilesystemAddAction">
+            <forward name="addShow"       
+    	             path="/nas/filesystem/filesystemaddshow.jsp" module=""/>
+            <forward name="forwardReplication"   path="/replication/replicationEntry.do"
+                     module=""/>         
+            <forward name="addFail"     path="/addFS.do?operation=display"/>
+        </action>
+        <action path="/mountFS"
+				name="filesystemMountForm"
+				scope="request"
+				parameter="operation"
+				validate="false"
+                type="com.nec.nsgui.action.filesystem.FilesystemMountAction">
+            <forward name="mountShow"       
+    	             path="/nas/filesystem/filesystemmountshow.jsp" module=""/>
+            <forward name="mountSuccess"  path="/filesystemListAndDel.do?operation=display"/>
+            <forward name="mountFail"     path="/mountFS.do?operation=display"/>
+            <forward name="canNotMount"     path="/filesystemListAndDel.do?operation=display"/>
+        </action>
+        <action path="/VCNavigatorList"
+                parameter="method"
+                type="com.nec.nsgui.action.volume.VolumeCreateNavigatorListAction"
+                name="VCNavigatorListForm"
+                scope="session"
+                validate="false">
+            <forward name="success_call" path="/nas/filesystem/vcnavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/filesystem/vcnavigatorlist.jsp"
+                     module=""/>      
+        </action>
+        <action path="/VCNavigatorForwardList"
+                forward="/../nas/filesystem/vcnavigatorlist.jsp"/>
+    
+        <action path="/VCNavigatorForwardSubmit"
+ 	              forward="/../nas/filesystem/vcnavigatorsubmit.jsp"/>
+        
+        
+        
+        <!-- add action by jiangfx begin -->
+		<action path="/extendFSShow"
+                name="filesystemExtendForm"
+                scope="request"
+                type="com.nec.nsgui.action.filesystem.FilesystemExtendShowAction"
+                validate="false">
+            <forward name="forwardToExtend"       
+    	         path="/nas/filesystem/filesystemextendframe.jsp" module=""/>
+        </action>
+
+        <action path="/extendFSTop"
+                forward="/../nas/filesystem/filesystemextendtop.jsp"/>
+                
+	    <action path="/extendFSMiddle"
+                forward="/../nas/filesystem/filesystemextendmiddle.jsp"/>
+	    
+	    <action path="/extendFSBottom"
+                forward="/../nas/filesystem/filesystemextendbottom.jsp"/>
+	   
+	    <action path="/extendFS"
+                name="filesystemExtendForm"
+                scope="request"
+                type="com.nec.nsgui.action.filesystem.FilesystemExtendAction"
+                validate="false">
+    	    <forward name="extendSuccess" path="/filesystemListAndDel.do?operation=display"/>   
+            <forward name="extendFail"    path="/extendFSShow.do"/>
+        </action>
+            
+    	<action path="/moveFSShow"
+                name="filesystemMoveForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.filesystem.FilesystemMoveShowAction">
+            <forward name="canNotMove"     
+                     path="/filesystemListAndDel.do?operation=display"/>   
+    	    <forward name="forwardToMove"       
+    	             path="/nas/filesystem/filesystemmove.jsp" module=""/>
+        </action>
+                
+    	<action path="/moveFS"
+                name="filesystemMoveForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.filesystem.FilesystemMoveAction">
+            <forward name="moveSuccess" path="/filesystemListAndDel.do?operation=display"/> 
+            <forward name="moveFail"    path="/moveFSShow.do"/>
+            <forward name="forwardToList" path="/filesystemListAndDel.do?operation=display"/> 
+        </action>
+      
+        <action path="/moveFSNavigator"
+                name="moveFSNavigatorForm"
+                scope="session"
+                validate="false"
+                parameter="operation"
+                type="com.nec.nsgui.action.filesystem.FilesystemMoveNavigatorAction">
+            <forward name="success_call" path="/nas/filesystem/fsmovenavigator.jsp"
+                     module=""/>
+            <forward name="success_list" path="/nas/filesystem/fsmovenavigatorlist.jsp"
+                     module=""/>      
+        </action>  
+        <action path="/moveFSNavigatorForwardList"
+                forward="/../nas/filesystem/fsmovenavigatorlist.jsp"/>
+    
+        <action path="/moveFSNavigatorForwardSubmit"
+ 	              forward="/../nas/filesystem/fsmovenavigatorsubmit.jsp"/>        
+        <!-- add action by jiangfx end -->
+        
+        <!-- add for detail page by jiangfx begin-->
+        <action path="/fsDetailShow"
+        		name="filesystemSelectForm"
+        		type="com.nec.nsgui.action.volume.VolumeDetailAction"
+                scope="request"
+                validate="false">
+            <forward name="toVolumeDetail" 
+                     path="/nas/volume/volumedetail.jsp" module=""/>
+         </action>                   
+        <!-- add for detail page by jiangfx end-->           
+    </action-mappings>
+    
+    <message-resources parameter="com.nec.nsgui.messages.FilesystemResource"/>
+    <message-resources parameter="com.nec.nsgui.messages.VolumeResource" key="volume"/>
+    <message-resources parameter="com.nec.nsgui.messages.ReplicationResource" key="replication"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile"
+                      value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-filesystem.xml"/>
+    </plug-in>
+</struts-config>

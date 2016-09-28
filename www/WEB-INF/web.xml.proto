@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
+    version="2.4">
+<!--
+
+       Copyright (c) 2001-2008 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: web.xml.proto,v 1.14 2008/05/28 01:41:52 lil Exp $" -->
+    <filter>
+        <filter-name>This is the Framework</filter-name>
+        <filter-class>com.nec.sydney.framework.NSFilter</filter-class>
+        <init-param>
+        	<param-name>alias</param-name>
+        	<param-value>/nsadmin</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>This is the Framework</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+  <servlet>
+    <servlet-name>action</servlet-name>
+    <servlet-class>org.apache.struts.action.ActionServlet</servlet-class>
+    <init-param>
+      <param-name>config</param-name>
+      <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/framework</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-framework.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/statis</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-statis.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/nfs</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-nfs.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/cifs</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-cifs.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/syslog</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-syslog.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/system</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-system.xml</param-value>
+    </init-param>
+    <init-param>
+      <param-name>config/volume</param-name>
+      <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-volume.xml</param-value>      
+    </init-param>
+    <init-param>
+        <param-name>config/gfs</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-gfs.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/esmlogrpt</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-esmlogrpt.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/ndmpv4</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-ndmpv4.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/mapdrule</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-mapdrule.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/shutdown</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-shutdown.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/mapd</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-mapd.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/nodestatus</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-nodestatus.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/account</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-account.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/service</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-service.xml</param-value>
+    </init-param>
+
+    <init-param>
+        <param-name>config/rdr_dr</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-rdr_dr.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/filesystem</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-filesystem.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/cliuser</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-cliuser.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/managementlan</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-managementlan.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/sysmnt</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-sysmnt.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/datetime</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-datetime.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/battery</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-battery.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/snmp</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-snmp.xml</param-value>
+    </init-param>
+	<init-param>
+        <param-name>config/nic</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-nic.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/replication</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-replication.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/disk</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-disk.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/hosts</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-hosts.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/krb5</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-krb5.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/serverprotect</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-serverprotect.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/antivirus</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-antivirus.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/schedulescan</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-schedulescan.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/dns</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-dns.xml</param-value>
+    </init-param>
+    <init-param>
+        <param-name>config/iclan</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-iclan.xml</param-value> 
+    </init-param>
+    <init-param>
+        <param-name>config/csar</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-csar.xml</param-value> 
+    </init-param>
+    <init-param>
+        <param-name>config/ddr</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-ddr.xml</param-value> 
+    </init-param>
+    <init-param>
+        <param-name>config/snapshot</param-name>
+        <param-value>/WEB-INF/conf/struts/struts-config-base.xml,/WEB-INF/conf/struts/struts-config-snapshot.xml</param-value> 
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  
+<!-- #include generated_web.xml -->
+
+  <servlet-mapping>
+    <servlet-name>action</servlet-name>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+
+
+  <error-page>
+  	<error-code>404</error-code>
+	<location>/notfound.html</location>
+  </error-page>
+  <error-page>
+	<exception-type>java.lang.Exception</exception-type>
+	<location>/common/errorpage.jsp</location>
+  </error-page>
+    <jsp-config>
+      <taglib>
+        	<taglib-uri>http://jakarta.apache.org/taglibs/input-1.0</taglib-uri>
+        	<taglib-location>/WEB-INF/tld/input.tld</taglib-location>
+      </taglib>
+      <taglib>
+        	<taglib-uri>taglib-nsgui</taglib-uri>
+        	<taglib-location>/WEB-INF/tld/nsgui.tld</taglib-location>
+      </taglib>
+      <taglib>
+            <taglib-uri>taglib-sort</taglib-uri>
+            <taglib-location>/WEB-INF/tld/nsgui.tld</taglib-location>
+      </taglib>
+      <taglib>
+            <taglib-uri>nshtml-taglib</taglib-uri>
+            <taglib-location>/WEB-INF/tld/nshtml-taglib.tld</taglib-location>
+      </taglib>
+      <taglib>
+        <taglib-uri>taglib-sorttable</taglib-uri>
+        <taglib-location>/WEB-INF/tld/nssorttab.tld</taglib-location>
+      </taglib>
+      <taglib>
+        <taglib-uri>struts-bean</taglib-uri>
+        <taglib-location>/WEB-INF/tld/struts-bean.tld</taglib-location>
+      </taglib>
+
+      <taglib>
+        <taglib-uri>struts-html</taglib-uri>
+        <taglib-location>/WEB-INF/tld/struts-html.tld</taglib-location>
+      </taglib>
+
+      <taglib>
+        <taglib-uri>struts-logic</taglib-uri>
+        <taglib-location>/WEB-INF/tld/struts-logic.tld</taglib-location>
+      </taglib>
+    	<taglib>
+        <taglib-uri>struts-nested</taglib-uri>
+        <taglib-location>/WEB-INF/tld/struts-nested.tld</taglib-location>
+      </taglib>
+      <taglib>
+        <taglib-uri>nsgui-displayerror</taglib-uri>
+        <taglib-location>/WEB-INF/tld/displayerror.tld</taglib-location>
+      </taglib>
+      <taglib>
+             <taglib-uri>taglib-nstab</taglib-uri>
+             <taglib-location>/WEB-INF/tld/nstab.tld</taglib-location>
+      </taglib>
+
+      <taglib>
+         <taglib-uri>http://java.sun.com/jstl/core</taglib-uri>
+         <taglib-location>/WEB-INF/tld/c.tld</taglib-location>
+      </taglib>
+    </jsp-config>
+</web-app>

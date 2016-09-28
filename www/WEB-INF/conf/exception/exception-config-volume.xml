@@ -1,0 +1,490 @@
+<!--
+        Copyright (c) 2004-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: exception-config-volume.xml,v 1.23 2008/07/29 03:33:59 chenb Exp $" -->
+<ExceptionConf>
+	<ProcessRule errorCode = "0x10800010"><!--ERR_FS_DIFF_TYPE-->
+		<ErrorMessage key = "error.add.FSTypeDiff.detailInfo" type = "detailInfo"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+		    <ErrorMessage key = "error.add.FSTypeDiff.generalDeal" type = "generalDeal"/>
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+			<ErrorMessage key = "error.add.FSTypeDiff.generalDeal" type = "detailDeal"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800011"><!--ERR_FS_IN_FRIEND_NODE-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.mpIsUsed.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<!--
+			<Dispatcher srcAction = "/volumeChange"   forward = "changeFail"/>
+		-->
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800013"><!--ERR_FS_PARENT_UMOUNTED -->
+		<ErrorMessage key = "error.add.parentNotMounted.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.parentNotMounted.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.parentNotMounted.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeMount"   forward = "mountFail">
+			<ErrorMessage key = "error.mount.generalInfo"  type = "generalInfo"/>
+			<ErrorMessage key = "error.mount.parentNotMounted.detailInfo" type = "detailInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800014"><!--ERR_FS_PARENT_READ_ONLY-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.parentReadonly.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800016"><!--ERR_FS_UMOUNTED -->
+		<ErrorMessage key = "error.del.isUmounted.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.del.isUmounted.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.del.isUmounted.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeExtend"   forward = "forwardToList">
+			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+        <Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800017"><!--ERR_FS_MP_EXIST -->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.mpIsUsed.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+    <ProcessRule errorCode = "0x10800020"><!--ERR_LVM_USED_LVNAME -->
+        <ErrorMessage key = "error.add.generalInfo" type = "generalInfo"/>
+		<ErrorMessage key = "error.add.volumeExist.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.volumeExist.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.volumeExist.generalDeal" type = "detailDeal"/>
+		<Dispatcher forward = "addFail"/>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x1080001d"><!--ERR_REPLI_PARENT-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.parentIsReplic.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800033"><!--ERR_LD_1024_LD-->
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.has1024LD.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeExtend"   forward = "extendFail">
+			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800022"><!--ERR_LVM_COUNT256-->
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.has256LV.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.generalDeal.delVolume" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x1080001c"><!--ERR_CIFS_USED-->
+		<ErrorMessage key = "error.del.hasCifsShare.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.del.hasCifsShare.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.del.hasCifsShare.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+				<Dispatcher srcAction = "/volumeUmount"   forward = "umountFail">
+			<ErrorMessage key = "error.unmount.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x1080001b"><!--ERR_NFS_USED-->
+		<ErrorMessage key = "error.del.hasNfsShare.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.del.hasNfsShare.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.del.hasNfsShare.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+				<Dispatcher srcAction = "/volumeUmount"   forward = "umountFail">
+			<ErrorMessage key = "error.unmount.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x1080001a"><!--ERR_FTP_USED-->
+		<ErrorMessage key = "error.del.hasFtpShare.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.del.hasFtpShare.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.del.hasFtpShare.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeUmount"   forward = "umountFail">
+			<ErrorMessage key = "error.unmount.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x10800015"><!--ERR_FS_HAS_CHILD-->
+		<ErrorMessage key = "error.del.hasChild.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.del.hasChild.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.del.hasChild.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+        <ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+        <ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+        <ErrorMessage key = "error.add.hasChild.detailInfo"  type = "detailInfo"/>
+        <ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		</Dispatcher>
+		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	    <Dispatcher srcAction = "/volumeUmount"   forward = "umountFail">
+			<ErrorMessage key = "error.unmount.generalInfo"  type = "generalInfo"/>
+			<ErrorMessage key = "error.umount.haschild.generalDeal" type = "generalDeal"/>
+            <ErrorMessage key = "error.umount.haschild.generalDeal" type = "detailDeal"/>
+		</Dispatcher>
+	</ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800050"><!--ERR_CREATE_ALL_DIR_IN_FRIEND-->
+        <ErrorMessage key = "error.create.all.dir.generalInfo"  type = "generalInfo"/>
+        <ErrorMessage key = "error.create.all.dir.generalDeal" type = "generalDeal"/>
+        <ErrorMessage key = "error.create.all.dir.detailInfo" type = "detailInfo"/>
+        <ErrorMessage key = "error.create.all.dir.generalDeal" type = "detailDeal"/>
+        <Dispatcher srcAction = "/volumeAdd"   forward = "addSuccess">
+		    <!--show error tip in list page , ignore replication case-->
+        </Dispatcher>
+	</ProcessRule>
+   	
+    <ProcessRule errorCode = "0x10800061"><!--ERR_EXECUTE_LVMAKE-->
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "generalDeal"/>
+        <ErrorMessage key = "error.lvmCmdFail.lvmake.detailInfo" type = "detailInfo"/>
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "detailDeal"/>
+        <Dispatcher srcAction = "/volumeAdd"   forward = "forwardToVolumeError">
+            <ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+	
+    <ProcessRule errorCode = "0x10800062"><!--ERR_EXECUTE_LVDELETE-->
+ 	    <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal"/>
+        <ErrorMessage key = "error.lvmCmdFail.lvdelete.detailInfo" type = "detailInfo"/>
+        <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal"/>
+        <Dispatcher srcAction = "/volumeDel"   forward = "forwardToVolumeError">
+            <ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+        </Dispatcher>
+    </ProcessRule>
+	
+	<ProcessRule errorCode = "0x10800063"><!--ERR_EXECUTE_LVINCREASE-->
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "generalDeal"/>
+ 	    <ErrorMessage key = "error.lvmCmdFail.lvincrease.detailInfo" type = "detailInfo"/>
+        <ErrorMessage key = "error.lvmCmdFail.ddr.generalDeal" type = "detailDeal"/>
+        <Dispatcher srcAction = "/volumeExtend"   forward = "forwardToVolumeError">
+            <ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+        </Dispatcher>
+	</ProcessRule>
+   	<ProcessRule errorCode = "0x10800064"><!--ERR_EXECUTE_PVDISPLAY-->
+        <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal"/>
+ 	    <ErrorMessage key = "error.lvmCmdFail.pvdisplay.detailInfo" type = "detailInfo"/>
+        <ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal"/>
+        <Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+            <ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+        </Dispatcher>
+        <Dispatcher srcAction = "/volumeExtend"   forward = "forwardToVolumeError">
+			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x1080006d"><!--ERR_EXECUTE_VGDISPLAY-->
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.lvmCmdFail.vgdisplay.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeExtend"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAdd"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAddShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.addshow.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumepoolinfolist"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.poollist.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeExtendShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.extendshow.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeBatchCreateShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.getvolumename.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeBatchCreateConfirm"   forward = "forwardToVolumeErrorPopup">
+    			<ErrorMessage key = "error.getvolumename.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/poolSelectMiddle"   forward = "displayVolumeErrorMsgOnly">
+    			<ErrorMessage key = "error.poollist.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/lunSelectShow" forward="forwardToVolumeErrorPopup">
+  		        <ErrorMessage key = "error.lunlist.generalInfo"  type ="generalInfo"/>
+	        </Dispatcher>
+	        <Dispatcher srcAction = "/ldSelectShow" forward="forwardToVolumeErrorPopup">
+  		        <ErrorMessage key = "error.ldlist.generalInfo"  type ="generalInfo"/>
+	        </Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800068"><!--ERR_EXECUTE_LVS-->
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.lvmCmdFail.lvs.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.lvmCmdFail.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	 	
+   	<ProcessRule errorCode = "0x10810082"><!--ERR_EXECUTE_ISADISKLIST VOLUME-->
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    </ProcessRule>
+
+   	<ProcessRule errorCode = "0x10810083"><!--ERR_EXECUTE_ISADISKLIST VOLUME-->
+   		    <ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.poolSelect" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.poolSelect" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumePoolSelect"   forward = "forwardToVolumeErrorPopup">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/poolSelectMiddle"   forward = "displayVolumeErrorMsgOnly">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10820082"><!--ERR_EXECUTE_ISADISKLIST PAIR-->
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10820083"><!--ERR_EXECUTE_ISADISKLIST PAIR-->
+   		    <ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.poolSelect" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.async.fcsanCmdFail.iSAdisklist.generalDeal.poolSelect" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumePoolSelect"   forward = "forwardToVolumeErrorPopup">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/poolSelectMiddle"   forward = "displayVolumeErrorMsgOnly">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    </ProcessRule>
+    	
+   	<ProcessRule errorCode = "0x10800082"><!--ERR_EXECUTE_ISADISKLIST-->
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.fcsanCmdFail.iSAdisklist.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeExtend"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAdd"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeList"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.list.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAddShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.addshow.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeExtendShow"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.extendshow.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumePoolSelect"   forward = "forwardToVolumeErrorPopup">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/poolSelectMiddle"   forward = "displayVolumeErrorMsgOnly">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumepoolinfolist"   forward = "forwardToVolumeError">
+    			<ErrorMessage key = "error.diskarray.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800080"><!--ERR_EXECUTE_ISASETLD_B-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetld.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeExtend"   forward = "extendFail">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAdd" forward = "addFail">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800081"><!--ERR_EXECUTE_ISASETLD_R-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetld.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x10800083"><!--ERR_EXECUTE_ISASETMON-->
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.iSAsetld.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.fcsanSetCmdFail.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeExtend"   forward = "extendFail">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x10800054"><!--ERR_WRITE_PROTECTED_ADD-->
+    		<ErrorMessage key="error.set.wp.normal.info" type="generalInfo"/>
+            <ErrorMessage key="error.set.wp.normal.deal" type="generalDeal"/>
+            <ErrorMessage key="error.set.wp.detail.info" type="detailInfo"/>
+            <ErrorMessage key="error.set.wp.detail.deal" type="detailDeal"/>
+    		<Dispatcher srcAction = "/volumeAdd"   forward = "addSuccess"/>
+    		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail"/>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x10800055"><!--ERR_WRITE_PROTECTED_RELEASE-->
+    		<ErrorMessage key="error.release.wp.normal.info" type="generalInfo"/>
+            <ErrorMessage key="error.release.wp.normal.deal" type="generalDeal"/>
+            <ErrorMessage key="error.release.wp.detail.info" type="detailInfo"/>
+            <ErrorMessage key="error.release.wp.detail.deal" type="detailDeal"/>
+    		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail"/>
+   	</ProcessRule>
+   	
+	<ProcessRule errorCode = "0x108000b3"><!--ERR_SAME_AS_ASYNC-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.isAsyncMP.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+	<ProcessRule errorCode = "0x108000b4"><!--ERR_HAS_ASYNC_PARENT-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.hasAsyncParent.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+		<ProcessRule errorCode = "0x108000b5"><!--ERR_HAS_ASYNC_CHILD-->
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.hasAsyncChild.detailInfo" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.changeMp.generalDeal" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>	
+
+   	<ProcessRule errorCode = "0x10800035"><!--ERR_LD_NO_VALID_SIZE-->
+    		<ErrorMessage key = "error.noEnoughCapacity.detailInfo" type = "detailInfo"/>
+    		<Dispatcher srcAction = "/volumeExtend"   forward = "extendFail">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    			<ErrorMessage key = "error.noEnoughCapacity.extend.generalDeal" type = "generalDeal"/>
+    			<ErrorMessage key = "error.noEnoughCapacity.extend.generalDeal" type = "detailDeal"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeAdd" forward = "addFail">
+    			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+    			<ErrorMessage key = "error.noEnoughCapacity.add.generalDeal" type = "generalDeal"/>
+    			<ErrorMessage key = "error.noEnoughCapacity.add.generalDeal" type = "detailDeal"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400095"><!--ERR_EXECUTE_VGPAIRCHECK-->
+    		<ErrorMessage key = "error.systemStatus.generalDeal" type = "generalDeal"/>
+    		<ErrorMessage key = "error.vgPairCheckFailed.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.systemStatus.detailDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeExtendShow"   forward = "forwardToVolumeList">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeModifyShow"   forward = "forwardToVolumeList">
+    			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400094"><!--ERR_IS_PAIRED-->
+    		<ErrorMessage key = "error.vgPairCheckHavePair.detailInfo" type = "detailInfo"/>
+            <ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "generalDeal"/>
+            <ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeDel"   forward = "delFail">
+    			<ErrorMessage key = "error.del.generalInfo"  type = "generalInfo"/>
+    	    </Dispatcher>
+    		<Dispatcher srcAction = "/volumeExtendShow"   forward = "forwardToVolumeList">
+    			<ErrorMessage key = "error.extend.generalInfo"  type = "generalInfo"/>
+            </Dispatcher>
+    		<Dispatcher srcAction = "/volumeModifyShow"   forward = "forwardToVolumeList">
+    			<ErrorMessage key = "error.modify.generalInfo"  type = "generalInfo"/>
+            </Dispatcher>    		
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x1080003d"><!--ERR_LDPAIR_SYNCFS-->
+		<ErrorMessage key = "error.add.generalDeal.selectOtherLun" type = "generalDeal"/>
+		<ErrorMessage key = "error.add.detailInfo.hasPairedLun" type = "detailInfo"/>
+		<ErrorMessage key = "error.add.generalDeal.selectOtherLun" type = "detailDeal"/>
+		<Dispatcher srcAction = "/volumeAdd"   forward = "addFail">
+			<ErrorMessage key = "error.add.generalInfo"  type = "generalInfo"/>
+		</Dispatcher>
+	</ProcessRule>
+  	
+   	<ProcessRule errorCode = "0x10800057"><!--ERR_RCLI_VOL_ACTIVATE-->
+   	       <ErrorMessage key = "error.modify.activate.generalInfo"  type = "generalInfo"/>
+    	   <ErrorMessage key = "error.modify.activate.generalDeal"  type = "generalDeal"/>
+    	   <ErrorMessage key = "error.modify.activate.detailInfo"   type = "detailInfo"/>
+    	   <ErrorMessage key = "error.modify.activate.generalDeal"  type = "detailDeal"/>
+    		<Dispatcher srcAction = "/volumeModify"   forward = "modifyFail">
+    		</Dispatcher>
+    		<Dispatcher srcAction = "/volumeMount"   forward = "mountFail">
+    		</Dispatcher>
+   	</ProcessRule>
+
+</ExceptionConf>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2006-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-krb5.xml,v 1.2 2007/05/09 08:28:16 liy Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name="directEditForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property name="fileContent" type="java.lang.String" /> 
+	</form-bean>
+</form-beans>
+<global-forwards>
+	<forward name="krb5List4Nsadmin" path="/nas/krb5/krb5directedittop.jsp" module=""/>
+	<forward name="krb5List4Nsview" path="/nas/krb5/krb54nsview.jsp" module=""/>
+</global-forwards>    
+<action-mappings>
+    <action path="/krb5Entry" forward="/../nas/krb5/krb5entry.jsp"/>
+	<action path="/krb5Tab" forward="/../nas/krb5/krb5tab.jsp"/>
+	<action path="/krb5FileBottom" forward="/../nas/krb5/krb5directeditbottom.jsp"/>
+		
+    <action path="/krb5File" 
+    		type="com.nec.nsgui.action.krb5.Krb5TwoAccountAction">	
+		<forward name="krb5ListNsadmin"
+				 path="/nas/krb5/krb5directedit.jsp" module=""/>
+	    <forward name="krb5ListNsview"       
+				path="/krb5FileTop.do?operation=readKrb5File"/>
+	</action>
+	<action path="/krb5FileTop"  
+		type="com.nec.nsgui.action.krb5.Krb5DirectEditAction" 
+		parameter="operation"
+		name="directEditForm" 
+		scope="request">     
+		<forward name="krb5ToNsview"       
+			path="/nas/krb5/krb54nsview.jsp" 
+			module=""/>
+		<forward name="krb5ListFile"       
+			path="/krb5FileTop.do?operation=readKrb5File" />
+		<forward name="krb5ToNsadmin"       
+			path="/nas/krb5/krb5directedittop.jsp" 
+			module=""/>
+	</action>
+	
+ </action-mappings>
+<message-resources parameter="com.nec.nsgui.messages.Krb5Resource"/>
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+	<set-property property="confFile" 
+		value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-krb5.xml"/>
+</plug-in>
+</struts-config>

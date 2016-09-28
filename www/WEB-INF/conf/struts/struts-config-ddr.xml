@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+		Copyright (c) 2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+-->
+<!-- "@(#) $Id: struts-config-ddr.xml,v 1.5 2008/05/15 05:39:42 liy Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<struts-config>
+	<form-beans>
+		<form-bean name="ddrPairListForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="ddrPairInfo"
+                           type="com.nec.nsgui.model.entity.ddr.DdrPairInfoBean"/>
+        	<form-property name="schedule"
+                           type="com.nec.nsgui.model.entity.ddr.DdrScheduleBean"/>
+            <form-property name="mvInfo"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrExtendPairBean"/>
+            <form-property name="rv0Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrExtendPairBean"/>
+            <form-property name="rv1Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrExtendPairBean"/>
+            <form-property name="rv2Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrExtendPairBean"/>
+        </form-bean>
+        <form-bean name="PairCreateShowForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="mvInfo"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrVolInfoBean"/>
+            <form-property name="rv0Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrVolInfoBean"/>
+            <form-property name="rv1Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrVolInfoBean"/>
+            <form-property name="rv2Info"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrVolInfoBean"/>
+            <form-property name="schedule"
+        		   type="com.nec.nsgui.model.entity.ddr.DdrScheduleBean"/>
+        </form-bean>
+                         
+	</form-beans>
+	
+	<global-forwards>
+    	<forward name="globalForward2PairList" path="/moduleForward.do?msgKey=apply.backup.ddr.forward.to.ddrEntry&amp;doNotClear=true&amp;url=/nsadmin/ddr/ddrPairList.do?operation=display" redirect="true"/>
+    	<forward name="forward2EntryError" path="/nas/ddr/ddrerror.jsp" module=""/>
+    </global-forwards>
+    
+	<action-mappings>
+		
+                
+        <action path="/ddrEntry"
+        		validate="false"
+        		type="com.nec.nsgui.action.ddr.EntryDdrAction">
+        	<forward name="entryDdr"
+        			 path="/nas/ddr/ddrentry.jsp" module=""/>
+        </action>
+        
+        <action path="/ddrModifyScheduleBtn" forward="/../nas/ddr/ddrschedulemodifybtn.jsp"/>
+        <action path="/ddrAddScheduleBtn" forward="/../nas/ddr/ddrscheduleaddbtn.jsp"/>
+        <action path="/ddrCreateConfirmBtn" forward="/../nas/ddr/ddrconfirmbtn.jsp"/>
+    
+        <action path="/ddrConfirm"
+            type="com.nec.nsgui.action.ddr.DdrConfirmAction" 
+            name="PairCreateShowForm"
+            parameter="operation"
+            scope="session">
+            <forward name="forwardAddSchedule"
+                path="/nas/ddr/ddrscheduleadd.jsp" module=""/>
+            <forward name="forwardConfirm"
+                path="/nas/ddr/ddrconfirm.jsp" module=""/>
+        </action>
+	
+    	<action path="/ddrSchedule"
+    		type="com.nec.nsgui.action.ddr.DdrScheduleAction" 
+    		name="ddrPairListForm"
+    		parameter="operation"
+    		scope="request">
+    		<forward name="forwardDdrModify"
+    				 path="/nas/ddr/ddrschedulemodify.jsp" module=""/>
+    	</action>
+        
+		<action path="/displayTabTop"
+                forward="/../nas/ddr/ddrtab.jsp"/>
+                
+        <action path="/ddrPairList"
+                name="ddrPairListForm"
+                scope="request"
+                validate="false"
+                parameter="operation"
+                type="com.nec.nsgui.action.ddr.DdrPairListAction">
+            <forward name="ddrPairInfoList"       
+                     path="/nas/ddr/ddrpairlist.jsp" module=""/>
+                     
+            <forward name="ddrPairInfoList4Nsview"       
+                     path="/nas/ddr/ddrpairlist4nsview.jsp" module=""/>
+            
+            <forward name="fail"       
+                     path="/nas/ddr/ddrpairlisterror.jsp" module=""/>
+        </action>
+        
+        <action path="/ddrPairListBtn"
+                forward="/../nas/ddr/ddrpairlistbtn.jsp"/>
+        
+        <action path="/ddrPairList4NsviewBtn"
+                forward="/../nas/ddr/ddrpairlist4nsviewbtn.jsp"/>
+                
+        <action path="/ddrUnpair"
+                name="ddrPairListForm"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.ddr.DdrUnpairAction">
+        </action>
+
+        <action path="/ddrDelAsyncFile"
+                scope="request"
+                validate="false"
+                type="com.nec.nsgui.action.ddr.DdrDelAsyncFileAction">
+        </action>
+
+        <action path="/ddrPairDetail"
+        		name="ddrPairListForm"
+        		type="com.nec.nsgui.action.ddr.DdrPairDetailAction"
+                scope="session"
+                validate="false">
+            <forward name="showDetail" 
+                     path="/nas/ddr/ddrpairdetail.jsp" module=""/>
+            <forward name="fail" 
+                     path="/nas/ddr/ddrpairdetailerror.jsp" module=""/>
+        </action>                     
+    	<action path="/ddrPairDetailTop"
+				 forward="/../nas/ddr/ddrpairdetailtop.jsp"/>
+    	<action path="/ddrClosePage"
+				 forward="/../nas/ddr/closepage.jsp"/>
+        <action path="/moduleForward" 
+        		name="ddrPairListForm" 
+        		type="org.apache.struts.actions.ForwardAction"
+        		scope="session" 
+                validate="false" 
+                parameter="/../moduleForward.jsp"/>
+
+		<action path="/ddrPairCreateShow"
+		        name="PairCreateShowForm"
+			    scope="session"
+			    parameter="operation"
+			    validate="false"
+			    type="com.nec.nsgui.action.ddr.PairCreateShowAction">
+			<forward name="showAlways"
+            	     path="/../nas/ddr/ddralways.jsp"/>
+            <forward name="showGeneration"
+            	     path="/../nas/ddr/ddrgeneration.jsp"/>
+            <forward name="showNoMv"
+                     path="/../nas/ddr/ddrnomv.jsp"/>
+            <forward name="showSyncVol"
+                     path="/../nas/ddr/ddrnomv.jsp"/>
+            <forward name="fail"
+                     path="/../nas/ddr/ddrshowfail.jsp"/>		
+        </action>
+        
+        <action path="/ddrAlwaysBtn"
+                forward="/../nas/ddr/ddralwaysbtn.jsp"/>
+        <action path="/ddrGenerationBtn"
+                forward="/../nas/ddr/ddrgenerationbtn.jsp"/>
+                            
+        <action path="/ddrPairCreate"
+                name="PairCreateShowForm"
+                scope="session"
+                parameter="operation"
+                validate="false"
+                type="com.nec.nsgui.action.ddr.PairCreateAction">
+            <forward name="success" path="/../nas/ddr/ddrcreateblank.jsp" />
+            <forward name="fail"    path="/../nas/ddr/ddrshowfail.jsp" />
+            <forward name="checkFail"    path="/ddrPairCreateShow.do?operation=showAlways" />
+        </action>
+        
+        <action path="/ddrPairExtendShow"
+        		name="ddrPairListForm"
+        		scope="session"
+        		parameter="operation"
+        		validate="false"
+        		type="com.nec.nsgui.action.ddr.DdrPairExtendShowAction">
+        	<forward name="pairExtendTop"
+        			path="/../nas/ddr/ddrpairextendtop.jsp"/>
+        </action>
+        
+        <action path="/ddrCapacityCheck"
+            type="com.nec.nsgui.action.ddr.DdrCapacityCheckAction" 
+            name="PairCreateShowForm"
+            scope="session">
+            <forward name="success"
+                path="/ddrConfirm.do?operation=addSchedule"/>
+            <forward name="fail"
+                path="/ddrPairCreateShow.do?operation=showGeneration"/>
+        </action>
+        
+        <action path="/ddrPairExtend"
+        		name="ddrPairListForm"
+        		scope="session"
+        		parameter="operation"
+        		validate="false"
+        		type="com.nec.nsgui.action.ddr.DdrPairExtendAction">
+            <forward name="extendfail"
+            		path="/ddrPairExtendFailed.do"/>
+        </action>
+        <action path="/ddrPairExtendFailed"
+        		name="ddrPairListForm"
+        		scope="session"
+        		validate="false"
+        		type="com.nec.nsgui.action.ddr.DdrPairExtendFailedAction">
+            <forward name="pairExtendTop"
+            		path="/../nas/ddr/ddrpairextendtop.jsp"/>
+        </action>
+        <action path="/ddrPairExtendBtn"
+        		forward="/../nas/ddr/ddrpairextendbottom.jsp"/>
+
+	</action-mappings>
+
+    <message-resources parameter="com.nec.nsgui.messages.MenuResource" key="menuResource"/>
+    <message-resources parameter="com.nec.nsgui.messages.VolumeResource" key="volumeResource"/>
+	<message-resources parameter="com.nec.nsgui.messages.DdrResource"/>
+
+	<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+		<set-property property="confFile" 
+			value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-ddr.xml"/>
+	</plug-in>
+</struts-config>

@@ -1,0 +1,47 @@
+<!--
+        Copyright (c) 2001-2006 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_QuotaConf.xml,v 1.2302 2006/01/03 02:56:53 cuihw Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:QuotaConf">
+  <isd:provider type="java" scope="Session"  methods="setQuota setGraceTime getReport getOneReport getQuotaStatus startQuota stopQuota getFsType getIDFromName getGraceTime getDataMap">
+    <isd:java class="com.nec.sydney.service.admin.QuotaSOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsVector " qname="x:SoapRpsVector "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsVector"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsString " qname="x:SoapRpsString "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsString"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+           
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-QuotaInfo" qname="x:QuotaInfo "
+             javaType="com.nec.sydney.atom.admin.quota.QuotaInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  </isd:mappings>
+</isd:service>

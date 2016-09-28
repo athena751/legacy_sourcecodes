@@ -1,0 +1,338 @@
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: menu-config-basic.xml,v 1.54 2008/03/12 02:19:45 zhangjun Exp $" -->
+<NSMenus>
+    <Category msgKey="base" detailMsgKey="base.detailMsg">
+        <SubCategory msgKey="base.exportGroup" detailMsgKey="base.exportGroup.detailMsg">
+            <Item msgKey="base.exportGroup.setup"
+                detailMsgKey="base.exportGroup.setup.detailMsg"
+                href="menu/nas/exportroot/exportRoot.jsp"
+                helpAnchor="/help.html#export_setup"
+                machineType="NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/exportroot/exportRoot4nsview.jsp">
+            </Item>
+            <Item msgKey="base.exportGroup.setup"
+                detailMsgKey="base.exportGroup.setup.detailMsg"
+                href="menu/nas/exportroot/exportRoot.jsp"
+                helpAnchor="/help.html#export_setup"
+                machineType="Single:NasheadSingle:OneNodeSirius"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/exportroot/exportRoot4nsview.jsp">
+            </Item>
+        </SubCategory>
+            
+        <SubCategory msgKey="base.network" detailMsgKey="base.network.detailMsg">
+            <Item msgKey="base.network.dns"
+                detailMsgKey="base.network.dns.detailMsg"
+                href="dns/entry.do"
+                helpAnchor="/help.html#network_dns_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="dns/entry4Nsview.do">
+            </Item>
+
+            <Item msgKey="base.network.hosts"
+                detailMsgKey="base.network.hosts.detailMsg"
+                href="hosts/hostsEntry.do"
+                helpAnchor="/help.html#network_hosts_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="hosts/hostsEntry.do">
+            </Item>
+                        
+           <Item msgKey="base.network.serviceNetwork"
+                detailMsgKey="base.network.serviceNetwork.detailMsg"
+                href="nic/nicServiceEntry.do"
+                helpAnchor="/help.html#s_network_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nic/nicServiceEntry.do">
+            </Item>
+           <Item msgKey="base.network.adminNetwork"
+                detailMsgKey="base.network.adminNetwork.detailMsg"
+                href="nic/nicAdminEntry.do"
+                helpAnchor="/help.html#m_network_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nic/nicAdminEntry.do">
+            </Item>
+           <Item msgKey="base.network.routing"
+                detailMsgKey="base.network.routing.detailMsg"
+                href="nic/nicRoutingEntry.do"
+                helpAnchor="/help.html#routing_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="nic/nicRoutingEntry.do">
+            </Item>
+            
+        </SubCategory>
+            
+	    <SubCategory msgKey="base.storage" detailMsgKey="base.storage.detailMsg" machineType="Single:OneNodeSirius:NasCluster">
+	    	<Item msgKey="base.storage.disk"
+                detailMsgKey="base.storage.disk.detailMsg"
+                href="menu/fcsan/componentconf/configurationmenu.jsp"
+                helpAnchor="/help.html#storage_disk_2"
+                machineType="Single:OneNodeSirius:NasCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+                <Hidden name="target" value="localhost"/>
+            </Item>
+	    </SubCategory>
+            
+          <SubCategory msgKey="base.performanceGraph" detailMsgKey="base.performanceGraph.detailMsg">
+	    	<Item msgKey="base.performanceGraph.sampling"
+                detailMsgKey="base.performanceGraph.sampling.detailMsg"
+                href="statis/samplingMenuEntry.do"
+                helpAnchor="/help.html#performance_sampling"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                targetType="adminTarget"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/samplingMenuEntry4nsview.do">
+            </Item>
+<!--
+            <Item msgKey="base.performanceGraph.nswnfs.sampling"
+                detailMsgKey="base.performanceGraph.nswnfs.sampling.detailMsg"
+                href="statis/nswSamplingMenuEntry.do"
+                helpAnchor="/help.html#performance_virtual_nfs_sampling"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                targetType="adminTarget"
+                licenseKey="swnfs"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="statis/nswSamplingMenuEntry4nsview.do">
+            </Item>
+-->
+	    </SubCategory>
+	    
+	    <SubCategory msgKey="base.cluster" detailMsgKey="base.cluster.detailMsg">
+	    	<Item msgKey="base.system.cluster"
+                detailMsgKey="base.system.cluster.detailMsg"
+                href="menu/cluster/ClusterStatus.jsp"
+                helpAnchor="/help.html#system_cluster"
+                machineType="OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                machineSeries="Procyon"
+                refHref="menu/cluster/ClusterStatusView.jsp">
+            </Item>
+            <Item msgKey="base.cluster.iclan"
+                detailMsgKey="base.cluster.iclan.detailMsg"
+                href="iclan/entry.do"
+                helpAnchor="/help.html#cluster_iclan"
+                machineType="OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                machineSeries="Procyon"
+                refHref="iclan/entry.do">
+            </Item>
+            
+	    </SubCategory>
+            
+        <SubCategory msgKey="base.system" detailMsgKey="base.system.detailMsg">
+        	<Item msgKey="base.system.cluster"
+                detailMsgKey="base.system.cluster.detailMsg"
+                href="menu/cluster/ClusterStatus.jsp"
+                helpAnchor="/help.html#system_cluster"
+                machineType="OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                targetType="adminTarget"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                machineSeries="Callisto"
+                refHref="menu/cluster/ClusterStatusView.jsp">
+            </Item>
+            
+	    	<Item msgKey="base.system.time"
+                detailMsgKey="base.system.time.detailMsg"
+                href="datetime/fromMenu.do"
+                helpAnchor="/help.html#standard_time_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="datetime/fromMenu_nsview.do">
+            </Item>
+            <Item msgKey="base.system.snmp"
+                detailMsgKey="base.system.snmp.detailMsg"
+                href="snmp/snmpMenuForward.do"
+                helpAnchor="/help.html#network_snmp"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="snmp/snmpForward4Nsview.do">
+            </Item>
+            <Item msgKey="base.system.service"
+                detailMsgKey="base.system.service.detailMsg"
+                href="service/ServiceMain.do"
+                helpAnchor="/help.html#system_service"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="service/ServiceMainNsview.do">
+            </Item>
+            
+            <Item msgKey="base.system.mail"
+                detailMsgKey="base.system.mail.detailMsg"
+                href="esmlogrpt/fromMenu_nsadmin.do"
+                helpAnchor="/help.html#system_mail"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="esmlogrpt/fromMenu_nsview.do">
+                <Hidden name="target" value="localhost"/>
+            </Item>
+            <Item msgKey="base.system.sysmnt"
+                detailMsgKey="base.system.sysmnt.detailMsg"
+                href="sysmnt/dispSysmntPasswd.do"
+                helpAnchor="/help.html#system_mainte_admin_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="sysmnt/dispSysmntPasswdNsview.do">
+            </Item>
+            <Item msgKey="base.system.managementlan"
+             detailMsgKey="base.system.managementlan.detailMsg"
+             href="managementlan/dispFtp4Mlan.do"
+             helpAnchor="/help.html#system_admin_net_1"
+             machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+             changeNode="disable"
+             selectExpgrp="disable"
+             userType="nsadmin:nsview"
+             refHref="managementlan/dispFtp4MlanNsview.do">
+            </Item>
+            <Item msgKey="base.system.cliuser"
+             detailMsgKey="base.system.cliuser.detailMsg"
+             href="cliuser/displayList.do"
+             helpAnchor="/help.html#system_cli_user_1"
+             machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+             changeNode="disable"
+             selectExpgrp="disable"
+             userType="nsadmin:nsview"
+             refHref="cliuser/displayListForNsview.do">
+            </Item>
+            <Item msgKey="base.system.rdrdr"
+                detailMsgKey="base.system.rdrdr.detailMsg"
+                href="rdr_dr/changeMode.do?operation=display"
+                helpAnchor="/help.html#rdrdr_1"
+                machineType="NasheadSingle:NasheadCluster"
+                targetType="adminTarget"
+                changeNode="enable"
+                licenseKey="rdrdr"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="rdr_dr/changeMode.do?operation=display">
+            </Item>
+        <!--    <Item msgKey="base.system.ups"
+                detailMsgKey="base.system.ups.detailMsg"
+                href="menu/nas/splx/forwarder.jsp"
+                helpAnchor="/help.html#system_ups"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+                <Hidden name="port" value="8484"/>
+                <Hidden name="sport" value="8181"/>
+                <Hidden name="uri" value="/esmproac/esmac.cgi"/>
+            </Item>     -->
+            <Item msgKey="base.system.shutdown"
+                detailMsgKey="base.system.shutdown.detailMsg"
+                href="shutdown/shutdown.do"
+                helpAnchor="/help.html#system_node_control"
+                machineType="Single:NasheadSingle"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+            </Item>
+	    </SubCategory>
+            
+        <SubCategory msgKey="base.istorageManager" detailMsgKey="base.istorageManager.detailMsg">
+        	<Item msgKey="base.istorageManager.account"
+                detailMsgKey="base.istorageManager.account.detailMsg"
+                href="account/accountTabEntry.do"
+                helpAnchor="/help.html#system_account_1"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="account/accountTabEntry.do">
+            </Item>
+            <Item msgKey="base.istorageManager.connectNetwork"
+                detailMsgKey="base.istorageManager.connectNetwork.detailMsg"
+                href="menu/nas/ethguard/networkconnection.jsp"
+                helpAnchor="/help.html#system_network"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin:nsview"
+                refHref="menu/nas/ethguard/networkconnection4nsview.jsp">
+            </Item>
+        </SubCategory>
+        
+        <SubCategory msgKey="base.maintenance" detailMsgKey="base.maintenance.detailMsg">
+            <Item msgKey="base.maintenance.monitor"
+                detailMsgKey="base.maintenance.monitor.detailMsg"
+                href="menu/fcsan/statemon/diskarraywatch.jsp"
+                helpAnchor="/help.html#storage_monitor"
+                machineType="Single:OneNodeSirius:NasCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+                <Hidden name="target" value="localhost"/>
+            </Item>
+            <Item msgKey="base.maintenance.packInst"
+                detailMsgKey="base.maintenance.packInst.detailMsg"
+                href="menu/nas/splx/forwarderPackinst.jsp"
+                helpAnchor="/help.html#mainte_packinst"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="enable"
+                selectExpgrp="disable"
+                userType="nsadmin">
+                <Hidden name="port" value="8484"/>
+				<Hidden name="sport" value="8181"/>
+				<Hidden name="uri" value="/packinst/"/>
+            </Item>
+            <Item msgKey="base.maintenance.csar"
+                detailMsgKey="base.maintenance.csar.detailMsg"
+                href="csar/csarSetting.do?operation=load"
+                helpAnchor="/help.html#trouble_analysis"
+                machineType="Single:NasheadSingle:OneNodeSirius:NasCluster:NasheadCluster"
+                changeNode="disable"
+                selectExpgrp="disable"
+                userType="nsadmin">                
+            </Item>
+        </SubCategory>
+    </Category>
+</NSMenus>

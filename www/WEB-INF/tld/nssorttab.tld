@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+        Copyright (c) 2001-2006 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: nssorttab.tld,v 1.3 2006/12/14 06:11:07 xingyh Exp $" -->
+
+<!DOCTYPE taglib
+        PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+        "http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+
+<taglib>
+   <tlib-version>1.0</tlib-version>
+   <jsp-version>1.2</jsp-version>
+   <short-name>layout</short-name>
+   <uri>http://www.heaven.com.cn/taglib</uri>
+   <description>NS GUI tag library</description>
+
+  <tag>
+    <name>table</name>
+    <tag-class>com.nec.nsgui.taglib.nssorttab.SortTable</tag-class>
+    <body-content>JSP</body-content>
+    <description>Print Table</description>
+
+
+    <attribute>
+	<name>tablemodel</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>id</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>table</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>sortonload</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>titleTrNum</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>         
+
+  <tag>
+    <name>column</name>
+    <tag-class>com.nec.nsgui.taglib.nssorttab.Column</tag-class>
+    <body-content>JSP</body-content>
+    <description>Table Column</description>
+
+
+    <attribute>
+	<name>name</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>sortable</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>th</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>td</name>
+	<required>true</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+	<name>beforeSort</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+    
+    <attribute>
+	<name>comparator</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+	<name>sidesort</name>
+	<required>false</required>
+	<rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>         
+
+</taglib>
+

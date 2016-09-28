@@ -1,0 +1,19 @@
+/serverprotect_addScanTargetInfo.pl/1.1/Fri Mar 23 05:23:31 2007//
+/serverprotect_delConfFile.pl/1.4/Fri Mar 23 05:19:07 2007//
+/serverprotect_delScanTarget.pl/1.1/Fri Mar 23 05:23:31 2007//
+/serverprotect_deleteTempFile.pl/1.1/Fri Mar 30 07:40:09 2007//
+/serverprotect_getDaemonState.pl/1.3/Mon Apr  2 07:02:39 2007//
+/serverprotect_getLudbUsers.pl/1.1/Fri Mar 23 05:23:31 2007//
+/serverprotect_getRealTimeScanInfo.pl/1.3/Sun Mar 25 07:08:12 2007//
+/serverprotect_getScanServer4List.pl/1.3/Mon Apr  2 07:09:37 2007//
+/serverprotect_getScanServerInfo.pl/1.1/Mon Feb 12 08:58:45 2007//
+/serverprotect_getScanTarget4Add.pl/1.1/Fri Mar 23 05:23:31 2007//
+/serverprotect_getScanTarget4List.pl/1.2/Fri Mar 23 05:20:36 2007//
+/serverprotect_getServiceIpInfo.pl/1.1/Fri Mar 23 05:30:06 2007//
+/serverprotect_getVirusScanMode.pl/1.1/Mon Feb 12 01:11:42 2007//
+/serverprotect_haveSettingFile.pl/1.1/Fri Feb  9 10:31:23 2007//
+/serverprotect_modifyScanTargetInfo.pl/1.1/Fri Mar 23 05:23:31 2007//
+/serverprotect_readFile.pl/1.5/Thu Jun 28 01:31:21 2007//
+/serverprotect_setScanServerInfo.pl/1.4/Thu Dec 18 08:01:06 2008//
+/serverprotect_writeFile.pl/1.6/Thu Jun 28 01:32:20 2007//
+D

@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!-- 
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_componentconf.xml,v 1.2325 2008/11/28 09:19:08 chenb Exp $" -->
+<messages>
+    <msg key="alert" value="">
+     <msg key="alert_reload" value="The pool&apos;s information has been changed.&lt;br&gt;Please click the [Reload] button to confirm the situation." ja="プールの情報が変更されています。[最新情報]ボタンを押して状況を再度確認してください。"/>
+     <msg key="mirror_raid1" value="All PDs selected on single FC loop. Do you make new pool? If the \ntrouble is happened on FC loop, cannot access to new pool." ja="同一FCループ上のPDが選択されています。このままプールを構築すると、\nFCループに問題が発生した場合プールが使用できなくなりますが、よろしい\nですか？" />
+     <msg key="mirror_raid10" value="Selected number of PDs are difference between two FC loops.\nCommend to select same number of PDs. Do you make new pool? If the \ntrouble is happened on FC loop, cannot access to new pool. " ja="二つのFCループ間で、PDの選択数が違います。各FCループで選択する\nPD数は同数であることを推奨します。このままプールを構築すると、FCル\nープに問題が発生した場合プールが使用できなくなりますが、よろしいです\nか？" />
+    </msg>
+
+    <msg key="common" value="">
+        <msg key="h1_configure" value="Disk" ja="ディスク" />
+        <msg key="h1_volume" value="Volume" ja="ボリューム" />
+        <msg key="h1_replication" value="Replication(MVD Sync)" ja="レプリケーション（MVD Sync）" />
+        <msg key="h1_ldmenu" value="Logical Disk" ja="論理ディスク" />
+        <msg key="hour" value="Hour[s]" ja="時間" />
+        <msg key="legend" value="Legend" ja="凡例" />
+        <msg key="getldinfo_failed" value="Can not get the logical disk&apos;s information." ja="論理ディスク情報を取得できません。" />
+        <msg key="getcreatingldinfo_failed" value="Can not get the creating logical disk&apos;s information." ja="作成中の論理ディスク情報を取得できません。" />
+        <msg key="refreshldinfo_failed" value="Can not refresh the logical disk&apos;s information." ja="論理ディスク情報を再取得できません。" />
+        <msg key="getpdinfo_failed" value="Can not get the physical disk&apos;s information." ja="物理ディスク情報を取得できません。" />
+        <msg key="getpdgroupinfo_failed" value="Can not get the PD Group&apos;s information." ja="PDグループ情報を取得できません。" />
+        <msg key="fastest" value="(fastest)" ja="(最速)" />
+        <msg key="msg_rt" value="Rebuilding Time" ja="修復時間" />
+        <msg key="msg_rt_procyon" value="Rebuilding Time(0-255)" ja="修復時間(0-255)" />
+        <msg key="h3_rt" value="Rebuilding Time" ja="修復時間" />
+	<msg key="alert_sysdisk" 
+        	value="System Disk is checked. \n
+The logical disks 0000h~000Fh can be operated. \n
+The logical disks 0000h~000Fh are the reserved disks used by system. \n
+System may be affected if above logical disks are operated. \n
+Please be careful enough." 
+		     ja="システムディスクがチェックされました。\n
+論理ディスク番号0000h~000Fhを操作可能です。\n
+論理ディスク番号0000h~000Fhはシステムで予約された論理ディスクです。\n
+上記論理ディスクを操作するとシステムに影響を及ぼす可能性があります。\n
+十分ご注意ください。"/>
+        <msg key="alert_neterror" value="Can not get the information which is required for deletion." ja="削除に必要な情報を採取することができませんでした。" />
+        <msg key="alert_network_err" value="Can not get the information of LVM." ja="LVM必要な情報を採取することができませんでした。"/>
+        <msg key="errmsg_reload" value="Auto reload is failed that LD setting is executing.&lt;Br&gt;Please wait a minute and push [Relaod] button." ja="設定処理中のため、論理ディスク情報の再取得に失敗しました。&lt;Br&gt;しばらくお待ちの上、[最新情報]ボタンを押してください。"/>
+   </msg>
+
+    <msg key="table" value="">
+        <msg key="th_time_fast" value="(0:Fastest)" ja="(0:最速)"/>
+        <msg key="th_rank" value="Pool" ja="プール"/>
+		<msg key="th_system_disk" value="System Disk" ja="システムディスク" />
+        <msg key="th_raid" value="RAID" />
+        <msg key="th_pdg" value="PD Group Number" ja="PDグループ番号" />
+        <msg key="th_rn" value="Pool Name(Number)" ja="プール名(番号)"/>
+        <msg key="th_pdn" value="Physical Disk Number" ja="物理ディスク番号" />
+        <msg key="th_ld_no" value="Logical Disk Number" ja="論理ディスク番号" />
+        <msg key="th_ld_name" value="Logical Disk Name" ja="論理ディスク名" />
+        <msg key="th_os_type" value="OS Type" ja="形式" />
+        <msg key="th_ld_capacity" value="Capacity" ja="論理ディスク容量" />
+        <msg key="th_format_time_procyon" value="Format Time(0-255)" ja="構築時間(0-255)" />
+        <msg key="th_format_time" value="Format Time" ja="構築時間" />
+        <msg key="th_formatting_time" value="Format Time" ja="構築時間" />
+        <msg key="th_unused_capacity" value="Unused[GB]" ja="未使用容量[GB]" />
+        <msg key="available" value="Maximum Available[GB]" ja="最大確保容量[GB]" />
+        <msg key="th_id" value="ID" />
+        <msg key="th_dan" value="Disk Array Subsystem Name" ja="ディスクアレイ名" />
+        <msg key="th_state" value="State" ja="状態" />
+        <msg key="th_obs" value="Monitoring State" ja="監視" />
+        <msg key="th_wwnn" value="WWNN"/>
+		<msg key="th_plat" value="Platform" ja="プラットフォーム" />
+		<msg key="msg_ld" value="LDset Name" ja="LDセット名" />
+		<msg key="th_purpose" value="IP-SAN Purpose" ja="IP-SAN用途" />
+		<msg key="th_poolnewname" value="New Pool Name" ja="新しいプール名" />
+
+        <msg key="td_tpd" value="Target Physical Disk" ja="物理ディスク" />
+        <msg key="td_pdr" value="Physical Disk Rebuilding" ja="物理ディスクへの復旧" />
+        <msg key="td_sdr" value="Spare Disk Rebuilding" ja="スペアディスクへの復旧" />
+        <msg key="td_ar" value="Spare Disk Auto Select Rebuilding" ja="スペアディスクを自動選択して復旧" />
+        <msg key="td_bpd" value="Broken Physical Disk" ja="故障した物理ディスク" />
+		
+    </msg>
+
+    <msg key="ldbindunbind" value="">    
+        <msg key="msg_numberofld" value="Number of Logical Disk" ja="論理ディスク数" />
+        <msg key="msg_ldnum" value="LD" ja="論理ディスク数" />
+        <msg key="ldbindunbind_title" value="Logical Disk" ja="論理ディスク" />
+        <msg key="h3_ld" value="Logical Disk" ja="論理ディスク" />
+        <msg key="h3_pdgoup" value="PD Group" ja="PDグループ" />
+        <msg key="bound" value="Bound" ja="構成済み" />
+        <msg key="freeSpace" value="Free Space" ja="未使用領域" />
+        <msg key="unused" value="Unused" ja="未使用" />
+        <msg key="available" value="Maximum Available" ja="最大確保容量" />
+        <msg key="raid" value="RAID" />
+        <msg key="pd" value="Physical Disk : "  ja="物理ディスク : "/>
+        <msg key="submit_ldunbind" value="Unbind..." ja="解除..." />
+        <msg key="submit_ldbind" value="Bind..." ja="構築..." />
+        <msg key="submit_changFormatTime" value="Format Time..." ja="構築時間..." />
+        <msg key="submit_ldlist" value="Logical Disk List..." ja="論理ディスク一覧..." />
+        <msg key="norank" value="No pools are found." ja="プールが存在しません。" />
+        <msg key="ld_lvm" value="LVM" ja="LVM"/>      
+    </msg>
+
+    <msg key="logicdiskunbind" value="">
+        <msg key="ldunbind_title" value="Logical Disk Unbind" ja="論理ディスク解除" />
+        <msg key="h2_ldunbind" value="Logical Disk Unbind" ja="論理ディスク解除" />
+        <msg key="ldunbind_number" value="Logical Disk Number" ja="論理ディスク番号" />
+        <msg key="confirm_title" value="The following logical disk will be unbound." ja="以下の論理ディスクを解除します。" />
+        <msg key="confirm_info" value="Once logical disk is unbound, all data will be lost." ja="論理ディスクを解除すると、論理ディスク内のデータは全て失われます。" />
+        <msg key="confirm_ldnumber" value="Logical Disk Number"  ja="論理ディスク番号" />        
+        <msg key="nold" value="No logical disks are found." ja="論理ディスクが存在しません。" />
+        <msg key="unbind_failed" value="Some errors occurred when unbinding logical disk." ja="論理ディスクの解除でエラーが発生しました。" />
+		<msg key="unbind_failed_inldset" value="The logical disk is added into LDset. It can not be unbound." 
+		ja="LDセットに登録されているため、論理ディスクの解除に失敗しました。" />
+        <msg key="unbind_failed_port" value="Port mode is set up. The logical disk can not be unbound." ja="portモードが設定されているため、論理ディスクを解除できません。"/>
+        <msg key="unbind_failed_lvm" value="A logical volume is created on the specified logical disk. When deleting, please destroy the logical volume created on the logical disk.&lt;Br&gt;Logical Volume name:&amp;nbsp;" ja="指定された論理ディスクには、論理ボリュームが構築されています。削除する場合は、論理ディスクに構築されている論理ボリュームを解放してください。&lt;Br&gt;論理ボリューム名：&amp;nbsp;"/>
+        <msg key="hasActiveBatchCreate" value="Cannot unbind any logical disks because volume batch creation is being performed." ja="ボリューム一括作成中のため、論理ディスクを解除できません。" />
+        <msg key="hasActiveAsyncPair" value="Cannot unbind any logical disks because the pair for disk backup is being created or extended." ja="ディスクバックアップのペア構築中またはペア拡張中のため、論理ディスクを解除できません。" />
+    </msg>
+
+    <msg key="ldbindtimeset" value="">
+        <msg key="changetime_title" value="Change Format Time" ja="構築時間変更" />
+        <msg key="tipinfo" value="Change the Format Time of the formatting logical disk. " ja="現在構築中である論理ディスクの構築時間を変更します。" />
+        <msg key="tipinfo_Callisto" value="Change the Format Time of the formatting logical disk. Here is to change the Format Time of all RAID 1,5,10,50 logical disks of the Disk Array Subsystem." ja="現在構築中である論理ディスクの構築時間を変更します。ここで変更する構築時間はディスクアレイにあるRAID 1,5,10,50上のすべての論理ディスクが対象となります。" /> 
+        <msg key="timeset_failed" value="Some errors occurred when changing formatting time of the logical disk." ja="論理ディスクの構築時間の変更でエラーが発生しました。" />
+    </msg>
+
+    <msg key="logicdiskbind" value="">
+        <msg key="ldbind_time_error" value="Invalid Format Time. \r\nPlease input an integer number between 0 and 255." ja="不正な構築時間です。\r\n0〜255の整数を指定してください。" />
+        <msg key="ldbind_title" value="Logical Disk Bind" ja="論理ディスク構築" />
+        <msg key="confirm_info" value="The logical disk will be bound according to the following information." ja="以下の情報で論理ディスクを構築します。" />
+        <msg key="noldnumber" value="The logical disks amounted to maximum(1024)." ja="論理ディスクが最大数確保されています。" />
+        <msg key="confirm_ldnum_error" value="The logical disk number is invalid. Please input a HEX number between 0000h~03FFh." ja="論理ディスク番号が不正です。16進数の0000hから03FFhまでを指定してください。" />
+        <msg key="confirm_ldsize_error" value="The logical disk size is invalid. Only numeric characters 1~2046 are allowed." ja="論理ディスク容量が不正です。1から2046までの半角数字(小数点以下一桁まで)が使用可能です。" />
+        <msg key="confirm_num_ldsize_error" value="The specified logical disk&apos;s size exceeds the pool&apos;s maximum available size." ja="指定された論理ディスク容量が、プールの最大確保容量を超えています。" />
+        <msg key="confirm_ldname_error" value="The logical disk name is invalid. Only alphanumeric characters, &apos;/&apos; and &apos;_&apos; are allowed. The name&apos;s length is 24 max." ja="論理ディスク名が不正です。半角英数字と&apos;/&apos;および&apos;_&apos;の文字が使用可能です。最大文字数は、24文字です。" />
+        <msg key="bind_failed" value="Some errors occurred when binding logical disk." ja="論理ディスク構築でエラーが発生しました。" />
+        <msg key="sameldname" value="Attention: The logical disk name is same to the existing one, so the default logical disk name was used when binding logical disk." ja="注意: 論理ディスク名が重複しています、論理ディスク名をデフォルト値に変更し構築します。" />
+        <msg key="msg_repeat_ldnum" value="The specified logical disk number is used. Please specify another number." ja="指定された値は、既に使用されています。別の値を指定してください。"   />
+		<msg key="incorrect_ldnum" value="The logical disk number is invalid. Please input a HEX number between 0010h~00FFh." ja="論理ディスク番号が不正です。16進数の0010hから00FFhまでを指定してください。" />
+		<msg key="incorrect_ldnum_2nd_ary" value="The logical disk number is invalid. Please input a HEX number between 0000h~00FFh." ja="論理ディスク番号が不正です。16進数の0000hから00FFhまでを指定してください。" />
+		<msg key="max_ldcount" value="There are 512 logical disks in the pool already. The logical disk can not be bound." ja="指定したプール内に512個の論理ディスクが存在します。新たに論理ディスクを構築することは出来ません。" />
+	<msg key="capacity_error" value="The logical disk has not been bound by the specified capacity. Please reduce the capacity of the logical disk and perform again." ja="指定した容量では、論理ディスクを確保する事が出来ませんでした。論理ディスクの容量を変更して再度実行してください。"/>
+    </msg>
+
+    <msg key="rankexpandingshow" value="">
+        <msg key="title_expend" value="Pool Capacity Expansion" ja="プール容量拡張" />
+        <msg key="msg_option" value="Expand Pool&apos;s Capacity" ja="プール容量拡張" />
+        <msg key="msg_note" value="(Attention) When HP-UX exists in the connection hosts, please do not perform pool Capacity Expansion." ja="(注意) 接続ホストにHP-UXが存在する場合、プールの容量拡張は行わないでください。" />
+        <msg key="h3_et" value="Expansion Time" ja="拡張時間" />
+        <msg key="msg_specify" value="Set pool expansion time([0] will be set by default(recommendation))." ja="プール拡張時の時間を指定できます( [0]を指定した場合、最短で処理を行います(推奨))。" />
+        <msg key="msg_time" value="Expansion Time(0-24)" ja="拡張時間(0-24)" />
+        <msg key="msg_exptime" value="Expansion Time" ja="拡張時間" />
+        <msg key="msg_confirm" value="The pool will be expanded according to the following information." ja="以下の情報でプールを拡張します。" />
+        <msg key="expand_such3" value="Please confirm the expanding result from [Components]." ja="拡張の状況は、「構成一覧」で確認してください。" />
+        <msg key="expand_failed" value="Some errors occurred when expanding pool." ja="プールの拡張指示でエラーが発生しました。" />
+        <msg key="recommend" value="recommend" ja="推奨" />
+    </msg>
+
+    <msg key="rebuildingtimechange" value="">
+        <msg key="poolrebuild_time_error" value="Invalid Rebuilding Time. \r\nPlease input an integer number between 0 and 255." ja="不正な修復時間です。\r\n0〜255の整数を指定してください。" />
+        <msg key="title_ct" value="Change Rebuilding Time" ja="修復時間変更" />
+        <msg key="msg_ct" value="Current Rebuilding Time" ja="現在の修復時間" />
+        <msg key="h2_option" value="Change Pool Rebuilding Time" ja="プール修復時間変更" />
+        <msg key="timechange_failed" value="Some errors occurred when changing pool rebuilding time." ja="プールの修復時間の変更でエラーが発生しました。" />
+        <msg key="msg_rebuildingtimechangeconfirm"
+             value="Rebuilding time \&quot;%1\&quot; will be changed into \&quot;%2\&quot;.\nAre you sure?" 
+             ja="修復時間を%1から%2に変更します。\nよろしいですか？" />   
+   </msg>
+   <msg key="poolnamechange" value="">
+        <msg key="title_ct" value="Pool Name Change" ja="プール名変更" />
+        <msg key="h2_option" value="Pool Name Change" ja="プール名変更" />
+        <msg key="namechange_failed_wrongname" 
+             value="Invalid Pool Name.\nOnly alphanumeric characters and / _ are allowed.\nMaximum length of pool name is 32." 
+             ja="不正なプール名です。\n半角英数字と「/_」のみが使用できます。\n最大文字数は32です" />
+        <msg key="namechange_failed_existname" 
+             value="The specified pool name is used. Please specify another name." 
+             ja="指定されたプール名は既に使用されています。別の名前を指定してください。" />
+        <msg key="msg_poolnamechangeconfirm"
+             value="Pool name \&quot;%1\&quot; will be changed into \&quot;%2\&quot;.\nAre you sure?"
+             ja="プール名を%1から%2に変更します。\nよろしいですか？" />    
+   </msg>
+    <msg key="rebuildingstart" value="">
+　　　　<msg key="title_rsi" value="Rebuilding Start Instruction" ja="プール修復開始指示" />
+        <msg key="msg_ranknum" value="Rebuilding Pool: " ja="修復するプール: " />
+        <msg key="h3_info" value="Information" ja="情報" />
+        <msg key="msg_specify" value="(0:Operates by the fastest)." ja="([0]を指定した場合、最短で処理を行います(推奨))。" />
+        <msg key="msg_confirm" value="Now rebuilding start." ja="復旧を開始します。" />
+        <msg key="msg_ry" value="Rebuilding Source" ja="修復元" />
+        <msg key="msg_rx" value="Rebuilding Target" ja="修復先" />
+        <msg key="msg_spare" value="Spare(%1)" ja="スペア(%1)" />
+        <msg key="msg_auto" value="Spare(auto select)" ja="スペア(自動選択)" />
+        <msg key="msg_option" value="Pool Rebuilding Start Instruction" ja="プール修復開始指示" />
+        <msg key="msg_rankerr" value="Can not get pool&apos;s information." ja="プール情報を取得できません。" />
+        <msg key="start_failed" value="Some errors occurred when starting Rebuilding Pool." ja="プール修復開始指示でエラーが発生しました。" />
+    </msg>
+
+    <msg key="sparebind" value="">
+        <msg key="title_sb" value="Spare Bind" ja="スペア構築" />
+        <msg key="title_sub" value="Spare Unbind" ja="スペア解除" />
+        <msg key="msg_bindconfirm" value="The spare will be bound according to the following information." ja="スペアとして構築します。"/>
+        <msg key="msg_unbindconfirm" value="The spare will be unbound according to the following information." ja="スペアを解除します。" />
+        <msg key="msg_binderr" value="Some errors occurred when binding spare." ja="スペアの構築でエラーが発生しました。"/>
+        <msg key="msg_unbinderr" value="Some errors occurred when unbinding spare." ja="スペアの解除でエラーが発生しました。" />
+        <msg key="h2_optionb" value="Spare Bind" ja="スペア構築" />
+        <msg key="h2_optionu" value="Spare Unbind" ja="スペア解除" />
+    </msg>
+ 
+    <msg key="confmenu" value="">
+        <msg key="title_confm" value="Disk Management" ja="ディスク管理" />
+        <msg key="h2_csm" value="Disk Array&apos;s Information" ja="ディスクアレイ情報" />
+
+		<msg key="button_rs" value="Pool/Spare" ja="プール(スペア)構築/解除" />
+        <msg key="button_lbu" value="Logical Disk" ja="論理ディスク構築／解除" />
+	<msg key="button_lp" value="Logical Disk Purpose" ja="論理ディスク用途"/>
+        <msg key="msg_nodisk" value="No disk arrays are found." ja="ディスクアレイが存在しません。" />
+    </msg>
+
+    <msg key="ranksparetop" value="">
+        <msg key="h2_errmsghead" value="Can not get Pool/Spare&apos;s information." ja="プール／スペア情報を取得できません。" />
+        <msg key="h2_refresherrmsghead" value="Can not refresh Pool/Spare&apos;s information." ja="プール／スペア情報を再取得できません。" />
+        <msg key="h2_title" value="Pool/Spare" ja="プール／スペア" />
+    </msg>
+
+    <msg key="ranksparemiddleleft" value="">
+        <msg key="h3_pdlist" value="Physical Disk List" ja="物理ディスク一覧" />
+        <msg key="unused" value="Unused" ja="未使用" />
+        <msg key="spare" value="Spare" ja="スペア" />
+        <msg key="nopd" value="Not connected" ja="未接続" />
+        <msg key="fc_loop0" value="FC Loop#0" ja="FCループ#0" />
+        <msg key="fc_loop1" value="FC Loop#1" ja="FCループ#1" />
+    </msg>
+
+    <msg key="ranksparemiddleright" value="">
+        <msg key="h3_ranklist" value="Pool (Number of Resources : %1)" ja="プール一覧 (要素数 : %1)" />
+    </msg>
+
+    <msg key="ranksparebottom" value="">
+        <msg key="h2_errmsghead" value="Can not get Pool/Spare&apos;s information." ja="プール／スペア情報を取得できません。" />
+        <msg key="button_rankbind" value="Pool Bind..." ja="プール構築..." />
+        <msg key="button_rankunbind" value="Pool Unbind..." ja="プール解除..." />
+        <msg key="button_rankexpand" value="Pool Capacity Expand..." ja="プール容量拡張..." />
+        <msg key="button_rebuildingtimechange" value="Rebuilding Time Change..." ja="修復時間変更..." />
+        <msg key="button_rebuildingstart" value="Rebuilding Start Instruction..." ja="修復開始指示..." />
+        <msg key="button_sparebind" value="Spare Bind..." ja="スペア構築..." />
+        <msg key="button_spareunbind" value="Spare Unbind..." ja="スペア解除..." />
+        <msg key="button_poolnamechange" value="Pool Name Change..." ja="プール名変更..." />
+    </msg>
+
+    <msg key="rankbind" value="">
+        <msg key="title_rankbind" value="Pool Bind" ja="プール構築"/>
+        <msg key="msg_maxpd" value="Maximum amount of the selected physical disks is 15." ja="選択可能な物理ディスクの最大数は１５です。"/>
+    </msg>
+
+    <msg key="rankbindtop" value="">
+        <msg key="h2_rankbind" value="Pool Bind" ja="プール構築" />
+        <msg key="pd" value="Physical Disk" ja="物理ディスク" />
+    </msg>
+
+    <msg key="rankbindbottom" value="">
+        <msg key="raid0" value="RAID0"/>
+        <msg key="raid1" value="RAID1"/>
+        <msg key="raid3" value="RAID3"/>
+        <msg key="raid5" value="RAID5"/>
+        <msg key="raid10" value="RAID10"/>
+        <msg key="rebuildingtimemsg" value="Pool rebuilding time can be specified([0] will be set by default. 0: Operates by the fastest.)" ja="プール修復時の時間を指定できます([0]を指定した場合、最短で処理を行います(推奨))。" />
+        <msg key="rebuildingtimerange" value="Specify Rebuilding Time (0-24):" ja="修復時間(0-24)：" />
+        <msg key="mmranknoerrormsg" value="The pool number is invalid. Please input a HEX number between 02h~3Fh." ja="プール番号が不正です。16進数の02hから3Fhまでを 指定してください。"/>
+        <msg key="ranknoerrormsg" value="The pool number is invalid. Please input a HEX number between 00h~3Fh." ja="プール番号が不正です。16進数の00hから3Fhまでを 指定してください。"/>
+        <msg key="raidtypeerrormsg" value="Please select a RAID type." ja="RAIDタイプを選択してください。" />
+        <msg key="pdnoerrormsg" value="Please select physical disk." ja="物理ディスクを選択してください。" />
+        <msg key="confirmmsghead" value="The pool will be bound according to the following information." ja="以下の情報でプールを構築します。" />
+        <msg key="raidtype" value="RAID Type" ja="RAIDタイプ" />        
+        
+    </msg>
+
+    <msg key="rankbindresult" value="">
+        <msg key="h2_failmsghead" value="Some errors occurred when binding pool." ja="プールの構築でエラーが発生しました。" />
+        <msg key="msg_repeat_ranknum" value="The specified pool number is used. Please specify another number." ja="指定された値は既に使用されています。別の値を指定してください。"   />
+    </msg>
+
+    <msg key="rankunbind" value="">
+        <msg key="title_rankunbind" value="Pool Unbind" ja="プール解除" />
+        <msg key="h2_rankunbind" value="Pool Unbind" ja="プール解除" />
+    </msg>
+
+    <msg key="rankunbindgetld" value="">
+        <msg key="h2_errmsghead" value="Can not get pool&apos;s information." ja="プール情報を取得できません。" />
+    </msg>
+
+    <msg key="rankunbindconfirmnold" value="">
+        <msg key="confirmmsg" value="Unbind Pool %1." ja="プール %1 を解除します。" />
+    </msg>
+
+    <msg key="rankunbindnoldresult" value="">
+        <msg key="failmsg" value="Some errors occurred when unbinding pool." ja="プールの解除でエラーが発生しました。" />
+    </msg>
+
+    <msg key="rankunbindconfirmhaveld" value="">
+        <msg key="rankmsg" value="Pool %1 has %2 logical disk(s)." ja="プール %1には、%2個の論理ディスクが構築されています。" />
+       <msg key="ldnomsg" value="Logical Disk Number:" ja="論理ディスク番号:" />
+		<msg key="confirmmsg1" value="Please select the operation." ja="操作を選択してください。"/>
+		<msg key="confirmmsg2" value="&quot;Delete&quot; : Delete the pool and the logical disk(s). (Not delete when the logical volume exists)" ja="「削除」：プール上の論理ディスクと同時にプールを削除します。(論理ボリュームが存在する場合削除しません)"/>
+		<msg key="confirmmsg3_1" value="&quot;Force Delete&quot; : Forcibly deletes the specified pool. (This is an exclusive function for maintenance when an error occurs. Make sure you understand that all the data on the pools is deleted. Therefore, " ja="「強制削除」：プールを無条件に削除します。(この機能は障害発生時の保守専用です。プール上に存在するデータが削除されますので、"/>
+		<msg key="confirmmsg3_1a" value="&quot;Force Delete&quot; : Forcibly deletes the specified pool. (This is an exclusive function for maintenance when an error occurs. Make sure you understand that the volume creation or extension fails. Therefore, " ja="「強制削除」：プールを無条件に削除します。(この機能は障害発生時の保守専用です。ボリューム作成／拡張処理に失敗しますので、"/>
+		<msg key="confirmmsg3_1b" value="&quot;Force Delete&quot; : Forcibly deletes the specified pool. (This is an exclusive function for maintenance when an error occurs. Make sure you understand that the creation or extension of the pair for backup fails. Therefore, " ja="「強制削除」：プールを無条件に削除します。(この機能は障害発生時の保守専用です。ディスクバックアップのペア作成／拡張処理に失敗しますので、"/>
+		<msg key="confirmmsg3_2" value="DO NOT USE this function without the instruction from the maintenance center." ja="弊社カスタマーサポートセンターからの指示以外では絶対に使用しないでください。"/>
+		<msg key="confirmmsg4" value="&quot;Cancel&quot; : Cancel the operation." ja="「キャンセル」：プールの削除をキャンセルします。"/>
+		<msg key="confirmmsgfinal" value="Make sure you understand that all the data on the pool is deleted. Therefore, DO NOT USE this function without the instruction from the maintenance center. \r\nAre you sure you want to continue?" ja="プール上に存在するデータが削除されますので、弊社カスタマーサポートセンターからの指示以外では絶対に使用しないでください。\r\nよろしいですか？"/>
+        <msg key="bnt_cancel" value="Cancel" ja="キャンセル"/>
+        <msg key="bnt_del_force" value="Force Delete" ja="強制削除"/>
+        <msg key="haspairedlds" value="Failed to delete the specified pool because it has logical disk(s) which has been paired　for DataReplication.&lt;Br&gt;Please delete the setting of the pair for DataReplication." ja="データレプリケーションのペアを構成している論理ディスクがあるため指定プールを削除できません。&lt;Br&gt;データレプリケーションのペアを削除してください。"/>
+   </msg>
+   
+   <msg key="rankunbindalerthavepaircreating" value="">
+        <msg key="alertmsg" value="The pair for disk backup is being created or extended. After the creation or extension of the pair for disk backup is completed, delete the pair first, then delete the pool." ja="ディスクバックアップのペア作成中または拡張中です。ディスクバックアップのペア作成または拡張完了後、ペアを解除してから、プールを削除してください。"/>
+        <msg key="btn_close" value="Close" ja="閉じる"/>
+   </msg>
+   
+   <msg key="rankunbindalerthavevolumecreating" value="">
+   		<msg key="alertmsg" value="The volume is being created or extended. After the volume creation or extension is completed, delete the volume first, then delete the pool." ja="ボリューム作成中または拡張中です。ボリューム作成または拡張完了後、ボリュームを解除してから、プールを削除してください。" />
+   </msg>
+
+    <msg key="rankunbindhaveldresult" value="">
+        <msg key="failmsg" value="Some errors occurred when unbinding pool." ja="プールの解除でエラーが発生しました。" />
+        <msg key="inldsetmsg" value="The logical disk in the pool is added into LDset, so the pool can not be unbound. When unbinding pool, please delete the logical disk from LDset."  ja="プール内の論理ディスクはLDセットに登録されているためプール解除に失敗しました。プールを解除する場合はLDセットから論理ディスクを削除してください。"/>
+        <msg key="hasportmsg" value="Port mode is set up. The pool can not be unbound." ja="portモードが設定されているため、プールを解除できません。"/>
+        <msg key="haslvmmsg" value="The logical disks on which the logical volumes are created are contained in the specified pool. When deleting, please destroy the logical volumes created on the logical disks.&lt;Br&gt;Logical Volume name:&amp;nbsp;" ja="指定されたプールには、論理ボリュームを構築している論理ディスクが含まれています。削除する場合は、論理ディスクに構築されている論理ボリュームを解放してください。&lt;Br&gt; 論理ボリューム名：&amp;nbsp;"/>
+    </msg>
+    
+    <msg key="LDPurpose" value="">
+        <msg key="LDPurpose_h2" value="Logical Disk Purpose" ja="論理ディスク用途" />
+    </msg>
+
+	 <msg key="newldset" value="">    
+        <msg key="msg_new" value="New LDset" ja="LDセットの新規作成" />
+		<msg key="confirm_ldsetname_error1" value="The LDset name is invalid. Only alphanumeric characters, &apos;\/&apos; and &apos;_&apos;its are allowed. The name&apos;s maximum length is %1." ja="LDセット名は不正です。LDセット名には半角英数字と&apos;\/&apos; と &apos;_&apos;のみが使用可能です。LDセット名の最大文字数は、 %1 です。" />
+		<msg key="confirm_ldset_new" value="LDset %1 will be created." ja="LDセット %1 を作成します。よろしいですか？" />
+    </msg>
+
+</messages>

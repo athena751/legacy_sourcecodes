@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2005-2007 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-snmp.xml,v 1.5 2007/09/10 01:12:13 lil Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions ========== -->
+    <form-beans>
+        <form-bean name="systemForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="systemInfo" 
+                type="com.nec.nsgui.model.entity.snmp.SystemInfoBean" 
+            />
+        </form-bean>
+        <form-bean name="communityForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="communityInfo" 
+                type="com.nec.nsgui.model.entity.snmp.CommunityFormBean"
+            />
+            <form-property name="operate"       type="java.lang.String"/>
+            <form-property name="forceModify"   type="java.lang.String"/>
+            <form-property name="selectedCom"   type="java.lang.String"/>
+            <form-property name="allCommunity"  type="java.lang.String"/>
+            <form-property name="allSourceNo"   type="java.lang.String"/>
+            <form-property name="commMax"       type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="userForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="userInfo" 
+                type="com.nec.nsgui.model.entity.snmp.UserInfoBean"
+            />
+            <form-property name="operate"       type="java.lang.String"/>
+        </form-bean>
+    </form-beans>
+    
+    <!-- ======== Global Forwards Definitions ========== -->
+    <global-forwards>
+        <forward name="enterCommunityList"
+            path="/communityListFrame.do"
+        />
+        <forward name="enterUserList"
+            path="/userListFrame.do"
+        />
+        <forward name="enterSnmpInfoList"
+            path="/snmpInfoList.do?operation=displayList"
+        />
+    </global-forwards>
+    
+	<!-- ========== Action Mapping Definitions ========== -->
+    <action-mappings>
+        <!-- ========== For Nsview ========== -->
+        <action path="/snmpForward4Nsview"
+            type="com.nec.nsgui.action.snmp.SnmpForwardAction">
+ 	        <forward name="snmpForward" module=""
+ 	                path="/nas/snmp/snmpforward4nsview.jsp"/>
+        </action>
+        <action path="/snmpTop4Nsview"
+            forward="/../nas/snmp/snmptop4nsview.jsp"
+        />
+    	<action path="/snmpInfoList4Nsview"
+            type="com.nec.nsgui.action.snmp.SnmpList4NsviewAction"
+            parameter="operation"
+            scope="request"
+            validate="false">
+		    <forward name="displayList" module="" 
+		            path="/nas/snmp/snmpinfolist4nsview.jsp"/>
+		    <forward name="displayListRecovery" module="" 
+		            path="/nas/snmp/snmpinfolist4nsviewrecovery.jsp"/>
+    	</action>
+    	
+        <!-- ========== For Tab ========== -->
+        <action path="/snmpMenuForward"
+            type="com.nec.nsgui.action.snmp.SnmpForwardAction">
+ 	        <forward name="snmpForward" module="" path="/nas/snmp/snmpforward.jsp"/>
+        </action>
+        <action path="/snmpTop"
+            forward="/../nas/snmp/snmptop.jsp"
+        />
+        
+        <!-- ========== For snmpInfoList ========== -->
+    	<action path="/snmpInfoList"
+            type="com.nec.nsgui.action.snmp.SnmpListAction"
+            parameter="operation"
+            scope="request"
+            validate="false">
+		    <forward name="displayList" module=""
+		            path="/nas/snmp/snmpinfolist.jsp"/>
+		    <forward name="displayListRecovery" module=""
+		            path="/nas/snmp/snmpinfolistframe4recovery.jsp"/>
+    	</action>
+        <action path="/snmpInfoListTop4Recovery"
+            forward="/../nas/snmp/snmpinfolisttop4recovery.jsp"
+        />
+        <action path="/snmpInfoListBottom4Recovery"
+            forward="/../nas/snmp/snmpinfolistbottom4recovery.jsp"
+        />
+        
+        <!-- ========== For System ========== -->
+        <action path="/systemSetFrame"
+            forward="/../nas/snmp/systemsetframe.jsp"
+        />
+        <action path="/systemSetBottom"
+            forward="/../nas/snmp/systemsetbottom.jsp"
+        />
+    	<action path="/system"
+            type="com.nec.nsgui.action.snmp.SnmpSystemAction"
+            parameter="operation"
+            name="systemForm"
+            scope="session"
+            validate="false">
+            <forward name="displaySetTop"   module=""
+                    path="/nas/snmp/systemsettop.jsp"/>
+            <forward name="displaySetFrame" module=""
+                    path="/nas/snmp/systemsetframe.jsp"/>
+    	</action>
+        
+        <!-- ========== For Community ========== -->
+        <action path="/communityListFrame"
+            forward="/../nas/snmp/communitylistframe.jsp"
+        />
+        <action path="/communityListBottom"
+            forward="/../nas/snmp/communitylistbottom.jsp"
+        />
+        <action path="/communitySetBottom"
+            forward="/../nas/snmp/communitysetbottom.jsp"
+        />
+    	<action path="/community"
+            type="com.nec.nsgui.action.snmp.SnmpCommunityAction"
+            parameter="operation"
+            name="communityForm"
+            scope="session"
+            validate="false">
+		    <forward name="displayListTop"      module=""
+		            path="/nas/snmp/communitylisttop.jsp"/>
+		    <forward name="displayListFrame"    module=""
+		            path="/nas/snmp/communitylistframe.jsp"/>
+            <forward name="displaySetTop"       module=""
+                    path="/nas/snmp/communitysettop.jsp"/>
+            <forward name="displaySetFrame"     module=""
+                    path="/nas/snmp/communitysetframe.jsp"/>
+    	</action>
+    	
+    	<!-- ========== For Navigator ========== -->
+        <action path="/sourceListNavigator"
+            forward="/../nas/snmp/navigatorframe.jsp"
+        />
+        <action path="/navigatorBottom"
+            forward="/../nas/snmp/navigatorbottom.jsp"
+        />
+        <action path="/navigatorList"
+            type="com.nec.nsgui.action.snmp.NavigatorAction">
+ 	        <forward name="display" module=""
+ 	                path="/nas/snmp/navigatorlist.jsp"/>
+        </action>
+    	
+    	<!-- ========== For User ========== -->
+        <action path="/userListFrame"
+            forward="/../nas/snmp/userlistframe.jsp"
+        />
+        <action path="/userListBottom"
+            forward="/../nas/snmp/userlistbottom.jsp"
+        />
+        <action path="/userSetBottom"
+            forward="/../nas/snmp/usersetbottom.jsp"
+        />
+    	<action path="/user"
+            type="com.nec.nsgui.action.snmp.SnmpUserAction"
+            parameter="operation"
+            name="userForm"
+            scope="session"
+            validate="false">
+            <forward name="displayListTop" module=""
+                    path="/nas/snmp/userlisttop.jsp"/>
+            <forward name="displayListFrame" module=""
+                    path="/nas/snmp/userlistframe.jsp"/>
+            <forward name="displaySetTop" module=""
+                    path="/nas/snmp/usersettop.jsp"/>
+            <forward name="displaySetFrame" module=""
+                    path="/nas/snmp/usersetframe.jsp"/>
+    	</action>
+
+    </action-mappings>
+    
+    <!-- ========== Message Resources Definitions ========== -->
+    <message-resources parameter="com.nec.nsgui.messages.SnmpResource"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-snmp.xml"/>
+    </plug-in>
+    
+</struts-config>

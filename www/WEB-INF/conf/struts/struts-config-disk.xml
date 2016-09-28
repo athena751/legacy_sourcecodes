@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!-- 
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+
+
+ --> 
+ <!-- "@(#) $Id: struts-config-disk.xml,v 1.9 2008/04/19 11:08:42 jiangfx Exp $" -->
+<!DOCTYPE struts-config PUBLIC
+		"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+		"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<struts-config>
+<form-beans>
+	<form-bean name="poolInfoForm" type="org.apache.struts.action.DynaActionForm">
+		<form-property  name="poolinfo" type="com.nec.nsgui.model.entity.disk.PoolInfoBean"/>
+		<form-property  name="diskarrayname" type="java.lang.String"/>
+	    <form-property  name="diskarrayid" type="java.lang.String"/>
+		<form-property  name="pdgroupnumber" type="java.lang.String"/>
+		<form-property  name="arraytype" type="java.lang.String"/>
+		<form-property  name="from" type="java.lang.String"/>
+    	<form-property  name="usedpd" type="java.lang.String"/>
+    	<form-property  name="notusedpd" type="java.lang.String"/>
+	</form-bean>
+</form-beans>
+
+<action-mappings>
+    <action path="/bindpooldisplay"
+            name="poolInfoForm"
+            scope="request"
+            type="com.nec.nsgui.action.disk.BindPoolDisplayAction">
+        <forward name="display" path="/nas/disk/poolbind.jsp" module=""/>
+        <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+    </action> 
+    <action path="/showbindpoolinfo"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.BindPoolInfoAction">
+	    <forward name="nameExistError" path="/nas/disk/poolbind.jsp" module=""/>
+        <forward name="showinfo" path="/nas/disk/poolbindinfo.jsp" module=""/>
+        <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+    </action>
+    <action path="/bindpool"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.BindPoolAction">
+	    <forward name="nameExistError" path="/nas/disk/poolbind.jsp" module=""/>
+        <forward name="setSuccess" path="/nas/disk/poolbindsuccess.jsp" module=""/>
+        <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+        <forward name="backToExtend" path="/volume/volumePoolSelect.do?from=volumeExtend" module=""/>
+        <forward name="backToCreat" path="/volume/volumePoolSelect.do?from=volumeCreate" module=""/>
+        <forward name="backToReplication" path="/volume/volumePoolSelect.do?from=replication" module=""/>
+        <forward name="backToDdrCreate" path="/volume/volumePoolSelect.do?from=ddrCreate" module=""/>
+        <forward name="backToDdrExtend" path="/volume/volumePoolSelect.do?from=ddrExtend" module=""/>
+    </action>
+    <action path="/expandpooldisplay"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.ExpandPoolDisplayAction">
+	    <forward name="display" path="/nas/disk/poolexpand.jsp" module=""/>
+	    <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+    </action>
+    <action path="/showexpandpoolinfo"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.ExpandPoolInfoAction">
+	    <forward name="showinfo" path="/nas/disk/poolexpandinfo.jsp" module=""/>
+        <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+    </action>
+    <action path="/expandpool"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.ExpandPoolAction">
+	    <forward name="setSuccess" path="/nas/disk/poolbindsuccess.jsp" module=""/>
+	    <forward name="setFail" path="/nas/disk/poolbinderror.jsp" module=""/>
+        <forward name="backToExtend" path="/volume/volumePoolSelect.do?from=volumeExtend" module=""/>
+        <forward name="backToCreat" path="/volume/volumePoolSelect.do?from=volumeCreate" module=""/>
+        <forward name="backToReplication" path="/volume/volumePoolSelect.do?from=replication" module=""/>
+        <forward name="backToDdrCreate" path="/volume/volumePoolSelect.do?from=ddrCreate" module=""/>
+        <forward name="backToDdrExtend" path="/volume/volumePoolSelect.do?from=ddrExtend" module=""/>
+    </action>
+    
+    <action path="/backtoselect"
+            parameter="method"
+            name="poolInfoForm"
+            scope="request"
+		    type="com.nec.nsgui.action.disk.BackToSelectAction">
+	    <forward name="backtobind" path="/nas/disk/poolbind.jsp" module=""/>
+	    <forward name="backtoexpand" path="/nas/disk/poolexpand.jsp" module=""/>
+    </action>
+    
+</action-mappings>
+
+<message-resources parameter="com.nec.nsgui.messages.DiskResource"/>
+
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+	<set-property property="confFile" 
+		value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-disk.xml"/>
+</plug-in>
+
+</struts-config>

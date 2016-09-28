@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_quota.xml,v 1.2313 2007/09/20 01:13:37 yangxj Exp $" -->
+
+<messages>
+    <msg key="alert" value="">
+	    <msg key="exceed_limit" value="The number of rows has exceeded the maximum value.\r\nThe first [%1] rows will be displayed."
+            ja="１画面に表示可能な最大件数を超えました。\r\n先頭の[%1]件を表示します。"/>
+	    <msg key="non_username" value="Please input user name or UID."
+            ja="ユーザ名またはUIDを指定してください。"/>
+        <msg key="non_groupname" value="Please input group name or GID."
+            ja="グループ名またはGIDを指定してください。"/>
+	    <msg key="nt_non_username" value="Please input user name."
+            ja="ユーザ名を指定してください。"/>
+        <msg key="nt_non_groupname" value="Please input group name."
+            ja="グループ名を指定してください。"/>
+        <msg key="inputUser" value="Please input non-root user name or non-root UID."
+            ja="root以外のユーザ名またはUIDを指定してください。"/>
+        <msg key="inputGroup" value="Please input non-root group name or non-root GID."
+            ja="root以外のグループ名またはGIDを指定してください。"/>
+        <msg key="nullradio" value="Please select a radio button."
+            ja="ラジオボタンを選択してください。"/>
+        <msg key="error1" value="Invalid soft-limit on bytes. \r\nThe numerical value up to two digits can be used after the decimal point."
+            ja="不正なソフトリミット(バイト)です。\r\n小数点以下二桁までの数値が使用可能です。"/>
+        <msg key="error2" value="Invalid hard-limit on bytes. \r\nThe numerical value up to two digits can be used after the decimal point."
+            ja="不正なハードリミット(バイト)です。\r\n小数点以下二桁までの数値が使用可能です。"/>
+        <msg key="error3" value="Invalid soft-limit on files. Please input a positive integer."
+            ja="不正なソフトリミット(ファイル数)です。正の整数を指定してください。"/>
+        <msg key="error4" value="Invalid hard-limit on files. Please input a positive integer."
+            ja="不正なハードリミット(ファイル数)です。正の整数を指定してください。"/>
+        <msg key="convert" value="Can not convert the name [%1] to ID." ja="[%1]をIDに変換できません。"/>
+        <msg key="grace_2" value="Invalid period. Please input an integer from 1 to 10950."
+            ja="不正な猶予期間です。1から10950までの整数を入力してください。"/>
+        <msg key="blockLimitErr1" value="Invalid byte soft limit.\r\nThe byte soft limit is larger than hard limit."
+            ja="不正なソフトリミット(バイト)です。\r\nソフトリミットがハードリミットよりも大きく設定されています。"/>
+        <msg key="blockLimitErr2" value="Invalid byte soft limit.\r\nThe byte soft limit is equal to hard limit."
+            ja="不正なソフトリミット(バイト)です。\r\nソフトリミットがハードリミットに等しく設定されています。"/>
+        <msg key="blockLimitErr12_common" value="Soft limit:%1\r\nHard limit:%2"
+            ja="ソフトリミット:%1\r\nハードリミット:%2"/>
+        <msg key="fileLimitErr1" value="Invalid file soft limit.\r\nThe file soft limit is larger than hard limit."
+            ja="不正なソフトリミット(ファイル数)です。\r\nソフトリミットがハードリミットよりも大きく設定されています。"/>
+        <msg key="fileLimitErr2" value="Invalid file soft limit.\r\nThe file soft limit is equal to hard limit."
+            ja="不正なソフトリミット(ファイル数)です。\r\nソフトリミットがハードリミットに等しく設定されています。"/>
+        <msg key="fileLimitErr12_common" value="Soft limit:%1\r\nHard limit:%2"
+            ja="ソフトリミット:%1\r\nハードリミット:%2"/>
+        <msg key="blockupLimit" value="The maximum byte limit is %1.\r\nChoose OK, then it will be set as %1."
+            ja="リミット(バイト)の最大値は%1です。\r\nOKを選択すると、最大値が設定されます。"/>
+        <msg key="fileupLimit" value="The maximum file limit is 2000000000.\r\nChoose OK, then it will be set as 2000000000."
+            ja="リミット(ファイル数)の最大値は2000000000です。\r\nOKを選択すると、最大値が設定されます。"/>
+        <msg key="userIDLimit" value="The maximum UID is 4294967295." ja="UIDの最大値は4294967295です。"/>
+        <msg key="groupIDLimit" value="The maximum GID is 4294967295." ja="GIDの最大値は4294967295です。"/>
+        <msg key="nameError" value="Invalid user name. \r\nOnly alphanumeric characters and &apos;-&apos;,&apos;_&apos;,&apos;.&apos; are allowed. \r\nThe maximum number of characters is 32."
+            ja="不正なユーザ名です。\r\n入力可能な文字は、半角英数字、および &apos;-&apos;、&apos;_&apos;、&apos;.&apos; です。\r\n最大文字数は32文字です。"/>
+        <msg key="groupNameError" value="Invalid group name. \r\nOnly alphanumeric characters and &apos;-&apos;,&apos;_&apos;,&apos;.&apos; are allowed. \r\nThe maximum number of characters is 32."
+            ja="不正なグループ名です。\r\n入力可能な文字は、半角英数字、および &apos;-&apos;、&apos;_&apos;、&apos;.&apos; です。\r\n最大文字数は32文字です。"/>
+        <msg key="nt_nameError" value="Invalid user name. \r\nSingle byte characters except &apos; \\ / [ ] : | &lt; &gt; + = ; , ? * &apos; are allowed. \r\nThe maximum number of characters is 32."
+            ja="不正なユーザ名です。\r\n入力可能な文字は、&apos; \\ / [ ] : | &lt; &gt; + = ; , ? * &apos; 以外の\r\n半角文字が指定可能です。\r\n最大文字数は32文字です。"/>
+		<msg key="nt_groupNameError" value="Invalid group name. \r\nSingle byte characters except &apos; \\ / [ ] : | &lt; &gt; + = ; , ? * &apos; are allowed. \r\nThe maximum number of characters is 32."
+            ja="不正なグループ名です。\r\n入力可能な文字は、&apos; \\ / [ ] : | &lt; &gt; + = ; , ? * &apos; 以外の\r\n半角文字が指定可能です。\r\n最大文字数は32文字です。"/>
+        <msg key="confirm_setspace" value="When the input space is empty, the prior settings will be applied."
+            ja="入力エリアが空白の場合、既に設定済の値が適用されます。"/>
+    </msg>
+    <msg key="quotasettop" value="">
+        <msg key="h1" value="Quotas" ja="クォータ"/>
+        <msg key="h1_dir" value="Directory Quota" ja="ディレクトリクォータ"/>
+        <msg key="h1_newdir" value="Directory Quotas" ja="ディレクトリクォータ"/>
+        <msg key="h2_filesystem" value="Volume" ja="ボリューム"/>
+        <msg key="h2_dataset" value="Data Set" ja="データセット"/>
+        <msg key="href_1" value="User Report" ja="ユーザレポート"/>
+        <msg key="href_2" value="Group Report" ja="グループレポート"/>
+        <msg key="href_3" value="Quota Set" ja="クォータ設定"/>
+        <msg key="href_4" value="Grace Period" ja="猶予期間"/>
+        
+        <msg key="href_1_dir" value="Directory User Report" ja="ディレクトリユーザレポート"/>
+        <msg key="href_2_dir" value="Directory Group Report" ja="ディレクトリグループレポート"/>
+        <msg key="href_5_dir" value="Directory Report" ja="ディレクトリレポート"/>
+        <msg key="href_3_dir" value="Directory Quota Set" ja="ディレクトリクォータ設定"/>
+        
+        <msg key="button_start" value="Quota Start" ja="クォータ運用開始"/>
+        <msg key="button_stop" value="Quota Stop" ja="クォータ運用終了"/>
+        <msg key="button_start_dir" value="Directory Quota Start" ja="ディレクトリクォータ運用開始"/>
+        <msg key="button_stop_dir" value="Directory Quota Stop" ja="ディレクトリクォータ運用終了"/>
+        
+        <msg key="href_status" value="Status" ja="運用状態"/>
+        
+        <msg key="check_1" value="ID to Name" ja="IDを名前に変換"/>
+        <msg key="display_all" value="All" ja="全て表示"/>
+        <msg key="display_except" value="Except Unknown" ja="Unknown以外を表示"/>
+        <msg key="display_only" value="Only Unknown" ja="Unknownのみ表示"/>
+        <msg key="unit" value="Unit" ja="ユニット"/>
+    </msg>
+    <msg key="quotasetbottom" value="">
+        <msg key="info_userorgroup" value="User or Group" ja="ユーザまたはグループ"/>
+        <msg key="type_select" value="Type Select" ja="タイプ選択"/>
+        <msg key="td_usert" value="User(Template)" ja="ユーザ(テンプレート)"/>
+        <msg key="td_groupt" value="Group(Template)" ja="グループ(テンプレート)"/>
+        <msg key="td_dir" value="Directory" ja="ディレクトリ"/>
+        <msg key="td_usert_dir" value="Directory User(Template)" ja="ディレクトリユーザ(テンプレート)"/>
+        <msg key="td_groupt_dir" value="Directory Group(Template)" ja="ディレクトリグループ(テンプレート)"/>
+        <msg key="td_user" value="User" ja="ユーザ"/>
+        <msg key="td_group" value="Group" ja="グループ"/>
+        <msg key="td_user_dir" value="Directory User" ja="ディレクトリユーザ"/>
+        <msg key="td_group_dir" value="Directory Group" ja="ディレクトリグループ"/>
+        <msg key="info_property" value="Limits" ja="リミット"/>
+        <msg key="td_211" value="Soft-limit on Bytes" ja="ソフトリミット(バイト)"/>
+        <msg key="td_212" value="Hard-limit on Bytes" ja="ハードリミット(バイト)"/>
+        <msg key="td_213" value="Unit" ja="ユニット"/>
+        <msg key="td_214" value="No limit" ja="制限なし"/>
+        <msg key="td_231" value="Soft-limit on Files" ja="ソフトリミット(ファイル数)"/>
+        <msg key="td_232" value="Hard-limit on Files" ja="ハードリミット(ファイル数)"/>
+        <msg key="td_234" value="No limit" ja="制限なし"/>
+        <msg key="info_reference" value="Reference" ja="設定参照"/>
+    </msg>
+    <msg key="userreport" value="">
+        <msg key="td_status" value="User Report" ja="ユーザレポート"/>
+        <msg key="td_groupstatus" value="Group Report" ja="グループレポート"/>
+        <msg key="td_1" value="Soft-limit" ja="ソフトリミット"/>
+        <msg key="td_2" value="Hard-limit" ja="ハードリミット"/>
+        <msg key="td_3" value="Soft-limit" ja="ソフトリミット"/>
+        <msg key="td_4" value="Hard-limit" ja="ハードリミット"/>
+        <msg key="td_limits1" value="Byte Limits" ja="バイトリミット"/>
+        <msg key="td_limits2" value="File Limits" ja="ファイルリミット"/>
+        <msg key="href_used" value="Used" ja="使用中"/>
+        <msg key="href_soft" value="Soft" ja="ソフト"/>
+        <msg key="href_hard" value="Hard" ja="ハード"/>
+        <msg key="href_grace" value="Grace" ja="猶予期間"/>
+        <msg key="th_bytes" value="Bytes" ja="バイト"/>
+        <msg key="th_files" value="Files" ja="ファイル"/>
+        <msg key="th_name" value="Name" ja="名前"/>
+    </msg>
+   <msg key="gracetime" value="">
+        <msg key="th_grace" value="Byte Limits" ja="バイトリミット"/>
+        <msg key="text_days" value="days" ja="日"/>
+        <msg key="text_limit" value="File Limits" ja="ファイルリミット"/>
+    </msg>
+    
+	<msg key="status" value="">
+        <msg key="start" value="Quota has started." ja="クォータ運用を開始しました。"/>
+        <msg key="stop" value="Quota has stoped." ja="クォータ運用を停止しました。"/>
+      	<msg key="dirstart" value="Directory Quota has started." ja="ディレクトリクォータ運用を開始しました。"/>
+        <msg key="dirstop" value="Directory Quota has stoped." ja="ディレクトリクォータ運用を停止しました。"/>
+   </msg>
+</messages>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2005-2007 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-gfs.xml,v 1.3 2007/05/09 05:38:44 hetao Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions ========== -->
+    <form-beans>
+        <form-bean name="editForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="fileInfo"  type="java.lang.String"/>
+        </form-bean>
+    </form-beans>
+    
+    <!-- ======== Global Forwards Definitions ========== -->
+    <global-forwards>
+        <forward name="enterGfsEdit"
+            path="/gfsEditFrame.do"
+        />
+    </global-forwards>
+    
+	<!-- ========== Action Mapping Definitions ========== -->
+    <action-mappings>
+        <!-- ========== For Nsview ========== -->
+        <action path="/gfsMenuForward4Nsview" type="com.nec.nsgui.action.gfs.GfsForwardAction">
+ 	        <forward name="gfsForward" module="" path="/nas/gfs/gfsforward4nsview.jsp"/>
+        </action>
+        <action path="/gfsTop4Nsview"
+            forward="/../nas/gfs/gfstop4nsview.jsp"
+        />
+        <action path="/gfsView4Nsview"
+            type="com.nec.nsgui.action.gfs.GfsAction4Nsview"
+            parameter="operation"
+            name="editForm"
+            scope="request"
+            validate="false">
+		    <forward name="displayView" module=""
+		        path="/nas/gfs/gfsview4nsview.jsp"/>
+    	</action>
+    	
+    	
+    	
+        
+        <!-- ========== For Tab ========== -->
+        <action path="/gfsMenuForward" type="com.nec.nsgui.action.gfs.GfsForwardAction">
+ 	        <forward name="gfsForward" module="" path="/nas/gfs/gfsforward.jsp"/>
+        </action>
+        <action path="/gfsTop"
+            forward="/../nas/gfs/gfstop.jsp"
+        />
+        <!-- ========== For Set ========== -->
+        <action path="/gfsFrame"
+            forward="/../nas/gfs/gfsframe.jsp"
+        />
+        <action path="/gfsEditFrame"
+            forward="/../nas/gfs/gfseditframe.jsp"
+        />
+        <action path="/gfsEditBottom"
+            forward="/../nas/gfs/gfseditbottom.jsp"
+        />
+    	<action path="/gfsEdit"
+            type="com.nec.nsgui.action.gfs.GfsEditAction"
+            parameter="operation"
+            name="editForm"
+            scope="request"
+            validate="false">
+            <forward name="displayTop" module=""
+                    path="/nas/gfs/gfsedittop.jsp"/>
+    	</action>
+        <action path="/volumeList" type="com.nec.nsgui.action.gfs.GfsVolumeListAction">
+ 	        <forward name="displayList" module="" path="/nas/gfs/volumelist.jsp"/>
+        </action>
+    </action-mappings>
+    
+    <!-- ========== Message Resources Definitions ========== -->
+    <message-resources parameter="com.nec.nsgui.messages.GfsResource"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-gfs.xml"/>
+    </plug-in>
+    
+</struts-config>

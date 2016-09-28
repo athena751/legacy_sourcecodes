@@ -1,0 +1,5 @@
+/hosts_getInfo.pl////
+/hosts_getNVSetting.pl////
+/hosts_readFile.pl////
+/hosts_saveFile.pl////
+/hosts_synchronizePartner.pl////

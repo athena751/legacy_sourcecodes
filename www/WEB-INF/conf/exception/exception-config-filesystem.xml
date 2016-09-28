@@ -1,0 +1,490 @@
+<!-- 
+        Copyright (c) 2005-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+ -->
+<!-- "@@(#) $Id: exception-config-filesystem.xml,v 1.17 2008/07/29 03:33:47 chenb Exp $" -->
+<ExceptionConf>
+    <ProcessRule errorCode="0x10800010">
+        <!-- ERR_FS_DIFF_TYPE -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.fstype.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800014">
+        <!-- ERR_FS_PARENT_READ_ONLY -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.ro.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800015">
+        <!-- ERR_FS_HAS_CHILD -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.has.submount.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.has.submount.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.delfs.has.submount.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.has.submount.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+         <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        	<ErrorMessage key="error.delfs.has.submount.detailInfo" type="detailInfo"></ErrorMessage>
+        	<ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800017">
+        <!-- ERR_FS_MP_EXIST -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.has.mount.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080001d">
+        <!-- ERR_REPLI_PARENT -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.has.repli.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+	<ProcessRule errorCode="0x10800063"><!--ERR_EXECUTE_LVINCREASE-->
+        <ErrorMessage key="error.lvmCmdFail.ddr.generalDeal" type="generalDeal" bundle="volume/filesystem"/>
+ 	    <ErrorMessage key="error.lvmCmdFail.lvincrease.detailInfo" type="detailInfo" bundle="volume/filesystem"/>
+        <ErrorMessage key="error.lvmCmdFail.ddr.generalDeal" type="detailDeal" bundle="volume/filesystem"/>
+        <Dispatcher srcAction="/extendFS"   forward="forwardToFSError">
+            <ErrorMessage key="error.extend.common.generalInfo"  type="generalInfo"/>
+        </Dispatcher>
+	</ProcessRule>
+   	<ProcessRule errorCode="0x10800064"><!--ERR_EXECUTE_PVDISPLAY-->
+        <ErrorMessage key="error.lvmCmdFail.generalDeal" type="generalDeal" bundle="volume/filesystem"/>
+ 	    <ErrorMessage key="error.lvmCmdFail.pvdisplay.detailInfo" type="detailInfo" bundle="volume/filesystem"/>
+        <ErrorMessage key="error.lvmCmdFail.generalDeal" type="detailDeal" bundle="volume/filesystem"/>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.list.vgdisp.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher srcAction="/extendFS"   forward="forwardToFSError">
+            <ErrorMessage key="error.extend.common.generalInfo"  type="generalInfo"/>
+        </Dispatcher>
+	</ProcessRule>
+    <ProcessRule errorCode="0x1080006d">
+        <!-- ERR_EXECUTE_VGDISPLAY -->
+            <ErrorMessage key="error.list.vgdisp.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.list.vgdisp.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.list.vgdisp.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.list.vgdisp.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="forwardToFSError" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="forwardToFSError" srcAction="/extendFSShow">
+        	<ErrorMessage key="error.extend.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="forwardToFSError" srcAction="/extendFS">
+        	<ErrorMessage key="error.extend.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x10800068">
+        <!-- ERR_EXECUTE_LVS -->
+            <ErrorMessage key="error.list.lvs.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.list.lvs.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.list.lvs.generalDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.list.lvs.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="forwardToFSError" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode="0x10800082">
+        <!-- ERR_EXECUTE_ISADISKLIST -->
+            <ErrorMessage key="error.list.ism.disklist.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.list.ism.disklist.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.list.ism.disklist.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+        	<ErrorMessage key="error.list.ism.disklist.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="forwardToFSError" srcAction="/addFS">
+        	<ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200020">
+        <!-- ERR_DIFF_FSTYPE -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.fstype.no.format.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.fstype.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.fstype.no.format.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200021">
+        <!-- ERR_DIFF_ENCODEING -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.euc" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.euc" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200022">
+        <!-- ERR_DIFF_ENCODEING -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.sjis" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.sjis" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200023">
+        <!-- ERR_DIFF_ENCODEING -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.iso" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.iso" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200024">
+        <!-- ERR_DIFF_ENCODEING -->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.utf8" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.utf8" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <!-- add for Unicode(UTF8 NFC), add by jiangfx, 2007/6/12-->
+    <ProcessRule errorCode="0x13200025">
+        <!-- ERR_DIFF_ENCODEING,Unicode(UTF8 NFC)-->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.utf8.nfc" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.utf8.nfc" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <!-- add Unicode(UTF8 for Mac) 4 procyon, add by jiangfx, 2007/6/26-->
+    <ProcessRule errorCode="0x13200026">
+        <!-- ERR_DIFF_ENCODEING,Unicode(UTF8 for Mac) only for procyon-->
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.generalDeal.utf8.forMac" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.diff.encode.no.format.detailDeal.utf8.forMac" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+     
+    <ProcessRule errorCode="0x10800013">
+        <!-- ERR_FS_PARENT_UMOUNTED -->
+        <ErrorMessage key="error.addfs.parent.umount.generalDeal" type="generalDeal"></ErrorMessage>        
+        <ErrorMessage key="error.addfs.parent.umount.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.parent.umount.detailInfo" type="detailInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="canNotMount" srcAction="/mountFS">
+            <ErrorMessage key="error.mountfs.parent.umount.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.mountfs.parent.umount.detailInfo" type="detailInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        	<ErrorMessage key="error.move.parentMPUnmount.detailInfo" type="detailInfo"></ErrorMessage>
+        	<ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080004b">
+        <!-- ERR_EXECUTE_VOL -->
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.busy.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.delfs.busy.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.busy.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x10800057">
+        <!-- ERR_EXECUTE_VOL_ACTIVATE -->
+        <Dispatcher forward="canNotMount" srcAction="/mountFS">
+            <ErrorMessage key="error.modify.activate.generalInfo" bundle="volume/filesystem" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.modify.activate.generalDeal" bundle="volume/filesystem" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.modify.activate.detailInfo"  bundle="volume/filesystem" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.modify.activate.generalDeal" bundle="volume/filesystem" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    
+    <!-- add by jiangfx begin -->
+    <ProcessRule errorCode="0x13200051">
+        <!-- ERR_HAS_ORIGINAL -->
+        <ErrorMessage key="error.move.hasSetOriginal.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetOriginal.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetOriginal.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200052">
+        <!-- ERR_HAS_REPLICA -->
+        <ErrorMessage key="error.move.hasSetReplica.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetReplica.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetReplica.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200053">
+        <!-- ERR_HAS_AUTH -->
+        <ErrorMessage key="error.move.hasSetAuth.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetAuth.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSetAuth.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200054">
+        <!-- ERR_HAS_SCHEDULE -->
+        <ErrorMessage key="error.move.hasSnapshotSchedule.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSnapshotSchedule.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.hasSnapshotSchedule.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200055">
+        <!-- ERR_EXPORTGOUP -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.codepageNotSame.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200056">
+        <!-- ERR_DIRECTORY_EXIST -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.dirHasExist.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200057">
+        <!-- ERR_NOT_SAME_FSTYPE -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.fsTypeNotSame.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200058">
+        <!-- ERR_PARENT_READONLY -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.desMPReadonly.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200059">
+        <!-- ERR_PARENT_HAS_REPLICATION -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.parentHasReplication.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x13200076">
+        <!-- ERR_DIRECTMP_UMOUNTED -->
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.move.directMPUnmount.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="addFail" srcAction="/addFS">
+            <ErrorMessage key="error.addfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.direct.umount.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.addfs.direct.umount.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.addfs.direct.umount.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>    
+    <ProcessRule errorCode="0x10800016">
+        <!-- ERR_FS_UMOUNTED -->
+        <ErrorMessage key="error.move.fsUnmounted.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.fsUnmounted.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.fsUnmounted.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToList" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="fsList" srcAction="/extendFS">
+            <ErrorMessage key="error.extend.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="fsList" srcAction="/extendFSShow">
+            <ErrorMessage key="error.extend.common.generalInfo" type="generalInfo"></ErrorMessage>
+			<ErrorMessage key="error.delfs.umounted.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>        
+        <Dispatcher forward="fsList" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.generalDeal" type="generalDeal"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailInfo" type="detailInfo"></ErrorMessage>
+            <ErrorMessage key="error.delfs.umounted.detailDeal" type="detailDeal"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080001a">
+        <!-- ERR_FTP_USED -->
+        <ErrorMessage key="error.delfs.ftp.use.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.delfs.ftp.use.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.delfs.ftp.use.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080001b">
+        <!-- ERR_NFS_USED -->
+        <ErrorMessage key="error.delfs.nfs.use.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.delfs.nfs.use.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.delfs.nfs.use.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080001c">
+        <!-- ERR_CIFS_USED -->
+        <ErrorMessage key="error.delfs.cifs.use.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.delfs.cifs.use.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.delfs.cifs.use.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="canNotMove" srcAction="/moveFSShow">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel">
+            <ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    <ProcessRule errorCode="0x1080001e">
+        <!-- ERR_FS_NO_CODEPAGE -->
+        <ErrorMessage key="error.move.invalidMP.generalDeal" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.move.desExpgrpNotExist.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.move.invalidMP.detailDeal" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="moveFail" srcAction="/moveFS">
+            <ErrorMessage key="error.move.common.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>  
+    
+    <ProcessRule errorCode = "0x10810082"><!--ERR_EXECUTE_ISADISKLIST VOLUME-->
+        <ErrorMessage key="error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volume/filesystem" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.list.ism.disklist.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volume/filesystem" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+        	<ErrorMessage key="error.list.ism.disklist.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>
+    
+    <ProcessRule errorCode = "0x10820082"><!--ERR_EXECUTE_ISADISKLIST PAIR-->
+        <ErrorMessage key="error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volume/filesystem" type="generalDeal"></ErrorMessage>
+        <ErrorMessage key="error.list.ism.disklist.detailInfo" type="detailInfo"></ErrorMessage>
+        <ErrorMessage key="error.async.fcsanCmdFail.iSAdisklist.generalDeal.volume" bundle="volume/filesystem" type="detailDeal"></ErrorMessage>
+        <Dispatcher forward="forwardToFSError" srcAction="/filesystemListAndDel">
+        	<ErrorMessage key="error.list.ism.disklist.generalInfo" type="generalInfo"></ErrorMessage>
+        </Dispatcher>
+    </ProcessRule>      
+    <!-- add by jiangfx begin -->
+
+   	<ProcessRule errorCode = "0x10800054"><!--ERR_WRITE_PROTECTED_ADD-->
+    		<ErrorMessage key="error.set.wp.normal.info" type="generalInfo" bundle="volume/filesystem"/>
+            <ErrorMessage key="error.set.wp.normal.deal" type="generalDeal" bundle="volume/filesystem"/>
+            <ErrorMessage key="error.set.wp.detail.info" type="detailInfo"  bundle="volume/filesystem"/>
+            <ErrorMessage key="error.set.wp.detail.deal" type="detailDeal"  bundle="volume/filesystem"/>
+    		<Dispatcher srcAction = "/addFS"   forward = "fsList"/>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400095"><!--ERR_EXECUTE_VGPAIRCHECK-->
+    		<ErrorMessage key = "error.systemStatus.generalDeal" type = "generalDeal" bundle="volume/filesystem"/>
+    		<ErrorMessage key = "error.vgPairCheckFailed.detailInfo" type = "detailInfo" bundle="volume/filesystem"/>
+    		<ErrorMessage key = "error.systemStatus.detailDeal" type = "detailDeal" bundle="volume/filesystem"/>
+    		<Dispatcher srcAction="/moveFSShow" forward="canNotMove">
+    			<ErrorMessage key = "error.move.common.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction="/extendFSShow" forward="fsList">
+    			<ErrorMessage key = "error.extend.common.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+    		<Dispatcher srcAction="/mountFS" forward="fsList">
+    			<ErrorMessage key = "error.mountfs.parent.umount.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400094"><!--ERR_IS_PAIRED-->
+    		<ErrorMessage key = "error.vgPairCheckHavePair.detailInfo" type = "detailInfo"/>
+    		<ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "generalDeal"/>
+            <ErrorMessage key = "error.vgPairCheckHavePair.generalDeal" type = "detailDeal"/>
+    		<Dispatcher srcAction="/moveFSShow" forward="canNotMove">
+    			<ErrorMessage key = "error.move.common.generalInfo"  type = "generalInfo"/>
+    	    </Dispatcher>
+    		<Dispatcher srcAction="/extendFSShow" forward="fsList">
+    			<ErrorMessage key = "error.extend.common.generalInfo"  type = "generalInfo"/>
+    		</Dispatcher>
+   	</ProcessRule>
+
+   	<ProcessRule errorCode = "0x12400021"><!--ERR_EXECUTE_ORIGINAL_SETCRON-->
+        	<ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        	<ErrorMessage key="original.error.deletecron.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.unknownError.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.unknownError.detailDeal" type="detailDeal"/>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel"/>
+   	</ProcessRule>
+   	
+   	<ProcessRule errorCode = "0x12400022"><!--ERR_EXECUTE_ORIGINAL_SYNCCRON-->
+   			<ErrorMessage key="error.delfs.common.generalInfo" type="generalInfo"></ErrorMessage>
+        	<ErrorMessage key="original.error.synccron.detailInfo" type="detailInfo"/>
+        	<ErrorMessage key="error.unknownError.partner.generalDeal" type="generalDeal"/>
+        	<ErrorMessage key="error.unknownError.partner.detailDeal" type="detailDeal"/>
+        <Dispatcher forward="delFail" srcAction="/filesystemListAndDel"/>
+   	</ProcessRule>
+
+	<ProcessRule errorCode = "0x12400051"><!--INFO_VOLSYNC_IN_FILESET-->
+			<ErrorMessage key="original.error.sync.info" type="generalInfo" bundle="replication/filesystem"/>
+	        <ErrorMessage key="original.error.sync.info" type="detailInfo"  bundle="replication/filesystem"/>
+	        <ErrorMessage key="original.error.sync.deal" type="generalDeal" bundle="replication/filesystem"/>
+	        <ErrorMessage key="original.error.sync.deal" type="detailDeal"  bundle="replication/filesystem"/>
+
+        	<Dispatcher forward="delFail" srcAction="/filesystemListAndDel"/>
+   	</ProcessRule>
+
+</ExceptionConf>

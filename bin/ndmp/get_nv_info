@@ -1,0 +1,43 @@
+#!/bin/sh
+#
+#       Copyright (c) 2006 NEC Corporation
+#
+#       NEC SOURCE CODE PROPRIETARY
+#
+#       Use, duplication and disclosure subject to a source code
+#       license agreement with NEC Corporation.
+#
+
+# "@(#) $Id: get_nv_info,v 1.2 2006/10/09 01:26:18 qim Exp $"
+
+var1=0
+version=`egrep Version: /var/NEC/version/osver.pif 2>/dev/null`
+NV_REVISION=$( echo $version | cut -d: -f2 | sed -e 's/^\s*//g')
+if [ -z "$NV_REVISION" ] ; then
+   var1=1
+fi
+
+NV_REVISION="SC-LX$NV_REVISION"
+
+product=`/opt/nec/nsadmin/bin/nsgui_getNodeinfo.sh 2>/dev/null`
+var2=$?
+
+echo Vendor Name: NEC
+if test $var2 -ne 0 || [ "x$product" = "xUnknown" ] ; then
+   var2=1
+   echo "Product Name: --"
+else
+   echo Product Name: $product
+fi
+
+if test $var1 -eq 0; then
+   echo Revision: $NV_REVISION
+else
+   echo "Revision: --"
+fi
+
+if test $var1 -ne 0 || test $var2 -ne 0 ; then
+   exit 1
+else
+   exit 0
+fi

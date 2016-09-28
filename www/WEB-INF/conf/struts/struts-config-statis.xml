@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2005-2008 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-statis.xml,v 1.8 2008/05/16 11:44:19 zhangjun Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions ========== -->
+    <form-beans>
+        <form-bean name="rrdGraphForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="defaultGraphType" type="java.lang.String"/> 
+            <form-property name="watchItem" type="java.lang.String"/>
+            <form-property name="targetNo" type="java.lang.String"/>
+            <form-property name="targetID" type="java.lang.String"/>
+            <form-property name="subWatchItem" type="java.lang.String"/> 
+            <form-property name="grayBackColor" type="java.lang.String"/> 
+            <form-property name="subItemNo" type="java.lang.String"/> 
+            <form-property name="downloadInfo" 
+                type="com.nec.nsgui.model.entity.statis.CsvDownloadInfoBean"
+            />                        
+        </form-bean>
+        <form-bean name="rrdPropertyForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="optionInfo" 
+                type="com.nec.nsgui.model.entity.statis.OptionInfoBean"
+            />
+        </form-bean>
+        <form-bean name="snapshotForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="watchItem" type="java.lang.String"/>
+            <form-property name="graphType" type="java.lang.String"/>
+            <form-property name="sortKey"   type="java.lang.String[]" size="2"/>
+            <form-property name="orderFlag" type="java.lang.String[]" size="2"/>
+            <form-property name="displayOSInfo" type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="changeMaxForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="watchItem" type="java.lang.String"/>
+            <form-property name="targetId" type="java.lang.String"/>
+            <form-property name="isDetail"   type="java.lang.String"/>
+            <form-property name="yInfoBean" type="com.nec.nsgui.model.entity.statis.YInfoBean"/>
+        </form-bean>
+        <form-bean name="deleteGraphForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="watchItem" type="java.lang.String"/>
+            <form-property name="targetId" type="java.lang.String"/>
+            <form-property name="subWatchItem"   type="java.lang.String"/>
+        </form-bean>
+        <form-bean name="downloadForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="downloadInfo" 
+                type="com.nec.nsgui.model.entity.statis.CsvDownloadInfoBean"
+            /> 
+            <form-property name="options" 
+                type="com.nec.nsgui.model.entity.statis.CsvDownloadOption"
+            />
+        </form-bean>
+        <form-bean name="samplingForm" type="org.apache.struts.action.DynaActionForm">
+        	<form-property name="id"
+        		type="java.lang.String"
+        	/>
+        	<form-property name="itemKey"
+        		type="java.lang.String"
+        	/>
+        	<form-property name="status"
+        		type="java.lang.String" initial="false"
+        	/>
+        	<form-property name="interval"
+        		type="java.lang.String"
+        	/>
+        	<form-property name="stockPeriod"
+        		type="java.lang.String"
+        	/>
+        </form-bean>
+        <form-bean name="idListForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="idList" type="java.lang.String[]"/> 
+            <form-property name="interval" type="java.lang.String"/>
+            <form-property name="period" type="java.lang.String"/>
+        </form-bean>
+         <form-bean name="nasSwitchGraphForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="graphType" type="java.lang.String"/> 
+            <form-property name="watchItem" type="java.lang.String"/>
+            <form-property name="targetID" type="java.lang.String"/>
+            <form-property name="targetNo" type="java.lang.String"/>
+            <form-property name="subItem" type="java.lang.String"/> 
+            <form-property name="collectionItem" type="java.lang.String"/>
+            <form-property name="grayBackColor" type="java.lang.String"/> 
+            <form-property name="index" type="java.lang.String"/>           
+            <form-property name="downloadInfo" type="com.nec.nsgui.model.entity.statis.CsvDownloadInfoBean"/>          
+        </form-bean>
+        <form-bean name="nasSwitchListForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="graphType" type="java.lang.String"/>
+            <form-property name="collectionItem" type="java.lang.String"/> 
+            <form-property name="downloadInfo" type="com.nec.nsgui.model.entity.statis.CsvDownloadInfoBean"/>     
+        </form-bean>
+         <form-bean name="nasSwitchMaxForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="collectionItem" type="java.lang.String"/>
+            <form-property name="selectedItem" type="java.lang.String"/>
+            <form-property name="isDetail"   type="java.lang.String"/>
+            <form-property name="yInfoBean" type="com.nec.nsgui.model.entity.statis.YInfoBean"/>
+        </form-bean>        
+    </form-beans>
+
+    <global-forwards>
+        <forward name="displayRRDGraph"
+            path="/rrdgraph.do?operation=displayList"
+        />
+        <forward name="displayDeatilRRDGraph"
+            path="/rrdgraph.do?operation=displayDetail"
+        />
+        		<forward name="displayNasSwitchGraph"
+			path="/nasSwitchGraph.do?operation=displayGraph"
+        />
+        <forward name="displayDetailNasSwitchGraph"
+            path="/nasSwitchGraph.do?operation=displayDetailGraph"
+        />
+        <forward name="displayNasSwitchList"
+            path="/nasswitchList.do?operation=displayListTop"
+        />  
+    </global-forwards>
+	<!-- ========== Action Mapping Definitions ========== -->
+
+    <action-mappings>
+        <action path="/rrdgraph"
+            type="com.nec.nsgui.action.statis.RRDGraphAction"
+            parameter="operation"
+            name="rrdGraphForm"
+            scope="session"
+            validate="false"> 
+            <forward name="forwardToGraphList" module=""
+             	path="/nas/statis/rrdgraphforward.jsp"
+            />       	
+            <forward name="spforwardToGraphList" module=""
+             	path="/nas/statis/sprrdgraphforward.jsp"
+            />
+            <forward name="toNoComputerName" module="" redirect="true"
+             	path="/nas/statis/sprrdgraphforward.jsp"
+            />
+            <forward name="displayList" module=""
+             	path="/nas/statis/rrdgraph.jsp"
+            />
+            <forward name="displayDetail" module=""
+             	path="/nas/statis/rrddetailgraph.jsp"
+            />  
+           <forward name="displayHideFrame" module=""
+             	path="/nas/statis/hideframe.jsp"
+            />            
+            <forward name="spNoNvavsSetting" module=""
+             	path="/nas/statis/spnonvavssetting.jsp"
+            />
+       </action>
+       <action path="/rrdgraphtop"
+            forward="/../nas/statis/rrdgraphtop.jsp"/>
+        <action path="/sprrdgraphtop"
+            forward="/../nas/statis/sprrdgraphtop.jsp"/>
+ 	        
+    	<action path="/changeMax"
+            type="com.nec.nsgui.action.statis.ChangeMaxAction" 
+            parameter="operation"
+            name="changeMaxForm"
+            scope="request"
+            validate="false">  
+            <forward name="viewMaxPage" module=""
+             	path="/nas/statis/rrdmaxdata.jsp"
+            />        	
+    	</action> 	            
+     	<action path="/deleteGraph"
+            type="com.nec.nsgui.action.statis.DeleteGraphAction" 
+            parameter="operation"
+            name="deleteGraphForm"
+            scope="request"
+            validate="false">        	
+    	</action>	            
+    	<action path="/rrdpropertyFrame"
+            forward="/../nas/statis/rrdpropertyframe.jsp"/>
+        <action path="/rrdpropertyBottom"
+            forward="/../nas/statis/rrdpropertybottom.jsp"/>
+    	<action path="/rrdproperty"
+            type="com.nec.nsgui.action.statis.RRDPropertyAction" 
+            parameter="operation"
+            name="rrdPropertyForm"
+            scope="request"
+            validate="false">        	
+            <forward name="display" module=""
+             	path="/nas/statis/rrdproperty.jsp"
+            />
+            <forward name="success" module=""
+             	path="/statis/rrdpropertyFrame.do"
+            />
+            <forward name="failed" module=""
+             	path="/statis/rrdpropertyFrame.do"
+            />
+            <forward name="displayForSurvey" module=""
+             	path="/nas/statis/rrdpropertyforsurvey.jsp"
+            />
+            <forward name="successForSurvey" module=""
+             	path="/nas/statis/rrdpropertyclose.jsp"
+            />
+            <forward name="failedForSurvey" module=""
+             	path="/statis/rrdproperty.do?operation=displayForSurvey"
+            />
+    	</action>
+    	
+    	<action path="/snapshot"
+            type="com.nec.nsgui.action.statis.SnapshotAction"
+            parameter="operation"
+            name="snapshotForm"
+            scope="request"
+            validate="false">
+            <forward name="enterSnapshot"  module=""
+                path="/nas/statis/snapshotforward.jsp"
+            />
+            <forward name="displayBarList" module=""
+             	path="/nas/statis/snapshotbar.jsp"
+            />
+            <forward name="displayPieList" module=""
+             	path="/nas/statis/snapshotpie.jsp"
+            />
+            <forward name="displayDetail" module=""
+             	path="/nas/statis/snapshotdetailgraph.jsp"
+            />
+    	</action>
+        <action path="/snapshotTop"
+            forward="/../nas/statis/snapshottop.jsp"/>
+    	
+    	<action path="/download"
+            type="com.nec.nsgui.action.statis.CsvDownloadAction"
+            parameter="operation"
+            name="downloadForm"
+            scope="request"
+            validate="false">
+            <forward name="displaytime" module=""
+             	path="/nas/statis/heartbeattime.jsp"
+            />
+            <forward name="display" module=""
+             	path="/nas/statis/setcsvdownload.jsp"
+            />
+            <forward name="download" module=""
+             	path="/nas/statis/download.jsp"
+            />
+            <forward name="displaySetDownload"
+                path="/download.do?operation=display"
+            />
+    	</action>
+        <action path="/popupHeartbeat"
+            forward="/../nas/statis/heartbeatframe.jsp"/>
+        <action path="/heartbeatfinish"
+            forward="/../nas/statis/heartbeatfinish.jsp"/>
+
+    	<action path="/download4NSW"
+            type="com.nec.nsgui.action.statis.CsvDownload4NswAction"
+            parameter="operation"
+            name="downloadForm"
+            scope="request"
+            validate="false">
+            <forward name="displaytime" module=""
+             	path="/nas/statis/heartbeattime.jsp"
+            />
+            <forward name="downloadfinished" module=""
+             	path="/nas/statis/heartbeatfinish.jsp"
+            />
+            <forward name="readyfordownload" module=""
+             	path="/nas/statis/csvdownloadready.jsp"
+            />
+            <forward name="display" module=""
+             	path="/nas/statis/setcsvdownload.jsp"
+            />
+            <forward name="heartbeatframe" module=""
+             	path="/nas/statis/heartbeatframe.jsp"
+            />
+    	</action>
+		<action path="/samplingMenuEntry"
+    		type="com.nec.nsgui.action.statis.SamplingMenuEntryAction"
+    		scope="request"
+    		validate="false">
+    		<forward name="samplingEntry" module=""
+    			path="/nas/statis/samplingtabentry.jsp"
+    		/>
+    	</action>
+    	<action path="/tabTopAction"
+    		forward="/../nas/statis/samplingnstab.jsp"/>
+    	<action path="/samplingframe"
+    		forward="/../nas/statis/sampling.jsp"/>
+    	<action path="/sampling"
+    		type="com.nec.nsgui.action.statis.SamplingAction"
+    		parameter="operation"
+    		name="samplingForm"
+    		scope="request"
+    		>
+    		<forward name="samplingtop" module=""
+    			path="/nas/statis/samplingtop.jsp"
+    		/>
+    		<forward name="samplingmodify" module=""
+    			path="/nas/statis/samplingmodify.jsp"
+    		/>
+    		<forward name="sampling" module=""
+    			path="/nas/statis/sampling.jsp"
+    		/>
+    		<forward name="samplingmodifytop" module=""
+    			path="/nas/statis/samplingmodifytop.jsp"
+    		/>
+    		<forward name="setStockPeriodFail"
+    		    path="/sampling.do?operation=forwardModify"
+    		/>
+    	</action>
+    	<action path="/samplingbottom"
+    		forward="/../nas/statis/samplingbottom.jsp"/>
+    	<action path="/samplingmodifybottom"
+    		forward="/../nas/statis/samplingmodifybottom.jsp"/>
+    	<action path="/surveyframe"
+    		forward="/../nas/statis/survey.jsp"/>
+    	<action path="/survey"
+    		type="com.nec.nsgui.action.statis.SurveyAction"
+    		parameter="operation"
+    		name="samplingForm"
+    		scope="request"
+    		>
+    		<forward name="surveytop" module=""
+    			path="/nas/statis/surveytop.jsp"
+    		/>
+    		<forward name="surveymodify" module=""
+    			path="/nas/statis/surveymodify.jsp"
+    		/>
+    		<forward name="surveymodifytop" module=""
+    			path="/nas/statis/surveymodifytop.jsp"
+    		/>
+    		<forward name="survey" module=""
+    			path="/nas/statis/survey.jsp"
+    		/>
+    		<forward name="surveysetFail"
+    		    path="/survey.do?operation=forwardModify"
+    		/>
+    	</action>
+    	<action path="/surveybottom"
+    		forward="/../nas/statis/surveybottom.jsp"/>
+    	<action path="/surveymodifybottom"
+    		forward="/../nas/statis/surveymodifybottom.jsp"/>   	
+    		
+    	<action path="/samplingMenuEntry4nsview"
+    		type="com.nec.nsgui.action.statis.SamplingMenuEntryAction"
+    		scope="request"
+    		validate="false">
+    		<forward name="samplingEntry" module=""
+    			path="/nas/statis/samplingtabentry4nsview.jsp"
+    		/>
+    	</action>
+    	<action path="/tabTopAction4nsview"
+    		forward="/../nas/statis/samplingnstab4nsview.jsp"/>
+    	<action path="/sampling4nsview"
+    		type="com.nec.nsgui.action.statis.SamplingAction"
+    		parameter="operation"
+    		name="samplingForm"
+    		scope="request"
+    		>
+    		<forward name="samplingtop" module=""
+    			path="/nas/statis/sampling4nsview.jsp"
+    		/>
+    	</action>
+    	<action path="/survey4nsview"
+    		type="com.nec.nsgui.action.statis.SurveyAction"
+    		parameter="operation"
+    		name="samplingForm"
+    		scope="request"
+    		>
+    		<forward name="surveytop" module=""
+    			path="/nas/statis/survey4nsview.jsp"
+    		/>
+    	</action>
+    	
+    	<action path="/nswSamplingMenuEntry"
+            type="com.nec.nsgui.action.statis.SamplingMenuEntryAction"
+            scope="request"
+            validate="false"> 
+            <forward name="samplingEntry" module=""
+             	path="/nas/statis/nswsamplingtabentry.jsp"
+            />          
+       </action>
+       <action path="/nswsamplingtab"
+            forward="/../nas/statis/nswsamplingnstab.jsp"/>
+       <action path="/nswsamplingframe"
+            forward="/../nas/statis/nswsamplingframe.jsp"/>
+       <action path="/nswsampling"
+ 	        type="com.nec.nsgui.action.statis.NswSamplingAction"
+ 	        parameter="operation"
+ 	        name="idListForm"
+ 	        scope="request"
+ 	        validate="false">
+ 	        <forward name="nswvirtualpathlist" module=""
+ 	        	path="/nas/statis/nswvirtualpathlist.jsp"
+ 	        />
+ 	        <forward name="nswserverlist" module=""
+ 	        	path="/nas/statis/nswserverlist.jsp"
+ 	        />
+ 	        <forward name="nswnodelist" module=""
+ 	        	path="/nas/statis/nswnodelist.jsp"
+ 	        />
+ 	        <forward name="nswsamplingframe" module=""
+ 	            path="/nas/statis/nswsamplingframe.jsp"
+ 	        />
+ 	        <forward name="nswsamplingsettingmid" module=""
+ 	            path="/nas/statis/nswsamplingsettingmiddle.jsp"
+ 	        />
+ 	        <forward name="nswsamplingsettingframe" module=""
+ 	            path="/nas/statis/nswsamplingsettingframe.jsp"
+ 	        />
+ 	        <forward name="nswsamplingsettingtop" module=""
+ 	            path="/nas/statis/nswsamplingsettingtop.jsp"
+ 	        />
+ 	    </action>
+        <action path="/nswsamplingbottom"
+            forward="/../nas/statis/nswsamplingbottom.jsp"/>
+       <action path="/nswsamplingsettingmid"
+            forward="/../nas/statis/nswsamplingsettingmiddle.jsp"/>
+       <action path="/nswsamplingsettingbottom"
+            forward="/../nas/statis/nswsamplingsettingbottom.jsp"/> 	
+       <action path="/nasswitchList"
+            type="com.nec.nsgui.action.statis.NasSwitchListAction"
+            parameter="operation"
+            name="nasSwitchListForm"
+            scope="request"
+            validate="false">	
+            <forward name="displayListTop" module=""
+             	path="/nas/statis/nasswitchlisttop.jsp"
+            />
+            <forward name="forwardToNasSwitchFrame" module=""
+             	path="/nas/statis/nasswitchframe.jsp"
+            /> 
+            <forward name="displayGraph" module=""
+             	path="/nas/statis/nasswitchgraph.jsp"
+            />    
+       </action>
+       <action path="/forwardToButton"
+            forward="/../nas/statis/nasswitchlistbottom.jsp"/>
+       <action path="/nasSwitchTab"
+            forward="/../nas/statis/nasswitchtab.jsp"/>
+       <action path="/forwardToList"
+            forward="/../nas/statis/nasswitchlist.jsp"/>
+        <action path="/backToFrame"
+            forward="/../nas/statis/nasswitchframe.jsp"/>
+        <action path="/nasSwitchGraph"
+            type="com.nec.nsgui.action.statis.NasSwitchGraphAction"
+            parameter="operation"
+            name="nasSwitchGraphForm"
+            scope="session"
+            validate="false">	
+            <forward name="displayGraph" module=""
+             	path="/nas/statis/nasswitchgraphcontent.jsp"
+            />
+            <forward name="forwardToGraphBottom" module=""
+             	path="/nas/statis/nasswitchgraphbottom.jsp"
+            />               
+            <forward name="displayDetailGraph" module=""
+             	path="/nas/statis/nasswitchdetailgraph.jsp"
+            />   
+       </action>
+         <action path="/changeNasSwitchMax"
+            type="com.nec.nsgui.action.statis.ChangeNasSwitchMaxAction"
+            parameter="operation"
+            name="nasSwitchMaxForm"
+            scope="session"
+            validate="false">	
+            <forward name="displayMaxPage" module=""
+             	path="/nas/statis/nasswitchmax.jsp"
+            />   
+       </action>      
+       <action path="/nasSwitchGraphTop"
+            forward="/../nas/statis/nasswitchgraphtop.jsp"/>
+        <action path="/forwardToBottom"
+            forward="/../nas/statis/nasswitchgraphbottom.jsp"/> 	
+    </action-mappings>
+    <!-- ========== Message Resources Definitions ========== -->
+    <message-resources parameter="com.nec.nsgui.messages.StatisResource"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-statis.xml"/>
+    </plug-in>
+
+</struts-config>

@@ -1,0 +1,8 @@
+/lvm_createLV.pl////
+/lvm_deleteLV.pl////
+/lvm_extendLV.pl////
+/lvm_list.pl////
+/lvm_manageLV.pl////
+/lvm_moveLV.pl////
+/lvm_umount.pl////
+/lvm_vgscan2.pl////

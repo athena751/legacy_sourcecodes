@@ -1,0 +1,73 @@
+<!--
+        Copyright (c) 2001-2009 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: tab.css,v 1.5 2009/03/30 09:58:15 liul Exp $" -->
+
+body {
+    margin:10px 0px 0px 0px;
+}
+
+div.h1 {
+    margin:10px 10px 0px 10px;
+}
+
+div.tab {
+    margin:0px 0px 0px 0px;
+    position:absolute;
+    left:0px;
+    top:53px;
+    width:100%;
+}
+
+table.tab {
+    border-collapse: collapse;
+}
+
+table.tab td {
+    padding:0px;
+}
+
+td.spacehead {
+    background-image:url("/nsadmin/images/tab/space_bk.jpg");
+}
+
+td.spacetail {
+    background-image:url("/nsadmin/images/tab/space_bk.jpg");
+    width:100%;
+}
+
+td.selected    {
+    background-image:url("/nsadmin/images/tab/selected_bk.jpg");
+}
+
+td.unselected    {
+    background-image:url("/nsadmin/images/tab/unselected_bk.jpg");
+}
+
+div.hidden    {
+    font-size:13px;
+    font-weight:bold;
+    position:relative;
+    top:5px;
+    visibility:hidden;
+}
+
+div.selected{
+    font-size:13px;
+    font-weight:bold;
+    position:absolute;
+    top:5px;
+}
+
+div.unselected{
+    font-size:13px;
+    position:absolute;
+    top:7px;
+    height:23px;
+}

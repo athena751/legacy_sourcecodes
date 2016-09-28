@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_lvm.xml,v 1.2318 2008/05/30 05:49:42 xingyh Exp $" -->
+
+<messages>
+    <msg key="common" value="">
+        <msg key="h1_lvm" value="LVM"/>
+        <msg key="submit_Extend" value="Extend" ja="拡張"/>
+        <msg key="h2_nicknamechange" value="Change ID" ja="ニックネーム変更"/>
+        <msg key="node0" value="Node0" ja="ノード0"/>
+        <msg key="node1" value="Node1" ja="ノード1"/>
+        <msg key="reload" value="Reload" ja="最新情報"/>
+    </msg>
+    <!-- <nsgui:message key="nas_lvm/common/"/> -->
+
+    <msg key="alert" value="">
+        <!-- "lvmlist" -->
+		<msg key="hasmount" value="Can not destroy this logical volume, because filesystem has been mounted on it." ja="ファイルシステムがマウントされているため、LVMを解放できません。"/>
+        <msg key="no_lv" value="No logical disks are found." ja="論理ディスクが存在しません。">
+            <msg key="for_nashead" value="No LUN are found." ja="LUNが存在しません。"/>
+        </msg>
+        <msg key="no_pv" value="Can not manage this logical volume because it is invalid." ja="LVMの取り込みに失敗しました。管理対象外論理ボリュームが不正です。"/>
+        <msg key="unmount" value="Please destroy the filesystem which has mounted the logical volume first." ja="まず、論理ボリュームをマウントしているファイルシステムの解放を行ってください。"/>
+        <msg key="nickname" value="\\&amp;;|&lt;&gt;#\&quot;\&apos; is invalid. Please input the correct ID."
+            ja="\\&amp;;|&lt;&gt;#\&quot;\&apos;を指定できません。再度ニックネームを指定してください。"/>
+        <msg key="diskarrayErr4List" value="Failed to get logical volume list. Please confirm the disk array's status." 
+        	ja="論理ボリューム一覧の取得に失敗しました。ディスクアレイの状態を確認してください。"/>
+        <msg key="diskarrayErr4Create" value="Failed to create logical volume. Please confirm the disk array's status.\r\nClear the state when LUN(s) paired and one(s) not paired for data replication are mixed." 
+        	ja="論理ボリュームの構築に失敗しました。ディスクアレイの状態を確認してください。\r\nデータレプリケーションのペアを作成しているLUNと作成していないLUNが混在している場合は混在状態を解除してください。"/>
+        <msg key="diskarrayErr4Remove" value="Failed to destroy logical volume. Please confirm the disk array's status." 
+        	ja="論理ボリュームの解放に失敗しました。ディスクアレイの状態を確認してください。"/>
+        <msg key="diskarrayErr4Extend" value="Failed to extend logical volume. Please confirm the disk array's status.\r\nClear the state when LUN(s) paired and one(s) not paired for data replication are mixed." 
+        	ja="論理ボリュームの拡張に失敗しました。ディスクアレイの状態を確認してください。\r\nデータレプリケーションのペアを作成しているLUNと作成していないLUNが混在している場合は混在状態を解除してください。"/>
+        <msg key="diskarrayErr4Manage" value="Failed to manage logical volume. Please confirm the disk array's status." 
+        	ja="論理ボリュームの取り込みに失敗しました。ディスクアレイの状態を確認してください。"/>
+        <msg key="cfstabErr4Manage" value="Failed to manage logical volume. Mount setting exists on partner node." 
+        	ja="論理ボリュームの取り込みに失敗しました。相手ノードにマウント情報が存在します。"/>
+        <msg key="diskarrayErr4Move" value="Failed to move logical volume. Please confirm the disk array's status." 
+        	ja="論理ボリュームの移行に失敗しました。ディスクアレイの状態を確認してください。"/>
+        <msg key="diskarrayErr4FSMove" value="Please confirm the disk array's status." 
+        	ja="ディスクアレイの状態を確認してください。"/>	
+        <msg key="diskarrayErr4Select" value="Failed to get logical disk list. Please confirm the disk array's status." 
+        	ja="論理ディスクリストの取得に失敗しました。ディスクアレイの状態を確認してください。">
+        	<msg key="for_nashead" value="Failed to get LUN list. Please confirm the disk array's status." 
+        	ja="LUNリストの取得に失敗しました。ディスクアレイの状態を確認してください。"/>
+        </msg>
+        <msg key="snapshotCmdError" value="Failed to execute command /usr/sbin/sxfs_snapshot. Please confirm the system's status." 
+        	ja="コマンド/usr/sbin/sxfs_snapshotの実行に失敗しました。システムの状態を確認してください。"/>
+        <!-- "lvmsetdiskshow" -->
+        <msg key="Host" value="Please specify the host adapter number."
+            ja="ホストアダプタ番号を指定してください。"/>
+        <msg key="HostNo" value="The host adapter number is invalid. Only positive integer is allowed."
+            ja="不正なホストアダプタ番号です。正の整数のみが指定できます。"/>
+        <msg key="SCSI" value="Please specify the SCSI channel." ja="SCSIチャネルを指定してください。"/>
+        <msg key="SCSIvalue" value="The SCSI channel is invalid. Only positive integer is allowed."
+            ja="不正なSCSIチャネルです。正の整数のみが指定できます。"/>
+
+        <!-- "LVMCreateShow" -->
+        <msg key="name" value="Invalid name. Only alphanumeric characters, \&quot;-_\&quot; are allowed."
+            ja="不正な名前です。半角英数字と\&quot;-_\&quot;が指定できます。"/>
+        <msg key="choose" value="Please specify logical disk." ja="論理ディスクを選択してください。">
+            <msg key="for_nashead" value="Please specify LUN." ja="LUNを選択してください。"/>
+        </msg>
+        <msg key="pv_exist" value="The specified logical volume already exists."
+            ja="指定された論理ボリュームは、すでに存在しています。"/>
+        <msg key="pv_can_not_create" value="The logical volume with the specified name can not be created."
+            ja="指定された名前の論理ボリュームは作成できません。"/>
+        <msg key="lv_max" value="The maximum number of logical volumes is 256."
+            ja="論理ボリュームの最大数は 256 個です。"/>
+        <msg key="lv_size_small" value="192MBytes logical disk is required for extending logical volume."
+            ja="論理ボリュームを拡張するには、192M バイト以上の論理ディスクを指定してください。">
+            <msg key="for_nashead" value="192MBytes LUN is required for extending logical volume."
+            ja="論理ボリュームを拡張するには、192M バイト以上のLUNを指定してください。"/>
+        </msg>
+        <msg key="overflowNickname" value="Invalid ID." ja="不正なニックネームです。"/>
+        <msg key="nicknamenotchange" value="The ID has not been changed. Please input a new ID." 
+         ja="新ニックネームに旧ニックネームと同じ値が指定されています。\r\n新ニックネームの値を変更してください。"/>
+         
+        <msg key="striping_number" value="The LUN's number must be more than 2 when creating striping volume." 
+             ja="ストライピングボリュームを構築する場合は二つ以上のLUNを選択してください。"/>
+        <msg key="striping_create_size" value="Please specify two or more than two LUNs of the same size while creating striped logical volume." 
+             ja="ストライピング論理ボリュームを作成する場合、同じサイズのLUNを二つ以上指定してください。"/>
+        <msg key="striping_extend_size" value="Please specify two or more than two LUNs of the same size while extending striped logical volume." 
+             ja="ストライピング論理ボリュームを拡張する場合、同じサイズのLUNを二つ以上指定してください。"/>
+        <msg key="extend_paired" value="The logical volume has been set as a pair for DataReplication. Please delete the setting of the pair for DataReplication before performing the operation." 
+             ja="データレプリケーションのペアが設定されています。データレプリケーションのペア削除後に実行してください。"/>
+        <msg key="manage_paired" value="This logical volume is an RV for DataReplication.\r\nIt can be loaded into only the node in which the pair creation has been done." 
+             ja="この論理ボリュームは、データレプリケーションのRVです。\r\nデータレプリケーションのRVはペアを作成したノードにのみ取り込み可能です。"/>
+        <msg key="move_paired" value="Failed to move the logical volume. Please delete the setting of the pair for DataReplication before performing the operation." 
+             ja="論理ボリュームの移行に失敗しました。データレプリケーションのペア削除後に実行してください。"/>
+        <msg key="remove_paired" value="Failed to delete the logical volume. Please delete its setting of the pair for DataReplication." 
+             ja="論理ボリュームの削除に失敗しました。データレプリケーションのペアを削除してください。"/>     
+        <msg key="vgpaircheck_failed" value="Failed to execute the command &quot;/sbin/vgpaircheck&quot;. Please check the system status." 
+             ja="「/sbin/vgpaircheck」の実行に失敗しました。システムの状態を確認してください。"/>  
+        <msg key="vgpaircheck_failed_partner" value="Failed to execute the command &quot;/sbin/vgpaircheck&quot; on the partner node. Please check the system status." 
+             ja="相手ノードで「/sbin/vgpaircheck」の実行に失敗しました。システムの状態を確認してください。"/>    
+                                               
+    </msg>
+    <!-- <nsgui:message key="nas_lvm/alert/"/> -->
+
+    <msg key="lvmlist" value="">
+        <msg key="th_List" value="Logical Volume List" ja="論理ボリューム一覧"/>
+        <msg key="other_list" value="Unmanaged Logical Volume List" ja="管理対象外論理ボリューム一覧"/>
+        <msg key="th_Extend" value="Extend" ja="拡張"/>
+        <msg key="td_Name" value="Name" ja="名前"/>
+        <msg key="td_NickName" value="ID" ja="ニックネーム"/>
+        <msg key="td_Size" value="Size(GB)" ja="サイズ(GB)"/>
+        <msg key="td_Mount" value="Mount Point" ja="マウントポイント"/>
+        <msg key="td_majorAndMinor" value="Device Number" ja="デバイス番号"/>
+	    <msg key="td_LD" value="Logical Disk" ja="論理ディスク"/>
+        <msg key="th_Disk" value="Logical Disk" ja="論理ディスク">
+            <msg key="for_nashead" value="LUN" ja="LUN"/>
+        </msg>
+        <msg key="th_num" value="Logical Disk Number" ja="論理ディスク番号">
+            <msg key="for_nashead" value="LUN" ja="LUN"/>
+        </msg>
+        <msg key="msg_Recognize" value="Disk Attach" ja="ディスク認識"/>
+        <msg key="msg_Create" value="Create a logical volume" ja="論理ボリューム作成"/>
+        <msg key="msg_nolvm" value="No logical volumes are found." ja="論理ボリュームが存在しません。"/>
+        <msg key="msg_manager" value="Manager: " ja="管理者:"/>
+        <msg key="btn_relist" value="Recreate list" ja="リスト再構築"/>
+        <msg key="btn_manage" value="Manage" ja="取り込み"/>
+        <msg key="td_striping" value="Striping" ja="ストライピング"/>
+        <msg key="td_lun_storage" value="LUN/Storage" ja="LUN／ストレージ"/>
+    </msg>
+    <!-- <nsgui:message key="nas_lvm/lvmlist/"/> -->
+
+    <msg key="LVMCreateShow" value="">
+        <msg key="th_node" value="Node" ja="ノード"/>
+        <msg key="lvm_name" value="Name" ja="名前"/>
+		<msg key="lvm_nickname" value="ID" ja="ニックネーム"/>
+		<msg key="disk" value="Logical Disk" ja="論理ディスク">
+		    <msg key="for_nashead" value="LUN" ja="LUN"/>
+		</msg>
+		<msg key="target" value="Target" ja="ターゲット"/>
+        <msg key="volume" value="Logical Volume" ja="論理ボリューム"/>
+        <msg key="scsi" value="SCSI Channel" ja="SCSI チャネル"/>
+        <msg key="lvm_prefix" value="NV_LVM_"/>
+        <msg key="select_lun" value="Selected LUN" ja="選択済LUN"/>
+        <msg key="select_lun_size" value="Extend Size(GB)" ja="拡張サイズ(GB)"/>
+        <msg key="btn_select_lun" value="Select LUN..." ja="LUN選択..."/>
+        <msg key="select_ld" value="Selected Logical Disk" ja="選択済論理ディスク"/>
+        <msg key="btn_select_ld" value="Select Logical Disk..." ja="論理ディスク選択..."/>
+        <msg key="option" value="Option" ja="オプション"/>
+        <msg key="striping" value="Striping" ja="ストライピング"/>
+        <msg key="not_striping" value="No Striping" ja="非ストライピング"/>
+    </msg>
+    <!--<nsgui:message key="nas_lvm/LVMCreateShwo/"/> -->
+
+    <msg key="lvmSelectDisk" value="">
+        <msg key="window_title" value="Logical Disk Select" ja="論理ディスク選択">
+            <msg key="for_nashead" value="LUN Select" ja="LUN選択"/>
+        </msg>
+    </msg>
+    <msg key="lvmExtendShow" value="">
+        <msg key="striping_number" value="Striping Number" ja="ストライピング数"/>
+        <msg key="exceed_capLicense" value="If logical volume is extended with the specified capacity, the license capacity may be exceeded." ja="指定された容量で論理ボリュームを拡張すると、ライセンス登録済みの論理容量を超える可能性があります。"/>
+    </msg>
+    <msg key="lvmManageShow" value="">
+        <msg key="h2" value="Manage Logical Volume" ja="論理ボリューム取り込み"/>
+    </msg>
+    <msg key="lvmMove" value="">
+        <msg key="hasMount" value="Because file system has been created, the specified logical volume cannot move." ja="LVM上にファイルシステムが構築されているため、移行できません。"/>
+        <msg key="Move" value="Move" ja="移行" />
+        <msg key="SourceNode" value="Source Node" ja="移行元" />
+        <msg key="DestiNode" value="Destination Node" ja="移行先" />
+    </msg>
+    <!-- for Changing Nickname-->
+    <msg key="nicknamechange" value="">
+		<msg key="lvname" value="Logical Volume Name" ja="論理ボリューム名" />
+		<msg key="oldnickname" value="Old ID " ja="旧ニックネーム" />
+		<msg key="newnickname" value="New ID " ja="新ニックネーム" />
+		<msg key="clear" value="Clear" ja="クリア" />
+	</msg>
+	<msg key="nashead" value="">
+		<msg key="lun" value="LUN" ja="LUN" />
+		<msg key="wwnnName" value="Storage" ja="ストレージ" />
+	</msg>
+</messages>

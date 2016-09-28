@@ -1,0 +1,15 @@
+/schedulescan_checkComputerName.pl////
+/schedulescan_checkUserMapping.pl////
+/schedulescan_delConfigFile.pl////
+/schedulescan_getAllDomAndCom.pl////
+/schedulescan_getAllInterfaces.pl////
+/schedulescan_getScanShare4List.pl////
+/schedulescan_getSettingInfo.pl////
+/schedulescan_getShareInfo.pl////
+/schedulescan_getVirtualComputerName.pl////
+/schedulescan_haveSetGlobal.pl////
+/schedulescan_judgeVSSmbPair.pl////
+/schedulescan_setComputerInfo.pl////
+/schedulescan_setGlobalInfo.pl////
+/schedulescan_setNewComputerInfo.pl////
+/schedulescan_setShareInfo.pl////

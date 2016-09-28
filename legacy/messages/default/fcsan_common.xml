@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+<!--
+        Copyright (c) 2001 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: fcsan_common.xml,v 1.2302 2003/12/25 05:00:23 zhangjx Exp $" -->
+<messages>
+    <msg key="button" value="">
+            <msg key="button_ok" value="OK" ja="はい" />
+            <msg key="button_cancel" value="Cancel" ja="取消" />
+            <msg key="button_detail" value="Detail..." ja="詳細..."/>
+            <msg key="button_go" value="Select" ja="選択" />        
+    </msg>
+
+    <msg key="specialmessage" value="">
+            <msg key="msg_refreshdiskarray" value="Can not refresh the disk array&apos;s information." ja="ディスクアレイ情報を再取得できません。"/>
+            <msg key="h3_specialerrmsg" value="The monitoring state has been changed. Please click the [Reload] button first and do other jobs." ja="監視状態がすでに変更されています。一旦「最新情報」ボタンをクリック後、再度処理を実行してください。"/>
+            <msg key="msg_getnodisk" value="Can not get the disk array&apos;s information." ja="ディスクアレイ情報を取得できません。"/>
+            <msg key="msg_notready" value="iSM SubManager is not started." ja="iSM SubManagerが開始されていません。"/>
+            <msg key="msg_svr_notready" value="Can not connect with the iSM server." ja="iSMサーバに接続できません。"/>
+            <msg key="msg_entry_over" value="The setting value is out of range or another processing is being performed.&lt;br&gt;Please confirm whether the setting value is out of range. If not, please waiting for a while and then operate again." ja="設定内容が諸元値を超えているか、処理の途中で別の要求が実行されています。&lt;br&gt;設定値が諸元を超えていないか確認し、問題なければ、しばらく待ってから再度処理を実行してください。"/>
+            <msg key="msg_config" value="The operation has failed because someone else is configuring." ja="構成設定中のため、操作が失敗しました。"/>
+            <msg key="msg_wait" value="The right result may not be returned, if other windows are operated during the processing. Please wait until processing is completed." ja="処理途中に他のウィンドウを操作すると、正しい結果が返却されないことがあります。処理が終了するまでお待ちください。"/>
+            <msg key="msg_refresh" value="Please confirm the setting with clicking the [Reload] button." ja="変更を確認するには、「最新情報」ボタンをクリックしてください。"/>
+            <msg key="msg_tbl_update" value="Can not get the disk array&apos;s information correctly. Please operate again." ja="ディスクアレイの情報を正しく取得できませんでした。処理を再実行してください。"/>
+            <msg key="msg_server_err" value="It is possible that some errors occurred in the disk array.&lt;br&gt;Please confirm the disk array&apos;s state." ja=" ディスクアレイに異常が発生している可能性があります。&lt;br&gt;ディスクアレイの状態を確認してください。"/>
+            <msg key="msg_notsupport_err" value="The function is not supported." ja="本機能は未サポートです。"/>
+            <msg key="msg_repeat_err" value="It is already set.&lt;br&gt;Please click the [Reload] button to confirm the situation." ja=" 既に設定されています。&lt;br&gt;[最新情報]ボタンを押して状況を再度確認してください。"/>
+            <msg key="msg_parameter_err" value="Input error occurred.&lt;br&gt;Please click the [Reload] button to confirm the situation." ja="入力項目に誤りがあります。&lt;br&gt;[最新情報]ボタンを押して状況を再度確認してください。"/>
+            <msg key="msg_mon_startrun" value="The monitoring is under preparation.&lt;br&gt;Please confirm the monitoring state is running." ja="監視準備中です。&lt;br&gt;監視状態が実行中であることを確認してください。"/>
+            <msg key="msg_disk_err" value="Can not get the disk array's information correctly. Please click the [&amp;amp;lt;&amp;amp;lt;Back] button to confirm the disk array's state." ja="ディスクアレイの情報を正しく取得できませんでした。[&lt;&lt;戻る]ボタンを押してディスクアレイの状態を確認してください。"/>
+            <msg key="msg_disk_err_popup" value="Can not get the disk array's information correctly. Please confirm the disk array's state." ja="ディスクアレイの情報を正しく取得できませんでした。ディスクアレイの状態を確認してください。"/>
+            <msg key="msg_do_reload" value="Reload the information." ja="最新情報を取得します。"/>
+            <msg key="wait" value="Please wait ..." ja="しばらくお待ち下さい..."/>
+            <msg key="same_name" value="The disk array of the same name exists.\nPlese modify Disk Array Subsystem name." ja="同一名称のディスクアレイが存在します。\nディスクアレイ名を変更して下さい。"/>
+    </msg>
+
+    <msg key="title" value="">
+            <msg key="wait" value="Please wait ..." ja="しばらくお待ち下さい..."/>
+            <msg key="title_confirm" value="Confirm" ja="確認" />
+            <msg key="page_title_success" value="Success" ja="完了"/>
+            <msg key="page_title_error" value="Error" ja="エラー"/>
+    </msg>
+    
+    <msg key="label" value="">
+            <msg key="monitoring" value="Monitoring State" ja="監視状態" />
+            <msg key="unit_bytes" value="bytes" ja="バイト" />
+            <msg key="unit_GB" value="GB" />
+            <msg key="h2_aname" value="Disk Array Subsystem Name" ja="ディスクアレイ名"/>
+
+    </msg>
+    
+    <msg key="exception" value="">
+            <msg key="invalid_param" value="Invalid parameters." ja="無効な値です。"/>
+            <msg key="session_err" value="Bean can not get value from session." ja="Beanはセッションから値を取得することができません。"/>
+            <msg key="objectIsNull" value="The object is null." ja="対象はありません。"/>
+    </msg>
+</messages>

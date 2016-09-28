@@ -1,0 +1,65 @@
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: urn_MapdCommonConf.xml,v 1.2304 2007/04/26 07:52:06 wanghb Exp $" -->
+
+<isd:service xmlns:isd="http://xml.apache.org/xml-soap/deployment"
+             id="urn:MapdCommonConf">
+  <isd:provider type="java"
+                scope="Session"
+                methods="deleteDomain deleteConf deleteAuth getDirectMP isSubMount delNative setNative snapModifyCron getLUDBList delAuth setLDAPInfo4Auth setLDAPInfo4Nati delIPTable joinDomain setADSConf getADSConf checkoutADSFiles checkinADSFiles rollbackADSFiles getNISDomainList isUsedNISDomainByNFS getHasLdapSam delYPConf checkExport getNetbiosStatus checkNetbios changeNetbios changeNameRule getSecurity">
+    <isd:java class="com.nec.sydney.service.admin.MapdCommonSOAPServer" static="false"/>
+  </isd:provider>
+  
+  <isd:faultListener>org.apache.soap.server.DOMFaultListener</isd:faultListener>
+  
+  <isd:mappings>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapResponse " qname="x:SoapResponse "
+             javaType="com.nec.sydney.net.soap.SoapResponse"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsVector " qname="x:SoapRpsVector "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsVector"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsBoolean " qname="x:SoapRpsBoolean "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsBoolean"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+             
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-NativeInfo " qname="x:NativeInfo "
+             javaType="com.nec.sydney.atom.admin.nfs.NativeInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+  <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-AuthInfo " qname="x:AuthInfo "
+             javaType="com.nec.sydney.atom.admin.mapd.AuthInfo"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsString " qname="x:SoapRpsString "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsString"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+ <isd:map encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+             xmlns:x="urn:xml-soap-SoapRpsInteger " qname="x:SoapRpsInteger "
+             javaType="com.nec.sydney.atom.admin.base.SoapRpsInteger"
+             java2XMLClassName="org.apache.soap.encoding.soapenc.BeanSerializer"
+             xml2JavaClassName="org.apache.soap.encoding.soapenc.BeanSerializer"/>
+
+  </isd:mappings>
+</isd:service>
+

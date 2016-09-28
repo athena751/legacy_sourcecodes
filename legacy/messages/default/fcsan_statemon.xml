@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: fcsan_statemon.xml,v 1.2305 2008/04/19 15:23:45 jiangfx Exp $" -->
+<messages>
+    <msg key="table" value="">
+        <msg key="table_id"  value="ID"    />
+        <msg key="table_ary_name"  value="Disk Array Subsystem Name" ja="ディスクアレイ名" />
+        <msg key="table_observation"  value="Monitoring State" ja="監視" />
+        <msg key="table_state" value="State" ja="状態"/>
+        <msg key="table_wwnn" value="WWNN"/>
+    
+    </msg>
+    <msg key="common" value="">
+        <msg key="page_title" value="Monitoring Control" ja="モニタ制御" />
+        <msg key="h1" value="Monitoring Control" ja="モニタ制御" />
+    </msg>
+
+    <msg key="alert" value="">
+        <msg key="curr_state_wrong"
+	     value="The disk array&apos;s state has already been changed. Please execute [Reload] and then confirm the state."
+	     ja="ディスクアレイの状態は、すでに変更されています。 [最新情報]ボタンをクリックし、状態を再確認してください。"/>
+	     <msg key="exist_async_vol" value="Failed to stop monitoring due to under creation or extension of a volume.\nPlease try it again after the creation or the extension has completed." ja="ボリューム作成中または拡張中のため停止できませんでした。\nボリューム作成または拡張の完了後再実行してください。"/>
+	     <msg key="exist_async_pair" value="Failed to stop monitoring due to under creation or extension of a pair.\nPlease try it again after the creation or the extension has completed." ja="ペア作成中または拡張中のため停止できませんでした。\nペア作成または拡張の完了後再実行してください。"/>
+    </msg>
+
+    <msg key="diskarraywatchtop" value="">
+        <msg key="h2" value="State" ja="状態" />
+        <msg key="button_refresh" value="Reload" ja="最新情報" />
+    </msg>
+
+    <msg key="diskarraywatchrefresh" value="">
+    </msg>
+
+    <msg key="diskarraywatchmiddle" value="">
+        <msg key="msg_noAry"  value="No disk arrays are found." ja="ディスクアレイが存在しません。" />
+        <msg key="label_id"  value="ID"    />
+        <msg key="label_ary_name"  value="Disk Array Subsystem Name" ja="ディスクアレイ名" />
+        <msg key="label_observation"  value="Monitoring State" ja="監視" />
+        <msg key="label_state" value="State" ja="状態"/>
+        <msg key="label_wwnn" value="WWNN"/>
+    </msg>
+
+    <msg key="diskarraywatchcontrol" value="">
+    </msg>
+
+    <msg key="diskarraywatchbottom" value="">
+        <msg key="submit_start"  value="Start" ja="開始" />
+        <msg key="submit_stop"  value="Stop" ja="停止" />
+        <msg key="submit_interrupt"  value="Break" ja="中断" />
+    </msg>
+
+    <msg key="diskarraywatch" value="">
+    </msg>
+
+</messages>

@@ -1,0 +1,13 @@
+/nfs_createTempFile.pl////
+/nfs_deleteentry.pl////
+/nfs_fileNavigatorList.pl////
+/nfs_getAllDetailInfo.pl////
+/nfs_getClientInfo.pl////
+/nfs_getConfigFileContent.pl////
+/nfs_getLogFileInfo.pl////
+/nfs_getentries.pl////
+/nfs_modifyExportInfo.pl////
+/nfs_navigatorlist.pl////
+/nfs_saveConfigFile.pl////
+/nfs_saveLogOptionsToFile.pl////
+/nfs_setAccessStatus.pl////

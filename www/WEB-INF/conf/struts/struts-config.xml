@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<!--
+        Copyright (c) 2001-2007 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+<!-- "@(#) $Id: struts-config.xml,v 1.6 2007/05/09 04:58:47 liul Exp $" -->
+
+<struts-config>
+    <message-resources parameter="com.nec.nsgui.messages.CommonResource" key="common"/>
+    <message-resources parameter="com.nec.nsgui.messages.ErrorResource" key="errorDisplay"/>
+</struts-config>

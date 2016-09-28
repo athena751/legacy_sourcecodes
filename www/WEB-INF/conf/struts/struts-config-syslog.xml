@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2001-2008 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-syslog.xml,v 1.10 2008/09/23 09:49:29 penghe Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions =================================== -->
+    <form-beans>
+        <form-bean name="syslogForm" type="org.apache.struts.validator.DynaValidatorForm">
+            <form-property name="commonInfo" type="com.nec.nsgui.model.entity.syslog.SyslogCommonInfoBean" />
+            <form-property name="systemSearchInfo" type="com.nec.nsgui.model.entity.syslog.SyslogSystemSearchInfoBean"/>
+            <form-property name="cifsSearchInfo" type="com.nec.nsgui.model.entity.syslog.SyslogCifsSearchInfoBean" />
+        </form-bean>
+        <form-bean name="logviewForm" type="org.apache.struts.validator.DynaValidatorForm">
+			<form-property name="viewInfo" type="com.nec.nsgui.model.entity.syslog.SyslogLogviewInfoBean" /> 
+		</form-bean>
+		<form-bean name="downloadForm" type="org.apache.struts.validator.DynaValidatorForm">
+		    <form-property name="isDownload" initial="false" type="java.lang.String" /> 
+		    <form-property name="downloadFileName" initial="" type="java.lang.String" /> 
+		</form-bean>
+		<form-bean name="heartbeatForm" type="org.apache.struts.validator.DynaValidatorForm">
+		    <form-property name="startTime" type="java.lang.String" />
+		    <form-property name="logFileName" type="java.lang.String" />
+		    <form-property name="popupFor" type="java.lang.String" />
+		    <form-property name="logType" type="java.lang.String" />
+		    <form-property name="fileSize" type="java.lang.String" />
+		</form-bean>
+	
+    </form-beans>
+
+	<global-forwards>
+        <forward name="displayMaintain" module=""
+             	path="/nas/logview/syslogmaintain.jsp" />
+    </global-forwards>
+	<!-- ========== Action Mapping Definitions ============================== -->
+
+    <action-mappings>
+        <action path="/enterSyslog"  
+            type="com.nec.nsgui.action.syslog.SyslogAction" 
+            parameter="operation">
+        	
+            <forward name="systemLog" module=""
+             	path="/nas/logview/systemframe.jsp"   
+            />
+            <forward name="ftpLog" module=""
+             	path="/nas/logview/ftpframe.jsp"   
+            />
+            <forward name="nfsLog" module=""
+             	path="/nas/logview/nfsframe.jsp"   
+            />
+            <forward name="cifsLog" module=""
+             	path="/nas/logview/cifsframe.jsp"   
+            />
+            <forward name="httpLog" module=""
+             	path="/nas/logview/httpframe.jsp"   
+            />
+            
+    	</action>
+        
+        <action path="/loadBottomPage"
+            forward="/../nas/logview/syslog_bottom.jsp"/>
+
+    	<action path="/syslog"  
+            type="com.nec.nsgui.action.syslog.SyslogAction" 
+            parameter="operation"
+            name="syslogForm" 
+            scope="request"
+            validate="false">
+        	
+            <forward name="displaySystemTop" module=""
+             	path="/nas/logview/systemlogtop.jsp"   
+            />
+            <forward name="displayFtpTop" module=""
+             	path="/nas/logview/ftplogtop.jsp"   
+            />
+            <forward name="displayNfsTop" module=""
+             	path="/nas/logview/nfslogtop.jsp"   
+            />
+            <forward name="displayNfsMiddle" module=""
+             	path="/nas/logview/nfslogmiddle.jsp"   
+            />
+            <forward name="displayCifsTop" module=""
+             	path="/nas/logview/cifslogtop.jsp"   
+            />
+            <forward name="displayCommonInfo" module=""
+             	path="/nas/logview/syslog_commonInfo.jsp"   
+            />
+            <forward name="displayHttpTop" module=""
+             	path="/nas/logview/httplogtop.jsp"   
+            />
+            <forward name="beginSearch" module=""
+             	path="/nas/logview/logviewframe.jsp"
+            />
+            <forward name="systemLog" module=""
+             	path="/nas/logview/systemframe.jsp"   
+            />
+            <forward name="ftpLog" module=""
+             	path="/nas/logview/ftpframe.jsp"   
+            />
+            <forward name="nfsLog" module=""
+             	path="/nas/logview/nfsframe.jsp"   
+            />
+            <forward name="cifsLog" module=""
+             	path="/nas/logview/cifsframe.jsp"   
+            />
+            <forward name="httpLog" module=""
+             	path="/nas/logview/httpframe.jsp"   
+            />
+            <forward name="downloadframe" module=""
+             	path="/nas/logview/logdownload.jsp"   
+            />
+    	</action>
+
+    	<action path="/logview"
+            name="logviewForm"
+            scope="request"
+            parameter="operation"
+            type="com.nec.nsgui.action.syslog.SyslogAction"
+            validate="false">
+            
+            <forward name="display" path="/nas/logview/logview.jsp" module=""/>
+            <forward name="redisplay" path="/nas/logview/logview.jsp" module=""/>
+            <forward name="autoConnectServer" path="/nas/logview/autoconnectserver.jsp" module=""/>	
+        </action>
+        
+        <action path="/download"
+            name="downloadForm"
+            scope="request"
+            parameter="operation"
+            type="com.nec.nsgui.action.syslog.SyslogAction"
+            validate="false">
+            <forward name="download" path="/nas/logview/download.jsp" module=""/>
+         </action>
+
+    	<action path="/heartbeat"
+            name="heartbeatForm"
+            scope="request"
+            parameter="operation"
+            type="com.nec.nsgui.action.syslog.SyslogAction"
+            validate="false">
+            
+            <forward name="cancelSearch" module=""
+             	path="/nas/logview/heartbeat.jsp?frameNo=2"
+            />
+            <forward name="popupHearbeat" module=""
+             	path="/nas/logview/heartbeat.jsp?frameNo=0"
+            />
+            <forward name="popupDirectHearbeat" module=""
+             	path="/nas/logview/directDownHeartbeat.jsp?frameNo=0"
+            />
+        </action>
+     	<action path="/loadHeartbeat_display"
+            forward="/../nas/logview/heartbeat.jsp?frameNo=1"/>
+        <action path="/loadHeartbeat_hidden"
+            forward="/../nas/logview/heartbeat.jsp?frameNo=2"/>
+        <action path="/loadDirectHeartbeat_display"
+            forward="/../nas/logview/directDownHeartbeat.jsp?frameNo=1"/>
+        <action path="/loadDirectHeartbeat_hidden"
+            forward="/../nas/logview/directDownHeartbeat.jsp?frameNo=2"/>
+            
+    </action-mappings>
+    <!-- ========== Message Resources Definitions =========================== -->
+    <message-resources parameter="com.nec.nsgui.messages.SyslogResource"/>
+    
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property="confFile" 
+    	    value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-syslog.xml"/>
+    </plug-in>
+</struts-config>

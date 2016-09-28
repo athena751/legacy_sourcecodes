@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="EUC-JP"?>
+
+<!--
+        Copyright (c) 2001-2005 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_ethguard.xml,v 1.2305 2005/11/21 02:51:07 key Exp $" -->
+<messages>
+    <msg key="alert" value="">
+        <msg key="getLogStatusFailed" value="Failed to get the log status." ja="ログ採取状況の取得に失敗しました。"/>
+        <msg key="getConStatusFailed" value="Failed to get the connection status." ja="接続可否状況の取得に失敗しました。"/>
+        <msg key="getStatusFailed" value="Failed to get the log and connection status." ja="ログ採取状況と接続可否状況の取得に失敗しました。"/>
+    </msg>
+　　<msg key="ethguard" value="">
+        <msg key="start" value="Start" ja="開始"/>
+		<msg key="stop" value="Stop" ja="停止"/>
+		<msg key="h1_filteringlog" value="Filtering Log" ja="フィルタリングログ"/>
+		<msg key="h1_networkconnection" value="Network Connection" ja="接続ネットワーク"/>
+		<msg key="h3_status" value="Logging Status" ja="ログ採取状況"/>
+		<msg key="h3_setting" value="Logging Setup" ja="ログ採取設定"/>
+		<msg key="logstatus" value="Logging" ja="ログ採取"/>
+		<msg key="executing" value="Start" ja="実行中"/>
+		<msg key="stopping" value="Stop" ja="停止"/>
+		<msg key="unknown" value="Unknown" ja="不明"/>
+		<msg key="h2_log" value="Logging" ja="ログ採取"/>
+		<msg key="h2_connectionJapan" value="iStorageManager IP service network connection propriety" ja="iStorageManager IPサービスネットワーク接続可否"/>
+		<msg key="h2_connectionAbroad" value="NEC Storage Manager IP service network connection propriety" ja="NEC Storage Manager IPサービスネットワーク接続可否"/>
+		<msg key="h3_conPropriety" value="Connection Propriety" ja="接続状況"/>
+		<msg key="th_connection" value="Connection" ja="接続"/>
+		<msg key="td_available" value="Available" ja="許可"/>
+		<msg key="td_deny" value="Deny" ja="拒否"/>
+		<msg key="td_unknown" value="Unknown" ja="不明"/>
+		<msg key="h3_conProprietySet" value="Connection Propriety Setup" ja="接続可否設定"/>
+		<msg key="button_conAvailable" value="Connection Available" ja="接続許可"/>
+		<msg key="button_conDeny" value="Connection Deny" ja="接続拒否"/>
+		<msg key="button_reload" value="Reload" ja="最新情報"/>
+		<msg key="filteringlog_message" value="Here checks and changes logging status of the standard network filter." ja="標準ネットワークフィルタのログ採取状況の確認と変更を行います。"/>
+		<msg key="networkconnection_message_japan" value="Here checks and changes allowance of connection to iStorageManager IP from the service network." ja="サービスネットワークからのiStorageManager IPへの接続可否状況の確認と変更を行います。"/>
+    	<msg key="networkconnection_message_abroad" value="Here checks and changes allowance of connection to NEC Storage Manager IP from the service network." ja="サービスネットワークからのNEC Storage Manager IPへの接続可否状況の確認と変更を行います。"/>
+   		<msg key="td_available_message_japan" value="The connection to iStorageManager IP from the service network has been permitted." ja="サービスネットワークからのiStorageManager IPへの接続が許可されています。"/> 			
+		<msg key="td_deny_message_japan" value="The connection to iStorageManager IP from the service network has not been permitted." ja="サービスネットワークからのiStorageManager IPへの接続が許可されていません。"/>
+		<msg key="td_available_message_abroad" value="The connection to NEC Storage Manager IP from the service network has been permitted." ja="サービスネットワークからのNEC Storage Manager IPへの接続が許可されています。"/>
+		<msg key="td_deny_message_abroad" value="The connection to NEC Storage Manager IP from the service network has not been permitted." ja="サービスネットワークからのNEC Storage Manager IPへの接続が許可されていません。"/>
+		<msg key="td_executing_message" value="The log of the standard network filter is collected." ja="標準ネットワークフィルタのログを採取しています。"/>
+		<msg key="td_stopping_message" value="The log of the standard network filter is not collected." ja="標準ネットワークフィルタのログを採取していません。"/>
+    </msg>
+</messages>

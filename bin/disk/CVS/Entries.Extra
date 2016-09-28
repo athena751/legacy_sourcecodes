@@ -1,0 +1,12 @@
+/disk_bindPool.pl////
+/disk_bindPoolforcapacity.pl////
+/disk_expandPool.pl////
+/disk_expandPoolforcapacity.pl////
+/disk_getNewPoolNumber.pl////
+/disk_getNotUsedPD.pl////
+/disk_getOnePoolInfo.pl////
+/disk_getOnePoolPD.pl////
+/disk_getRaid6List.pl////
+/disk_getdiskarraytype.pl////
+/disk_getpairedlds.pl////
+/disk_getpoolldlistfromfsbatch.pl////

@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="EUC-JP" ?>
+
+<!--
+        Copyright (c) 2001-2008 NEC Corporation
+
+        NEC SOURCE CODE PROPRIETARY
+
+        Use, duplication and disclosure subject to a source code
+        license agreement with NEC Corporation.
+-->
+
+
+<!-- "@(#) $Id: nas_mapd.xml,v 1.2337 2008/12/18 08:22:56 wanghui Exp $" -->
+
+<messages>
+    <msg key="common" value="">
+    	<msg key="h1_setup" value="Setup" ja="セットアップ"/>
+    	<msg key="h2_add" value="Add Domain" ja="ドメイン参加"/>
+    	<msg key="h2_change" value="Change Domain" ja="ドメイン変更"/>
+    	<msg key="h3_unix" value="UNIX Domain" ja="UNIX系ドメイン"/>
+    	<msg key="h3_win" value="Windows Domain" ja="Windows系ドメイン"/>
+    	<msg key="th_recommen" value="It is not mandatory to add domain when using NFS.&lt;br&gt;Specify Windows domain when using CIFS." ja="NFSを利用する場合、ドメイン参加は必須ではありません。&lt;br&gt;CIFSを利用する場合は、Windows系ドメインを設定してください。"/>
+    	
+    	<msg key="udb" value="User Database Type" ja="ユーザデータベースタイプ"/>
+    	<msg key="h2_win_udb" value="Windows User Database" ja="Windows系ユーザデータベース"/>
+    	<msg key="h2_unix_udb" value="UNIX User Database" ja="UNIX系ユーザデータベース"/>
+    	<msg key="h1_mapd" value="User Database" ja="ユーザデータベース"/>
+        <msg key="h2_mapd" value="Volume" ja="ボリューム"/>
+        <msg key="button_goset" value=" NT Domain " ja="NTドメイン"/>
+        <msg key="msg_local" value="Please specify the NT domain and the computer name." 
+            ja="NTドメインとコンピュータ名の両方が設定されていなければなりません。"/>
+        <msg key="not_set" value="--"/>
+    </msg>
+    <!-- <nsgui:message key="nas_mapd/common/"/> -->
+
+    <msg key="alert" value="">
+        <msg key="friendfailed" value="Failed to set in the partner node.\r\n Please check network environment and setup of equipments after deleting the setup.\r\nAnd then perform setting operation again." ja="相手ノードでの設定に失敗しました。\r\n設定の削除後、ネットワーク環境など装置の設定を確認し、\r\n再度設定操作を実行してください。"/>
+    	<msg key="cifs_join_domain_alert" value="Please add the Windows Domain." ja="Windows系ドメイン参加を行ってください。" />
+		<msg key="hasNotSetDomain" value="It is necessary to add a domain before set a user database." ja="設定をするにはドメインに参加する必要があります。" />
+		        <!-- "unix" -->
+        <msg key="ldapAddFail" value="Please input valid LDAP servers."
+            ja="有効なLDAPサーバを指定してください。" />
+        <msg key="nis_localdomain" value="\&quot;localdomain\&quot; is not allowed for NIS domain name."
+            ja="\&quot;localdomain\&quot;をNISドメインに指定することはできません。" />
+        <msg key="unix_domain" value="Invalid domain name.\r\nOnly alphanumeric characters and .-_ are allowed.\r\nThe first character can not be .-."
+            ja="不正なドメインです。\r\n半角英数字と.-_のみ使用できます。\r\n最初の文字に.-は使用できません。"/>
+        <msg key="unix_server" value="Invalid server name.\r\nOnly alphanumeric characters and .- are allowed.\r\nThe first character can not be . or - .\r\nSeparate the NIS Server by space.The maximum number is 3."
+            ja="不正なサーバ名です。\r\n半角英数字と.-のみ使用できます。\r\n最初の文字に.-は使用できません。\r\nスペースで区切ることで複数指定が可能です。\r\n最大指定可能数は三つです。"/>
+        <msg key="only_nis" value="Please destroy Passwd Domain first."
+            ja="まずPasswdドメインを解放してください。" />
+        <msg key="only_3" value="Please destroy Data Domain first."
+            ja="まずデータドメインを解放してください。" />
+        <msg key="only_dmc" value="Please destroy Share domain first." 
+           ja="まず共有ドメインを解放してください。" />
+        <msg key="nt_username" value="Please input the username, *+,/:;&lt;=&gt;?[\\]| is not allowed.\r\nThe first character can not be - ." 
+            ja="ユーザ名を指定してください。*+,/:;&lt;=&gt;?[\\]|は使用できません。\r\n最初の文字に-は使用できません。"/>
+        <msg key="nt_password" value="Please input the password, space is not allowed." 
+            ja="パスワードを指定してください。スペースは使用できません。"/>
+
+        <msg key="unix_pwd" value="Please choose the password file." ja="パスワードファイルを選択してください。"/>
+        <msg key="unix_group" value="Please choose the group file." ja="グループファイルを選択してください。"/>
+        <msg key="unix_same_nis" value="NIS server name is not changed." ja="NISサーバ名は変更されていません。"/>
+        <msg key="unix_auth" value="Please choose the data domain." ja="データドメインを選択してください。"/>
+
+        <msg key="nis_server_failed" value="Invalid NIS domain name or NIS server name." 
+            ja="有効なNISドメイン名、又はNISサーバ名ではありません。"/>
+
+        <!-- nt -->
+        <msg key="dmc_passwd_failed" value="Join NT domain failed.\r\nPassword may be wrong." 
+            ja="NTドメインの参加に失敗しました。\r\nパスワードが間違っている可能性があります。"/>
+       	<msg key="ads_passwd_failed" value="Join ADS domain failed.\r\nPassword may be wrong." 
+            ja="ADSドメインの参加に失敗しました。\r\nパスワードが間違っている可能性があります。"/>
+        <msg key="msg_nomp" value="No export groups in which a volume is contained are found." 
+            ja="ボリュームが含まれている公開グループが設定されていません。"/>
+            
+        <msg key="passwordNotSame" value="The specified two passwords are not same.\r\n Please specify the same passwords." 
+            ja="指定された二つのパスワードが一致していません。\r\n同じパスワードを指定して下さい。"/>
+        <!--<msg key="CAInvalid" value="Please specify a valid certificate file or directory. The maximum length is 4095 bytes." 
+            ja="有効なファイルまたはディレクトリを指定してください。最大文字数は4095文字です。"/>-->
+	<msg key="CAInvalid" value="Please specify a valid certificate file. The maximum length is 4095 bytes." 
+            ja="有効なファイルを指定してください。最大文字数は4095文字です。"/>
+        <msg key="ldapAuthNameInvalid" value="The specified Auth Name is invalid.\r\nOnly space, alphanumeric characters and _-,= are allowed. \r\nThe first character can not be 0-9 = , _ - and space." 
+            ja="指定された認証名が不正です。\r\n半角英数字、スペースと_-,=のみ使用できます。\r\n最初の文字に数字や=,_-やスペースは使用できません。"/>
+        <msg key="ldapIDInvalid" value="The specified Directory BaseDN is invalid. \r\nOnly space, alphanumeric and _-,=+.#&lt;&gt;;\\\&quot; characters are allowed. \r\nThe first character can only use 1-byte alphabet characters." 
+            ja="指定されたディレクトリのBaseDNが不正です。\r\n半角英数字、スペースと_-,=+.#&lt;&gt;;\\\&quot;のみ使用できます。\r\n最初の文字は半角アルファベットのみ使用できます。"/>
+        <msg key="ldapServerInvalid" value="Please specify the valid LDAP Servers. \r\nSeparate the LDAP Servers by space.\r\nPort number can be specified after : .\r\nOnly alphanumeric characters and . - : and spaces are allowed.\r\nThe first character can not be . - : ." 
+            ja="有効なLDAPサーバを指定してください。\r\nスペースで区切ることで複数指定が可能です。\r\n:のあとにポート番号を指定可能です。\r\n半角英数字と.-:とスペースが使用できます。\r\n最初の文字に.-:は使用できません。"/>    
+        <msg key="portNumInvalid" value="Please input a valid port number." 
+	ja="正しいポート番号を指定してください。"/>
+        <msg key="old_pass" value="Invalid password file or group file for password domain is specified. Please change the password domain uses a local user database."
+            ja="パスワードドメインに、無効なパスワードファイルまたはグループファイルが指定されています。ローカルユーザデータベースを使用するように変更してください。"/>
+        <msg key="inputLdapAuthName" value="Please input the Auth Name." 
+	ja="認証名を入力してください。"/>
+	<msg key="inputLdapPassName" value="Please input the password." 
+	ja="パスワードを入力してください。"/>
+        <msg key="noLUDB" value="Local user database is not specified!" 
+            ja="ローカルユーザデータベースが指定されていません。"/>
+        <msg key="ldapAuthPwdInvalid" value="The maximum length of password is 256." 
+            ja="パスワードの最大文字数は256文字です。"/>
+        <msg key="dmcHasSet" value="The security mode is domain mode, so it is not allowed to set NIS/Passwd/LDAP
+  domain as the data domain.\r\n In this case, it is allowed to set NT domain, Share domain or ADS domain." 
+            ja="セキュリティモードがドメインモードのため、データドメイン(NIS/Passwd/LDAPドメイン)を設定することはできません。\r\nNTドメインまたは共有ドメインまたはADSドメインを設定して下さい。"/>
+         <msg key="shrHasSet" value="The security mode is share mode, so it is not allowed to set NIS/Passwd/LDAP
+  domain as the data domain. \r\nIn this case, it is allowed to set NT domain, Share domain or ADS domain." 
+            ja="セキュリティモードが共有モードのため、データドメイン(NIS/Passwd/LDAPドメイン)を設定することはできません。\r\nNTドメインまたは共有ドメインまたはADSドメインを設定して下さい。"/>
+         <msg key="adsHasSet" value="The security mode is ads mode, so it is not allowed to set NIS/Passwd/LDAP
+  domain as the data domain. \r\nIn this case, it is allowed to set NT domain, Share domain or ADS domain." 
+            ja="セキュリティモードがADSモードのため、データドメイン(NIS/Passwd/LDAPドメイン)を設定することはできません。\r\nNTドメインまたは共有ドメインまたはADSドメインを設定して下さい。"/>
+    	<msg key="dnsdomain" value="Invalid DNS Domain Name.\r\nOnly alphanumeric characters and .- are allowed.\r\nThe maximum length is 255.\r\nThe first character can not be . or -."
+            ja="不正なDNSドメイン名です。\r\n半角英数字と.-のみ使用できます。\r\nDNSドメイン名の最大文字数は255文字です。\r\n最初の文字に.-は使用できません。"/>
+        <msg key="kdcserver" value="Invalid Key Distribution Center.\r\nOnly alphanumeric characters and .- are allowed.\r\nThe maximum length is 255.\r\nThe first character can not be . or -.\r\nSeparate the Key Distribution Center by space.The maximum number is 3."
+            ja="不正なキー配布センターです。\r\n半角英数字と.-のみ使用できます。\r\nキー配布センターの最大文字数は255文字です。\r\n最初の文字に.-は使用できません。\r\nスペースで区切ることで複数指定が可能です。\r\n最大個数は三つです。"/>
+        <!--add by liq for dc of ads 20060317-->
+        <msg key="dc" value="Invalid Domain Controller.\r\nOnly alphanumeric characters and .- are allowed.\r\nThe maximum length is 255.\r\nThe first character can not be . or -.\r\nSeparate the Domain Controller by space. The maximum number is 3."
+            ja="不正なドメインコントローラです。\r\n半角英数字と.-のみ使用できます。\r\nドメインコントローラの最大文字数は255文字です。\r\n最初の文字に.-は使用できません。\r\nスペースで区切ることで複数指定が可能です。\r\n最大個数は三つです。"/>
+        <msg key="adsjoinconfirm" value="This operation does not join to the domain controller.\r\nAre you sure to commit these settings?" ja="ドメインコントローラに対するドメイン参加処理を行いません。\r\nよろしいですか。"/>
+        <msg key="adsChangeConfirm" value="Clients may not be able to access until connecting to domain controller is completed(a few minutes or less).\r\nAre you sure to commit this operation?" ja="ドメインコントローラへの接続が完了するまでの間(数分以内)、クライアントからのアクセスがエラーとなる場合があります。\r\nよろしいですか。"/>
+        <!--end of add by liq for dc of ads 20060317-->
+        <msg key="ldapFilterInvalid" value="The specified Filter is invalid.\r\nOnly space, alphanumeric characters and ()&amp;|!~=&lt;&gt;*:-; are allowed. \r\nThe maximum length is 1023 bytes. \r\n The first character must be (, \r\nand the last character must be )."
+            ja="指定されたフィルタが不正です。\r\n半角英数字、スペースと()&amp;|!~=&lt;&gt;*:-;のみ使用できます。\r\n最大文字数は1023文字です。\r\n先頭の文字は(のみ使用できます。\r\n最後の文字は)のみ使用できます。"/>
+        <msg key="cannotSelectAnonymous" value="Can not select. \r\n In order to use [Anonymous], all CIFS global options can not use the Encrypt Passwords."
+            ja="選択できません。\r\n Anonymous認証方式を使用するためには、全てのCIFSグローバルオプションが「暗号化パスワードを使用しない」設定である必要があります。"/>
+        <msg key="needSelectCertificateFile" value="When uses the [Start TLS] or [SSL/TLS], it is necessary to specify the certificate file.\r\nPlease specify the certificate file."
+            ja="Start TLSまたはSSL/TLSを使用するときは証明書の指定も必要となります。\r\n証明書を指定して下さい。"/>
+        <msg key="failed_change_domain" value="Can not change domain." ja="ドメイン変更は失敗しました。"/> 
+        <msg key="failed_add_domain" value="Can not add domain." ja="ドメイン参加は失敗しました。"/> 
+        <msg key="failed_del_domain" value="Can not delete domain." ja="ドメイン削除は失敗しました。"/> 
+        <msg key="diff_domtype" value="Another type of user database has already assigned to this domain." ja="既に他のユーザデータベースがこのドメインに対応づけられています。"/>
+        <msg key="diff_native" value="Another type of client user database has already assigned to this domain." ja="既に他のクライアントユーザデータベースがこのドメインに対応づけられています。"/>
+        <msg key="sp_exist_confirm" value="The settings of Real-time Scan is deleted at the same time." ja="リアルタイムスキャンの設定も削除します。"/>
+        <msg key="failed_del_sp" value="Failed to delete Real-time Scan settings.\r\nPlease contact the maintenance engineer." ja="リアルタイムスキャンの設定の削除に失敗しました。\r\n保守員に連絡してください。"/> 
+        <msg key="sp_exist_for_changename" value="The computer name cannot be changed because the Real-time Scan has been set.\r\nIn advance, please delete the Real-time Scan settings." ja="リアルタイムスキャンの設定をしているため、コンピュータ名の変更ができません。\r\n先にリアルタイムスキャンの設定を削除してください。"/> 
+        <msg key="ss_exist_confirm" value="The settings of Schedule Scan is deleted at the same time." ja="スケジュールスキャンの設定も削除します。"/>
+        <msg key="sp_ss_exist_confirm" value="The settings of Real-time Scan and Schedule Scan are deleted at the same time." ja="リアルタイムスキャンとスケジュールスキャンの設定も削除します。"/>
+        <msg key="failed_del_ss" value="Failed to delete Schedule Scan settings.\r\nPlease contact the maintenance engineer." ja="スケジュールスキャンの設定の削除に失敗しました。\r\n保守員に連絡してください。"/>        
+        <msg key="have_sxfs_antivirus_confirm" value="The special share for Virus Detection is set on the sxfs volume. If you delete the UNIX domain, Real-time Scan is not to work on this special share.\r\nAre you sure to delete the UNIX domain?" ja="sxfsボリュームにアンチウイルス用特殊共有が設定されています。UNIX系ドメインを削除すると、この特殊共有に対するリアルタイムスキャンが動作しなくなります。\r\n削除を行いますか？"/>
+    </msg>
+    <!-- <nsgui:message key="nas_mapd/alert/"/> -->
+
+    <msg key="unix" value="">
+        <msg key="h3_nfs" value="NFS"/>
+        <msg key="h3_map"  value="User Mapping" ja="ユーザマッピング"/>
+        <msg key="h3_cifs" value="CIFS"/>
+        <msg key="h3_auth" value="Data Domain" ja="データドメイン"/>
+
+        <msg key="radio_nomap" value="Not Used" ja="無効"/>
+        <msg key="radio_map1" value="Use" ja="有効"/>
+        <msg key="msg_map2" value="(Set a data domain)" ja="(データドメインを設定する)"/>        
+        <msg key="check_cifsa" value="Enable" ja="有効"/>
+        <msg key="radio_nis" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="text_domain" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="text_server" value="NIS Server" ja="NISサーバ"/>
+        
+
+        <msg key="pdc_domain" value="Domain Name" ja="ドメイン名"/>
+        <msg key="pdc_server" value="Server Name" ja="サーバ名"/>
+
+        <msg key="text_username" value="User Name" ja="ユーザ名"/>
+        <msg key="text_pass" value="Password" ja="パスワード"/>
+
+        <msg key="radio_pwd" value="Passwd Domain" ja="Passwdドメイン"/>
+        <msg key="text_pwdPath" value="Password" ja="パスワード"/>
+        <msg key="text_groupPath" value="Group" ja="グループ"/>
+
+        <msg key="text_pwdPathTitle" value="Select password file" ja="パスワードファイル選択"/>
+        <msg key="text_groupPathTitle" value="Select group file" ja="グループファイル選択"/>
+
+        <msg key="th_domaintype" value="Domain Type" ja="ドメインタイプ"/>
+        <msg key="th_domainname" value="Domain Name" ja="ドメイン名"/>
+        <msg key="th_resource" value="Resource" ja="リソース"/>
+        <msg key="h2_mplist" value="Volume List" ja="ボリュームリスト"/>
+  
+        <msg key="set_ud" value="Set UNIX Domain." ja="UNIX系ドメインを設定する。"/>
+        <msg key="button_set_udb" value="Set UNIX Domain" ja="UNIX系ドメイン設定"/>
+        <msg key="button_del_udb" value="Delete UNIX Domain" ja="UNIX系ドメイン削除"/>
+        <msg key="msg_info_fail" value="Can not get UNIX Domain's information." ja="UNIX系ドメイン情報を取得できません。"/>
+  
+    </msg>
+    <!-- <nsgui:message key="nas_mapd/unix/"/> -->
+
+    <msg key="nt" value="">
+        <msg key="h3_auth" value="NT Domain" ja="NTドメイン"/>
+        <msg key="h3_ads" value="ADS Domain" ja="ADSドメイン"/>
+		<msg key="h3_shr" value="Share Domain" ja="共有ドメイン"/>
+		<msg key="h3_ldap" value="LDAP Domain" ja="LDAPドメイン"/>
+        <msg key="table_auth" value="NT Domain Name" ja="NTドメイン名"/>
+        <msg key="th_domainType" value="Domain Type" ja="ドメインタイプ"/>
+        <msg key="nisDomain" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="nisServer" value="NIS Server" ja="NISサーバ"/>
+        <msg key="noLudb" value="--------"/>
+        <msg key="distinguashName" value="Directory BaseDN" ja="ディレクトリのBaseDN"/>
+        <msg key="ldapServerName" value="LDAP Servers" ja="LDAPサーバ"/>
+        <msg key="ldapSASL" value="Auth Type" ja="認証方式"/>
+        <msg key="th_TLS" value="TLS" />
+        <msg key="td_no_useTLS" value="Not Use TLS" ja="TLSを使用しない" /> 
+        <msg key="td_useStartTLS" value="Use Start TLS" ja="Start TLSを使用する" /> 
+        <msg key="td_useSSL_TLS" value="Use SSL/TLS" ja="SSL/TLSを使用する" /> 
+        <msg key="th_userFilter" value="User Search Filter" ja="ユーザ検索フィルタ" /> 
+        <msg key="th_groupFilter" value="Group Search Filter" ja="グループ検索フィルタ" />
+        <msg key="th_userauth" value="Client User Authentication" ja="クライアントユーザ認証"/>
+        <msg key="td_un2dn" value="Change the user name into Distinguished Name" ja="ユーザ名を識別名に変換する"/>
+        
+        <msg key="ldapTLS" value="Use TLS" ja="TLSを使用する"/>
+        <msg key="ldapTlsYes" value="Yes"/>
+        <msg key="ldapTlsNo" value="No"/>
+        <msg key="ldapAuth" value="Authentication" ja="認証"/>
+        <msg key="ldapSpecifyAuth" value="Specify" ja="指定する"/>
+        <msg key="ldapAuthName" value="Auth Name" ja="認証名"/>
+        <msg key="ldapAuthPasswd" value="Password" ja="パスワード"/>
+        <msg key="ldapAuthPasswdRe" value="Password (Retype)" ja="パスワード（確認）"/>
+        <msg key="ldapCA" value="Certificate" ja="証明書"/>
+        <msg key="ldapCANo" value="Not specify" ja="指定しない"/>
+        <msg key="ldapCAFile" value="File" ja="ファイル"/>
+        <msg key="ldapCADir" value="Directory" ja="ディレクトリ"/>
+        <msg key="pointButton" value="..."/>
+        
+        <!-- for domain type select box both windows and unix  -->
+        <msg key="AuthNISDomain4Win" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="AuthPWDDomain4Win" value="Passwd Domain" ja=" Passwdドメイン"/>
+        <msg key="AuthLDAPWDomain" value="LDAP Domain" ja="LDAPドメイン"/>
+        <msg key="AuthDMCDomain" value="NT Domain" ja="NTドメイン"/>
+        <msg key="AuthADSDomain" value="ADS Domain" ja="ADSドメイン"/>
+        <msg key="AuthSHRDomain" value="Share Domain" ja="共有ドメイン"/>
+        <msg key="AuthNISDomain" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="AuthPWDDomain" value="Passwd Domain" ja=" Passwdドメイン"/>
+        <msg key="AuthLDAPUDomain" value="LDAP Domain" ja="LDAPドメイン"/>
+        <msg key="AuthLDAPUDomain4Win" value="LDAP Domain" ja="LDAPドメイン"/>
+        <!-- end  for domain type select box both windows and unix  -->
+        
+        <msg key="Anonymous" value="Anonymous" />
+        <msg key="SIMPLE" value="LDAP Simple Authentication" ja="LDAP簡易認証"/>
+        <msg key="DIGEST-MD5" value="SASL(DIGEST-MD5)"/>
+		<msg key="CRAM-MD5" value="SASL(CRAM-MD5)"/>
+        
+        <!-- for list(data,client) x-->
+        <msg key="ldap_domain" value="LDAP Domain" ja="LDAPドメイン"/>
+        <msg key="ldap_server" value="LDAP Server" ja="LDAPサーバ"/>        
+        <msg key="ludb_name" value="Local User Database" 
+         ja="ローカルユーザデータベース"/>
+        <msg key="nis_domain" value="NIS Domain" ja="NISドメイン"/>
+        <msg key="nis_server" value="NIS Server" ja="NISサーバ"/>
+        <msg key="nt_domain" value="Domain" ja="ドメイン"/>
+        <msg key="text_dnsdomain" value="DNS Domain Name" ja="DNSドメイン名"/>
+        <msg key="text_kdcserver" value="Key Distribution Center" 
+        ja="キー配布センター"/>
+        <msg key="optional" value="(optional)" ja="（省略可）"/>
+        <!--add by liq 20060316 for adc DC -->
+        <msg key="dc" value="Domain Controller" ja="ドメインコントローラ"/>
+        <msg key="dcfromdns" value="Automatic Setting" ja="自動的に取得"/>
+        <msg key="dcspecify" value="Manual Setting" ja="指定"/>
+        <msg key="dccomment" value="(Set the same servers to [Key Distribution Center])" ja="（「キー配布センター」に同じサーバが指定されます）"/>
+        <msg key="joindomain" value="Join to domain" ja="ドメイン参加を行う"/>
+        <msg key="inputcomment" value="Please specify FQDN.&lt;br&gt;When selecting the multiple input, please separate them by space.The maximum number is 3." ja="FQDNで指定してください。&lt;br&gt;複数指定する場合、空白文字で区切ってください。3つまで指定可能です。"/>
+        <!--end of add by liq 20060316 for adc DC -->
+        <msg key="set_wd" value="Set Windows Domain." ja="Windows系ドメインを設定する。"/>
+        <msg key="button_set_wdb" value="Set Windows Domain" ja="Windows系ドメイン設定"/>
+  		<msg key="button_del_wdb" value="Delete Windows Domain" ja="Windows系ドメイン削除"/>
+  		<msg key="button_chg_netbios" value="Change Computer Name..." ja="コンピュータ名変更..."/>
+  		<msg key="h2_changebios" value="Change Computer Name" ja="コンピュータ名変更"/>
+  		<msg key="msg_info_fail" value="Can not get Windows Domain's information." ja="Windows系ドメイン情報を取得できません。"/>
+  		<msg key="domain_name" value="Domain" ja="ドメイン"/>
+        <msg key="netbios" value="Computer Name" ja="コンピュータ名"/>
+        <msg key="text_ads_user" value="User" ja="ユーザ名"/>
+        <msg key="text_ads_pass" value="Password" ja="パスワード"/>
+        <!--add by wanghb 20061008 for cifs direct hosting -->
+        <msg key="msg_info_directhosting" value="The Windows Domain cannot be set&lt;br&gt;because the Direct Hosting is used for another Export Group." ja="他の公開グループでダイレクトホスト機能を使用しているため、&lt;br&gt;Windows系ドメインは設定できません。"/>
+        <!--add by wanghb 20070322 for cifs computer name guard -->
+        <msg key="msg_info_hostname" value="The specified computer name and the host name of the node are same.\r\nPlease specify the other computer name." ja="指定されたコンピュータ名がノードのホスト名と同じです。\r\n他のコンピュータ名を指定してください。"/>
+        <msg key="msg_info_domainwithnode" value="Please specify NetBIOS domain name in Domain.\r\nDo you really want to set this domain?" ja="ドメインにはNetBIOSドメイン名を指定してください。\r\n指定したドメインで設定してよろしいですか？"/>
+        <msg key="domain_inputcomment" value="Please specify NetBIOS (not FQDN) domain name." ja="NetBIOSのドメイン名を入力してください。&lt;br&gt;FQDNのドメイン名ではありません。"/>
+        <msg key="domain_inputcomment_ads" value="Please specify NetBIOS (not FQDN) domain name." ja="NetBIOSのドメイン名を入力してください。FQDNのドメイン名ではありません。"/>
+        <!--add by wanghb 20070620 for cifs ip address -->
+        <msg key="msg_no_interface" value="The operation has failed.\r\nNo available IP address of service network.\r\nPlease set a new IP address in service network or delete any unnecessary IP addresses from Interfaces in the setting screen of Global Option for CIFS of other export groups or Schedule Server for Schedule Scan." ja="設定できませんでした。\r\n未使用のサービスネットワークのIPアドレスがありません。\r\nサービスネットワークで新規にIPアドレスを設定するか、他の公開グループのCIFSグローバルオプション設定または、スケジュールスキャンのスキャンサーバ設定のインタフェースから不要なIPアドレスを削除してください。"/>
+        <!-- for list(data,client) o-->
+        <msg key="ads_dns_info" value="Please specify the DNS domain name to which ActiveDirectory server belongs." ja="ActiveDirectoryサーバが属するDNSドメイン名を入力してください。"/>
+    </msg>
+    <!-- <nsgui:message key="nas_mapd/nt/"/> -->
+    <msg key="button" value="">
+    	<msg key="add_dom" value="Add Domain..." ja="ドメイン参加..." />
+    	<msg key="chg_dom" value="Change Domain..." ja="ドメイン変更..." />
+    	<msg key="changerule" value="Conversion Rule..." ja="変換ルール..." />
+    	
+    </msg>
+    
+    
+	<msg key="udb" value="">
+    	<msg key="getudbfaild" value="Failed to get volume list info." 
+    	                ja="ボリュームリストの情報を取得できません。" />
+        <msg key="nomountpoint" value="No volumes are found." 
+    	                ja="ボリュームが設定されていません。" />
+    	<msg key="th_udbtype" value="User Database Type" 
+    	                ja="ユーザデータベースタイプ" />
+    	                
+    	<msg key="addDomain4E" value="Please add a domain at " ja=" " />
+    	<msg key="addDomain" value="[Add Domain]." ja="[ドメイン参加]" />
+		<msg key="addDomain4J" value=" " ja="でドメインへ参加してください。" />
+		<msg key="th_ntdomain" value="Domain" ja="ドメイン" />
+		<msg key="th_netbios" value="Computer Name" ja="コンピュータ名" />
+    	                
+    	                
+    </msg>
+    
+  
+</messages>

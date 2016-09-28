@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE struts-config PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+"http://struts.apache.org/dtds/struts-config_1_3.dtd">
+<!--
+
+       Copyright (c) 2005-2007 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+<!-- "@(#) $Id: struts-config-account.xml,v 1.3 2007/05/09 07:40:40 chenbc Exp $" -->
+<struts-config>
+    <!-- ======== Form Bean Definitions =================================== -->
+    <form-beans>
+        <form-bean name="accountTabnsadminForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="_nsadminpassword" type="java.lang.String" />
+        </form-bean>               
+        <form-bean name="accountTabnsviewForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="_nsviewpassword" type="java.lang.String" />
+            <form-property name="checkconnection" type="java.lang.String" />
+        </form-bean>      
+        <form-bean name="accountTimeoutForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="nsadminTimeout" type="java.lang.String" />
+            <form-property name="nsviewTimeout" type="java.lang.String" />
+            <form-property name="reflectNow" type="java.lang.String" />
+        </form-bean>  
+        <form-bean name="accountListForm" type="org.apache.struts.action.DynaActionForm">
+            <form-property name="sessionId" type="java.lang.String" />
+        </form-bean>
+    </form-beans>
+    
+	<!-- ========== Action Mapping Definitions ============================== -->
+
+    <action-mappings>      
+        <action path="/accountTabEntry"
+                forward="/../nas/account/accounttabentry.jsp"/>        
+       
+        <action path="/accountTabTop"
+                forward="/../nas/account/accounttabtop.jsp"/>
+        
+        <action path="/accountTablist"
+                forward="/../nas/account/accounttablist.jsp"/>
+                
+        <action path="/accountTablistBottom"
+                forward="/../nas/account/accounttablistbottom.jsp"/>
+                             
+        <action path="/accountTablistTop"
+                type="com.nec.nsgui.action.account.AccountTablistAction"
+                scope="request" 
+                parameter="operation"
+        >
+        <forward name="accountTablist" module="" path="/nas/account/accounttablisttop.jsp"/>
+        <forward name="redirect" redirect="true" path="/accountTablistTop.do?operation=list"/>
+        </action>
+     
+        <action path="/accountTabnsadmin" 
+                forward="/../nas/account/accounttabnsadmin.jsp"/>
+                
+        <action path="/accountTabnsview" 
+                forward="/../nas/account/accounttabnsview.jsp"/>                                
+                
+        <action path="/accountTabnsadminBottom" 
+                forward="/../nas/account/accounttabnsadminbottom.jsp"/> 
+
+         <action path="/accountTabnsadminTop"
+                type="com.nec.nsgui.action.account.AccountTabnsadminAction"
+                name="accountTabnsadminForm"
+                scope="request"
+                parameter="operation"
+        >
+        <forward name="set" module="" path="/nas/account/accounttabnsadmintop.jsp"/>
+        <forward name="display" module="" path="/nas/account/accounttabnsadmintop.jsp"/>
+        </action>
+          
+        <action path="/accountTabnsviewBottom" 
+                forward="/../nas/account/accounttabnsviewbottom.jsp"/>                         
+                
+         <action path="/accountTabnsviewTop"
+                type="com.nec.nsgui.action.account.AccountTabnsviewAction"
+                name="accountTabnsviewForm"
+                scope="request"
+                parameter="operation"
+        >
+        <forward name="set" module="" path="/nas/account/accounttabnsviewtop.jsp"/>
+        <forward name="display" module="" path="/nas/account/accounttabnsviewtop.jsp"/>
+        </action>     
+        <action path="/enterTimeout" 
+                forward="/../nas/account/accounttimeout.jsp"/>
+        <action path="/accountTimeoutBottom" 
+                forward="/../nas/account/accounttimeoutbottom.jsp"/>
+        <action path="/accountTimeoutTop"
+                type="com.nec.nsgui.action.account.AccountTimeoutGetAction"
+                name="accountTimeoutForm"
+                scope="request">
+        <forward name="success" module="" path="/nas/account/accounttimeouttop.jsp"/>     
+        </action>
+        <action path="/accountTimeoutSet"
+                type="com.nec.nsgui.action.account.AccountTimeoutSetAction"
+                name="accountTimeoutForm"
+                scope="request">
+        <forward name="success" module="" path="/nas/account/accounttimeout.jsp"/>     
+        </action>
+        <action path="/accoutNsviewOut"
+                type="com.nec.nsgui.action.account.AccountNsviewOutAction"
+                name="accountListForm"
+                scope="request">
+        <forward name="success" module="" path="/nas/account/accounttablist.jsp"/>     
+        </action>
+    </action-mappings>
+    <!-- ========== Message Resources Definitions =========================== -->
+    <message-resources parameter="com.nec.nsgui.messages.AccountResource"/>
+    
+<!-- ======================================= Plug Ins Configuration -->
+
+    <plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+        <set-property property = "confFile"
+            value = "/WEB-INF/conf/exception/exception-config-base.xml"/>
+    </plug-in>
+
+</struts-config>

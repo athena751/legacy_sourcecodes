@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+ 
+<!DOCTYPE struts-config PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN"
+          "http://struts.apache.org/dtds/struts-config_1_3.dtd">
+
+<!--
+
+       Copyright (c) 2005-2007 NEC Corporation
+
+       NEC SOURCE CODE PROPRIETARY
+
+       Use, duplication and disclosure subject to a source code
+       license agreement with NEC Corporation.
+
+-->
+
+<!-- "@(#) $Id: struts-config-nic.xml,v 1.12 2007/08/24 01:22:35 wanghui Exp $" -->
+<struts-config>
+  
+    <!-- ======== Form Bean Definitions =================================== -->
+  <form-beans>
+      <form-bean     name="NicRouteChangeForm"
+                     type="org.apache.struts.action.DynaActionForm">                     
+            <form-property name="destinations" type="java.lang.String"/>
+            <form-property name="gateways" type="java.lang.String"/>
+            <form-property name="nicNames"
+                           type="java.lang.String" />    						      
+      
+      </form-bean>
+    
+    	<form-bean name="interfaceNameForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="interfaceName" type="java.lang.String" />
+			<form-property name="nic_from4change" type="java.lang.String" />
+		</form-bean>
+
+		<form-bean name="linkStatusForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="linkStatusSet"
+				type="com.nec.nsgui.model.entity.nic.NicDetailLinkBean[]"
+				size="16" />
+		</form-bean>
+
+		<form-bean name="interfaceSetForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="interfaceSet"
+				type="com.nec.nsgui.model.entity.nic.NicInformationBean" />
+		</form-bean>
+
+		<form-bean name="nicBondForm"
+			type="org.apache.struts.action.DynaActionForm">
+			<form-property name="bondInfo"
+				type="com.nec.nsgui.model.entity.nic.BondingInfoBean" />
+			<form-property name="from" type="java.lang.String" />
+			<form-property name="canSelect" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="fromForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="from4bond" type="java.lang.String" />
+		</form-bean>
+		<form-bean name="LinkDownInfoBean"
+		    type="com.nec.nsgui.model.entity.nic.NicLinkDownInfoBean">			
+		</form-bean>
+	
+  </form-beans>
+
+  <!-- ========== Action Mapping Definitions ============================== -->
+  <action-mappings>      
+        
+     <action path="/displayServiceTabTop"
+                forward="/../nas/nic/nicservicetab.jsp"/>  
+    <action path="/displayAdminTabTop"
+                forward="/../nas/nic/nicadmintab.jsp"/>                    
+     <action path="/displayRoutingTabTop"
+                forward="/../nas/nic/nicroutingtab.jsp"/>    
+                               
+            <action path="/nicServiceEntry"
+                forward="/../nas/nic/nicserviceentry.jsp"/> 
+            <action path="/nicAdminEntry"
+                forward="/../nas/nic/nicadminentry.jsp"/> 
+            <action path="/nicRoutingEntry"
+                forward="/../nas/nic/nicroutingentry.jsp"/>
+                 
+         <action path="/nicList"
+                forward="/../nas/nic/niclist.jsp"/>  
+          <action path="/listTop"
+                forward="/../nas/nic/niclisttop.jsp"/>
+         <action path="/listBottom"
+                forward="/../nas/nic/niclistbottom.jsp"/>
+             
+           <action path="/adminList"
+                forward="/../nas/nic/nicadmin.jsp"/>   
+           <action path="/adminBottom"
+                forward="/../nas/nic/nicadminbottom.jsp"/>
+                    
+           <action path="/nicRedundantList"
+                forward="/../nas/nic/nicredundantlist.jsp"/>   
+           <action path="/nicRedundantListBottom"
+                forward="/../nas/nic/nicredundantlistbottom.jsp"/> 
+                
+	       <action path="/nicVlan"
+                forward="/../nas/nic/nicvlanframe.jsp"/> 
+           <action path="/vlanSetBottom"
+                forward="/../nas/nic/nicvlanbottom.jsp"/> 
+                
+     <action
+    				path = "/dispNicList" 
+    				type = "com.nec.nsgui.action.nic.NicListDispatchAction"    				    				
+    				parameter = "Operation"  >           
+    
+        <forward name="listTop" path="/nas/nic/niclisttop.jsp" module=""/>                         
+        <forward name="adminTop" path="/nas/nic/nicadmintop.jsp" module=""/> 
+        <forward name="list" path="/nas/nic/niclist.jsp" module=""/>        
+    </action>
+    
+     <action
+    				path = "/dispNicRedundantList" 
+    				type = "com.nec.nsgui.action.nic.NicRedundantListDispatchAction"    				    				
+    				parameter = "Operation"  >    
+        <forward name="redundantListTop" path="/nas/nic/nicredundantlisttop.jsp" module=""/>
+        <forward name="redundantList" path="/nas/nic/nicredundantlist.jsp" module=""/>
+    </action>
+    
+    <action
+    				path = "/dispRouteChange"
+    				type = "com.nec.nsgui.action.nic.NicRouteChangeDispatchAction"
+    				name ="NicRouteChangeForm"
+    				scope = "request"
+    				parameter = "Operation"  >           
+    
+        <forward name="changeTop" path="/nas/nic/nicroutechangetop.jsp" module=""/>         
+        <forward name="changeMain" path="/nas/nic/nicroutechange.jsp" module=""/>
+        <forward name="listMain" path="/nas/nic/nicroutelist.jsp" module=""/> 
+    </action>
+    
+    <action
+    				path = "/routeListTop"
+    				type = "com.nec.nsgui.action.nic.NicRouteListAction"
+    				name ="NicRouteChangeForm"
+    				scope = "request" > 
+        <forward name="listTop" path="/nas/nic/nicroutelisttop.jsp" module=""/>      
+    </action>
+    
+     <action path="/routeListBottom"
+                forward="/../nas/nic/nicroutelistbottom.jsp" />
+                
+     <action path="/routeChangeBottom"
+                forward="/../nas/nic/nicroutechangebottom.jsp" />
+                
+     <action path="/routeChange"
+                forward="/../nas/nic/nicroutechange.jsp" />
+     
+     <action path="/routeList"
+                forward="/../nas/nic/nicroutelisttop.jsp" />
+                
+    <action path="/linkStatusTop" 
+		    scope = "session"
+			name="interfaceNameForm"
+			type="com.nec.nsgui.action.nic.NicLinkStatusListAction">
+			<forward name="success" module=""
+				path="/nas/nic/niclinkstatustop.jsp" />
+			<forward name="failure" module=""
+				path="/nas/nic/niclinkstatuserror.jsp" />
+		</action>
+
+		<action path="/linkStatusSet" name="linkStatusForm"
+			scope="request"
+			type="com.nec.nsgui.action.nic.NicLinkStatusSetAction">
+			<forward name="success" module=""
+				path="/nas/nic/niclinkstatusframe.jsp" />
+			<forward name="failure" module=""
+				path="/nas/nic/niclinkstatuserror.jsp" />
+		</action>		
+
+		<action path="/linkStatus" 
+			scope = "session"
+			name="interfaceNameForm"
+			forward="/../nas/nic/niclinkstatusframe.jsp" />
+			
+		<action path="/linkStatusBottom"
+			forward="/../nas/nic/niclinkstatusbottom.jsp" />
+		
+		<action path="/interfaceChangeTop" 
+			scope = "session"
+			name="interfaceNameForm"
+			forward="/../nas/nic/nicinterfacechangetop.jsp" />
+
+					
+		<action path="/interfaceChange" 
+			scope = "session"
+			name="interfaceNameForm"
+			type="com.nec.nsgui.action.nic.NicInterfaceChangeAction">
+			<forward name="success" module=""
+				path="/nas/nic/nicinterfacechangeframe.jsp" />
+		</action>
+
+		<action path="/interfaceSet" name="interfaceSetForm"
+		    scope = "session"
+			type="com.nec.nsgui.action.nic.NicInterfaceSetAction">
+			<forward name="success" module=""
+				path="/nas/nic/niclist.jsp" />
+			<forward name="virtual" module=""
+				path="/nas/nic/nicredundantlist.jsp" />
+			<forward name="failed" module=""
+				path="/nas/nic/nicinterfacechangeframe.jsp" />
+			<forward name="toBond" module=""
+				path="/nic/bondShow.do" />
+			<forward name="toVlan" module=""
+				path="/nic/nicVlan.do" />
+		</action>
+
+		<action path="/interfaceChangeBottom"
+			forward="/../nas/nic/nicinterfacechangebottom.jsp" />
+		
+		<action path="/nicDetail" 
+			scope = "session"
+			name="interfaceNameForm"
+			forward="/../nas/nic/nicdetail.jsp" />
+				
+		<action path="/nicDetailTop" 
+			scope = "session"
+			name="interfaceNameForm"
+	        type="com.nec.nsgui.action.nic.NicDetailTopAction"  >
+	        <forward name="nicDetailTop" module="" path="/nas/nic/nicdetailtop.jsp"/>
+	    </action>
+
+		<action path="/nicDetailBottom"
+			forward="/../nas/nic/nicdetailbottom.jsp" />
+			
+		<action path="/dispVlanTop" name="interfaceNameForm"
+			scope="session"
+			type="com.nec.nsgui.action.nic.NicVlanAction"
+			parameter = "Operation" >
+			<forward name="vlanTop" module=""
+				path="/nas/nic/nicvlantop.jsp" />
+			<forward name="vlanFrame" module=""
+				path="/nas/nic/nicvlanframe.jsp" />
+			<forward name="setIP" module=""
+				path="/nic/interfaceChange.do" />	
+		</action>		
+		
+		
+		<action path="/bondShowTop"
+			forward="/../nas/nic/nicbondtop.jsp" />
+
+		<action path="/bondShowBottom"
+			forward="/../nas/nic/nicbondbottom.jsp" />
+
+        <action path="/bondShow"
+			scope = "request"
+			name="fromForm" 
+	        type="com.nec.nsgui.action.nic.NicBondShowAction">
+	        <forward name="nicBondShow" module="" path="/nas/nic/nicbondframe.jsp"/>
+	    </action>
+
+		<action path="/bondSet" 
+			scope = "session"
+			name="nicBondForm"
+	        type="com.nec.nsgui.action.nic.NicBondSetAction" >
+	        <forward name="interfaceChange" module="" path="/nic/interfaceChange.do"/>
+			<forward name="vlanCreate" module="" path="/nic/nicVlan.do"/>
+			<forward name="failed" module="" path="/nas/nic/nicbondframe.jsp"/>
+	    </action>
+
+		<action path="/nicIPAlias"
+			forward="/../nas/nic/nicipaliasframe.jsp" />		
+
+		<action path="/nicIPAliasBottom"
+			forward="/../nas/nic/nicipaliasbottom.jsp" />
+		
+		<action path="/nicIPAliasTop"
+			scope = "session"
+			name="interfaceSetForm"
+			parameter="operation"
+	        type="com.nec.nsgui.action.nic.NicIPAliasTopAction" >
+	        <forward name="display" module="" path="/nas/nic/nicipaliastop.jsp"/>
+			<forward name="set" module="" path="/nic/nicIPAliasTop.do?operation=display"/>
+	    </action>
+	    
+           <action path="/linkdownConfig" 
+			scope = "request"
+			name="LinkDownInfoBean"
+			parameter = "operation"
+	        type="com.nec.nsgui.action.nic.NicLinkDownConfigAction" >
+	        <forward name="linkdownInfo" module="" path="/nas/nic/niclinkdowninfo.jsp"/>
+			<forward name="linkdownConfigTop" module="" path="/nas/nic/niclinkdownconfigtop.jsp"/>
+			<forward name="linkdownConfig" module="" path="/nas/nic/niclinkdownconfig.jsp"/>
+	    </action>
+	    
+	    <action path="/linkdownConfigBottom"
+			forward="/../nas/nic/niclinkdownconfigbottom.jsp" />
+		
+		<action path="/linkdownConfigFrame"
+			forward="/../nas/nic/niclinkdownconfig.jsp" />
+    
+  </action-mappings>
+  
+
+  <!-- ========== Message Resources Definitions =========================== -->
+
+  <message-resources parameter="com.nec.nsgui.messages.NICResource"/>
+  
+<plug-in className="com.nec.nsgui.exception.NSExceptionPlugIn">
+	<set-property property="confFile" 
+		value="/WEB-INF/conf/exception/exception-config-base.xml,/WEB-INF/conf/exception/exception-config-nic.xml"/>
+</plug-in>
+
+</struts-config>
